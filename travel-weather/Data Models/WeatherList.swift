@@ -14,6 +14,7 @@ class WeatherList: NSObject {
         super.init()
     }
     
+    
     //MARK:- Instance Variables
     //placeholder data
     var dayWeathers = [

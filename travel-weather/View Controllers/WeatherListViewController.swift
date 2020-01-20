@@ -12,7 +12,7 @@ import UIKit
 class WeatherListViewController: UITableViewController {
     
     var weatherList = WeatherList()
-    
+    var colorList = [UIColor.red, UIColor.orange, UIColor.yellow, UIColor.green, UIColor.blue, UIColor.purple, UIColor.magenta]
     override func viewDidLoad() {
         super.viewDidLoad()
         let cellNib = UINib(nibName: "DayWeatherCell", bundle: nil)
@@ -20,6 +20,7 @@ class WeatherListViewController: UITableViewController {
     }
     
     //MARK:- Table View Data Source
+    
     override func tableView(_ tableView: UITableView,
                             numberOfRowsInSection section: Int) -> Int {
         return weatherList.dayWeathers.count
@@ -29,7 +30,7 @@ class WeatherListViewController: UITableViewController {
                             cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "DayWeatherCell", for: indexPath) as! DayWeatherCell
         let dayWeather = weatherList.dayWeathers[indexPath.row]
-        cell.configureCell(dayWeather: dayWeather)
+        cell.configureCell(dayWeather: dayWeather, color: colorList[indexPath.row])
         return cell
     }
 }
