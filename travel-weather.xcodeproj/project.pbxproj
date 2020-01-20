@@ -9,21 +9,27 @@
 /* Begin PBXBuildFile section */
 		9E63366D23D5422400468158 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E63366C23D5422400468158 /* AppDelegate.swift */; };
 		9E63366F23D5422400468158 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E63366E23D5422400468158 /* SceneDelegate.swift */; };
-		9E63367123D5422400468158 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E63367023D5422400468158 /* ViewController.swift */; };
 		9E63367423D5422400468158 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9E63367223D5422400468158 /* Main.storyboard */; };
 		9E63367623D5422700468158 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 9E63367523D5422700468158 /* Assets.xcassets */; };
 		9E63367923D5422700468158 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9E63367723D5422700468158 /* LaunchScreen.storyboard */; };
+		9E63368123D5478700468158 /* WeatherListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E63368023D5478700468158 /* WeatherListViewController.swift */; };
+		9E63368323D54CE900468158 /* DayWeatherCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9E63368223D54CE900468158 /* DayWeatherCell.xib */; };
+		9E63368523D624ED00468158 /* DayWeatherCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E63368423D624ED00468158 /* DayWeatherCell.swift */; };
+		9E63368923D62DD100468158 /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 9E63368823D62DD100468158 /* Default-568h@2x.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		9E63366923D5422400468158 /* Travel Weather.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Travel Weather.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		9E63366C23D5422400468158 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		9E63366E23D5422400468158 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
-		9E63367023D5422400468158 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		9E63367323D5422400468158 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		9E63367523D5422700468158 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		9E63367823D5422700468158 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		9E63367A23D5422700468158 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		9E63368023D5478700468158 /* WeatherListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherListViewController.swift; sourceTree = "<group>"; };
+		9E63368223D54CE900468158 /* DayWeatherCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = DayWeatherCell.xib; sourceTree = "<group>"; };
+		9E63368423D624ED00468158 /* DayWeatherCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DayWeatherCell.swift; sourceTree = "<group>"; };
+		9E63368823D62DD100468158 /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-568h@2x.png"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -40,7 +46,8 @@
 		9E63366023D5422400468158 = {
 			isa = PBXGroup;
 			children = (
-				9E63366B23D5422400468158 /* Travel Weather */,
+				9E63368823D62DD100468158 /* Default-568h@2x.png */,
+				9E63366B23D5422400468158 /* travel-weather */,
 				9E63366A23D5422400468158 /* Products */,
 			);
 			sourceTree = "<group>";
@@ -53,26 +60,28 @@
 			name = Products;
 			sourceTree = "<group>";
 		};
-		9E63366B23D5422400468158 /* Travel Weather */ = {
+		9E63366B23D5422400468158 /* travel-weather */ = {
 			isa = PBXGroup;
 			children = (
+				9E63368023D5478700468158 /* WeatherListViewController.swift */,
+				9E63368423D624ED00468158 /* DayWeatherCell.swift */,
+				9E63368223D54CE900468158 /* DayWeatherCell.xib */,
 				9E63366C23D5422400468158 /* AppDelegate.swift */,
 				9E63366E23D5422400468158 /* SceneDelegate.swift */,
-				9E63367023D5422400468158 /* ViewController.swift */,
 				9E63367223D5422400468158 /* Main.storyboard */,
 				9E63367523D5422700468158 /* Assets.xcassets */,
 				9E63367723D5422700468158 /* LaunchScreen.storyboard */,
 				9E63367A23D5422700468158 /* Info.plist */,
 			);
-			path = "Travel Weather";
+			path = "travel-weather";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		9E63366823D5422400468158 /* Travel Weather */ = {
+		9E63366823D5422400468158 /* travel-weather */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 9E63367D23D5422700468158 /* Build configuration list for PBXNativeTarget "Travel Weather" */;
+			buildConfigurationList = 9E63367D23D5422700468158 /* Build configuration list for PBXNativeTarget "travel-weather" */;
 			buildPhases = (
 				9E63366523D5422400468158 /* Sources */,
 				9E63366623D5422400468158 /* Frameworks */,
@@ -82,7 +91,7 @@
 			);
 			dependencies = (
 			);
-			name = "Travel Weather";
+			name = "travel-weather";
 			productName = "Travel Weather";
 			productReference = 9E63366923D5422400468158 /* Travel Weather.app */;
 			productType = "com.apple.product-type.application";
@@ -102,7 +111,7 @@
 					};
 				};
 			};
-			buildConfigurationList = 9E63366423D5422400468158 /* Build configuration list for PBXProject "Travel Weather" */;
+			buildConfigurationList = 9E63366423D5422400468158 /* Build configuration list for PBXProject "travel-weather" */;
 			compatibilityVersion = "Xcode 9.3";
 			developmentRegion = en;
 			hasScannedForEncodings = 0;
@@ -115,7 +124,7 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				9E63366823D5422400468158 /* Travel Weather */,
+				9E63366823D5422400468158 /* travel-weather */,
 			);
 		};
 /* End PBXProject section */
@@ -126,7 +135,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				9E63367923D5422700468158 /* LaunchScreen.storyboard in Resources */,
+				9E63368323D54CE900468158 /* DayWeatherCell.xib in Resources */,
 				9E63367623D5422700468158 /* Assets.xcassets in Resources */,
+				9E63368923D62DD100468158 /* Default-568h@2x.png in Resources */,
 				9E63367423D5422400468158 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -138,7 +149,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				9E63367123D5422400468158 /* ViewController.swift in Sources */,
+				9E63368123D5478700468158 /* WeatherListViewController.swift in Sources */,
+				9E63368523D624ED00468158 /* DayWeatherCell.swift in Sources */,
 				9E63366D23D5422400468158 /* AppDelegate.swift in Sources */,
 				9E63366F23D5422400468158 /* SceneDelegate.swift in Sources */,
 			);
@@ -292,7 +304,7 @@
 					"@executable_path/Frameworks",
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = "com.sajedian.Travel-Weather";
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = "Travel Weather";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -310,7 +322,7 @@
 					"@executable_path/Frameworks",
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = "com.sajedian.Travel-Weather";
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = "Travel Weather";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -319,7 +331,7 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		9E63366423D5422400468158 /* Build configuration list for PBXProject "Travel Weather" */ = {
+		9E63366423D5422400468158 /* Build configuration list for PBXProject "travel-weather" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				9E63367B23D5422700468158 /* Debug */,
@@ -328,7 +340,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		9E63367D23D5422700468158 /* Build configuration list for PBXNativeTarget "Travel Weather" */ = {
+		9E63367D23D5422700468158 /* Build configuration list for PBXNativeTarget "travel-weather" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				9E63367E23D5422700468158 /* Debug */,
