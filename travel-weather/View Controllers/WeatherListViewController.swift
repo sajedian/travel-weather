@@ -11,6 +11,8 @@ import UIKit
 
 class WeatherListViewController: UITableViewController {
     
+    var weatherList = WeatherList()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         let cellNib = UINib(nibName: "DayWeatherCell", bundle: nil)
@@ -20,12 +22,14 @@ class WeatherListViewController: UITableViewController {
     //MARK:- Table View Data Source
     override func tableView(_ tableView: UITableView,
                             numberOfRowsInSection section: Int) -> Int {
-        return 14
+        return weatherList.dayWeathers.count
     }
     
     override func tableView(_ tableView: UITableView,
                             cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "DayWeatherCell", for: indexPath)
+        let cell = tableView.dequeueReusableCell(withIdentifier: "DayWeatherCell", for: indexPath) as! DayWeatherCell
+        let dayWeather = weatherList.dayWeathers[indexPath.row]
+        cell.configureCell(dayWeather: dayWeather)
         return cell
     }
 }

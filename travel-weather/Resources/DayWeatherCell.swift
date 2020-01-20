@@ -14,6 +14,12 @@ class DayWeatherCell: UITableViewCell {
     @IBOutlet weak var dayLabel: UILabel!
     @IBOutlet weak var cityLabel: UILabel!
     @IBOutlet weak var tempLabel: UILabel!
-    @IBOutlet weak var weatherImage: UIImageView!
+    @IBOutlet weak var weatherImageView: UIImageView!
     
+    func configureCell(dayWeather: DayWeather) {
+        dayLabel.text = dayWeather.day.rawValue
+        cityLabel.text = dayWeather.city
+        tempLabel.text = dayWeather.tempDisplay
+        weatherImageView.image = UIImage(systemName: dayWeather.weatherSummary.rawValue)
+    }
 }
