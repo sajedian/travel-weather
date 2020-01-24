@@ -17,6 +17,20 @@ struct DayWeather {
         self.lowTemp = lowTemp
         self.weatherSummary = weatherSummary
     }
+    
+    //MARK:- Instance Variables
+    var day: Day
+    var city: String
+    var highTemp: Int
+    var lowTemp: Int
+    var weatherSummary: WeatherSummary
+    var weatherImage: UIImage? {
+        return UIImage(systemName: weatherSummary.rawValue)
+    }
+    var tempDisplay: String? {
+        return "\(highTemp) ⏐ \(lowTemp)"
+    }
+    
     //MARK:- Enums
     //rawValue is systemName of weather icon
     enum WeatherSummary: String {
@@ -38,18 +52,7 @@ struct DayWeather {
         case saturday = "Saturday"
     }
     
-    //MARK:- Instance Variables
-    var day: Day
-    var city: String
-    var highTemp: Int
-    var lowTemp: Int
-    var weatherSummary: WeatherSummary
-    var weatherImage: UIImage? {
-        return UIImage(systemName: weatherSummary.rawValue)
-    }
-    var tempDisplay: String? {
-        return "\(highTemp) ⏐ \(lowTemp)"
-    }
+
   
 }
 

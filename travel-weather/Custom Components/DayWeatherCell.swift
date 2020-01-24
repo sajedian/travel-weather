@@ -21,7 +21,7 @@ class DayWeatherCell: UITableViewCell {
     
     override func awakeFromNib() {
          super.awakeFromNib()
-         
+         colorView.layer.cornerRadius = 10
        }
     
     
@@ -31,7 +31,7 @@ class DayWeatherCell: UITableViewCell {
         tempLabel.text = dayWeather.tempDisplay
         weatherImageView.image = UIImage(systemName: dayWeather.weatherSummary.rawValue)
         colorView.backgroundColor = color
-        colorView.layer.cornerRadius = 10
+        
 //        let background = UIView(frame: CGRect.zero)
 //        background.backgroundColor = color
 //        backgroundView = background

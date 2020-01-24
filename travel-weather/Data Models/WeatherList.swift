@@ -8,11 +8,7 @@
 
 import Foundation
 
-class WeatherList: NSObject {
-    
-    override init() {
-        super.init()
-    }
+struct WeatherList  {
     
     
     //MARK:- Instance Variables
