@@ -12,33 +12,44 @@ import UIKit
 
 class WeatherListViewController: UITableViewController {
     
-    var weatherList = WeatherList()
-    var colorList = [UIColor(red: 53/255, green: 133/255, blue: 168/255, alpha: 1.0),
-                     UIColor(red: 113/255, green: 62/255, blue: 224/255, alpha: 1.0),
-                     UIColor(red: 204/255, green: 57/255, blue: 186/255, alpha: 1.0),
-                     UIColor(red: 71/255, green: 98/255, blue: 255/255, alpha: 1.0),
-                     UIColor(red: 237/255, green: 177/255, blue: 66/255, alpha: 1.0),
-                     UIColor(red: 58/255, green: 142/255, blue: 39/255, alpha: 1.0),
-                     UIColor(red: 211/255, green: 88/255, blue: 84/255, alpha: 1.0)]
+    var stateController: StateController!
+
 
     override func viewDidLoad() {
         super.viewDidLoad()
         let cellNib = UINib(nibName: "DayWeatherCell", bundle: nil)
         tableView.register(cellNib, forCellReuseIdentifier: "DayWeatherCell")
+        let url = URL(string: "https://api.darksky.net/forecast/\(darkSkyAPIKey)/42.3601,-71.0589")!
+        if let jsonString = requestForecast(with: url) {
+            print("Received JSON string '\(jsonString)'")
+        } else {
+            print("Error: did not receive JSON string")
+        }
     }
+    
+    //MARK:- Helper Methods
+    func requestForecast(with url: URL) -> String? {
+      do {
+       return try String(contentsOf: url, encoding: .utf8)
+      } catch {
+       print("Download Error: \(error.localizedDescription)")
+    return nil
+    } }
+    
+//    func geocodeCityLocation()
     
     //MARK:- Table View Data Source
     
     override func tableView(_ tableView: UITableView,
                             numberOfRowsInSection section: Int) -> Int {
-        return weatherList.dayWeathers.count
+        return stateController.dayWeathers.count
     }
     
     override func tableView(_ tableView: UITableView,
                             cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "DayWeatherCell", for: indexPath) as! DayWeatherCell
-        let dayWeather = weatherList.dayWeathers[indexPath.row]
-        cell.configureCell(dayWeather: dayWeather, color: colorList[indexPath.row])
+        let dayWeather = stateController.dayWeathers[indexPath.row]
+        cell.configureCell(dayWeather: dayWeather, color: stateController.associatedColor(for: dayWeather))
         return cell
     }
 }
