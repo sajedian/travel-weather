@@ -14,6 +14,9 @@ class StateController {
     }
     
     var defaultColor = UIColor(red: 14/255, green: 12/255, blue: 114/255, alpha: 1.0)
+    var dataTask: URLSessionDataTask?
+   
+    
     
     //placeholder data
     var dayWeathers = [
@@ -37,6 +40,18 @@ class StateController {
         "New York": UIColor(red: 211/255, green: 88/255, blue: 84/255, alpha: 1.0)
     ]
     
+    //placeholder latLong dictionary
+    // will later be created by looking up
+    var latLongs: [String: (Float, Float)] = [
+        "Houston": (29.760427, -95.369804),
+        "Chicago": (41.883228, -87.632401),
+        "Minneapolis": (44.977753, -93.265015),
+        "Rancho Santa Margarita": (33.640670, -117.594550),
+        "Philadelphia": (39.951061, -75.165619),
+        "Boston": (42.35843, -71.05977),
+        "New York": (40.7128, -74.0060)
+    ]
+    
     
     func associatedColor(for dayWeather: DayWeather) -> UIColor {
         if let associatedColor = colorAssociations[dayWeather.city] {
@@ -45,5 +60,29 @@ class StateController {
         else {
             return defaultColor
         }
+    }
+    
+    func updateDayWeather(dayweather: DayWeather) {
+        guard let latLong = latLongs[dayweather.city] else {
+            print("Error: latLong for \(dayweather.city) not found")
+            return
+        }
+        print("latlong: \(latLong)")
+        let (latitude, longitude) = latLong
+        let url = URL(string: "https://api.darksky.net/forecast/\(darkSkyAPIKey)/\(latitude),\(longitude)")!
+        let session = URLSession.shared
+        dataTask = session.dataTask(with: url,
+                    completionHandler: { data, response, error in
+                        if let error = error {
+                            print("Failure! \(error))")
+                        } else if let httpResponse = response as? HTTPURLResponse,
+                            httpResponse.statusCode == 200 {
+                            //todo: use data in this case
+                            print("Success! \(response!)")
+                        } else {
+                            print("Failure! \(response!)")
+                        }
+        })
+        dataTask?.resume()
     }
 }

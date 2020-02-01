@@ -19,12 +19,8 @@ class WeatherListViewController: UITableViewController {
         super.viewDidLoad()
         let cellNib = UINib(nibName: "DayWeatherCell", bundle: nil)
         tableView.register(cellNib, forCellReuseIdentifier: "DayWeatherCell")
-        let url = URL(string: "https://api.darksky.net/forecast/\(darkSkyAPIKey)/42.3601,-71.0589")!
-        if let jsonString = requestForecast(with: url) {
-            print("Received JSON string '\(jsonString)'")
-        } else {
-            print("Error: did not receive JSON string")
-        }
+        let dayweather = stateController.dayWeathers[1]
+        stateController.updateDayWeather(dayweather: dayweather)
     }
     
     //MARK:- Helper Methods
@@ -36,7 +32,7 @@ class WeatherListViewController: UITableViewController {
     return nil
     } }
     
-//    func geocodeCityLocation()
+
     
     //MARK:- Table View Data Source
     
