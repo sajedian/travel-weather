@@ -10,42 +10,84 @@
 import Foundation
 import UIKit
 
-class WeatherListViewController: UITableViewController {
+
+
+class WeatherListViewController: UITableViewController{
     
     var stateController: StateController!
-
-
+ 
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-        let cellNib = UINib(nibName: "DayWeatherCell", bundle: nil)
-        tableView.register(cellNib, forCellReuseIdentifier: "DayWeatherCell")
-        let dayweather = stateController.dayWeathers[1]
-        stateController.updateDayWeather(dayweather: dayweather)
+        let cellNib = UINib(nibName: "DayCell", bundle: nil)
+        tableView.register(cellNib, forCellReuseIdentifier: "DayCell")
+        updateForecast()
     }
-    
-    //MARK:- Helper Methods
-    func requestForecast(with url: URL) -> String? {
-      do {
-       return try String(contentsOf: url, encoding: .utf8)
-      } catch {
-       print("Download Error: \(error.localizedDescription)")
-    return nil
-    } }
-    
 
     
     //MARK:- Table View Data Source
     
     override func tableView(_ tableView: UITableView,
                             numberOfRowsInSection section: Int) -> Int {
-        return stateController.dayWeathers.count
+        return stateController.days.count
     }
     
     override func tableView(_ tableView: UITableView,
                             cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "DayWeatherCell", for: indexPath) as! DayWeatherCell
-        let dayWeather = stateController.dayWeathers[indexPath.row]
-        cell.configureCell(dayWeather: dayWeather, color: stateController.associatedColor(for: dayWeather))
+        let cell = tableView.dequeueReusableCell(withIdentifier: "DayCell", for: indexPath) as! DayCell
+        let day = stateController.days[indexPath.row]
+        cell.configureCell(day: day, color: stateController.associatedColor(for: day))
         return cell
+    }
+    
+    
+    func parse(data: Data) -> WeatherForDay? {
+      do {
+        let decoder = JSONDecoder()
+        let result = try decoder.decode(ForecastResult.self, from:data)
+        return result.daily.data[0]
+      } catch {
+            print("JSON Error: \(error)")
+            return nil}
+    }
+    
+    var dataTask: URLSessionDataTask?
+    
+    func updateForecast() {
+        stateController.days.forEach { day in
+            requestForecast(for: day)
+        }
+    }
+    
+    func requestForecast (for day: Day) {
+        guard let latLong = stateController.latLongs[day.city] else {
+            print("Error: latLong for \(day.city) not found")
+            return
+        }
+        print("latlong: \(latLong)")
+        let (latitude, longitude) = latLong
+        let time = Int(day.date.timeIntervalSince1970)
+        print(time)
+        let url = URL(string: "https://api.darksky.net/forecast/\(darkSkyAPIKey)/\(latitude),\(longitude),\(time)")!
+        let session = URLSession.shared
+        dataTask = session.dataTask(with: url,
+                    completionHandler: { data, response, error in
+                        if let error = error {
+                            print("Failure! \(error))")
+                        } else if let httpResponse = response as? HTTPURLResponse,
+                            httpResponse.statusCode == 200 {
+                            if let data = data {
+                                let result = self.parse(data: data)
+                                day.setWeatherForDay(weatherForDay: result!)
+                                DispatchQueue.main.async {
+                                    self.tableView.reloadData()
+                                }
+                            }
+                            print("Success! \(response!)")
+                        } else {
+                            print("Failure! \(response!)")
+                        }
+        })
+        dataTask?.resume()
     }
 }

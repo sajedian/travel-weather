@@ -8,10 +8,10 @@
 
 import UIKit
 
-class DayWeatherCell: UITableViewCell {
+class DayCell: UITableViewCell {
     
     //MARK:- Outlets
-    @IBOutlet weak var dayLabel: UILabel!
+    @IBOutlet weak var weekdayLabel: UILabel!
     @IBOutlet weak var cityLabel: UILabel!
     @IBOutlet weak var tempLabel: UILabel!
     @IBOutlet weak var weatherImageView: UIImageView!
@@ -25,11 +25,11 @@ class DayWeatherCell: UITableViewCell {
        }
     
     
-    func configureCell(dayWeather: DayWeather, color: UIColor) {
-        dayLabel.text = dayWeather.day.rawValue
-        cityLabel.text = dayWeather.city
-        tempLabel.text = dayWeather.tempDisplay
-        weatherImageView.image = UIImage(systemName: dayWeather.weatherSummary.rawValue)
+    func configureCell(day: Day, color: UIColor) {
+        weekdayLabel.text = day.weekday
+        cityLabel.text = day.city
+        tempLabel.text = day.tempDisplay
+//        weatherImageView.image = UIImage(systemName: day.weatherSummary.rawValue)
         colorView.backgroundColor = color
         
 //        let background = UIView(frame: CGRect.zero)
