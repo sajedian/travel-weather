@@ -29,7 +29,7 @@ class DayCell: UITableViewCell {
         weekdayLabel.text = day.weekday
         cityLabel.text = day.city
         tempLabel.text = day.tempDisplay
-//        weatherImageView.image = UIImage(systemName: day.weatherSummary.rawValue)
+        weatherImageView.image = day.weatherImage
         colorView.backgroundColor = color
         
 //        let background = UIView(frame: CGRect.zero)

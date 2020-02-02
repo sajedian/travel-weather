@@ -56,23 +56,40 @@ class Day {
         case partlyCloudy = "cloud.sun"
         case windy = "wind"
         case snowy = "snow"
+        case foggy = "cloud.fog"
         case other = "cloud.fill"
     }
-//
-//    enum Weekday: String {
-//        case sunday = "Sunday"
-//        case monday = "Monday"
-//        case tuesday = "Tuesday"
-//        case wednesday = "Wednesday"
-//        case thursday = "Thursday"
-//        case friday = "Friday"
-//        case saturday = "Saturday"
-//    }
-//
-    
+
     func setWeatherForDay(weatherForDay: WeatherForDay) {
         highTemp = Int(weatherForDay.temperatureMax!)
         lowTemp = Int(weatherForDay.temperatureMin!)
+        
+        if let icon = weatherForDay.icon {
+            
+            switch icon {
+            case "clear-day", "clear-night":
+                weatherSummary = .sunny
+            case "cloudy":
+                weatherSummary = .cloudy
+            case "partly-cloudy-day", "partly-cloudy-night":
+                weatherSummary = .partlyCloudy
+            case "rain", "sleet":
+                weatherSummary = .rainy
+            case "snow":
+                weatherSummary = .snowy
+            case "fog":
+                weatherSummary = .foggy
+            case "wind":
+                weatherSummary = .windy
+            default:
+                weatherSummary = .other
+            }
+        
+        } else {
+            self.weatherSummary = .other
+        }
+      
+        
     }
   
 }
