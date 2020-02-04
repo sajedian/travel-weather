@@ -15,32 +15,55 @@ protocol StateControllerDelegate: class {
 }
 
 class StateController: NetworkControllerDelegate {
-
-    
-    func receiveUpdatedForecast(day: Day, updatedForecast: WeatherForDay?) {
-        if let updatedForecast = updatedForecast {
-           day.setWeatherForDay(weatherForDay: updatedForecast)
-        }
-        delegate!.didUpdateForecast()
-    }
     
     
     init(networkController: NetworkController) {
         self.networkController = networkController
         networkController.delegate = self
         createPlaceHolderData()
-        print(days)
-       
     }
     
-    private var defaultColor = UIColor(red: 14/255, green: 12/255, blue: 114/255, alpha: 1.0)
+    private var networkController: NetworkController?
+    
+    //MARK:- StateController Delelgates
     weak var delegate: StateControllerDelegate?
     
-    var networkController: NetworkController? {
-        didSet {
-            networkController?.delegate = self
+    //MARK:- App State
+    private var defaultColor = UIColor(red: 14/255, green: 12/255, blue: 114/255, alpha: 1.0)
+    var days: [Day] = []
+    
+    
+    //MARK:- Interface
+    func associatedColor(for day: Day) -> UIColor {
+        if let associatedColor = colorAssociations[day.city] {
+            return associatedColor
+        }
+        else {
+            return defaultColor
         }
     }
+    
+
+    func updateForecast() { days.forEach { day in
+            networkController!.requestForecast(for: day)
+        }
+    }
+    
+    
+    //MARK:- NetworkControllerDelegate Functions
+    func receiveUpdatedForecast(day: Day, updatedForecast: WeatherForDay?) {
+           if let updatedForecast = updatedForecast {
+              day.setWeatherForDay(weatherForDay: updatedForecast)
+           }
+            //should be improved to only send updates to delegate when all network operations are complete, rather than multiple times
+           delegate!.didUpdateForecast()
+       }
+    
+    
+    
+    
+    //-----------------------------------------------------------------------
+    //MARK:- Placeholder Data
     
     private func dateFromString(str: String) -> Date {
         let dateFormatter = DateFormatter()
@@ -48,11 +71,8 @@ class StateController: NetworkControllerDelegate {
         return dateFormatter.date(from: str)!
     }
     
-    var days: [Day] = []
-    private var cities: [String] = ["Boston", "Philadelphia", "New York", "Rancho Santa Margarita", "Chicago", "Minneapolis", "Houston"]
-    
-    
     private func createPlaceHolderData() {
+        let cities = ["Boston", "Philadelphia", "New York", "Rancho Santa Margarita", "Chicago", "Minneapolis", "Houston"].shuffled()
         days = cities.enumerated().map { (index, city) -> Day in
             let date = dateFromString(str: "2020 02 \(index+2)")
             let day = Day(city: city, date: date)
@@ -68,7 +88,6 @@ class StateController: NetworkControllerDelegate {
         
     }
     
-
     //placeholder associations
     private var colorAssociations: [String: UIColor] = [
         "Houston": UIColor(red: 53/255, green: 133/255, blue: 168/255, alpha: 1.0),
@@ -93,20 +112,7 @@ class StateController: NetworkControllerDelegate {
     ]
     
     
-    func associatedColor(for day: Day) -> UIColor {
-        if let associatedColor = colorAssociations[day.city] {
-            return associatedColor
-        }
-        else {
-            return defaultColor
-        }
-    }
-    
-    func updateForecast() { days.forEach { day in
-            networkController!.requestForecast(for: day)
-        }
-    }
-    
+
 
 
 }

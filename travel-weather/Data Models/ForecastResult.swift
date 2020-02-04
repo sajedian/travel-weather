@@ -8,7 +8,7 @@
 
 import Foundation
 
-
+//used for decoding JSON result from Dark Sky TimeMachine Request
 struct ForecastResult: Decodable {
     let latitude: Float
     let longitude: Float

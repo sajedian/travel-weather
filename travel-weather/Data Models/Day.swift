@@ -23,14 +23,16 @@ class Day {
     var lowTemp: Int?
     var latLong: (Float, Float)?
     var weatherSummary: WeatherSummary?
+    
+    //MARK:- Computed Properties
     var weatherImage: UIImage {
         if let weatherSummary = weatherSummary {
             return UIImage(systemName: weatherSummary.rawValue)!
         }
         else {
+            //default image is white cloud until a more suitable default is found
             return UIImage(systemName: "cloud.fill")!
         }
-        
     }
     
     var weekday: String? {
