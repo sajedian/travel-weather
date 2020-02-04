@@ -21,6 +21,7 @@ class Day {
     var date: Date
     var highTemp: Int?
     var lowTemp: Int?
+    var latLong: (Float, Float)?
     var weatherSummary: WeatherSummary?
     var weatherImage: UIImage {
         if let weatherSummary = weatherSummary {

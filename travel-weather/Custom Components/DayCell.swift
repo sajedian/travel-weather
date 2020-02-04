@@ -31,11 +31,7 @@ class DayCell: UITableViewCell {
         tempLabel.text = day.tempDisplay
         weatherImageView.image = day.weatherImage
         colorView.backgroundColor = color
-        
-//        let background = UIView(frame: CGRect.zero)
-//        background.backgroundColor = color
-//        backgroundView = background
-//        backgroundView?.layer.cornerRadius = 10
+
         
     }
     

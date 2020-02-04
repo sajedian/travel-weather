@@ -16,7 +16,8 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
     func scene(_ scene: UIScene, willConnectTo session: UISceneSession, options connectionOptions: UIScene.ConnectionOptions) {
         guard let _ = (scene as? UIWindowScene) else { return }
         let weatherListViewController = window?.rootViewController as! WeatherListViewController
-        weatherListViewController.stateController = StateController()
+        let networkController = NetworkController()
+        weatherListViewController.stateController = StateController(networkController: networkController)
         
     }
 

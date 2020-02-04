@@ -10,36 +10,67 @@ import Foundation
 
 
 
-class StateController {
+protocol StateControllerDelegate: class {
+    func didUpdateForecast()
+}
+
+class StateController: NetworkControllerDelegate {
+
     
-    init() {
-       createPlaceHolderData()
-       print(days)
+    func receiveUpdatedForecast(day: Day, updatedForecast: WeatherForDay?) {
+        if let updatedForecast = updatedForecast {
+           day.setWeatherForDay(weatherForDay: updatedForecast)
+        }
+        delegate!.didUpdateForecast()
     }
     
-    var defaultColor = UIColor(red: 14/255, green: 12/255, blue: 114/255, alpha: 1.0)
     
+    init(networkController: NetworkController) {
+        self.networkController = networkController
+        networkController.delegate = self
+        createPlaceHolderData()
+        print(days)
+       
+    }
     
-    func dateFromString(str: String) -> Date {
+    private var defaultColor = UIColor(red: 14/255, green: 12/255, blue: 114/255, alpha: 1.0)
+    weak var delegate: StateControllerDelegate?
+    
+    var networkController: NetworkController? {
+        didSet {
+            networkController?.delegate = self
+        }
+    }
+    
+    private func dateFromString(str: String) -> Date {
         let dateFormatter = DateFormatter()
         dateFormatter.dateFormat = "yyyy MM dd"
         return dateFormatter.date(from: str)!
     }
     
     var days: [Day] = []
-    var cities: [String] = ["Boston", "Philadelphia", "New York", "Rancho Santa Margarita", "Chicago", "Minneapolis", "Houston"]
+    private var cities: [String] = ["Boston", "Philadelphia", "New York", "Rancho Santa Margarita", "Chicago", "Minneapolis", "Houston"]
     
     
-    func createPlaceHolderData() {
+    private func createPlaceHolderData() {
         days = cities.enumerated().map { (index, city) -> Day in
             let date = dateFromString(str: "2020 02 \(index+2)")
-            return Day(city: city, date: date)
+            let day = Day(city: city, date: date)
+            if let latLong = latLongs[city] {
+                day.latLong = latLong
+            } else {
+                print ("Error: latLong not found for \(city)")
+                return day
+            }
+            return day
+            
         }
+        
     }
     
 
     //placeholder associations
-    var colorAssociations: [String: UIColor] = [
+    private var colorAssociations: [String: UIColor] = [
         "Houston": UIColor(red: 53/255, green: 133/255, blue: 168/255, alpha: 1.0),
         "Chicago": UIColor(red: 113/255, green: 62/255, blue: 224/255, alpha: 1.0),
         "Minneapolis": UIColor(red: 204/255, green: 57/255, blue: 186/255, alpha: 1.0),
@@ -51,7 +82,7 @@ class StateController {
     
     //placeholder latLong dictionary
     // will later be created by looking up
-    var latLongs: [String: (Float, Float)] = [
+    private var latLongs: [String: (Float, Float)] = [
         "Houston": (29.760427, -95.369804),
         "Chicago": (41.883228, -87.632401),
         "Minneapolis": (44.977753, -93.265015),
@@ -71,6 +102,15 @@ class StateController {
         }
     }
     
+    func updateForecast() { days.forEach { day in
+            networkController!.requestForecast(for: day)
+        }
+    }
     
 
+
 }
+
+    
+    
+

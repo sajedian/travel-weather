@@ -9,7 +9,7 @@
 import Foundation
 
 
-struct ForecastResult: Codable {
+struct ForecastResult: Decodable {
     let latitude: Float
     let longitude: Float
     let timezone: String
@@ -17,11 +17,11 @@ struct ForecastResult: Codable {
     
 }
 
-struct Daily: Codable {
+struct Daily: Decodable {
        let data: [WeatherForDay]
    }
 
-struct WeatherForDay: Codable {
+struct WeatherForDay: Decodable {
     let time: Int
     let temperatureMax: Double?
     let temperatureMin: Double?
