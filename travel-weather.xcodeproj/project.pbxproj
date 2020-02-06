@@ -21,6 +21,8 @@
 		9EC5939F23DA963E00E42793 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9EC5939E23DA963E00E42793 /* Constants.swift */; };
 		9EC593A123DCD5F600E42793 /* StateController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9EC593A023DCD5F500E42793 /* StateController.swift */; };
 		9EC69D6923E8F5260051722D /* NetworkController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9EC69D6823E8F5260051722D /* NetworkController.swift */; };
+		9EC69D6B23EBB7070051722D /* CalendarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9EC69D6A23EBB7070051722D /* CalendarViewController.swift */; };
+		9EC69D6D23EBBE5A0051722D /* TabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9EC69D6C23EBBE5A0051722D /* TabBarController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -40,6 +42,8 @@
 		9EC5939E23DA963E00E42793 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = Constants.swift; path = ../../Constants.swift; sourceTree = "<group>"; };
 		9EC593A023DCD5F500E42793 /* StateController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StateController.swift; sourceTree = "<group>"; };
 		9EC69D6823E8F5260051722D /* NetworkController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkController.swift; sourceTree = "<group>"; };
+		9EC69D6A23EBB7070051722D /* CalendarViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarViewController.swift; sourceTree = "<group>"; };
+		9EC69D6C23EBBE5A0051722D /* TabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -96,6 +100,7 @@
 			isa = PBXGroup;
 			children = (
 				9E63368023D5478700468158 /* WeatherListViewController.swift */,
+				9EC69D6A23EBB7070051722D /* CalendarViewController.swift */,
 			);
 			path = "View Controllers";
 			sourceTree = "<group>";
@@ -105,6 +110,7 @@
 			children = (
 				9EC5939E23DA963E00E42793 /* Constants.swift */,
 				9E63367223D5422400468158 /* Main.storyboard */,
+				9EC69D6C23EBBE5A0051722D /* TabBarController.swift */,
 				9E63367723D5422700468158 /* LaunchScreen.storyboard */,
 				9E63366E23D5422400468158 /* SceneDelegate.swift */,
 				9E63366C23D5422400468158 /* AppDelegate.swift */,
@@ -204,7 +210,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				9EC69D6B23EBB7070051722D /* CalendarViewController.swift in Sources */,
 				9E63368123D5478700468158 /* WeatherListViewController.swift in Sources */,
+				9EC69D6D23EBBE5A0051722D /* TabBarController.swift in Sources */,
 				9E63368523D624ED00468158 /* DayCell.swift in Sources */,
 				9E63368B23D6306800468158 /* Day.swift in Sources */,
 				9EC5939F23DA963E00E42793 /* Constants.swift in Sources */,
