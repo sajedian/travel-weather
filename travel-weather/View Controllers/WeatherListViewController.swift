@@ -37,6 +37,7 @@ class WeatherListViewController: UITableViewController, StateControllerDelegate{
     
     func didUpdateForecast() {
             tableView.reloadData()
+            print("reloaded data")
         }
 
     

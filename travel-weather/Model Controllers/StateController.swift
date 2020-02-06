@@ -44,18 +44,13 @@ class StateController: NetworkControllerDelegate {
     }
     
 
-    func updateForecast() { days.forEach { day in
-            networkController!.requestForecast(for: day)
-        }
+    func updateForecast() {
+        networkController?.requestFullForecast(for: days)
     }
     
     
     //MARK:- NetworkControllerDelegate Functions
-    func receiveUpdatedForecast(day: Day, updatedForecast: WeatherForDay?) {
-           if let updatedForecast = updatedForecast {
-              day.setWeatherForDay(weatherForDay: updatedForecast)
-           }
-            //should be improved to only send updates to delegate when all network operations are complete, rather than multiple times
+    func didUpdateForecast() {
            delegate!.didUpdateForecast()
        }
     

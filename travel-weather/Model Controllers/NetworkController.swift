@@ -11,7 +11,7 @@ import Foundation
 
 
 protocol NetworkControllerDelegate: class {
-    func receiveUpdatedForecast(day: Day, updatedForecast: WeatherForDay?)
+    func didUpdateForecast()
 }
 
 
@@ -20,6 +20,7 @@ class NetworkController {
     
     weak var delegate: NetworkControllerDelegate?
     private var dataTask: URLSessionDataTask?
+    let dispatchGroup = DispatchGroup()
 
     private func parse(data: Data) -> WeatherForDay? {
           do {
@@ -34,7 +35,19 @@ class NetworkController {
         
 
     //Interface
-    func requestForecast (for day: Day) {
+    
+    
+    func requestFullForecast(for days: [Day]) {
+        for day in days {
+            requestDayForecast(for: day)
+        }
+        dispatchGroup.notify(queue: .main) {
+            self.delegate?.didUpdateForecast()
+        }
+    }
+    
+    func requestDayForecast (for day: Day) {
+        dispatchGroup.enter()
          
         guard let (latitude, longitude) = day.latLong else {
            print("Error: latLong not found for \(day.city)")
@@ -44,6 +57,8 @@ class NetworkController {
         let time = Int(day.date.timeIntervalSince1970)
         print(time)
         let url = URL(string: "https://api.darksky.net/forecast/\(darkSkyAPIKey)/\(latitude),\(longitude),\(time)")!
+        
+        
         let session = URLSession.shared
         dataTask = session.dataTask(with: url,
                     completionHandler: { data, response, error in
@@ -53,9 +68,8 @@ class NetworkController {
                             httpResponse.statusCode == 200 {
                             if let data = data {
                                 let result = self.parse(data: data)
-                                DispatchQueue.main.async {
-                                    self.delegate?.receiveUpdatedForecast(day: day, updatedForecast: result)
-                                }
+                                day.setWeatherForDay(weatherForDay: result!)
+                                self.dispatchGroup.leave()
                             }
                             print("Success! \(response!)")
                         } else {
