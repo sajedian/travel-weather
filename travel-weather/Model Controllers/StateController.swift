@@ -25,7 +25,7 @@ class StateController: NetworkControllerDelegate {
     
     private var networkController: NetworkController?
     
-    //MARK:- StateController Delelgates
+    //MARK:- StateController Delegates
     weak var delegate: StateControllerDelegate?
     
     //MARK:- App State
@@ -96,7 +96,7 @@ class StateController: NetworkControllerDelegate {
     
     //placeholder latLong dictionary
     // will later be created by looking up
-    private var latLongs: [String: (Float, Float)] = [
+    private var latLongs: [String: (Double, Double)] = [
         "Houston": (29.760427, -95.369804),
         "Chicago": (41.883228, -87.632401),
         "Minneapolis": (44.977753, -93.265015),
