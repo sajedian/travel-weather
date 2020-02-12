@@ -67,7 +67,7 @@ class StateController: NetworkControllerDelegate {
     }
     
     private func createPlaceHolderData() {
-        let cities = ["Boston", "Philadelphia", "New York", "Rancho Santa Margarita", "Chicago", "Minneapolis", "Houston"].shuffled()
+        let cities = ["Boston", "Philadelphia", "New York", "Rancho Santa Margarita", "Chicago", "Minneapolis", "Houston", "Boston", "Philadelphia", "New York", "Rancho Santa Margarita", "Chicago", "Minneapolis", "Houston"].shuffled()
         days = cities.enumerated().map { (index, city) -> Day in
             let date = dateFromString(str: "2020 02 \(index+2)")
             let day = Day(city: city, date: date)

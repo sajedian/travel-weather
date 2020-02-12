@@ -14,14 +14,10 @@ class ViewController: UIViewController {
         calendarView.scrollDirection = .horizontal
         calendarView.scrollingMode = .stopAtEachCalendarFrame
         calendarView.showsHorizontalScrollIndicator = false
-        calendarView.backgroundColor = UIColor(red: 53/255, green: 133/255, blue: 168/255, alpha: 1.0)
-        coloredView.backgroundColor = UIColor(red: 53/255, green: 133/255, blue: 168/255, alpha: 1.0)
-        coloredView.layer.cornerRadius = 15
         dateFormatter.dateFormat = "yyyy MM dd"
         let date = dateFormatter.date(from: "2020 02 09")!
         calendarView.scrollToDate(date, animateScroll: false)
-        searchView.layer.cornerRadius = 15
-        searchView.backgroundColor = UIColor(red: 127/255, green: 108/255, blue: 209/255, alpha: 1.0)
+        calendarView.backgroundColor = UIColor.darkGray
     }
     
     
