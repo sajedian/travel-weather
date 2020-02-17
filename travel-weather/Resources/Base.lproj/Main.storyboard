@@ -11,7 +11,7 @@
         <!--Ib Calendar Data Source-->
         <scene sceneID="2I4-hi-Nxn">
             <objects>
-                <viewController id="PfS-Y4-wsd" customClass="ViewController" customModule="Travel_Weather" sceneMemberID="viewController">
+                <viewController id="PfS-Y4-wsd" customClass="ScheduleViewController" customModule="Travel_Weather" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="qSI-dv-eRt">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -60,9 +60,9 @@
                                 </constraints>
                             </view>
                             <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="N40-eV-7RF" customClass="JTAppleCalendarView" customModule="JTAppleCalendar">
-                                <rect key="frame" x="16" y="168" width="343" height="286"/>
+                                <rect key="frame" x="16" y="169.5" width="343" height="196"/>
                                 <constraints>
-                                    <constraint firstAttribute="width" secondItem="N40-eV-7RF" secondAttribute="height" multiplier="343:286" id="Oeo-T8-eJF"/>
+                                    <constraint firstAttribute="width" secondItem="N40-eV-7RF" secondAttribute="height" multiplier="7:4" id="xLn-sl-rmJ"/>
                                 </constraints>
                                 <collectionViewFlowLayout key="collectionViewLayout" automaticEstimatedItemSize="YES" minimumLineSpacing="0.0" minimumInteritemSpacing="0.0" id="JXN-Zu-iI2">
                                     <size key="itemSize" width="50" height="50"/>
@@ -78,17 +78,31 @@
                                             <rect key="frame" x="0.0" y="0.0" width="50" height="50"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hWA-UP-ZjH">
-                                                    <rect key="frame" x="4" y="15" width="42" height="21"/>
-                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                <view contentMode="center" translatesAutoresizingMaskIntoConstraints="NO" id="bxv-b8-m5U" userLabel="SelectedView">
+                                                    <rect key="frame" x="7.5" y="7.5" width="35" height="35"/>
+                                                    <color key="backgroundColor" systemColor="systemRedColor" red="1" green="0.23137254900000001" blue="0.18823529410000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="height" constant="35" id="LMu-uk-klu"/>
+                                                        <constraint firstAttribute="width" constant="35" id="sy0-qa-AD5"/>
+                                                    </constraints>
+                                                </view>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hWA-UP-ZjH">
+                                                    <rect key="frame" x="4" y="15" width="42" height="20.5"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                             </subviews>
+                                            <constraints>
+                                                <constraint firstItem="bxv-b8-m5U" firstAttribute="centerX" secondItem="qCh-xt-to3" secondAttribute="centerX" id="G7N-hF-vmo"/>
+                                                <constraint firstItem="bxv-b8-m5U" firstAttribute="centerY" secondItem="qCh-xt-to3" secondAttribute="centerY" id="GbE-VU-lLu"/>
+                                                <constraint firstItem="hWA-UP-ZjH" firstAttribute="centerY" secondItem="qCh-xt-to3" secondAttribute="centerY" id="qZQ-dG-zba"/>
+                                                <constraint firstItem="hWA-UP-ZjH" firstAttribute="centerX" secondItem="qCh-xt-to3" secondAttribute="centerX" id="sKR-Z1-EuH"/>
+                                            </constraints>
                                         </collectionViewCellContentView>
                                         <connections>
                                             <outlet property="dateLabel" destination="hWA-UP-ZjH" id="2qF-bZ-RKC"/>
+                                            <outlet property="selectedView" destination="bxv-b8-m5U" id="TH4-ng-bNb"/>
                                         </connections>
                                     </collectionViewCell>
                                 </cells>
@@ -146,16 +160,46 @@
                                     </label>
                                 </subviews>
                             </stackView>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="wuF-4J-c9l">
+                                <rect key="frame" x="16" y="398" width="343" height="128"/>
+                                <subviews>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="City Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Oui-j5-ECn">
+                                        <rect key="frame" x="221.5" y="54" width="76.5" height="21"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Date Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="P8g-IL-mfJ">
+                                        <rect key="frame" x="43" y="53" width="82" height="21"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                </subviews>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                                <constraints>
+                                    <constraint firstAttribute="bottom" secondItem="P8g-IL-mfJ" secondAttribute="bottom" constant="54" id="PmY-6D-4gN"/>
+                                    <constraint firstAttribute="trailing" secondItem="Oui-j5-ECn" secondAttribute="trailing" constant="45" id="Q0b-2h-nCg"/>
+                                    <constraint firstItem="P8g-IL-mfJ" firstAttribute="leading" secondItem="wuF-4J-c9l" secondAttribute="leading" constant="43" id="UC9-SZ-u25"/>
+                                    <constraint firstAttribute="bottom" secondItem="Oui-j5-ECn" secondAttribute="bottom" constant="53" id="aCP-Rb-XYf"/>
+                                    <constraint firstItem="P8g-IL-mfJ" firstAttribute="top" secondItem="wuF-4J-c9l" secondAttribute="top" constant="53" id="sTd-E6-9jZ"/>
+                                    <constraint firstItem="Oui-j5-ECn" firstAttribute="top" secondItem="wuF-4J-c9l" secondAttribute="top" constant="54" id="tCm-2n-53A"/>
+                                </constraints>
+                            </view>
                         </subviews>
                         <color key="backgroundColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
                             <constraint firstItem="N40-eV-7RF" firstAttribute="leading" secondItem="nXR-no-juc" secondAttribute="leading" constant="16" id="2ma-uA-att"/>
+                            <constraint firstItem="wuF-4J-c9l" firstAttribute="leading" secondItem="nXR-no-juc" secondAttribute="leading" constant="16" id="7gr-K4-jDX"/>
                             <constraint firstItem="TOR-F5-rTa" firstAttribute="leading" secondItem="nXR-no-juc" secondAttribute="leading" constant="36.5" id="8Pk-Qe-dbR"/>
+                            <constraint firstItem="nXR-no-juc" firstAttribute="bottom" secondItem="wuF-4J-c9l" secondAttribute="bottom" constant="92" id="Lgm-Ah-S1F"/>
                             <constraint firstItem="nXR-no-juc" firstAttribute="trailing" secondItem="TOR-F5-rTa" secondAttribute="trailing" constant="38" id="LsJ-ZK-ek0"/>
-                            <constraint firstItem="N40-eV-7RF" firstAttribute="top" secondItem="TOR-F5-rTa" secondAttribute="bottom" constant="8.5" id="aWs-1x-rYq"/>
+                            <constraint firstItem="nXR-no-juc" firstAttribute="trailing" secondItem="wuF-4J-c9l" secondAttribute="trailing" constant="16" id="Mmb-KA-Obh"/>
+                            <constraint firstItem="N40-eV-7RF" firstAttribute="top" secondItem="TOR-F5-rTa" secondAttribute="bottom" constant="10" id="aWs-1x-rYq"/>
                             <constraint firstItem="nXR-no-juc" firstAttribute="trailing" secondItem="QHh-03-USv" secondAttribute="trailing" constant="43" id="evS-eu-N2a"/>
                             <constraint firstItem="QHh-03-USv" firstAttribute="leading" secondItem="nXR-no-juc" secondAttribute="leading" constant="43" id="ghW-AT-ceo"/>
                             <constraint firstItem="TOR-F5-rTa" firstAttribute="top" secondItem="QHh-03-USv" secondAttribute="bottom" constant="8" id="kAC-SN-jGS"/>
+                            <constraint firstItem="wuF-4J-c9l" firstAttribute="top" secondItem="N40-eV-7RF" secondAttribute="bottom" constant="32.5" id="nBn-nT-LG6"/>
                             <constraint firstItem="QHh-03-USv" firstAttribute="top" secondItem="nXR-no-juc" secondAttribute="top" constant="28" id="r8i-NM-hO2"/>
                             <constraint firstItem="nXR-no-juc" firstAttribute="trailing" secondItem="N40-eV-7RF" secondAttribute="trailing" constant="16" id="u8Z-sg-Htr"/>
                         </constraints>
@@ -164,7 +208,10 @@
                     <navigationItem key="navigationItem" id="Cvg-8F-inU"/>
                     <connections>
                         <outlet property="calendarView" destination="N40-eV-7RF" id="dMF-2m-xP6"/>
+                        <outlet property="cityLabel" destination="Oui-j5-ECn" id="uc4-PQ-taP"/>
+                        <outlet property="dateLabel" destination="P8g-IL-mfJ" id="sCy-Y6-Nwk"/>
                         <outlet property="monthLabel" destination="WAw-Qc-zNE" id="A52-iI-WlY"/>
+                        <outlet property="selectedDayView" destination="wuF-4J-c9l" id="x60-Nf-Xnn"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="sNf-NZ-ios" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>

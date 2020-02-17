@@ -23,6 +23,9 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         let stateController = StateController(networkController: networkController)
         let weatherListViewController = viewControllers[1] as! WeatherListViewController
         weatherListViewController.stateController = stateController
+        let navController = viewControllers[0] as! UINavigationController
+        let scheduleViewController = navController.viewControllers.first as! ScheduleViewController
+        scheduleViewController.stateController = stateController
         
     }
 

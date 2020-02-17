@@ -37,8 +37,8 @@ class NetworkController {
     //Interface
     
     
-    func requestFullForecast(for days: [Day]) {
-        for day in days {
+    func requestFullForecast(for days: [Date: Day]) {
+        for (_, day) in days {
             requestDayForecast(for: day)
         }
         dispatchGroup.notify(queue: .main) {
@@ -46,7 +46,7 @@ class NetworkController {
         }
     }
     
-    func requestDayForecast (for day: Day) {
+    private func requestDayForecast (for day: Day) {
         dispatchGroup.enter()
          
         guard let (latitude, longitude) = day.latLong else {

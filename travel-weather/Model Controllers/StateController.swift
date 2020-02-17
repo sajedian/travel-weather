@@ -30,7 +30,8 @@ class StateController: NetworkControllerDelegate {
     
     //MARK:- App State
     private var defaultColor = UIColor(red: 14/255, green: 12/255, blue: 114/255, alpha: 1.0)
-    var days: [Day] = []
+    var days = [Date: Day]()
+    var defaultCity: String = "Boston"
     
     
     //MARK:- Interface
@@ -48,6 +49,15 @@ class StateController: NetworkControllerDelegate {
         networkController?.requestFullForecast(for: days)
     }
     
+    func getDayForDate(for date: Date) -> Day {
+        guard let day = days[date] else {
+            let newDay = Day(city: defaultCity, date: date)
+            days[date] = newDay
+            return newDay
+        }
+        return day
+    }
+    
     
     //MARK:- NetworkControllerDelegate Functions
     func didUpdateForecast() {
@@ -60,7 +70,7 @@ class StateController: NetworkControllerDelegate {
     //-----------------------------------------------------------------------
     //MARK:- Placeholder Data
     
-    private func dateFromString(str: String) -> Date {
+    func dateFromString(str: String) -> Date {
         let dateFormatter = DateFormatter()
         dateFormatter.dateFormat = "yyyy MM dd"
         return dateFormatter.date(from: str)!
@@ -68,16 +78,17 @@ class StateController: NetworkControllerDelegate {
     
     private func createPlaceHolderData() {
         let cities = ["Boston", "Philadelphia", "New York", "Rancho Santa Margarita", "Chicago", "Minneapolis", "Houston", "Boston", "Philadelphia", "New York", "Rancho Santa Margarita", "Chicago", "Minneapolis", "Houston"].shuffled()
-        days = cities.enumerated().map { (index, city) -> Day in
-            let date = dateFromString(str: "2020 02 \(index+2)")
+        
+        for i in 0..<cities.count{
+            let city = cities[i]
+            let date = dateFromString(str: "2020 02 \(i+10)")
             let day = Day(city: city, date: date)
             if let latLong = latLongs[city] {
                 day.latLong = latLong
             } else {
                 print ("Error: latLong not found for \(city)")
-                return day
             }
-            return day
+            days[date] = day
             
         }
         

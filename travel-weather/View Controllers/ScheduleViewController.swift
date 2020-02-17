@@ -8,7 +8,7 @@
 
 import UIKit
 import JTAppleCalendar
-class ViewController: UIViewController {
+class ScheduleViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         calendarView.scrollDirection = .horizontal
@@ -18,13 +18,18 @@ class ViewController: UIViewController {
         let date = dateFormatter.date(from: "2020 02 09")!
         calendarView.scrollToDate(date, animateScroll: false)
         calendarView.backgroundColor = UIColor.darkGray
+        selectedDayView.isHidden = true
     }
     
     
     @IBOutlet var calendarView: JTAppleCalendarView!
-    @IBOutlet var coloredView: UIView!
     @IBOutlet var monthLabel: UILabel!
-    @IBOutlet var searchView: UIView!
+    @IBOutlet var dateLabel: UILabel!
+    @IBOutlet var cityLabel: UILabel!
+    @IBOutlet var selectedDayView: UIView!
+    
+    var stateController: StateController!
+    
     @IBAction func scrollRight() {
         print("scrolling right")
         var dateComponents = DateComponents()
@@ -59,20 +64,31 @@ class ViewController: UIViewController {
     
 }
 
-extension ViewController: JTAppleCalendarViewDataSource {
+extension ScheduleViewController: JTAppleCalendarViewDataSource {
     func configureCalendar(_ calendar: JTAppleCalendarView) -> ConfigurationParameters {
-        let formatter = DateFormatter()
-        formatter.dateFormat = "yyyy MM dd"
-        let startDate = formatter.date(from: "2020 02 09")!
-        let endDate = formatter.date(from: "2021 02 09")!
+        dateFormatter.dateFormat = "yyyy MM dd"
+        let startDate = dateFormatter.date(from: "2020 02 09")!
+        let endDate = dateFormatter.date(from: "2021 02 09")!
         return ConfigurationParameters(startDate: startDate, endDate: endDate, generateOutDates: .tillEndOfRow)
     }
     
     func configureCell(view: JTAppleCell?, cellState: CellState) {
           guard let cell = view as? DateCell  else { return }
           cell.dateLabel.text = cellState.text
+          cell.selectedView.layer.cornerRadius = cell.selectedView.bounds.width/2
+          cell.selectedView.backgroundColor = UIColor(red: 224/255, green: 179/255, blue: 0/255, alpha: 1.0)
           handleCellTextColor(cell: cell, cellState: cellState)
+          handleCellSelected(cell: cell, cellState: cellState)
        }
+    
+    func handleCellSelected(cell: DateCell, cellState: CellState) {
+        if cellState.isSelected {
+            cell.selectedView.isHidden = false
+            print("Cell Selected")
+        } else {
+            cell.selectedView.isHidden = true
+        }
+    }
     
     func handleCellTextColor(cell: DateCell, cellState: CellState) {
        if cellState.dateBelongsTo == .thisMonth {
@@ -83,7 +99,7 @@ extension ViewController: JTAppleCalendarViewDataSource {
     }
 }
 
-extension ViewController: JTAppleCalendarViewDelegate {
+extension ScheduleViewController: JTAppleCalendarViewDelegate {
 
     
     func calendar(_ calendar: JTAppleCalendarView, cellForItemAt date: Date, cellState: CellState, indexPath: IndexPath) -> JTAppleCell {
@@ -98,6 +114,20 @@ extension ViewController: JTAppleCalendarViewDelegate {
     func calendar(_ calendar: JTAppleCalendarView, didScrollToDateSegmentWith visibleDates: DateSegmentInfo) {
         firstVisibleDateInMonth = visibleDates.monthDates.first?.date
         monthLabel.text = monthAndYearFromVisibleDates(from: visibleDates)
+    }
+    
+    func calendar(_ calendar: JTAppleCalendarView, didSelectDate date: Date, cell: JTAppleCell?, cellState: CellState) {
+        configureCell(view: cell, cellState: cellState)
+        selectedDayView.isHidden = false
+        let day = stateController.getDayForDate(for: date)
+        cityLabel.text = day.city
+        dateFormatter.dateFormat = "mm DD"
+        dateLabel.text = dateFormatter.string(from: day.date)
+        
+    }
+
+    func calendar(_ calendar: JTAppleCalendarView, didDeselectDate date: Date, cell: JTAppleCell?, cellState: CellState) {
+        configureCell(view: cell, cellState: cellState)
     }
     
 }

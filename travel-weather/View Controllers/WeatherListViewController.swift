@@ -51,7 +51,8 @@ class WeatherListViewController: UITableViewController, StateControllerDelegate{
     override func tableView(_ tableView: UITableView,
                             cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "DayCell", for: indexPath) as! DayCell
-        let day = stateController.days[indexPath.row]
+        let date = stateController.dateFromString(str: "2020 02 \(indexPath.row + 10)")
+        let day = stateController.getDayForDate(for: date)
         cell.configureCell(day: day, color: stateController.associatedColor(for: day))
         return cell
     }
