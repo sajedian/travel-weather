@@ -121,7 +121,7 @@ extension ScheduleViewController: JTAppleCalendarViewDelegate {
         selectedDayView.isHidden = false
         let day = stateController.getDayForDate(for: date)
         cityLabel.text = day.city
-        dateFormatter.dateFormat = "mm DD"
+        dateFormatter.dateFormat = "MMMM d"
         dateLabel.text = dateFormatter.string(from: day.date)
         
     }
