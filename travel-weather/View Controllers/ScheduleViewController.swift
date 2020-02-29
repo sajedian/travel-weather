@@ -9,6 +9,17 @@
 import UIKit
 import JTAppleCalendar
 class ScheduleViewController: UIViewController {
+    
+    override func viewWillAppear(_ animated: Bool) {
+        self.navigationController?.setNavigationBarHidden(true, animated: animated)
+        super.viewWillAppear(animated)
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        self.navigationController?.setNavigationBarHidden(false, animated: animated)
+        super.viewWillDisappear(animated)
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         calendarView.scrollDirection = .horizontal
@@ -22,13 +33,14 @@ class ScheduleViewController: UIViewController {
     }
     
     
-    @IBOutlet var calendarView: JTAppleCalendarView!
-    @IBOutlet var monthLabel: UILabel!
-    @IBOutlet var dateLabel: UILabel!
-    @IBOutlet var cityLabel: UILabel!
-    @IBOutlet var selectedDayView: UIView!
+    @IBOutlet weak var calendarView: JTAppleCalendarView!
+    @IBOutlet weak var monthLabel: UILabel!
+    @IBOutlet weak var dateLabel: UILabel!
+    @IBOutlet weak var cityLabel: UILabel!
+    @IBOutlet weak var selectedDayView: UIView!
     
     var stateController: StateController!
+    var selectedDate: Date?
     
     @IBAction func scrollRight() {
         print("scrolling right")
@@ -59,10 +71,14 @@ class ScheduleViewController: UIViewController {
         return monthAndYear
     }
     
-
-   
+    //MARK:- Navigation
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+            let controller = segue.destination as! EditLocationViewController
+            controller.date = selectedDate!
+    }
     
 }
+
 
 extension ScheduleViewController: JTAppleCalendarViewDataSource {
     func configureCalendar(_ calendar: JTAppleCalendarView) -> ConfigurationParameters {
@@ -117,11 +133,12 @@ extension ScheduleViewController: JTAppleCalendarViewDelegate {
     }
     
     func calendar(_ calendar: JTAppleCalendarView, didSelectDate date: Date, cell: JTAppleCell?, cellState: CellState) {
+        selectedDate = date
         configureCell(view: cell, cellState: cellState)
         selectedDayView.isHidden = false
         let day = stateController.getDayForDate(for: date)
         cityLabel.text = day.city
-        dateFormatter.dateFormat = "MMMM d"
+        dateFormatter.dateFormat = "MMMM dd"
         dateLabel.text = dateFormatter.string(from: day.date)
         
     }
@@ -131,5 +148,3 @@ extension ScheduleViewController: JTAppleCalendarViewDelegate {
     }
     
 }
-
-
