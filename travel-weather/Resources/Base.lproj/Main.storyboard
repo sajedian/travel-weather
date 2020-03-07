@@ -242,29 +242,35 @@
         <!--DateLabel-->
         <scene sceneID="hqH-Se-HFi">
             <objects>
-                <viewController id="nMA-cA-nfx" customClass="EditLocationViewController" customModule="Travel_Weather" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController extendedLayoutIncludesOpaqueBars="YES" automaticallyAdjustsScrollViewInsets="NO" id="nMA-cA-nfx" customClass="EditLocationViewController" customModule="Travel_Weather" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="Z7E-Vw-Iq0">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <searchBar contentMode="redraw" text="" placeholder="Search for location" translatesAutoresizingMaskIntoConstraints="NO" id="zbL-qr-osg">
-                                <rect key="frame" x="0.0" y="44" width="375" height="56"/>
-                                <textInputTraits key="textInputTraits"/>
-                            </searchBar>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="o6H-3c-ksE">
+                                <rect key="frame" x="0.0" y="44" width="375" height="574"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                            </view>
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <constraints>
-                            <constraint firstItem="zbL-qr-osg" firstAttribute="top" secondItem="PQW-O0-WYp" secondAttribute="top" id="spX-QZ-yrG"/>
-                            <constraint firstItem="zbL-qr-osg" firstAttribute="leading" secondItem="PQW-O0-WYp" secondAttribute="leading" id="tUq-Ie-4pi"/>
-                            <constraint firstItem="zbL-qr-osg" firstAttribute="trailing" secondItem="PQW-O0-WYp" secondAttribute="trailing" id="w5z-8n-qwo"/>
+                            <constraint firstItem="o6H-3c-ksE" firstAttribute="leading" secondItem="PQW-O0-WYp" secondAttribute="leading" id="6P6-AM-kJX"/>
+                            <constraint firstItem="o6H-3c-ksE" firstAttribute="top" secondItem="PQW-O0-WYp" secondAttribute="top" id="h76-fu-YDn"/>
+                            <constraint firstItem="o6H-3c-ksE" firstAttribute="bottom" secondItem="PQW-O0-WYp" secondAttribute="bottom" id="iqp-ZT-gW0"/>
+                            <constraint firstItem="o6H-3c-ksE" firstAttribute="trailing" secondItem="PQW-O0-WYp" secondAttribute="trailing" id="n1C-Du-0Mt"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="PQW-O0-WYp"/>
                     </view>
                     <navigationItem key="navigationItem" title="DateLabel" id="lLn-Fc-A6Q"/>
+                    <connections>
+                        <outlet property="subView" destination="o6H-3c-ksE" id="AAA-RU-fx4"/>
+                        <segue destination="QcA-3h-S7T" kind="unwind" identifier="unwindToContainerVC" unwindAction="unwindToContainerVCWithSegue:" id="HC0-sk-GvF"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="wAR-rS-z76" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+                <exit id="QcA-3h-S7T" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
-            <point key="canvasLocation" x="2014" y="-577"/>
+            <point key="canvasLocation" x="2013.5999999999999" y="-577.06146926536735"/>
         </scene>
         <!--Tab Bar Controller-->
         <scene sceneID="SpX-gW-h7a">

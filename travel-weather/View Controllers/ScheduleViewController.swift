@@ -8,6 +8,7 @@
 
 import UIKit
 import JTAppleCalendar
+import GooglePlaces
 class ScheduleViewController: UIViewController {
     
     override func viewWillAppear(_ animated: Bool) {
@@ -75,9 +76,25 @@ class ScheduleViewController: UIViewController {
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
             let controller = segue.destination as! EditLocationViewController
             controller.date = selectedDate!
+            controller.delegate = self
     }
     
+
+    @IBAction func unwindToContainerVC(segue: UIStoryboardSegue) {
+
+       }
+    
 }
+
+extension ScheduleViewController: EditLocationViewControllerDelegate {
+    func editLocationViewControllerDidUpdate(didSelect newLocation: GMSPlace, for date: Date) {
+        stateController.updateLocationForDate(didSelect: newLocation, for: date)
+    }
+    
+    func editLocationViewControllerDidCancel() {
+}
+}
+
 
 
 extension ScheduleViewController: JTAppleCalendarViewDataSource {

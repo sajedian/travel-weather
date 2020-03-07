@@ -7,6 +7,7 @@
 //
 import UIKit
 import Foundation
+import GooglePlaces
 
 
 
@@ -57,6 +58,13 @@ class StateController: NetworkControllerDelegate {
         }
         return day
     }
+    
+    func updateLocationForDate(didSelect newLocation: GMSPlace, for date: Date) {
+        days[date]?.city = newLocation.name!
+        days[date]?.latLong = (Double(newLocation.coordinate.latitude), Double(newLocation.coordinate.longitude))
+        print(days[date]!.city)
+    }
+
     
     
     //MARK:- NetworkControllerDelegate Functions
@@ -116,13 +124,10 @@ class StateController: NetworkControllerDelegate {
         "Boston": (42.35843, -71.05977),
         "New York": (40.7128, -74.0060)
     ]
-    
-    
-
-
-
 }
 
+
+    
     
     
 
