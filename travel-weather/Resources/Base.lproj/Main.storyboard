@@ -242,7 +242,7 @@
         <!--DateLabel-->
         <scene sceneID="hqH-Se-HFi">
             <objects>
-                <viewController extendedLayoutIncludesOpaqueBars="YES" automaticallyAdjustsScrollViewInsets="NO" id="nMA-cA-nfx" customClass="EditLocationViewController" customModule="Travel_Weather" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="nMA-cA-nfx" customClass="EditLocationViewController" customModule="Travel_Weather" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="Z7E-Vw-Iq0">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>

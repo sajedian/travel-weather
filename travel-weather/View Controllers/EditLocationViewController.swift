@@ -49,6 +49,7 @@ class EditLocationViewController: UIViewController{
 
         subView!.addSubview((searchController?.searchBar)!)
         searchController?.searchBar.sizeToFit()
+        searchController?.searchBar.isTranslucent = false
         searchController?.hidesNavigationBarDuringPresentation = false
         
         navigationController?.navigationBar.isTranslucent = false
@@ -58,6 +59,8 @@ class EditLocationViewController: UIViewController{
         definesPresentationContext = true
         searchController?.searchBar.showsCancelButton = false
         resultsViewController?.edgesForExtendedLayout = []
+        searchController?.searchResultsController?.additionalSafeAreaInsets = UIEdgeInsets.init(top: 64, left: 0, bottom: 0, right: 0)
+        
 
     }
     
