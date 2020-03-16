@@ -45,7 +45,7 @@ class WeatherListViewController: UITableViewController, StateControllerDelegate{
     
     override func tableView(_ tableView: UITableView,
                             numberOfRowsInSection section: Int) -> Int {
-        return stateController.days.count
+        return 14
     }
     
     override func tableView(_ tableView: UITableView,

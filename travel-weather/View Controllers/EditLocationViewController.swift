@@ -79,6 +79,13 @@ extension EditLocationViewController: GMSAutocompleteResultsViewControllerDelega
                          didAutocompleteWith place: GMSPlace) {
     searchController?.isActive = false
     delegate?.editLocationViewControllerDidUpdate(didSelect: place, for: date)
+    searchController?.dismiss(animated: false, completion: {self.performSegue(withIdentifier: "unwindToContainerVC", sender: self)})
+    
+    
+//    DispatchQueue.main.async {
+//        self.performSegue(withIdentifier: "unwindToContainerVC", sender: self)
+//    }
+    
   }
 
   func resultsController(_ resultsController: GMSAutocompleteResultsViewController,

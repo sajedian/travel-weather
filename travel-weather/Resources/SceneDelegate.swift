@@ -20,7 +20,8 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
                 return
         }
         let networkController = NetworkController()
-        let stateController = StateController(networkController: networkController)
+        let storageController = StorageController()
+        let stateController = StateController(networkController: networkController, storageController: storageController)
         let weatherListViewController = viewControllers[1] as! WeatherListViewController
         weatherListViewController.stateController = stateController
         let navController = viewControllers[0] as! UINavigationController

@@ -14,6 +14,10 @@ class ScheduleViewController: UIViewController {
     override func viewWillAppear(_ animated: Bool) {
         self.navigationController?.setNavigationBarHidden(true, animated: animated)
         super.viewWillAppear(animated)
+        if let selectedDate = selectedDate {
+            let day = stateController.getDayForDate(for: selectedDate)
+            cityLabel.text = day.city
+        }
     }
     
     override func viewWillDisappear(_ animated: Bool) {
@@ -30,7 +34,8 @@ class ScheduleViewController: UIViewController {
         let date = dateFormatter.date(from: "2020 02 09")!
         calendarView.scrollToDate(date, animateScroll: false)
         calendarView.backgroundColor = UIColor.darkGray
-        selectedDayView.isHidden = true
+        selectedDayView.layer.cornerRadius = 15
+        resetSelectedDate()
     }
     
     
@@ -38,7 +43,9 @@ class ScheduleViewController: UIViewController {
     @IBOutlet weak var monthLabel: UILabel!
     @IBOutlet weak var dateLabel: UILabel!
     @IBOutlet weak var cityLabel: UILabel!
+    @IBOutlet weak var instructionLabel: UILabel!
     @IBOutlet weak var selectedDayView: UIView!
+    @IBOutlet weak var editCityButton: UIButton!
     
     var stateController: StateController!
     var selectedDate: Date?
@@ -65,11 +72,35 @@ class ScheduleViewController: UIViewController {
     let dateFormatter = DateFormatter()
     var firstVisibleDateInMonth: Date?
     
+    //MARK:- Helper Funcitons
+    
     func monthAndYearFromVisibleDates(from visibleDates: DateSegmentInfo) -> String {
         dateFormatter.dateFormat = "MMMM yyyy"
         let date = visibleDates.monthDates[0].date
         let monthAndYear = dateFormatter.string(from: date)
         return monthAndYear
+    }
+    
+    func resetSelectedDate() {
+        selectedDate = nil
+        dateLabel.isHidden = true
+        cityLabel.isHidden = true
+        editCityButton.isHidden = true
+        instructionLabel.isHidden = false
+    }
+    
+    func selectDate(date: Date) {
+        selectedDate = date
+        let day = stateController.getDayForDate(for: date)
+        cityLabel.isHidden = false
+        editCityButton.isHidden = false
+        dateLabel.isHidden = false
+        instructionLabel.isHidden = true
+        dateLabel.font = UIFont.systemFont(ofSize: 23)
+        cityLabel.text = day.city
+        cityLabel.font = UIFont.systemFont(ofSize: 17)
+        dateFormatter.dateFormat = "MMMM dd"
+        dateLabel.text = dateFormatter.string(from: day.date)
     }
     
     //MARK:- Navigation
@@ -150,13 +181,9 @@ extension ScheduleViewController: JTAppleCalendarViewDelegate {
     }
     
     func calendar(_ calendar: JTAppleCalendarView, didSelectDate date: Date, cell: JTAppleCell?, cellState: CellState) {
-        selectedDate = date
+        selectDate(date: date)
         configureCell(view: cell, cellState: cellState)
-        selectedDayView.isHidden = false
-        let day = stateController.getDayForDate(for: date)
-        cityLabel.text = day.city
-        dateFormatter.dateFormat = "MMMM dd"
-        dateLabel.text = dateFormatter.string(from: day.date)
+        
         
     }
 

@@ -18,13 +18,15 @@ protocol StateControllerDelegate: class {
 class StateController: NetworkControllerDelegate {
     
     
-    init(networkController: NetworkController) {
+    init(networkController: NetworkController, storageController: StorageController) {
         self.networkController = networkController
+        self.storageController = storageController
         networkController.delegate = self
         createPlaceHolderData()
     }
     
     private var networkController: NetworkController?
+    private var storageController: StorageController?
     
     //MARK:- StateController Delegates
     weak var delegate: StateControllerDelegate?
@@ -47,7 +49,7 @@ class StateController: NetworkControllerDelegate {
     
 
     func updateForecast() {
-        networkController?.requestFullForecast(for: days)
+        networkController!.requestFullForecast(for: days)
     }
     
     func getDayForDate(for date: Date) -> Day {
