@@ -16,7 +16,7 @@ class ScheduleViewController: UIViewController {
         super.viewWillAppear(animated)
         if let selectedDate = selectedDate {
             let day = stateController.getDayForDate(for: selectedDate)
-            cityLabel.text = day.city
+            cityLabel.text = day!.city
         }
     }
     
@@ -97,10 +97,10 @@ class ScheduleViewController: UIViewController {
         dateLabel.isHidden = false
         instructionLabel.isHidden = true
         dateLabel.font = UIFont.systemFont(ofSize: 23)
-        cityLabel.text = day.city
+        cityLabel.text = day!.city
         cityLabel.font = UIFont.systemFont(ofSize: 17)
         dateFormatter.dateFormat = "MMMM dd"
-        dateLabel.text = dateFormatter.string(from: day.date)
+        dateLabel.text = dateFormatter.string(from: day!.date)
     }
     
     //MARK:- Navigation

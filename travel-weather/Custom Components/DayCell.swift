@@ -35,4 +35,11 @@ class DayCell: UITableViewCell {
         
     }
     
+    func configureDefaults(date: Date) {
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "EEEE"
+        let weekday = dateFormatter.string(from: date)
+        weekdayLabel.text = weekday
+    }
+    
 }

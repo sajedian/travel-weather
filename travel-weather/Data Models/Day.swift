@@ -9,7 +9,7 @@
 import UIKit
 import Foundation
 
-class Day {
+class Dayd {
     
     init(city: String, date: Date) {
         self.city = city
@@ -24,31 +24,6 @@ class Day {
     var latLong: (Double, Double)?
     var weatherSummary: WeatherSummary?
     
-    //MARK:- Computed Properties
-    var weatherImage: UIImage {
-        if let weatherSummary = weatherSummary {
-            return UIImage(systemName: weatherSummary.rawValue)!
-        }
-        else {
-            //default image is white cloud until a more suitable default is found
-            return UIImage(systemName: "cloud.fill")!
-        }
-    }
-    
-    var weekday: String? {
-        let dateFormatter = DateFormatter()
-        dateFormatter.dateFormat = "EEEE"
-        return dateFormatter.string(from: date)
-    }
-    
-    var tempDisplay: String {
-        if let highTemp = highTemp, let lowTemp = lowTemp {
-            return "\(highTemp) ⏐ \(lowTemp)"
-        } else {
-            return "--- ⏐ ---"
-        }
-        
-    }
     
     //MARK:- Enums
     //rawValue is systemName of weather icon
@@ -63,37 +38,7 @@ class Day {
         case other = "cloud.fill"
     }
 
-    func setWeatherForDay(weatherForDay: WeatherForDay) {
-        highTemp = Int(weatherForDay.temperatureMax!)
-        lowTemp = Int(weatherForDay.temperatureMin!)
-        
-        if let icon = weatherForDay.icon {
-            
-            switch icon {
-            case "clear-day", "clear-night":
-                weatherSummary = .sunny
-            case "cloudy":
-                weatherSummary = .cloudy
-            case "partly-cloudy-day", "partly-cloudy-night":
-                weatherSummary = .partlyCloudy
-            case "rain", "sleet":
-                weatherSummary = .rainy
-            case "snow":
-                weatherSummary = .snowy
-            case "fog":
-                weatherSummary = .foggy
-            case "wind":
-                weatherSummary = .windy
-            default:
-                weatherSummary = .other
-            }
-        
-        } else {
-            self.weatherSummary = .other
-        }
-      
-        
-    }
+
   
 }
 

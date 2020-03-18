@@ -49,14 +49,15 @@ class NetworkController {
     private func requestDayForecast (for day: Day) {
         dispatchGroup.enter()
          
-        guard let (latitude, longitude) = day.latLong else {
-           print("Error: latLong not found for \(day.city)")
-            return
-        }
+//        guard let (latitude, longitude) = (day.latitude, day.longitude) else {
+//           print("Error: latLong not found for \(day.city)")
+//            return
+//        }
+
 
         let time = Int(day.date.timeIntervalSince1970)
         print(time)
-        let url = URL(string: "https://api.darksky.net/forecast/\(darkSkyAPIKey)/\(latitude),\(longitude),\(time)")!
+        let url = URL(string: "https://api.darksky.net/forecast/\(darkSkyAPIKey)/\(day.latitude),\(day.longitude),\(time)")!
         
         
         let session = URLSession.shared

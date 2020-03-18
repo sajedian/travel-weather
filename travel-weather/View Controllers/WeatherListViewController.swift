@@ -25,15 +25,15 @@ class WeatherListViewController: UITableViewController, StateControllerDelegate{
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         stateController.updateForecast()
-        
+        tableView.reloadData()
     }
     
     override func viewDidLoad() {
         super.viewDidLoad()
         let cellNib = UINib(nibName: "DayCell", bundle: nil)
         tableView.register(cellNib, forCellReuseIdentifier: "DayCell")
+        tableView.reloadData()
     }
-    
     
     func didUpdateForecast() {
             tableView.reloadData()
@@ -51,12 +51,17 @@ class WeatherListViewController: UITableViewController, StateControllerDelegate{
     override func tableView(_ tableView: UITableView,
                             cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "DayCell", for: indexPath) as! DayCell
-        let date = stateController.dateFromString(str: "2020 02 \(indexPath.row + 10)")
+        let date = DateHelper.dayFromToday(offset: indexPath.row)
         let day = stateController.getDayForDate(for: date)
-        cell.configureCell(day: day, color: stateController.associatedColor(for: day))
+        if let day = day {
+            cell.configureCell(day: day, color: stateController.associatedColor(for: day))
+        }
+        else  {
+            cell.configureDefaults(date: date)
+        }
         return cell
     }
     
-
    
 }
+

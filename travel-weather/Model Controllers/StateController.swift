@@ -8,6 +8,7 @@
 import UIKit
 import Foundation
 import GooglePlaces
+import CoreData
 
 
 
@@ -25,16 +26,16 @@ class StateController: NetworkControllerDelegate {
         createPlaceHolderData()
     }
     
-    private var networkController: NetworkController?
-    private var storageController: StorageController?
+    private var networkController: NetworkController!
+    private var storageController: StorageController!
     
     //MARK:- StateController Delegates
     weak var delegate: StateControllerDelegate?
     
     //MARK:- App State
     private var defaultColor = UIColor(red: 14/255, green: 12/255, blue: 114/255, alpha: 1.0)
-    var days = [Date: Day]()
     var defaultCity: String = "Boston"
+    var days = [Date:Day]()
     
     
     //MARK:- Interface
@@ -46,24 +47,26 @@ class StateController: NetworkControllerDelegate {
             return defaultColor
         }
     }
-    
 
     func updateForecast() {
         networkController!.requestFullForecast(for: days)
     }
-    
-    func getDayForDate(for date: Date) -> Day {
-        guard let day = days[date] else {
-            let newDay = Day(city: defaultCity, date: date)
-            days[date] = newDay
-            return newDay
-        }
-        return day
+
+    func getDayForDate(for date: Date) -> Day? {
+//        guard let day = days[date] else {
+//            let newDay = Day(city: defaultCity, date: date)
+//            days[date] = newDay
+//            return newDay
+//        }
+//        return day
+        print("days", days)
+        return days[date] ?? nil
     }
     
     func updateLocationForDate(didSelect newLocation: GMSPlace, for date: Date) {
         days[date]?.city = newLocation.name!
-        days[date]?.latLong = (Double(newLocation.coordinate.latitude), Double(newLocation.coordinate.longitude))
+        days[date]?.longitude = Double(newLocation.coordinate.longitude)
+        days[date]?.latitude = Double(newLocation.coordinate.latitude)
         print(days[date]!.city)
     }
 
@@ -88,20 +91,24 @@ class StateController: NetworkControllerDelegate {
     
     private func createPlaceHolderData() {
         let cities = ["Boston", "Philadelphia", "New York", "Rancho Santa Margarita", "Chicago", "Minneapolis", "Houston", "Boston", "Philadelphia", "New York", "Rancho Santa Margarita", "Chicago", "Minneapolis", "Houston"].shuffled()
-        
-        for i in 0..<cities.count{
-            let city = cities[i]
-            let date = dateFromString(str: "2020 02 \(i+10)")
-            let day = Day(city: city, date: date)
-            if let latLong = latLongs[city] {
-                day.latLong = latLong
-            } else {
-                print ("Error: latLong not found for \(city)")
+        let today = DateHelper.currentDateMDYOnly()
+        print("today is \(today)")
+        for i in 0..<14{
+            let city = cities.randomElement()!
+            print("city is \(city)")
+            let date = Calendar.current.date(byAdding: .day, value: i, to: today)!
+            guard let day = storageController.getDayForDate(for: date) else {
+                let day = storageController.createDay(city: city, date: date)
+                if let latLong = latLongs[city] {
+                    (day.latitude, day.longitude) = latLong
+                } else {
+                    print ("Error: latLong not found for \(city)")
+                }
+                days[date] = day
+                return
             }
             days[date] = day
-            
         }
-        
     }
     
     //placeholder associations
