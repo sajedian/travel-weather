@@ -16,7 +16,7 @@ class ScheduleViewController: UIViewController {
         super.viewWillAppear(animated)
         if let selectedDate = selectedDate {
             let day = stateController.getDayForDate(for: selectedDate)
-            cityLabel.text = day!.city
+            cityLabel.text = day.city
         }
     }
     
@@ -51,20 +51,16 @@ class ScheduleViewController: UIViewController {
     var selectedDate: Date?
     
     @IBAction func scrollRight() {
-        print("scrolling right")
         var dateComponents = DateComponents()
         dateComponents.month = 1
         let nextMonthDate = Calendar.current.date(byAdding: dateComponents, to: firstVisibleDateInMonth!)!
-        print(nextMonthDate)
         calendarView.scrollToDate(nextMonthDate)
     }
     
     @IBAction func scrollLeft() {
-        print("scrolling left")
         var dateComponents = DateComponents()
         dateComponents.month = -1
        let previousMonthDate = Calendar.current.date(byAdding: dateComponents, to: firstVisibleDateInMonth!)!
-        print(previousMonthDate)
         calendarView.scrollToDate(previousMonthDate)
     }
     
@@ -97,10 +93,10 @@ class ScheduleViewController: UIViewController {
         dateLabel.isHidden = false
         instructionLabel.isHidden = true
         dateLabel.font = UIFont.systemFont(ofSize: 23)
-        cityLabel.text = day!.city
+        cityLabel.text = day.city
         cityLabel.font = UIFont.systemFont(ofSize: 17)
         dateFormatter.dateFormat = "MMMM dd"
-        dateLabel.text = dateFormatter.string(from: day!.date)
+        dateLabel.text = dateFormatter.string(from: day.date)
     }
     
     //MARK:- Navigation
@@ -148,7 +144,7 @@ extension ScheduleViewController: JTAppleCalendarViewDataSource {
     func handleCellSelected(cell: DateCell, cellState: CellState) {
         if cellState.isSelected {
             cell.selectedView.isHidden = false
-            print("Cell Selected")
+
         } else {
             cell.selectedView.isHidden = true
         }

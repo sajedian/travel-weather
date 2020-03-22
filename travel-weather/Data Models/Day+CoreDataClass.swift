@@ -70,39 +70,39 @@ public class Day: NSManagedObject {
         }
     }
     
-    var longitude: Double?
-           {
-           get {
-               self.willAccessValue(forKey: "longitude")
-               let value = self.primitiveValue(forKey: "longitude") as? Double
-               self.didAccessValue(forKey: "longitude")
-               return (value != nil) ? Double(value!) : nil
-           }
-           set {
-               self.willChangeValue(forKey: "longitude")
-               let value : Double? = (newValue != nil) ? Double(newValue!) : nil
-               self.setPrimitiveValue(value, forKey: "longitude")
-               self.didChangeValue(forKey: "longitude")
-           }
-       }
-    
-    
-    var latitude: Double?
-           {
-           get {
-               self.willAccessValue(forKey: "latitude")
-               let value = self.primitiveValue(forKey: "latitude") as? Double
-               self.didAccessValue(forKey: "latitude")
-               return (value != nil) ? Double(value!) : nil
-           }
-           set {
-               self.willChangeValue(forKey: "latitude")
-               let value : Double? = (newValue != nil) ? Double(newValue!) : nil
-               self.setPrimitiveValue(value, forKey: "latitude")
-               self.didChangeValue(forKey: "latitude")
-           }
-       }
-    
+//    var longitude: Double?
+//           {
+//           get {
+//               self.willAccessValue(forKey: "longitude")
+//               let value = self.primitiveValue(forKey: "longitude") as? Double
+//               self.didAccessValue(forKey: "longitude")
+//               return (value != nil) ? Double(value!) : nil
+//           }
+//           set {
+//               self.willChangeValue(forKey: "longitude")
+//               let value : Double? = (newValue != nil) ? Double(newValue!) : nil
+//               self.setPrimitiveValue(value, forKey: "longitude")
+//               self.didChangeValue(forKey: "longitude")
+//           }
+//       }
+//    
+//    
+//    var latitude: Double?
+//           {
+//           get {
+//               self.willAccessValue(forKey: "latitude")
+//               let value = self.primitiveValue(forKey: "latitude") as? Double
+//               self.didAccessValue(forKey: "latitude")
+//               return (value != nil) ? Double(value!) : nil
+//           }
+//           set {
+//               self.willChangeValue(forKey: "latitude")
+//               let value : Double? = (newValue != nil) ? Double(newValue!) : nil
+//               self.setPrimitiveValue(value, forKey: "latitude")
+//               self.didChangeValue(forKey: "latitude")
+//           }
+//       }
+//    
     
     
     //MARK:- Computed Properties
@@ -135,21 +135,22 @@ public class Day: NSManagedObject {
     //MARK:- Update Forecast Information
     
     
-    func setWeatherForDay(weatherForDay: WeatherForDay) {
-        if let temperatureMax = weatherForDay.temperatureMax {
+    func setWeatherForDay(weatherForDay: WeatherForDay?) {
+        print("Day.city: \(self.city), day.date: \(self.date), temperatureMax: \(weatherForDay?.temperatureMax), temperatureMin: \(weatherForDay?.temperatureMin)")
+        if let temperatureMax = weatherForDay?.temperatureMax {
             self.highTemp = Int32(temperatureMax)
         } else {
             self.highTemp = nil
         }
         
-        if let temperatureMin = weatherForDay.temperatureMax {
+        if let temperatureMin = weatherForDay?.temperatureMin {
             self.lowTemp = Int32(temperatureMin)
         } else {
             self.lowTemp = nil
         }
         
         
-        if let icon = weatherForDay.icon {
+        if let icon = weatherForDay?.icon {
             
             switch icon {
             case "clear-day", "clear-night":

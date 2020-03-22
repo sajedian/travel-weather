@@ -16,7 +16,7 @@ class StorageController {
         let container = NSPersistentContainer(name: "TravelWeather")
         container.loadPersistentStores(completionHandler: {
             (storeDescription, error) in
-            print(storeDescription)
+//            print(storeDescription)
             if let error = error as NSError? {
                 fatalError("Unresolved error \(error), \(error.userInfo)")
             }
@@ -24,7 +24,7 @@ class StorageController {
         return container
     }()
     
-    func saveContext() {
+    private func saveContext() {
         let context = persistentContainer.viewContext
         if context.hasChanges {
             do {
@@ -59,16 +59,33 @@ class StorageController {
         }
     }
     
-    func createDay(city: String, date: Date) -> Day {
+    func updateLocationForDay(date: Date, newCity: String, latitude: Double, longitude: Double) {
+        print("Updated day for \(date), new city: \(newCity)")
+        if let day = getDayForDate(for: date) {
+            day.city = newCity
+            day.longitude = longitude
+            day.latitude = latitude
+            saveContext()
+        } else {
+            print("Error: tried to update date: \(date) and it was not found)")
+        }
+        
+    }
+    
+    func createDay(city: String, date: Date, latitude: Double, longitude: Double) -> Day {
 
         let context = persistentContainer.viewContext
         let day = Day(entity: Day.entity(), insertInto: context)
         day.city = city
         day.date = date
+        day.latitude = latitude
+        day.longitude = longitude
         saveContext()
-        print("Created Day: \(day)")
+        print("Created Day(date: \(date), city: \(city)")
         return day
     }
+    
+    
     
     
 }

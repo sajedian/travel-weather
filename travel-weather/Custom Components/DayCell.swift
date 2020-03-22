@@ -26,6 +26,8 @@ class DayCell: UITableViewCell {
     
     
     func configureCell(day: Day, color: UIColor) {
+//        print("day is in configuration", day)
+//        print("Day.city: \(day.city), day.date: \(day.date), day.tempDisplay: \(day.tempDisplay)")
         weekdayLabel.text = day.weekday
         cityLabel.text = day.city
         tempLabel.text = day.tempDisplay

@@ -18,6 +18,8 @@ extension Day {
 
     @NSManaged public var date: Date
     @NSManaged public var city: String
+    @NSManaged public var latitude: Double
+    @NSManaged public var longitude: Double
     @NSManaged public var weatherSummaryValue: String?
 //    @NSManaged public var latitude: Double
 //    @NSManaged public var longitude: Double

@@ -35,6 +35,8 @@ class StateController: NetworkControllerDelegate {
     //MARK:- App State
     private var defaultColor = UIColor(red: 14/255, green: 12/255, blue: 114/255, alpha: 1.0)
     var defaultCity: String = "Boston"
+    var defaultLatitude: Double = 42.35843
+    var defaultLongitude: Double = -71.05977
     var days = [Date:Day]()
     
     
@@ -52,22 +54,24 @@ class StateController: NetworkControllerDelegate {
         networkController!.requestFullForecast(for: days)
     }
 
-    func getDayForDate(for date: Date) -> Day? {
-//        guard let day = days[date] else {
-//            let newDay = Day(city: defaultCity, date: date)
-//            days[date] = newDay
-//            return newDay
-//        }
-//        return day
-        print("days", days)
-        return days[date] ?? nil
+    func getDayForDate(for date: Date) -> Day {
+        if let day = storageController.getDayForDate(for: date){
+            return day
+        } else {
+            let newDay = storageController.createDay(city: defaultCity, date: date, latitude: defaultLatitude, longitude: defaultLongitude)
+            days[date] = newDay
+            return newDay
+        }
     }
     
     func updateLocationForDate(didSelect newLocation: GMSPlace, for date: Date) {
-        days[date]?.city = newLocation.name!
-        days[date]?.longitude = Double(newLocation.coordinate.longitude)
-        days[date]?.latitude = Double(newLocation.coordinate.latitude)
-        print(days[date]!.city)
+        let longitude = Double(newLocation.coordinate.longitude)
+        let latitude = Double(newLocation.coordinate.latitude)
+        let city = newLocation.name!
+        storageController.updateLocationForDay(date: date, newCity: city, latitude: latitude, longitude: longitude)
+        if let day = days[date] {
+            networkController.requestDayForecast(for: day)
+        }
     }
 
     
@@ -92,23 +96,25 @@ class StateController: NetworkControllerDelegate {
     private func createPlaceHolderData() {
         let cities = ["Boston", "Philadelphia", "New York", "Rancho Santa Margarita", "Chicago", "Minneapolis", "Houston", "Boston", "Philadelphia", "New York", "Rancho Santa Margarita", "Chicago", "Minneapolis", "Houston"].shuffled()
         let today = DateHelper.currentDateMDYOnly()
-        print("today is \(today)")
+//        print("today is \(today)")
         for i in 0..<14{
             let city = cities.randomElement()!
-            print("city is \(city)")
+//            print("i is \(i), city is \(city)")
             let date = Calendar.current.date(byAdding: .day, value: i, to: today)!
+            let (longitude, latitude) = latLongs[city]!
             guard let day = storageController.getDayForDate(for: date) else {
-                let day = storageController.createDay(city: city, date: date)
+                let day = storageController.createDay(city: city, date: date, latitude: latitude, longitude: longitude)
                 if let latLong = latLongs[city] {
                     (day.latitude, day.longitude) = latLong
                 } else {
                     print ("Error: latLong not found for \(city)")
                 }
                 days[date] = day
-                return
+                continue
             }
             days[date] = day
         }
+        networkController.requestFullForecast(for: days)
     }
     
     //placeholder associations

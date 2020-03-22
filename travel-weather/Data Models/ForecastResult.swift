@@ -13,7 +13,7 @@ struct ForecastResult: Decodable {
     let latitude: Float
     let longitude: Float
     let timezone: String
-    let daily: Daily
+    let daily: Daily?
     
 }
 
