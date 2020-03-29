@@ -33,8 +33,9 @@ class ScheduleViewController: UIViewController {
         dateFormatter.dateFormat = "yyyy MM dd"
         let date = dateFormatter.date(from: "2020 02 09")!
         calendarView.scrollToDate(date, animateScroll: false)
-        calendarView.backgroundColor = UIColor.darkGray
+        calendarView.backgroundColor = UIColor.black
         selectedDayView.layer.cornerRadius = 15
+        selectedDayView.backgroundColor = UIColor(red: 42/255, green: 53/255, blue: 170/255, alpha: 1.0)
         resetSelectedDate()
     }
     
@@ -136,7 +137,7 @@ extension ScheduleViewController: JTAppleCalendarViewDataSource {
           guard let cell = view as? DateCell  else { return }
           cell.dateLabel.text = cellState.text
           cell.selectedView.layer.cornerRadius = cell.selectedView.bounds.width/2
-          cell.selectedView.backgroundColor = UIColor(red: 224/255, green: 179/255, blue: 0/255, alpha: 1.0)
+          cell.selectedView.backgroundColor = UIColor(red: 42/255, green: 53/255, blue: 170/255, alpha: 1.0)
           handleCellTextColor(cell: cell, cellState: cellState)
           handleCellSelected(cell: cell, cellState: cellState)
        }

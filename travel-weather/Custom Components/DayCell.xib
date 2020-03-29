@@ -84,7 +84,7 @@
                     <constraint firstItem="79x-Co-3mD" firstAttribute="top" secondItem="lwJ-dq-WSE" secondAttribute="top" constant="5" id="j1p-P3-H5j"/>
                 </constraints>
             </tableViewCellContentView>
-            <color key="backgroundColor" white="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+            <color key="backgroundColor" cocoaTouchSystemColor="viewFlipsideBackgroundColor"/>
             <connections>
                 <outlet property="cityLabel" destination="n1z-i9-yO5" id="l0p-My-Jnu"/>
                 <outlet property="colorView" destination="79x-Co-3mD" id="hzw-49-uSB"/>

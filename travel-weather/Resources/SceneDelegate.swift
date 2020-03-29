@@ -15,6 +15,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
 
     func scene(_ scene: UIScene, willConnectTo session: UISceneSession, options connectionOptions: UIScene.ConnectionOptions) {
         guard let _ = (scene as? UIWindowScene) else { return }
+        window?.tintColor = UIColor(red: 42/255, green: 53/255, blue: 170/255, alpha: 1.0)
         guard let tabBarController = window?.rootViewController as? UITabBarController,
             let viewControllers = tabBarController.viewControllers else {
                 return
@@ -25,6 +26,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         let weatherListViewController = viewControllers[1] as! WeatherListViewController
         weatherListViewController.stateController = stateController
         let navController = viewControllers[0] as! UINavigationController
+        navController.navigationBar.setValue(true, forKey: "hidesShadow")
         let scheduleViewController = navController.viewControllers.first as! ScheduleViewController
         scheduleViewController.stateController = stateController
         

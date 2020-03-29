@@ -33,7 +33,7 @@ class EditLocationViewController: UIViewController{
         let dateFormatter = DateFormatter()
         dateFormatter.dateFormat = "MMMM d"
         title = dateFormatter.string(from: self.date)
-        
+    
         resultsViewController = GMSAutocompleteResultsViewController()
         resultsViewController?.delegate = self
         
@@ -59,6 +59,7 @@ class EditLocationViewController: UIViewController{
         searchController?.searchBar.showsCancelButton = false
         resultsViewController?.edgesForExtendedLayout = []
         searchController?.searchResultsController?.additionalSafeAreaInsets = UIEdgeInsets.init(top: 64, left: 0, bottom: 0, right: 0)
+        searchController?.searchBar.backgroundImage = UIImage()
         
 
     }
