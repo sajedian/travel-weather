@@ -20,7 +20,7 @@ struct DateHelper {
         let month = calendar.component(.month, from: currentDate)
         let day = calendar.component(.day, from: currentDate)
         let year = calendar.component(.year, from: currentDate)
-        let dateComponents = DateComponents(calendar: calendar, year: year, month: month, day: day, hour: 0, minute: 0, second: 0)
+        let dateComponents = DateComponents(calendar: calendar, year: year, month: month, day: day)
         let modifiedCurrentDate = calendar.date(from: dateComponents)!
 //        print("modifiedCurrentDate is \(modifiedCurrentDate)")
         return modifiedCurrentDate

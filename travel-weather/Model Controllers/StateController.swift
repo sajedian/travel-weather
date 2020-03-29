@@ -34,9 +34,6 @@ class StateController: NetworkControllerDelegate {
     
     //MARK:- App State
     private var defaultColor = UIColor(red: 14/255, green: 12/255, blue: 114/255, alpha: 1.0)
-    var defaultCity: String = "Boston"
-    var defaultLatitude: Double = 42.35843
-    var defaultLongitude: Double = -71.05977
     var days = [Date:Day]()
     
     
@@ -58,6 +55,9 @@ class StateController: NetworkControllerDelegate {
         if let day = storageController.getDayForDate(for: date){
             return day
         } else {
+            let defaultCity = UserDefaults.standard.string(forKey: "city")!
+            let defaultLatitude = UserDefaults.standard.double(forKey: "latitude")
+            let defaultLongitude = UserDefaults.standard.double(forKey: "longitude")
             let newDay = storageController.createDay(city: defaultCity, date: date, latitude: defaultLatitude, longitude: defaultLongitude)
             days[date] = newDay
             return newDay
