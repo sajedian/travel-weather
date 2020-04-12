@@ -12,14 +12,7 @@ import GooglePlaces
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
-    func customizeAppearance() {
-        let barTintColor = UIColor(red: 42/255, green: 53/255, blue: 170/255, alpha: 1.0)
-        UISearchBar.appearance().barTintColor = barTintColor
-        UINavigationBar.appearance().barTintColor = barTintColor
-        UINavigationBarAppearance().shadowColor = .clear
-        UINavigationBar.appearance().titleTextAttributes = [NSAttributedString.Key.foregroundColor: UIColor.white,
-                                                           NSAttributedString.Key.font: UIFont.preferredFont(forTextStyle: .title2)]
-    }
+   
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         GMSPlacesClient.provideAPIKey(googleMapsAPIKey)
@@ -31,7 +24,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             return true
         }
         print("Default city is: \(defaultCity)")
-        customizeAppearance()
         return true
     }
 

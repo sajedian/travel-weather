@@ -1,14 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="15705" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="KDO-lq-YIo">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="16096" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="KDO-lq-YIo">
     <device id="retina4_7" orientation="portrait" appearance="light"/>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15706"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="16086"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="collection view cell content view" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--Ib Calendar Data Source-->
+        <!--Schedule View Controller-->
         <scene sceneID="2I4-hi-Nxn">
             <objects>
                 <viewController id="PfS-Y4-wsd" customClass="ScheduleViewController" customModule="Travel_Weather" customModuleProvider="target" sceneMemberID="viewController">
@@ -216,7 +216,7 @@
                                             <preferredSymbolConfiguration key="preferredSymbolConfiguration" scale="large" weight="semibold"/>
                                         </state>
                                         <connections>
-                                            <segue destination="nMA-cA-nfx" kind="show" id="qhB-n3-gqe"/>
+                                            <segue destination="nMA-cA-nfx" kind="show" identifier="EditSchedule" id="qhB-n3-gqe"/>
                                         </connections>
                                     </button>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Select date to view/edit location" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="BnR-ug-wzG" userLabel="Instruction Label">
@@ -270,7 +270,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="sNf-NZ-ios" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1268" y="-577.06146926536735"/>
+            <point key="canvasLocation" x="1209" y="-603"/>
         </scene>
         <!--DateLabel-->
         <scene sceneID="hqH-Se-HFi">
@@ -295,19 +295,22 @@
                         <viewLayoutGuide key="safeArea" id="PQW-O0-WYp"/>
                     </view>
                     <navigationItem key="navigationItem" title="DateLabel" id="lLn-Fc-A6Q">
-                        <barButtonItem key="leftBarButtonItem" title="Item" image="arrow.left" catalog="system" id="vMG-W6-VYd">
+                        <barButtonItem key="leftBarButtonItem" title="Item" image="arrow.left" catalog="system" id="4mC-Px-nf3">
                             <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            <connections>
+                                <action selector="cancel" destination="nMA-cA-nfx" id="ZGS-FU-bms"/>
+                            </connections>
                         </barButtonItem>
                     </navigationItem>
                     <connections>
-                        <outlet property="subView" destination="o6H-3c-ksE" id="AAA-RU-fx4"/>
-                        <segue destination="QcA-3h-S7T" kind="unwind" identifier="unwindToContainerVC" unwindAction="unwindToContainerVCWithSegue:" id="HC0-sk-GvF"/>
+                        <outlet property="subView" destination="o6H-3c-ksE" id="drM-9D-ygE"/>
+                        <segue destination="QcA-3h-S7T" kind="unwind" identifier="unwindToPresentingVC" unwindAction="unwindToScheduleVCWithSegue:" id="Lol-0Q-FW5"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="wAR-rS-z76" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
                 <exit id="QcA-3h-S7T" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
-            <point key="canvasLocation" x="2013.5999999999999" y="-577.06146926536735"/>
+            <point key="canvasLocation" x="2010" y="-603"/>
         </scene>
         <!--Tab Bar Controller-->
         <scene sceneID="SpX-gW-h7a">
@@ -321,7 +324,7 @@
                     <connections>
                         <segue destination="yFl-ko-BVq" kind="relationship" relationship="viewControllers" id="GCe-Mk-vNm"/>
                         <segue destination="Jh8-hZ-AAc" kind="relationship" relationship="viewControllers" id="Wrd-qJ-F4S"/>
-                        <segue destination="5p1-4H-dmq" kind="relationship" relationship="viewControllers" id="d9h-Me-Qhv"/>
+                        <segue destination="HMo-Rf-BBp" kind="relationship" relationship="viewControllers" id="Cd3-za-Kib"/>
                     </connections>
                 </tabBarController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="06F-NP-TVf" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -349,20 +352,120 @@
             <point key="canvasLocation" x="329" y="119"/>
         </scene>
         <!--Settings-->
-        <scene sceneID="j8e-vW-fxX">
+        <scene sceneID="GuE-m3-D6R">
             <objects>
-                <viewController id="5p1-4H-dmq" sceneMemberID="viewController">
-                    <view key="view" contentMode="scaleToFill" id="OXz-5f-0oa">
+                <tableViewController id="1hh-qL-TFI" customClass="SettingsViewController" customModule="Travel_Weather" customModuleProvider="target" sceneMemberID="viewController">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="static" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="4LZ-6k-aPS">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
-                        <viewLayoutGuide key="safeArea" id="vCF-A1-ZvX"/>
-                    </view>
-                    <tabBarItem key="tabBarItem" title="Settings" image="gear" catalog="system" id="12I-O4-8XP"/>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="zLx-Rl-6LD" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+                        <sections>
+                            <tableViewSection id="GCZ-G6-2tM">
+                                <cells>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" reuseIdentifier="SettingsCell" id="35z-th-oSW">
+                                        <rect key="frame" x="0.0" y="28" width="375" height="43.5"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="35z-th-oSW" id="R0K-E1-X0y">
+                                            <rect key="frame" x="0.0" y="0.0" width="348" height="43.5"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Home " textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="go3-Vc-cG1">
+                                                    <rect key="frame" x="16" y="11" width="50.5" height="21.5"/>
+                                                    <fontDescription key="fontDescription" style="UICTFontTextStyleBody"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Current Home City" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="7Qd-m7-N2C">
+                                                    <rect key="frame" x="182" y="11" width="143" height="22"/>
+                                                    <fontDescription key="fontDescription" style="UICTFontTextStyleBody"/>
+                                                    <color key="textColor" systemColor="secondaryLabelColor" red="0.23529411759999999" green="0.23529411759999999" blue="0.26274509800000001" alpha="0.59999999999999998" colorSpace="custom" customColorSpace="sRGB"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstItem="go3-Vc-cG1" firstAttribute="leading" secondItem="R0K-E1-X0y" secondAttribute="leadingMargin" id="5mY-8x-fXr"/>
+                                                <constraint firstItem="7Qd-m7-N2C" firstAttribute="top" secondItem="R0K-E1-X0y" secondAttribute="topMargin" id="9PJ-54-V78"/>
+                                                <constraint firstAttribute="trailingMargin" secondItem="7Qd-m7-N2C" secondAttribute="trailing" constant="15" id="DCj-tJ-smZ"/>
+                                                <constraint firstAttribute="bottomMargin" secondItem="go3-Vc-cG1" secondAttribute="bottom" constant="0.5" id="Lpj-uz-0VJ"/>
+                                                <constraint firstItem="go3-Vc-cG1" firstAttribute="top" secondItem="R0K-E1-X0y" secondAttribute="topMargin" id="fy5-YV-Goe"/>
+                                                <constraint firstAttribute="bottomMargin" secondItem="7Qd-m7-N2C" secondAttribute="bottom" id="wZR-5N-yeu"/>
+                                            </constraints>
+                                        </tableViewCellContentView>
+                                        <connections>
+                                            <segue destination="7Ls-GC-xSJ" kind="show" id="hHe-Tn-fR1"/>
+                                        </connections>
+                                    </tableViewCell>
+                                </cells>
+                            </tableViewSection>
+                        </sections>
+                        <connections>
+                            <outlet property="dataSource" destination="1hh-qL-TFI" id="neD-Tt-uFr"/>
+                            <outlet property="delegate" destination="1hh-qL-TFI" id="YU9-b3-qdv"/>
+                        </connections>
+                    </tableView>
+                    <navigationItem key="navigationItem" title="Settings" id="s19-j9-KSO"/>
+                    <connections>
+                        <outlet property="defaultCityLabel" destination="7Qd-m7-N2C" id="Ii1-K1-MEt"/>
+                    </connections>
+                </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="ddq-g1-6uq" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="329" y="860"/>
+            <point key="canvasLocation" x="1268" y="939.58020989505258"/>
+        </scene>
+        <!--Title-->
+        <scene sceneID="dNk-wj-hMo">
+            <objects>
+                <viewController id="7Ls-GC-xSJ" customClass="EditLocationViewController" customModule="Travel_Weather" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="e53-9q-Epn">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="meu-g3-JYm" userLabel="Sub View">
+                                <rect key="frame" x="0.0" y="44" width="375" height="574"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                            </view>
+                        </subviews>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <constraints>
+                            <constraint firstItem="meu-g3-JYm" firstAttribute="trailing" secondItem="HWc-1G-ngH" secondAttribute="trailing" id="8AG-Wl-r6Z"/>
+                            <constraint firstItem="meu-g3-JYm" firstAttribute="top" secondItem="HWc-1G-ngH" secondAttribute="top" id="HBb-ZZ-p2W"/>
+                            <constraint firstItem="meu-g3-JYm" firstAttribute="leading" secondItem="HWc-1G-ngH" secondAttribute="leading" id="TtI-CW-p3J"/>
+                            <constraint firstItem="meu-g3-JYm" firstAttribute="bottom" secondItem="HWc-1G-ngH" secondAttribute="bottom" id="edF-SX-AQt"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="HWc-1G-ngH"/>
+                    </view>
+                    <navigationItem key="navigationItem" title="Title" id="fP9-t5-0wy">
+                        <barButtonItem key="leftBarButtonItem" image="arrow.left" catalog="system" id="GrJ-jf-kG6">
+                            <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        </barButtonItem>
+                    </navigationItem>
+                    <connections>
+                        <outlet property="subView" destination="meu-g3-JYm" id="rLS-US-Dhf"/>
+                        <segue destination="KvN-Sk-T0C" kind="unwind" identifier="unwindToPresentingVC" unwindAction="unwindToSettingsVCWithSegue:" id="Eh8-N2-iOJ"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="nxy-zD-wTn" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+                <navigationItem id="g9Q-gn-lOk"/>
+                <exit id="KvN-Sk-T0C" userLabel="Exit" sceneMemberID="exit"/>
+            </objects>
+            <point key="canvasLocation" x="2080.8000000000002" y="937.78110944527748"/>
+        </scene>
+        <!--Settings-->
+        <scene sceneID="nWL-hA-fdv">
+            <objects>
+                <navigationController id="HMo-Rf-BBp" sceneMemberID="viewController">
+                    <tabBarItem key="tabBarItem" title="Settings" image="gear" catalog="system" id="6ef-Nl-286"/>
+                    <navigationItem key="navigationItem" id="6KD-SW-OwY"/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="8Nc-c0-hBK">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <connections>
+                        <segue destination="1hh-qL-TFI" kind="relationship" relationship="rootViewController" id="qQ1-G0-f8b"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Vmn-aE-DoS" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="329" y="940"/>
         </scene>
         <!--Schedule-->
         <scene sceneID="Lun-At-TDQ">
@@ -384,13 +487,13 @@
             <point key="canvasLocation" x="328.80000000000001" y="-577.06146926536735"/>
         </scene>
     </scenes>
-    <resources>
-        <image name="arrow.left" catalog="system" width="64" height="48"/>
-        <image name="arrow.right" catalog="system" width="64" height="48"/>
-        <image name="calendar" catalog="system" width="64" height="52"/>
-        <image name="cloud.fill" catalog="system" width="64" height="42"/>
-        <image name="gear" catalog="system" width="64" height="58"/>
-        <image name="square.and.pencil" catalog="system" width="64" height="58"/>
-    </resources>
     <color key="tintColor" red="0.17385447030000001" green="0.20798963309999999" blue="0.64317458869999999" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+    <resources>
+        <image name="arrow.left" catalog="system" width="128" height="98"/>
+        <image name="arrow.right" catalog="system" width="128" height="98"/>
+        <image name="calendar" catalog="system" width="128" height="106"/>
+        <image name="cloud.fill" catalog="system" width="128" height="84"/>
+        <image name="gear" catalog="system" width="128" height="119"/>
+        <image name="square.and.pencil" catalog="system" width="128" height="118"/>
+    </resources>
 </document>

@@ -73,6 +73,26 @@ class StateController: NetworkControllerDelegate {
             networkController.requestDayForecast(for: day)
         }
     }
+    
+    func changeDefaultLocation(didSelect newLocation: GMSPlace) {
+        let longitude = Double(newLocation.coordinate.longitude)
+        let latitude = Double(newLocation.coordinate.latitude)
+        let city = newLocation.name!
+        UserDefaults.standard.set(city, forKey: "city")
+        UserDefaults.standard.set(longitude, forKey: "longitude")
+        UserDefaults.standard.set(latitude, forKey: "latitude")
+        print("New default city: \(UserDefaults.standard.string(forKey: "city")!)")
+    }
+    
+    var defaultCity: String {
+        if let defaultCity = UserDefaults.standard.string(forKey: "city") {
+            return defaultCity
+        } else {
+            return "New York"
+        }
+    }
+    
+    
 
     
     
@@ -101,7 +121,7 @@ class StateController: NetworkControllerDelegate {
             let city = cities.randomElement()!
 //            print("i is \(i), city is \(city)")
             let date = Calendar.current.date(byAdding: .day, value: i, to: today)!
-            let (longitude, latitude) = latLongs[city]!
+            let (latitude, longitude) = latLongs[city]!
             guard let day = storageController.getDayForDate(for: date) else {
                 let day = storageController.createDay(city: city, date: date, latitude: latitude, longitude: longitude)
                 if let latLong = latLongs[city] {

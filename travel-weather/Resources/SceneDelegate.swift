@@ -26,11 +26,26 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         let weatherListViewController = viewControllers[1] as! WeatherListViewController
         weatherListViewController.stateController = stateController
         let navController = viewControllers[0] as! UINavigationController
-        navController.navigationBar.setValue(true, forKey: "hidesShadow")
+      
         let scheduleViewController = navController.viewControllers.first as! ScheduleViewController
         scheduleViewController.stateController = stateController
+        let navController2 = viewControllers[2] as! UINavigationController
+        let settingsViewController = navController2.viewControllers.first as! SettingsViewController
+        settingsViewController.stateController = stateController
+        customizeAppearance()
         
     }
+    
+    func customizeAppearance() {
+           let barTintColor = UIColor(red: 42/255, green: 53/255, blue: 170/255, alpha: 1.0)
+           UISearchBar.appearance().barTintColor = barTintColor
+           UINavigationBar.appearance().barTintColor = barTintColor
+           UINavigationBar.appearance().backgroundColor = barTintColor
+           UINavigationBarAppearance().shadowColor = .clear
+           UINavigationBar.appearance().titleTextAttributes = [NSAttributedString.Key.foregroundColor: UIColor.white,
+                                                              NSAttributedString.Key.font: UIFont.preferredFont(forTextStyle: .title2)]
+           
+       }
 
     func sceneDidDisconnect(_ scene: UIScene) {
         // Called as the scene is being released by the system.

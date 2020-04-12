@@ -36,6 +36,7 @@ class ScheduleViewController: UIViewController {
         calendarView.backgroundColor = UIColor.black
         selectedDayView.layer.cornerRadius = 15
         selectedDayView.backgroundColor = UIColor(red: 42/255, green: 53/255, blue: 170/255, alpha: 1.0)
+        navigationController?.navigationBar.setValue(true, forKey: "hidesShadow")
         resetSelectedDate()
     }
     
@@ -108,19 +109,23 @@ class ScheduleViewController: UIViewController {
     }
     
 
-    @IBAction func unwindToContainerVC(segue: UIStoryboardSegue) {
+    @IBAction func unwindToScheduleVC(segue: UIStoryboardSegue) {
 
        }
     
 }
 
 extension ScheduleViewController: EditLocationViewControllerDelegate {
-    func editLocationViewControllerDidUpdate(didSelect newLocation: GMSPlace, for date: Date) {
-        stateController.updateLocationForDate(didSelect: newLocation, for: date)
+    func editLocationViewControllerDidUpdate(didSelect newLocation: GMSPlace, for date: Date?) {
+        self.dismiss(animated: true)
+        if let date = date {
+            stateController.updateLocationForDate(didSelect: newLocation, for: date)
+        }
+        
     }
     
     func editLocationViewControllerDidCancel() {
-}
+    }
 }
 
 
