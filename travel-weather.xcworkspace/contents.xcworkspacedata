@@ -1,0 +1,118 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Workspace
+   version = "1.0">
+   <FileRef
+      location = "group:/Users/rsajedian/Desktop/travel-weather/travel-weather/Data Models/Day+CoreDataClass.swift">
+   </FileRef>
+   <FileRef
+      location = "group:/Users/rsajedian/Desktop/travel-weather/travel-weather/Data Models/Day+CoreDataProperties.swift">
+   </FileRef>
+   <FileRef
+      location = "group:travel-weather.xcodeproj">
+   </FileRef>
+   <Group
+      location = "group:travel-weather"
+      name = "travel-weather">
+      <FileRef
+         location = "group:travel-weather/Resources/Assets.xcassets">
+      </FileRef>
+      <Group
+         location = "group:travel-weather/Data Models"
+         name = "Data Models">
+         <FileRef
+            location = "absolute:/Users/rsajedian/Desktop/travel-weather/travel-weather/Data Models/Day+CoreDataClass.swift">
+         </FileRef>
+         <FileRef
+            location = "absolute:/Users/rsajedian/Desktop/travel-weather/travel-weather/Data Models/Day+CoreDataProperties.swift">
+         </FileRef>
+         <FileRef
+            location = "group:travel-weather/Data Models/Day.swift">
+         </FileRef>
+         <FileRef
+            location = "group:travel-weather/Data Models/ForecastResult.swift">
+         </FileRef>
+      </Group>
+      <Group
+         location = "group:travel-weather/Model Controllers"
+         name = "Model Controllers">
+         <FileRef
+            location = "group:travel-weather/Model Controllers/StateController.swift">
+         </FileRef>
+         <FileRef
+            location = "group:travel-weather/Model Controllers/NetworkController.swift">
+         </FileRef>
+         <FileRef
+            location = "group:travel-weather/Model Controllers/StorageController.swift">
+         </FileRef>
+      </Group>
+      <Group
+         location = "group:travel-weather/View Controllers"
+         name = "View Controllers">
+         <FileRef
+            location = "group:travel-weather/View Controllers/WeatherListViewController.swift">
+         </FileRef>
+         <FileRef
+            location = "group:travel-weather/View Controllers/ScheduleViewController.swift">
+         </FileRef>
+         <FileRef
+            location = "group:travel-weather/View Controllers/EditLocationViewController.swift">
+         </FileRef>
+         <FileRef
+            location = "group:travel-weather/View Controllers/TabBarController.swift">
+         </FileRef>
+      </Group>
+      <Group
+         location = "group:travel-weather/Custom Components"
+         name = "Custom Components">
+         <FileRef
+            location = "group:travel-weather/Custom Components/DayCell.xib">
+         </FileRef>
+         <FileRef
+            location = "group:travel-weather/Custom Components/DayCell.swift">
+         </FileRef>
+         <FileRef
+            location = "group:travel-weather/Custom Components/DateCell.swift">
+         </FileRef>
+      </Group>
+      <Group
+         location = "group:travel-weather/Resources"
+         name = "Resources">
+         <FileRef
+            location = "group:travel-weather/Resources/../../Constants.swift">
+         </FileRef>
+         <Group
+            location = "group:travel-weather/Resources"
+            name = "Main.storyboard">
+            <FileRef
+               location = "group:travel-weather/Resources/Base.lproj/Main.storyboard">
+            </FileRef>
+         </Group>
+         <Group
+            location = "group:travel-weather/Resources"
+            name = "LaunchScreen.storyboard">
+            <FileRef
+               location = "group:travel-weather/Resources/Base.lproj/LaunchScreen.storyboard">
+            </FileRef>
+         </Group>
+         <FileRef
+            location = "group:travel-weather/Resources/SceneDelegate.swift">
+         </FileRef>
+         <FileRef
+            location = "group:travel-weather/Resources/AppDelegate.swift">
+         </FileRef>
+         <FileRef
+            location = "group:travel-weather/Resources/../Info.plist">
+         </FileRef>
+         <Group
+            location = "group:travel-weather/Resources/TravelWeather.xcdatamodeld"
+            name = "TravelWeather.xcdatamodeld">
+            <FileRef
+               location = "group:travel-weather/Resources/TravelWeather.xcdatamodeld/TravelWeather.xcdatamodel">
+            </FileRef>
+         </Group>
+      </Group>
+   </Group>
+   <FileRef
+      location = "group:Pods/Pods.xcodeproj">
+   </FileRef>
+</Workspace>
