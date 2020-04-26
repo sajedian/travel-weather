@@ -21,6 +21,7 @@ extension Day {
     @NSManaged public var latitude: Double
     @NSManaged public var longitude: Double
     @NSManaged public var weatherSummaryValue: String?
+    @NSManaged public var locationWasSet: Bool
 //    @NSManaged public var latitude: Double
 //    @NSManaged public var longitude: Double
 //    @NSManaged public var highTemp: Int64

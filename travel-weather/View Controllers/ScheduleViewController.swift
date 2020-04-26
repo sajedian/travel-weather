@@ -72,7 +72,6 @@ class ScheduleViewController: UIViewController {
         selectedDate = date
         cityLabel.text = stateController.getCityForDate(for: date)
         dateLabel.text = DateHelper.monthAndDayFromDate(from: date)
-        
         cityLabel.isHidden = false
         editCityButton.isHidden = false
         dateLabel.isHidden = false
