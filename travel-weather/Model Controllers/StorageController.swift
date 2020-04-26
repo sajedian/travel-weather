@@ -58,6 +58,19 @@ class StorageController {
             return nil
         }
     }
+
+    //does not set locaitonWasSet to true because the day still has the default location
+    func updateDefaultLocation(date: Date, newCity: String, latitude: Double, longitude: Double) {
+        print("Updated day for \(date), new city: \(newCity)")
+            if let day = getDayForDate(for: date) {
+                day.city = newCity
+                day.longitude = longitude
+                day.latitude = latitude
+                saveContext()
+            } else {
+                _ = createDay(city: newCity, date: date, latitude: latitude, longitude: longitude)
+            }
+    }
     
     func updateLocationForDay(date: Date, newCity: String, latitude: Double, longitude: Double) {
         print("Updated day for \(date), new city: \(newCity)")
@@ -68,7 +81,7 @@ class StorageController {
             day.locationWasSet = true
             saveContext()
         } else {
-            createDay(city: newCity, date: date, latitude: latitude, longitude: longitude)
+            _ = createDay(city: newCity, date: date, latitude: latitude, longitude: longitude)
         }
         
     }
