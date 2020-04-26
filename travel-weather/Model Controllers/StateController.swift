@@ -65,6 +65,9 @@ class StateController: NetworkControllerDelegate {
     }
 
     func getDayForDate(for date: Date) -> Day {
+        if let day = days[date] {
+            return day
+        }
         if let day = storageController.getDayForDate(for: date){
             return day
         } else {
@@ -72,7 +75,6 @@ class StateController: NetworkControllerDelegate {
             let defaultLatitude = UserDefaults.standard.double(forKey: "latitude")
             let defaultLongitude = UserDefaults.standard.double(forKey: "longitude")
             let newDay = storageController.createDay(city: defaultCity, date: date, latitude: defaultLatitude, longitude: defaultLongitude)
-            days[date] = newDay
             return newDay
         }
     }
