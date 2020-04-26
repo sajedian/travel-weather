@@ -65,21 +65,22 @@ class StorageController {
             day.city = newCity
             day.longitude = longitude
             day.latitude = latitude
+            day.locationWasSet = true
             saveContext()
         } else {
-            print("Error: tried to update date: \(date) and it was not found)")
+            createDay(city: newCity, date: date, latitude: latitude, longitude: longitude)
         }
         
     }
     
     func createDay(city: String, date: Date, latitude: Double, longitude: Double) -> Day {
-
         let context = persistentContainer.viewContext
         let day = Day(entity: Day.entity(), insertInto: context)
         day.city = city
         day.date = date
         day.latitude = latitude
         day.longitude = longitude
+        day.locationWasSet = false
         saveContext()
         print("Created Day(date: \(date), city: \(city)")
         return day

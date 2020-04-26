@@ -70,6 +70,8 @@ public class Day: NSManagedObject {
         }
     }
     
+    
+    
 //    var longitude: Double?
 //           {
 //           get {
@@ -128,7 +130,6 @@ public class Day: NSManagedObject {
         } else {
             return "--- ⏐ ---"
         }
-        
     }
     
     

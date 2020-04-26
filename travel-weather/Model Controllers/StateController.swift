@@ -41,6 +41,12 @@ class StateController: NetworkControllerDelegate {
             return "No Default Location Set"
         }
     }
+    var defaultLatitude: Double {
+        return UserDefaults.standard.double(forKey: "latitude")
+    }
+    var defaultLongitude: Double {
+        return UserDefaults.standard.double(forKey: "longitude")
+    }
     
     
     
@@ -124,21 +130,16 @@ class StateController: NetworkControllerDelegate {
     }
     
     private func createPlaceHolderData() {
-        let cities = ["Boston", "Philadelphia", "New York", "Rancho Santa Margarita", "Chicago", "Minneapolis", "Houston", "Boston", "Philadelphia", "New York", "Rancho Santa Margarita", "Chicago", "Minneapolis", "Houston"].shuffled()
+//        let cities = ["Boston", "Philadelphia", "New York", "Rancho Santa Margarita", "Chicago", "Minneapolis", "Houston", "Boston", "Philadelphia", "New York", "Rancho Santa Margarita", "Chicago", "Minneapolis", "Houston"].shuffled()
         let today = DateHelper.currentDateMDYOnly()
 //        print("today is \(today)")
         for i in 0..<14{
-            let city = cities.randomElement()!
+//            let city = cities.randomElement()!
 //            print("i is \(i), city is \(city)")
+            
             let date = Calendar.current.date(byAdding: .day, value: i, to: today)!
-            let (latitude, longitude) = latLongs[city]!
             guard let day = storageController.getDayForDate(for: date) else {
-                let day = storageController.createDay(city: city, date: date, latitude: latitude, longitude: longitude)
-                if let latLong = latLongs[city] {
-                    (day.latitude, day.longitude) = latLong
-                } else {
-                    print ("Error: latLong not found for \(city)")
-                }
+                let day = storageController.createDay(city: defaultCity, date: date, latitude: defaultLatitude, longitude: defaultLongitude)
                 days[date] = day
                 continue
             }
