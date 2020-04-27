@@ -2,7 +2,7 @@
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="16096" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="KDO-lq-YIo">
     <device id="retina4_7" orientation="portrait" appearance="light"/>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="16086"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="16087"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="collection view cell content view" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -70,9 +70,9 @@
                                         </constraints>
                                     </view>
                                     <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="N40-eV-7RF" customClass="JTAppleCalendarView" customModule="JTAppleCalendar">
-                                        <rect key="frame" x="17" y="117.5" width="341" height="195"/>
+                                        <rect key="frame" x="17" y="117.5" width="341" height="250"/>
                                         <constraints>
-                                            <constraint firstAttribute="width" secondItem="N40-eV-7RF" secondAttribute="height" multiplier="7:4" id="xLn-sl-rmJ"/>
+                                            <constraint firstAttribute="height" constant="250" id="xJd-Cl-vJj"/>
                                         </constraints>
                                         <collectionViewFlowLayout key="collectionViewLayout" automaticEstimatedItemSize="YES" minimumLineSpacing="0.0" minimumInteritemSpacing="0.0" id="JXN-Zu-iI2">
                                             <size key="itemSize" width="50" height="50"/>
@@ -102,16 +102,32 @@
                                                             <nil key="textColor"/>
                                                             <nil key="highlightedColor"/>
                                                         </label>
+                                                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="iGE-JL-sr8" userLabel="DotVIew">
+                                                            <rect key="frame" x="22" y="40.5" width="6" height="6"/>
+                                                            <color key="backgroundColor" systemColor="systemYellowColor" red="1" green="0.80000000000000004" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                            <constraints>
+                                                                <constraint firstAttribute="height" constant="6" id="jC7-Wn-Z0z"/>
+                                                                <constraint firstAttribute="width" constant="6" id="k1F-4c-7mX"/>
+                                                            </constraints>
+                                                            <userDefinedRuntimeAttributes>
+                                                                <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                                                    <integer key="value" value="3"/>
+                                                                </userDefinedRuntimeAttribute>
+                                                            </userDefinedRuntimeAttributes>
+                                                        </view>
                                                     </subviews>
                                                     <constraints>
                                                         <constraint firstItem="bxv-b8-m5U" firstAttribute="centerX" secondItem="qCh-xt-to3" secondAttribute="centerX" id="G7N-hF-vmo"/>
                                                         <constraint firstItem="bxv-b8-m5U" firstAttribute="centerY" secondItem="qCh-xt-to3" secondAttribute="centerY" id="GbE-VU-lLu"/>
+                                                        <constraint firstItem="iGE-JL-sr8" firstAttribute="centerX" secondItem="qCh-xt-to3" secondAttribute="centerX" id="P82-Bv-U8l"/>
+                                                        <constraint firstItem="iGE-JL-sr8" firstAttribute="top" secondItem="hWA-UP-ZjH" secondAttribute="bottom" constant="5" id="Vhc-xu-cCg"/>
                                                         <constraint firstItem="hWA-UP-ZjH" firstAttribute="centerY" secondItem="qCh-xt-to3" secondAttribute="centerY" id="qZQ-dG-zba"/>
                                                         <constraint firstItem="hWA-UP-ZjH" firstAttribute="centerX" secondItem="qCh-xt-to3" secondAttribute="centerX" id="sKR-Z1-EuH"/>
                                                     </constraints>
                                                 </collectionViewCellContentView>
                                                 <connections>
                                                     <outlet property="dateLabel" destination="hWA-UP-ZjH" id="2qF-bZ-RKC"/>
+                                                    <outlet property="dotView" destination="iGE-JL-sr8" id="mcd-ZZ-iaw"/>
                                                     <outlet property="selectedView" destination="bxv-b8-m5U" id="TH4-ng-bNb"/>
                                                 </connections>
                                             </collectionViewCell>
@@ -270,7 +286,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="sNf-NZ-ios" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1209" y="-603"/>
+            <point key="canvasLocation" x="1208.8" y="-603.14842578710648"/>
         </scene>
         <!--DateLabel-->
         <scene sceneID="hqH-Se-HFi">

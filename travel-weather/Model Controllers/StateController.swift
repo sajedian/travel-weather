@@ -89,11 +89,21 @@ class StateController: NetworkControllerDelegate {
         }
     }
     
+    func locationWasSet(for date: Date) -> Bool {
+        if let day = storageController.getDayForDate(for: date) {
+            print(day.locationWasSet)
+            return day.locationWasSet
+        } else {
+            return false
+        }
+    }
+    
     func updateLocationForDate(didSelect newLocation: GMSPlace, for date: Date) {
         let longitude = Double(newLocation.coordinate.longitude)
         let latitude = Double(newLocation.coordinate.latitude)
         let city = newLocation.name!
         storageController.updateLocationForDay(date: date, newCity: city, latitude: latitude, longitude: longitude)
+        
         if let day = days[date] {
             networkController.requestDayForecast(for: day)
         }
@@ -146,7 +156,7 @@ class StateController: NetworkControllerDelegate {
             
             let date = Calendar.current.date(byAdding: .day, value: i, to: today)!
             guard let day = storageController.getDayForDate(for: date) else {
-                let day = storageController.createDay(city: defaultCity, date: date, latitude: defaultLatitude, longitude: defaultLongitude)
+                let day = storageController.createDefaultDay(city: defaultCity, date: date, latitude: defaultLatitude, longitude: defaultLongitude)
                 days[date] = day
                 continue
             }

@@ -48,6 +48,7 @@ class StorageController {
                 return nil
             }
             if let day = days[0] as? Day {
+                print("days.count", days.count)
                 print("Fetched day for \(date)")
                 return day
             } else {
@@ -79,6 +80,7 @@ class StorageController {
             day.longitude = longitude
             day.latitude = latitude
             day.locationWasSet = true
+            print("Set location for existing day")
             saveContext()
         } else {
             _ = createDay(city: newCity, date: date, latitude: latitude, longitude: longitude)
@@ -86,7 +88,7 @@ class StorageController {
         
     }
     
-    func createDay(city: String, date: Date, latitude: Double, longitude: Double) -> Day {
+    func createDefaultDay(city: String, date: Date, latitude: Double, longitude: Double) -> Day {
         let context = persistentContainer.viewContext
         let day = Day(entity: Day.entity(), insertInto: context)
         day.city = city
@@ -98,6 +100,22 @@ class StorageController {
         print("Created Day(date: \(date), city: \(city)")
         return day
     }
+    
+    
+    func createDay(city: String, date: Date, latitude: Double, longitude: Double) -> Day {
+        let context = persistentContainer.viewContext
+        let day = Day(entity: Day.entity(), insertInto: context)
+        day.city = city
+        day.date = date
+        day.latitude = latitude
+        day.longitude = longitude
+        day.locationWasSet = true
+        saveContext()
+        print("Created Day(date: \(date), city: \(city)")
+        return day
+    }
+    
+    
     
     
     

@@ -132,7 +132,7 @@ extension ScheduleViewController: EditLocationViewControllerDelegate {
         if let date = date {
             stateController.updateLocationForDate(didSelect: newLocation, for: date)
         }
-        
+        calendarView.reloadData()
     }
 }
 
@@ -147,12 +147,13 @@ extension ScheduleViewController: JTAppleCalendarViewDataSource {
     }
     
     func configureCell(view: JTAppleCell?, cellState: CellState) {
-          guard let cell = view as? DateCell  else { return }
-          cell.dateLabel.text = cellState.text
-          cell.selectedView.layer.cornerRadius = cell.selectedView.bounds.width/2
-          cell.selectedView.backgroundColor = UIColor(red: 42/255, green: 53/255, blue: 170/255, alpha: 1.0)
-          handleCellTextColor(cell: cell, cellState: cellState)
-          handleCellSelected(cell: cell, cellState: cellState)
+        guard let cell = view as? DateCell  else { return }
+        cell.dateLabel.text = cellState.text
+        cell.selectedView.layer.cornerRadius = cell.selectedView.bounds.width/2
+        cell.selectedView.backgroundColor = UIColor(red: 42/255, green: 53/255, blue: 170/255, alpha: 1.0)
+        handleCellTextColor(cell: cell, cellState: cellState)
+        handleCellSelected(cell: cell, cellState: cellState)
+        handleCellEvents(cell: cell, cellState: cellState)
        }
     
     func handleCellSelected(cell: DateCell, cellState: CellState) {
@@ -170,6 +171,18 @@ extension ScheduleViewController: JTAppleCalendarViewDataSource {
        } else {
         cell.dateLabel.textColor = UIColor(red: 255/255, green: 255/255, blue: 255/255, alpha: 0.5)
        }
+    }
+    
+    func handleCellEvents(cell: DateCell, cellState: CellState) {
+        let date = cellState.date
+        print("oooo date is ", date)
+        let locationWasSet = stateController.locationWasSet(for: date)
+        print("locationWasSet", locationWasSet)
+        if locationWasSet {
+            cell.dotView.isHidden = false
+        } else {
+            cell.dotView.isHidden = true
+        }
     }
 }
 
