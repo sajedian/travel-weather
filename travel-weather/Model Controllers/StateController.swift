@@ -119,6 +119,7 @@ class StateController: NetworkControllerDelegate {
         for day in days {
             if !day.value.locationWasSet {
                 storageController.updateDefaultLocation(date: day.value.date, newCity: city, latitude: latitude, longitude: longitude)
+                networkController.requestDayForecast(for: day.value)
             }
         }
         print("New default city: \(UserDefaults.standard.string(forKey: "city")!)")
