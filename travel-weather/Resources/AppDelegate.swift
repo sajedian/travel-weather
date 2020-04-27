@@ -24,7 +24,20 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             return true
         }
         print("Default city is: \(defaultCity)")
+        print(whereIsMySQLite())
         return true
+    }
+    
+    func whereIsMySQLite() {
+        let path = FileManager
+            .default
+            .urls(for: .applicationSupportDirectory, in: .userDomainMask)
+            .last?
+            .absoluteString
+            .replacingOccurrences(of: "file://", with: "")
+            .removingPercentEncoding
+
+        print(path ?? "Not found")
     }
 
     // MARK: UISceneSession Lifecycle
