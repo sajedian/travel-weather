@@ -175,9 +175,7 @@ extension ScheduleViewController: JTAppleCalendarViewDataSource {
     
     func handleCellEvents(cell: DateCell, cellState: CellState) {
         let date = cellState.date
-        print("oooo date is ", date)
         let locationWasSet = stateController.locationWasSet(for: date)
-        print("locationWasSet", locationWasSet)
         if locationWasSet {
             cell.dotView.isHidden = false
         } else {

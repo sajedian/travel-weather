@@ -91,7 +91,6 @@ class StateController: NetworkControllerDelegate {
     
     func locationWasSet(for date: Date) -> Bool {
         if let day = storageController.getDayForDate(for: date) {
-            print(day.locationWasSet)
             return day.locationWasSet
         } else {
             return false
@@ -122,7 +121,6 @@ class StateController: NetworkControllerDelegate {
                 networkController.requestDayForecast(for: day.value)
             }
         }
-        print("New default city: \(UserDefaults.standard.string(forKey: "city")!)")
     }
     
     
@@ -148,13 +146,8 @@ class StateController: NetworkControllerDelegate {
     }
     
     private func createPlaceHolderData() {
-//        let cities = ["Boston", "Philadelphia", "New York", "Rancho Santa Margarita", "Chicago", "Minneapolis", "Houston", "Boston", "Philadelphia", "New York", "Rancho Santa Margarita", "Chicago", "Minneapolis", "Houston"].shuffled()
         let today = DateHelper.currentDateMDYOnly()
-//        print("today is \(today)")
         for i in 0..<14{
-//            let city = cities.randomElement()!
-//            print("i is \(i), city is \(city)")
-            
             let date = Calendar.current.date(byAdding: .day, value: i, to: today)!
             guard let day = storageController.getDayForDate(for: date) else {
                 let day = storageController.createDefaultDay(city: defaultCity, date: date, latitude: defaultLatitude, longitude: defaultLongitude)

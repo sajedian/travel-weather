@@ -30,10 +30,11 @@ class SettingsViewController: UITableViewController {
         myLabel.frame = CGRect(x: 20, y: 8, width: 320, height: 20)
         
         myLabel.font = UIFont.preferredFont(forTextStyle: .caption1)
+        myLabel.textColor = UIColor.systemGray
         myLabel.text = self.tableView(tableView, titleForFooterInSection: section)
 
         let footerView = UIView()
-        footerView.backgroundColor = UIColor.lightGray
+//        footerView.backgroundColor = UIColor.lightGray
         footerView.addSubview(myLabel)
 
         return footerView
@@ -42,7 +43,11 @@ class SettingsViewController: UITableViewController {
     // Create a standard footer that includes the returned text.
     override func tableView(_ tableView: UITableView, titleForFooterInSection
                                 section: Int) -> String? {
-       return "Set location where you'll be most often"
+        if section == 0 {
+           return "Set location where you'll be most often"
+        } else {
+            return nil
+        }
     }
     
     //MARK:- Navigation

@@ -22,24 +22,8 @@ class NetworkController {
     private var dataTask: URLSessionDataTask?
     private let dispatchGroup = DispatchGroup()
 
-    private func parse(data: Data, day: Day) -> WeatherForDay? {
-          do {
-            let decoder = JSONDecoder()
-            let result = try decoder.decode(ForecastResult.self, from:data)
-            print("ForecastResult", result)
-            return result.daily?.data[0]
-          } catch {
-                print("JSON Error: \(error) for day: \(day)")
-                return nil
-            }
-        }
-        
-
     //Interface
-    
-    
     func requestFullForecast(for days: [Date: Day]) {
-//        print("Requesting Full Forecast")
         for (_, day) in days {
             getDayForecast(for: day)
         }
@@ -56,31 +40,38 @@ class NetworkController {
     }
     
     
-    //Internal function
+    //Internal functions
+    
+    private func parse(data: Data, day: Day) -> WeatherForDay? {
+          do {
+            let decoder = JSONDecoder()
+            let result = try decoder.decode(ForecastResult.self, from:data)
+//            print("ForecastResult", result)
+            return result.daily?.data[0]
+          } catch {
+                print("JSON Error: \(error) for day: \(day)")
+                return nil
+            }
+        }
+        
+    private func composedURL(date: Date, latitude: Double, longitude: Double) -> URL {
+        let timeStamp = DateHelper.ISODate(from: date)
+        return URL(string: "https://api.darksky.net/forecast/\(darkSkyAPIKey)/\(latitude),\(longitude),\(timeStamp)?exclude=currently,minutely,hourly,alerts,flags")!
+    }
     
     private func getDayForecast (for day: Day) {
         dispatchGroup.enter()
-        
-        let latitude = day.latitude
-        let longitude = day.longitude
-        
-
-        print("City: \(day.city), latitude: \(day.latitude), longitude: \(day.longitude)")
-        let time = Int(day.date.timeIntervalSince1970)
-//        print(time)
-        let url = URL(string: "https://api.darksky.net/forecast/\(darkSkyAPIKey)/\(latitude),\(longitude),\(time)")!
-        
-        
+//        print("City: \(day.city), latitude: \(day.latitude), longitude: \(day.longitude)")
+        let url = composedURL(date: day.date, latitude: day.latitude, longitude: day.longitude)
         let session = URLSession.shared
         dataTask = session.dataTask(with: url,
                     completionHandler: { data, response, error in
-                        print("url is \(url)")
+//                        print("url is \(url)")
                         if let error = error {
                             print("Failure! \(error))")
                         } else if let httpResponse = response as? HTTPURLResponse,
                             httpResponse.statusCode == 200 {
                             if let data = data {
-//                                print("data is: ", data)
                                 let result = self.parse(data: data, day: day)
                                 if let weatherForDay = result {
                                   day.setWeatherForDay(weatherForDay: weatherForDay)
