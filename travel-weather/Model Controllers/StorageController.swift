@@ -16,7 +16,6 @@ class StorageController {
         let container = NSPersistentContainer(name: "TravelWeather")
         container.loadPersistentStores(completionHandler: {
             (storeDescription, error) in
-//            print(storeDescription)
             if let error = error as NSError? {
                 fatalError("Unresolved error \(error), \(error.userInfo)")
             }
@@ -48,8 +47,6 @@ class StorageController {
                 return nil
             }
             if let day = days[0] as? Day {
-                print("days.count", days.count)
-                print("Fetched day for \(date)")
                 return day
             } else {
                 return nil
@@ -62,7 +59,6 @@ class StorageController {
 
     //does not set locaitonWasSet to true because the day still has the default location
     func updateDefaultLocation(date: Date, newCity: String, latitude: Double, longitude: Double) {
-        print("Updated day for \(date), new city: \(newCity)")
             if let day = getDayForDate(for: date) {
                 day.city = newCity
                 day.longitude = longitude
@@ -74,13 +70,11 @@ class StorageController {
     }
     
     func updateLocationForDay(date: Date, newCity: String, latitude: Double, longitude: Double) {
-        print("Updated day for \(date), new city: \(newCity)")
         if let day = getDayForDate(for: date) {
             day.city = newCity
             day.longitude = longitude
             day.latitude = latitude
             day.locationWasSet = true
-            print("Set location for existing day")
             saveContext()
         } else {
             _ = createDay(city: newCity, date: date, latitude: latitude, longitude: longitude)
@@ -97,7 +91,6 @@ class StorageController {
         day.longitude = longitude
         day.locationWasSet = false
         saveContext()
-        print("Created Day(date: \(date), city: \(city)")
         return day
     }
     
@@ -111,7 +104,6 @@ class StorageController {
         day.longitude = longitude
         day.locationWasSet = true
         saveContext()
-        print("Created Day(date: \(date), city: \(city)")
         return day
     }
     

@@ -137,7 +137,7 @@ public class Day: NSManagedObject {
     
     
     func setWeatherForDay(weatherForDay: WeatherForDay?) {
-        print("Day.city: \(self.city), day.date: \(self.date), temperatureMax: \(weatherForDay?.temperatureMax), temperatureMin: \(weatherForDay?.temperatureMin)")
+//        print("Day.city: \(self.city), day.date: \(self.date), temperatureMax: \(weatherForDay?.temperatureMax), temperatureMin: \(weatherForDay?.temperatureMin)")
         if let temperatureMax = weatherForDay?.temperatureMax {
             self.highTemp = Int32(temperatureMax)
         } else {

@@ -20,11 +20,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             UserDefaults.standard.set("Svalbarðsstrandarhreppur", forKey: "city")
             UserDefaults.standard.set(65.7461132, forKey: "latitude")
             UserDefaults.standard.set(18.0832997, forKey: "longitude")
-            print("Set default city: " + UserDefaults.standard.string(forKey: "city")!)
             return true
         }
-        print("Default city is: \(defaultCity)")
-        print(whereIsMySQLite())
         return true
     }
     
