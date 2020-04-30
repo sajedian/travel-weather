@@ -38,6 +38,7 @@ struct DateHelper {
         return dateFormatter.string(from: date)
     }
     
+    //converts Date to ISO Date string but with no time zone
     static func ISODate(from date: Date) -> String {
         let dateFormatter = DateFormatter()
         dateFormatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ss"
