@@ -44,8 +44,11 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
            UINavigationBarAppearance().shadowColor = .clear
            UINavigationBar.appearance().titleTextAttributes = [NSAttributedString.Key.foregroundColor: UIColor.white,
                                                               NSAttributedString.Key.font: UIFont.preferredFont(forTextStyle: .title2)]
-           
-       }
+        let backButtonBackgroundImage = UIImage(systemName: "arrow.left")
+        UINavigationBar.appearance().backIndicatorImage = backButtonBackgroundImage
+        UINavigationBar.appearance().backIndicatorTransitionMaskImage = backButtonBackgroundImage
+        
+    }
 
     func sceneDidDisconnect(_ scene: UIScene) {
         // Called as the scene is being released by the system.
