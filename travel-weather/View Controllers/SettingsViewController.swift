@@ -52,8 +52,10 @@ class SettingsViewController: UITableViewController {
     
     //MARK:- Navigation
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-               let controller = segue.destination as! EditLocationViewController
-               controller.delegate = self
+        if segue.identifier == "editDefaultLocation" {
+            let controller = segue.destination as! EditLocationViewController
+            controller.delegate = self
+        }
        }
 
     

@@ -24,6 +24,7 @@ class WeatherListViewController: UITableViewController {
         super.viewWillAppear(animated)
 //        stateController.updateForecast()
         tableView.reloadData()
+        view.backgroundColor = .systemGray5
     }
     
     override func viewDidLoad() {
