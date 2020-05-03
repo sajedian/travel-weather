@@ -172,10 +172,10 @@
 				9E63368023D5478700468158 /* WeatherListViewController.swift */,
 				9EC69D6A23EBB7070051722D /* ScheduleViewController.swift */,
 				9E58E43C2409E3C50002B496 /* EditLocationViewController.swift */,
-				9E6FD5C6245A03DE00D42DF8 /* ColorSettingsViewController.swift */,
 				9E347887243A4CBD00CB60D8 /* SettingsViewController.swift */,
-				9EC69D6C23EBBE5A0051722D /* TabBarController.swift */,
+				9E6FD5C6245A03DE00D42DF8 /* ColorSettingsViewController.swift */,
 				9EA007A2245B8902008A4CF0 /* ColorPickerViewController.swift */,
+				9EC69D6C23EBBE5A0051722D /* TabBarController.swift */,
 			);
 			path = "View Controllers";
 			sourceTree = "<group>";
@@ -183,6 +183,7 @@
 		9E63368F23D640C900468158 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				9E63368223D54CE900468158 /* DayCell.xib */,
 				9EECD18F245CBC8B00161F87 /* ColorPalette.swift */,
 				9E8DACE62422BF4A00159E82 /* DateHelper.swift */,
 				9EC5939E23DA963E00E42793 /* Constants.swift */,
@@ -199,7 +200,6 @@
 		9EC5939B23DA8FD600E42793 /* Table View Cells */ = {
 			isa = PBXGroup;
 			children = (
-				9E63368223D54CE900468158 /* DayCell.xib */,
 				9E63368423D624ED00468158 /* DayCell.swift */,
 				9EB43D4423EF3A0B00933D21 /* DateCell.swift */,
 				9E6FD5CC245B54DC00D42DF8 /* ColorSettingsCell.swift */,

@@ -22,6 +22,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             UserDefaults.standard.set(18.0832997, forKey: "longitude")
             return true
         }
+        if UserDefaults.standard.string(forKey: "defaultColor") == nil {
+            UserDefaults.standard.set(UIColor.darkYellow.toHex(), forKey: "defaultColor")
+        }
         return true
     }
     

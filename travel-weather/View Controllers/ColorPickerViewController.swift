@@ -15,7 +15,7 @@ class ColorPickerViewController: UIViewController {
     var colorButtons = [UIButton]()
     override func loadView() {
         view = UIView()
-        view.backgroundColor = .white
+        view.backgroundColor = .systemGray6
         
         
         
@@ -25,44 +25,42 @@ class ColorPickerViewController: UIViewController {
         
         NSLayoutConstraint.activate([
             buttonsView.heightAnchor.constraint(equalToConstant: 320),
-            buttonsView.topAnchor.constraint(equalTo: view.layoutMarginsGuide.topAnchor, constant: 20),
+            buttonsView.topAnchor.constraint(equalTo: view.layoutMarginsGuide.topAnchor),
             buttonsView.centerXAnchor.constraint(equalTo: view.centerXAnchor),
-            buttonsView.leadingAnchor.constraint(equalTo: view.layoutMarginsGuide.leadingAnchor, constant: 10),
-            buttonsView.trailingAnchor.constraint(equalTo: view.layoutMarginsGuide.trailingAnchor, constant: -10)
+            buttonsView.widthAnchor.constraint(equalToConstant: 360)
         ])
         let colors = [UIColor.mutedPink, UIColor.darkRed, UIColor.charcoalGray, UIColor.darkGreen, UIColor.midnightBlue, UIColor.darkYellow, UIColor.darkOrange, UIColor.lightBlue, UIColor.darkPurple]
         
-        // set some values for the width and height of each button
-        let width = 110
-        let height = 75
-
-        for row in 0..<3 {
-            for col in 0..<3 {
+        
+        let colorButtonWidth = CGFloat(50)
+        var buttonConstraints = [NSLayoutConstraint]()
+        for row in 0..<2 {
+            for col in 0..<4 {
                 let index = row * 3 + col
-                // create a new button and give it a big font size
                 let button = UIButton(type: .system)
-                let circleImage = UIImage(systemName: "icloud.circle.fill")
-                let scaledImage = circleImage?.scaled(with: 3)
+                button.addTarget(self, action: #selector(updateColor), for: .touchUpInside)
+                let centerX = 360 * 0.2 * CGFloat(col + 1)
+                let centerY = 360 * 0.2 * CGFloat(row + 1)
+                button.translatesAutoresizingMaskIntoConstraints = false
+                buttonConstraints.append(contentsOf: [
+                    button.heightAnchor.constraint(equalToConstant: colorButtonWidth),
+                    button.widthAnchor.constraint(equalToConstant: colorButtonWidth),
+                    button.centerXAnchor.constraint(equalTo: buttonsView.leadingAnchor, constant: centerX),
+                    button.centerYAnchor.constraint(equalTo: buttonsView.topAnchor, constant: centerY)
+                ])
                 
-                button.imageEdgeInsets = UIEdgeInsets(top: 10, left: 10, bottom: 10, right: 10)
-                button.setImage(scaledImage, for: .normal)
-                button.tintColor = colors[index]
                 
+                button.backgroundColor = colors[index]
                 
+//              let frame = CGRect(x: col * width, y: row * height, width: width, height: height)
                 
-                // give the button some temporary text so we can see it on-screen
-
-                // calculate the frame of this button using its column and row
-                let frame = CGRect(x: col * width, y: row * height, width: width, height: height)
-                button.frame = frame
-
-                // add it to the buttons view
+                button.layer.cornerRadius = 25
                 buttonsView.addSubview(button)
 
-                // and also to our letterButtons array
                 colorButtons.append(button)
             }
         }
+        NSLayoutConstraint.activate(buttonConstraints)
     }
     
     override func viewDidLoad() {
@@ -74,6 +72,11 @@ class ColorPickerViewController: UIViewController {
     
     //MARK:- Actions
     @IBAction func cancel() {
+        navigationController?.popViewController(animated: true)
+    }
+    
+    @IBAction func updateColor(_ sender: UIButton) {
+        UserDefaults.standard.set(sender.backgroundColor!.toHex(), forKey: "defaultColor")
         navigationController?.popViewController(animated: true)
     }
     

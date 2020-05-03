@@ -36,7 +36,11 @@ extension UIColor {
 
 
 // from Hacking with Swift
+// https://www.hackingwithswift.com/example-code/uicolor/how-to-convert-a-hex-color-to-a-uicolor
+// can be used commercially without attribution
+
 extension UIColor {
+    
     public convenience init?(hex: String) {
         let r, g, b, a: CGFloat
 
@@ -62,4 +66,17 @@ extension UIColor {
 
         return nil
     }
+    
+    
+    func toHex() -> String {
+        var red: CGFloat = 0
+        var green: CGFloat = 0
+        var blue: CGFloat = 0
+        var alpha: CGFloat = 0
+        getRed(&red, green: &green, blue: &blue, alpha: &alpha)
+        let rgba: Int = (Int)(red*255)<<24 | (Int)(green*255)<<16 | (Int)(blue*255)<<8 | (Int)(alpha*255)
+        return String(format: "#%08x", rgba)
+    }
+
+
 }

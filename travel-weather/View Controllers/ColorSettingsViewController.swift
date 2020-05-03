@@ -17,6 +17,11 @@ class ColorSettingsViewController: UITableViewController {
         super.viewDidLoad()
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        tableView.reloadData()
+    }
+    
     //MARK:- Outlets
     
     
@@ -36,7 +41,7 @@ class ColorSettingsViewController: UITableViewController {
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "colorSettingsCell", for: indexPath) as! ColorSettingsCell
         cell.cityLabel?.text = "Default Color"
-        cell.colorImageView?.tintColor = UIColor(red: 0/255, green: 204/255, blue: 122/255, alpha: 1.0)
+        cell.colorImageView?.tintColor = UIColor(hex: UserDefaults.standard.string(forKey: "defaultColor")!)!
         return cell
     }
 }
