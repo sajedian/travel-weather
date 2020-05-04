@@ -54,7 +54,12 @@ class SettingsViewController: UITableViewController {
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "editDefaultLocation" {
             let controller = segue.destination as! EditLocationViewController
+            controller.title = "Set Default Location"
             controller.delegate = self
+        }
+        else if segue.identifier == "colorSettings" {
+            let controller = segue.destination as! ColorSettingsViewController
+            controller.stateController = stateController
         }
        }
 
@@ -63,6 +68,7 @@ class SettingsViewController: UITableViewController {
 
 extension SettingsViewController: EditLocationViewControllerDelegate {
     func editLocationViewControllerDidUpdate(didSelect newLocation: GMSPlace, for date: Date?) {
+        navigationController?.popViewController(animated: true)
         stateController.changeDefaultLocation(didSelect: newLocation)
         defaultCityLabel.text = stateController.defaultCity
     }
