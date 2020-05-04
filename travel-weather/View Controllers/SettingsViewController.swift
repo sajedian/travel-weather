@@ -56,6 +56,10 @@ class SettingsViewController: UITableViewController {
             let controller = segue.destination as! EditLocationViewController
             controller.delegate = self
         }
+        else if segue.identifier == "colorSettings" {
+            let controller = segue.destination as! ColorSettingsViewController
+            controller.stateController = stateController
+        }
        }
 
     

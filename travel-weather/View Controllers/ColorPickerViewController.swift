@@ -10,9 +10,13 @@ import Foundation
 import UIKit
 
 
+
 class ColorPickerViewController: UIViewController {
     
     var colorButtons = [UIButton]()
+    var stateController: StateController!
+    var selectedSetting: ColorSetting!
+   
     override func loadView() {
         view = UIView()
         view.backgroundColor = .systemGray6
@@ -76,7 +80,7 @@ class ColorPickerViewController: UIViewController {
     }
     
     @IBAction func updateColor(_ sender: UIButton) {
-        UserDefaults.standard.set(sender.backgroundColor!.toHex(), forKey: "defaultColor")
+        stateController.updateAssociatedColor(color: sender.backgroundColor!, for: selectedSetting)
         navigationController?.popViewController(animated: true)
     }
     

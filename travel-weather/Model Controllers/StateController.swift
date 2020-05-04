@@ -33,6 +33,7 @@ class StateController: NetworkControllerDelegate {
     
     //MARK:- App State
     private var defaultColor = UIColor(red: 14/255, green: 12/255, blue: 114/255, alpha: 1.0)
+    var colorAssociationsArray: [String] = ["Boston", "Crab Orchard", "Houston"]
     private var days = [Date:Day]()
     var defaultCity: String {
         if let defaultCity = UserDefaults.standard.string(forKey: "city") {
@@ -51,15 +52,29 @@ class StateController: NetworkControllerDelegate {
     
     
     //MARK:- Interface
-    func associatedColor(for day: Day) -> UIColor {
-        if let associatedColor = colorAssociations[day.city] {
+    func getAssociatedColor(for city: String) -> UIColor {
+        if let associatedColor = colorAssociations[city] {
             return associatedColor
         }
         else {
             return UIColor(hex: UserDefaults.standard.string(forKey: "defaultColor")!)!
         }
     }
-
+    
+    func updateAssociatedColor(color: UIColor, for setting: ColorSetting)  {
+        switch setting {
+        case .defaultColor:
+            UserDefaults.standard.set(color.toHex(), forKey: "defaultColor")
+        case .city(let city):
+            colorAssociations[city] = color
+        }
+    }
+    
+    func addAssociatedColor(color: UIColor, for city: String ) {
+        colorAssociationsArray = [city] + colorAssociationsArray
+        colorAssociations[city] = color
+    }
+    
     func updateForecast() {
         networkController!.requestFullForecast(for: days)
     }
@@ -166,10 +181,12 @@ class StateController: NetworkControllerDelegate {
         "Minneapolis": UIColor(red: 204/255, green: 57/255, blue: 186/255, alpha: 1.0),
         "Rancho Santa Margarita": UIColor(red: 71/255, green: 98/255, blue: 255/255, alpha: 1.0),
         "Philadelphia": UIColor(red: 237/255, green: 177/255, blue: 66/255, alpha: 1.0),
-        "Boston": UIColor(red: 58/255, green: 142/255, blue: 39/255, alpha: 1.0),
+        "Boston": .charcoalGray,
         "New York": UIColor(red: 211/255, green: 88/255, blue: 84/255, alpha: 1.0),
-        "Crab Orchard": .darkGreen
+        "Crab Orchard": .mutedPink
     ]
+    
+    
     
     //placeholder latLong dictionary
     // will later be created by looking up
