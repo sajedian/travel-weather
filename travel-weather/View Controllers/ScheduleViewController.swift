@@ -35,9 +35,11 @@ class ScheduleViewController: UIViewController {
     
     //MARK:- Helper Functions
     private func configureViewAppearance() {
-        calendarView.backgroundColor = UIColor.black
+        view.backgroundColor = .charcoalGrayLight
+        calendarView.backgroundColor = UIColor.charcoalGrayLight
         selectedDayView.layer.cornerRadius = 15
-        selectedDayView.backgroundColor = UIColor(red: 42/255, green: 53/255, blue: 170/255, alpha: 1.0)
+        selectedDayView.backgroundColor = UIColor.charcoalGray
+        
         navigationController?.navigationBar.setValue(true, forKey: "hidesShadow")
         cityLabel.font = UIFont.systemFont(ofSize: 17)
         dateLabel.font = UIFont.systemFont(ofSize: 23)
@@ -95,6 +97,7 @@ class ScheduleViewController: UIViewController {
     @IBOutlet weak var instructionLabel: UILabel!
     @IBOutlet weak var selectedDayView: UIView!
     @IBOutlet weak var editCityButton: UIButton!
+    @IBOutlet weak var stackView: UIStackView!
     
     
     //MARK:- Actions
@@ -128,7 +131,7 @@ class ScheduleViewController: UIViewController {
 
 extension ScheduleViewController: EditLocationViewControllerDelegate {
     func editLocationViewControllerDidUpdate(didSelect newLocation: GMSPlace, for date: Date?) {
-        self.dismiss(animated: true)
+        navigationController?.popViewController(animated: true)
         if let date = date {
             stateController.updateLocationForDate(didSelect: newLocation, for: date)
         }
@@ -149,16 +152,15 @@ extension ScheduleViewController: JTAppleCalendarViewDataSource {
     func configureCell(view: JTAppleCell?, cellState: CellState) {
         guard let cell = view as? DateCell  else { return }
         cell.dateLabel.text = cellState.text
-        cell.selectedView.layer.cornerRadius = cell.selectedView.bounds.width/2
-        cell.selectedView.backgroundColor = UIColor(red: 42/255, green: 53/255, blue: 170/255, alpha: 1.0)
-        handleCellTextColor(cell: cell, cellState: cellState)
         handleCellSelected(cell: cell, cellState: cellState)
         handleCellEvents(cell: cell, cellState: cellState)
+        handleCellTextColor(cell: cell, cellState: cellState)
        }
     
     func handleCellSelected(cell: DateCell, cellState: CellState) {
         if cellState.isSelected {
             cell.selectedView.isHidden = false
+            handleCellTextColor(cell: cell, cellState: cellState)
 
         } else {
             cell.selectedView.isHidden = true
@@ -168,9 +170,14 @@ extension ScheduleViewController: JTAppleCalendarViewDataSource {
     func handleCellTextColor(cell: DateCell, cellState: CellState) {
        if cellState.dateBelongsTo == .thisMonth {
           cell.dateLabel.textColor = UIColor.white
-       } else {
+       }
+       else {
         cell.dateLabel.textColor = UIColor(red: 255/255, green: 255/255, blue: 255/255, alpha: 0.5)
        }
+        if cellState.isSelected {
+        cell.dateLabel.textColor = UIColor.charcoalGray
+        print("cell is selected")
+        }
     }
     
     func handleCellEvents(cell: DateCell, cellState: CellState) {

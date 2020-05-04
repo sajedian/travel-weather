@@ -12,4 +12,11 @@ class DateCell: JTAppleCell {
     @IBOutlet weak var dateLabel: UILabel!
     @IBOutlet weak var selectedView: UIView!
     @IBOutlet weak var dotView: UIView!
+    
+    override func awakeFromNib() {
+        super.awakeFromNib()
+        dotView.backgroundColor = .darkYellow
+        selectedView.layer.cornerRadius = selectedView.bounds.width/2
+        selectedView.backgroundColor = UIColor(red: 1, green: 1, blue: 1, alpha: 0.5)
+    }
 }

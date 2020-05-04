@@ -15,7 +15,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
 
     func scene(_ scene: UIScene, willConnectTo session: UISceneSession, options connectionOptions: UIScene.ConnectionOptions) {
         guard let _ = (scene as? UIWindowScene) else { return }
-        window?.tintColor = UIColor(red: 42/255, green: 53/255, blue: 170/255, alpha: 1.0)
+        window?.tintColor = UIColor.charcoalGray
         guard let tabBarController = window?.rootViewController as? UITabBarController,
             let viewControllers = tabBarController.viewControllers else {
                 return
@@ -37,16 +37,17 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
     }
     
     func customizeAppearance() {
-           let barTintColor = UIColor(red: 42/255, green: 53/255, blue: 170/255, alpha: 1.0)
+//           let barTintColor = UIColor(red: 42/255, green: 53/255, blue: 170/255, alpha: 1.0)
+            let barTintColor = UIColor.charcoalGray
            UISearchBar.appearance().barTintColor = barTintColor
            UINavigationBar.appearance().barTintColor = barTintColor
            UINavigationBar.appearance().backgroundColor = barTintColor
            UINavigationBarAppearance().shadowColor = .clear
            UINavigationBar.appearance().titleTextAttributes = [NSAttributedString.Key.foregroundColor: UIColor.white,
                                                               NSAttributedString.Key.font: UIFont.preferredFont(forTextStyle: .title2)]
-        let backButtonBackgroundImage = UIImage(systemName: "arrow.left")
-        UINavigationBar.appearance().backIndicatorImage = backButtonBackgroundImage
-        UINavigationBar.appearance().backIndicatorTransitionMaskImage = backButtonBackgroundImage
+//        let backButtonBackgroundImage = UIImage(systemName: "arrow.left")
+//        UINavigationBar.appearance().backIndicatorImage = backButtonBackgroundImage
+//        UINavigationBar.appearance().backIndicatorTransitionMaskImage = backButtonBackgroundImage
         
     }
 

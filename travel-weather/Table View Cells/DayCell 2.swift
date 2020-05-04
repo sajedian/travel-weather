@@ -19,11 +19,9 @@ class DayCell: UITableViewCell {
     
     
     
-    
     override func awakeFromNib() {
          super.awakeFromNib()
          colorView.layer.cornerRadius = 10
-        
        }
     
 }

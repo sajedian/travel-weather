@@ -16,6 +16,8 @@ extension UIColor {
     static var darkYellow: UIColor { return UIColor(hex: "#D1A305ff")! }
     static var darkGreen: UIColor { return UIColor(hex: "#1E3538ff")! }
     static var charcoalGray: UIColor { return UIColor(hex: "#2F4452ff")! }
+    static var charcoalGrayLight: UIColor { return UIColor(hex: "#425763ff")!}
+    static var charcoalGrayDark: UIColor { return UIColor(hex: "#263746ff")!}
     static var midnightBlue: UIColor { return UIColor(hex: "#07455Aff")! }
     static var lightBlue: UIColor { return UIColor(hex: "#2A5859ff")! }
     static var darkPurple: UIColor { return UIColor(hex: "#52297cff")! }
