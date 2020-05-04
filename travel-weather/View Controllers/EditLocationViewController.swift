@@ -36,8 +36,6 @@ class EditLocationViewController: UIViewController{
             let dateFormatter = DateFormatter()
             dateFormatter.dateFormat = "MMMM d"
             title = dateFormatter.string(from: date)
-        } else {
-            title = "Edit Default Location"
         }
        
     
@@ -91,9 +89,9 @@ extension EditLocationViewController: GMSAutocompleteResultsViewControllerDelega
   func resultsController(_ resultsController: GMSAutocompleteResultsViewController,
                          didAutocompleteWith place: GMSPlace) {
     searchController?.isActive = false
-    searchController?.dismiss(animated: true, completion: {self.performSegue(withIdentifier: "unwindToPresentingVC", sender: self)})
-    delegate?.editLocationViewControllerDidUpdate(didSelect: place, for: date)
     
+//    searchController?.dismiss(animated: true, completion: {self.performSegue(withIdentifier: "unwindToPresentingVC", sender: self)})
+    searchController?.dismiss(animated: true, completion: {self.delegate?.editLocationViewControllerDidUpdate(didSelect: place, for: self.date)})
     }
     
     

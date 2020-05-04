@@ -70,9 +70,14 @@ class StateController: NetworkControllerDelegate {
         }
     }
     
-    func addAssociatedColor(color: UIColor, for city: String ) {
+    func addAssociatedColor(color: UIColor?, for city: String) {
         colorAssociationsArray = [city] + colorAssociationsArray
-        colorAssociations[city] = color
+        if let color = color {
+           colorAssociations[city] = color
+        } else {
+            colorAssociations[city] = UIColor(hex: UserDefaults.standard.string(forKey: "defaultColor")!)!
+        }
+        
     }
     
     func updateForecast() {

@@ -466,7 +466,7 @@
             </objects>
             <point key="canvasLocation" x="1268" y="939.58020989505258"/>
         </scene>
-        <!--Edit Default Location-->
+        <!--Edit Location View Controller-->
         <scene sceneID="dNk-wj-hMo">
             <objects>
                 <viewController id="7Ls-GC-xSJ" customClass="EditLocationViewController" customModule="Travel_Weather" customModuleProvider="target" sceneMemberID="viewController">
@@ -488,7 +488,7 @@
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="HWc-1G-ngH"/>
                     </view>
-                    <navigationItem key="navigationItem" title="Edit Default Location" id="g9Q-gn-lOk">
+                    <navigationItem key="navigationItem" id="g9Q-gn-lOk">
                         <barButtonItem key="leftBarButtonItem" title="Item" image="arrow.left" catalog="system" id="lZQ-ag-SqL">
                             <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             <connections>
@@ -561,7 +561,7 @@
                                     </subviews>
                                 </tableViewCellContentView>
                                 <connections>
-                                    <segue destination="7Ls-GC-xSJ" kind="show" id="1up-B2-DbF"/>
+                                    <segue destination="7Ls-GC-xSJ" kind="show" identifier="addLocation" id="1up-B2-DbF"/>
                                 </connections>
                             </tableViewCell>
                         </prototypes>
@@ -595,8 +595,12 @@
                         <viewLayoutGuide key="safeArea" id="ZbP-p8-7H4"/>
                     </view>
                     <navigationItem key="navigationItem" id="HcP-pV-FVL"/>
+                    <connections>
+                        <segue destination="v4i-EB-SOJ" kind="unwind" identifier="unwindToColorSettingsVC" unwindAction="unwindToColorSettingsVCWithSegue:" id="fOK-XK-E7d"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Fsy-rf-6zb" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+                <exit id="v4i-EB-SOJ" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
             <point key="canvasLocation" x="2398" y="1794"/>
         </scene>

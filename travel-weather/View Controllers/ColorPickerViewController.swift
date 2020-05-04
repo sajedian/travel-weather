@@ -81,7 +81,7 @@ class ColorPickerViewController: UIViewController {
     
     @IBAction func updateColor(_ sender: UIButton) {
         stateController.updateAssociatedColor(color: sender.backgroundColor!, for: selectedSetting)
-        navigationController?.popViewController(animated: true)
+        performSegue(withIdentifier: "unwindToColorSettingsVC", sender: sender)
     }
     
   

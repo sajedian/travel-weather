@@ -36,6 +36,9 @@ class ColorSettingsViewController: UITableViewController {
     @IBAction func cancel() {
            navigationController?.popViewController(animated: true)
     }
+    @IBAction func unwindToColorSettingsVC(segue: UIStoryboardSegue) {
+            
+    }
     
     //MARK:- Table View Data Source
     override func numberOfSections(in tableView: UITableView) -> Int {
@@ -103,15 +106,19 @@ class ColorSettingsViewController: UITableViewController {
      override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         guard let selectedPath = tableView.indexPathForSelectedRow else { return }
          if segue.identifier == "addLocation" {
-             let controller = segue.destination as! EditLocationViewController
-             controller.delegate = self
+            let controller = segue.destination as! EditLocationViewController
+            controller.title = "Add Location"
+           controller.delegate = self
          }
          else if segue.identifier == "colorPicker" {
             let controller = segue.destination as! ColorPickerViewController
             if selectedPath.section == 0 {
                 controller.selectedSetting = .defaultColor
+                controller.title = "Default Color"
             } else {
-                controller.selectedSetting = .city(stateController.colorAssociationsArray[selectedPath.row])
+                let city = stateController.colorAssociationsArray[selectedPath.row]
+                controller.title = city
+                controller.selectedSetting = .city(city)
             }
             controller.stateController = stateController
          }
@@ -121,7 +128,8 @@ class ColorSettingsViewController: UITableViewController {
 
 extension ColorSettingsViewController: EditLocationViewControllerDelegate {
     func editLocationViewControllerDidUpdate(didSelect newLocation: GMSPlace, for date: Date?) {
-        
+        stateController.addAssociatedColor(color: nil , for: newLocation.name!)
+        performSegue(withIdentifier: "colorPicker", sender: tableView(tableView, cellForRowAt: IndexPath(row: 0, section: 2)))
     }
 
 }
