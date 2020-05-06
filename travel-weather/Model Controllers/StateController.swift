@@ -56,8 +56,10 @@ class StateController: NetworkControllerDelegate {
         if let associatedColor = colorAssociations[city] {
             return associatedColor
         }
-        else {
-            return UIColor(hex: UserDefaults.standard.string(forKey: "defaultColor")!)!
+        else if let defaultColor = UIColor(hex: UserDefaults.standard.string(forKey: "defaultColor")!) {
+            return defaultColor
+        } else {
+            return self.defaultColor
         }
     }
     
@@ -101,7 +103,7 @@ class StateController: NetworkControllerDelegate {
     
     func getCityForDate(for date: Date) -> String {
         if let day = storageController.getDayForDate(for: date){
-            return day.city
+            return day.location!.locality
         } else if let city = UserDefaults.standard.string(forKey: "city") {
             return city
         } else {

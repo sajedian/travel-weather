@@ -47,6 +47,7 @@ class StorageController {
                 return nil
             }
             if let day = days[0] as? Day {
+                print(day.location)
                 return day
             } else {
                 return nil
@@ -63,6 +64,9 @@ class StorageController {
                 day.city = newCity
                 day.longitude = longitude
                 day.latitude = latitude
+                day.location?.latitude = latitude
+                day.location?.longitude = longitude
+                day.location?.locality = newCity
                 saveContext()
             } else {
                 _ = createDay(city: newCity, date: date, latitude: latitude, longitude: longitude)
@@ -74,6 +78,9 @@ class StorageController {
             day.city = newCity
             day.longitude = longitude
             day.latitude = latitude
+            day.location?.latitude = latitude
+            day.location?.longitude = longitude
+            day.location?.locality = newCity
             day.locationWasSet = true
             saveContext()
         } else {
@@ -85,11 +92,16 @@ class StorageController {
     func createDefaultDay(city: String, date: Date, latitude: Double, longitude: Double) -> Day {
         let context = persistentContainer.viewContext
         let day = Day(entity: Day.entity(), insertInto: context)
+        let location = Location(entity: Location.entity(), insertInto: context)
+        location.locality = city
+        location.longitude = longitude
+        location.latitude = latitude
         day.city = city
         day.date = date
         day.latitude = latitude
         day.longitude = longitude
         day.locationWasSet = false
+        day.location = location
         saveContext()
         return day
     }
@@ -98,11 +110,16 @@ class StorageController {
     func createDay(city: String, date: Date, latitude: Double, longitude: Double) -> Day {
         let context = persistentContainer.viewContext
         let day = Day(entity: Day.entity(), insertInto: context)
+        let location = Location(entity: Location.entity(), insertInto: context)
+        location.locality = city
+        location.longitude = longitude
+        location.latitude = latitude
         day.city = city
         day.date = date
         day.latitude = latitude
         day.longitude = longitude
         day.locationWasSet = true
+        day.location = location
         saveContext()
         return day
     }

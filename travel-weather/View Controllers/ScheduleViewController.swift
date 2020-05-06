@@ -176,7 +176,6 @@ extension ScheduleViewController: JTAppleCalendarViewDataSource {
        }
         if cellState.isSelected {
         cell.dateLabel.textColor = UIColor.charcoalGray
-        print("cell is selected")
         }
     }
     

@@ -23,6 +23,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             return true
         }
         if UserDefaults.standard.string(forKey: "defaultColor") == nil {
+            print("set Default Color")
             UserDefaults.standard.set(UIColor.darkYellow.toHex(), forKey: "defaultColor")
         }
         return true

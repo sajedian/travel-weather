@@ -20,9 +20,11 @@
 		9E63368923D62DD100468158 /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 9E63368823D62DD100468158 /* Default-568h@2x.png */; };
 		9E6FD5C7245A03DE00D42DF8 /* ColorSettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E6FD5C6245A03DE00D42DF8 /* ColorSettingsViewController.swift */; };
 		9E6FD5CD245B54DC00D42DF8 /* ColorSettingsCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E6FD5CC245B54DC00D42DF8 /* ColorSettingsCell.swift */; };
+		9E87F372246313AD00E8A65B /* Day+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E87F36E246313AD00E8A65B /* Day+CoreDataClass.swift */; };
+		9E87F373246313AD00E8A65B /* Day+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E87F36F246313AD00E8A65B /* Day+CoreDataProperties.swift */; };
+		9E87F374246313AD00E8A65B /* Location+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E87F370246313AD00E8A65B /* Location+CoreDataClass.swift */; };
+		9E87F375246313AD00E8A65B /* Location+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E87F371246313AD00E8A65B /* Location+CoreDataProperties.swift */; };
 		9E89C37423E654AD00922C68 /* ForecastResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E89C37323E654AD00922C68 /* ForecastResult.swift */; };
-		9E8DACE42422ABDF00159E82 /* Day+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E8DACE32422ABDF00159E82 /* Day+CoreDataClass.swift */; };
-		9E8DACE52422ABDF00159E82 /* Day+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E8DACE22422ABDF00159E82 /* Day+CoreDataProperties.swift */; };
 		9E8DACE72422BF4A00159E82 /* DateHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E8DACE62422BF4A00159E82 /* DateHelper.swift */; };
 		9EA007A3245B8902008A4CF0 /* ColorPickerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9EA007A2245B8902008A4CF0 /* ColorPickerViewController.swift */; };
 		9EB43D4523EF3A0B00933D21 /* DateCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9EB43D4423EF3A0B00933D21 /* DateCell.swift */; };
@@ -70,9 +72,11 @@
 		9E63368823D62DD100468158 /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-568h@2x.png"; sourceTree = "<group>"; };
 		9E6FD5C6245A03DE00D42DF8 /* ColorSettingsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorSettingsViewController.swift; sourceTree = "<group>"; };
 		9E6FD5CC245B54DC00D42DF8 /* ColorSettingsCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorSettingsCell.swift; sourceTree = "<group>"; };
+		9E87F36E246313AD00E8A65B /* Day+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Day+CoreDataClass.swift"; sourceTree = SOURCE_ROOT; };
+		9E87F36F246313AD00E8A65B /* Day+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Day+CoreDataProperties.swift"; sourceTree = SOURCE_ROOT; };
+		9E87F370246313AD00E8A65B /* Location+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Location+CoreDataClass.swift"; sourceTree = SOURCE_ROOT; };
+		9E87F371246313AD00E8A65B /* Location+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Location+CoreDataProperties.swift"; sourceTree = SOURCE_ROOT; };
 		9E89C37323E654AD00922C68 /* ForecastResult.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ForecastResult.swift; sourceTree = "<group>"; };
-		9E8DACE22422ABDF00159E82 /* Day+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = "Day+CoreDataProperties.swift"; path = "/Users/rsajedian/Desktop/travel-weather/travel-weather/Data Models/Day+CoreDataProperties.swift"; sourceTree = "<absolute>"; };
-		9E8DACE32422ABDF00159E82 /* Day+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = "Day+CoreDataClass.swift"; path = "/Users/rsajedian/Desktop/travel-weather/travel-weather/Data Models/Day+CoreDataClass.swift"; sourceTree = "<absolute>"; };
 		9E8DACE62422BF4A00159E82 /* DateHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateHelper.swift; sourceTree = "<group>"; };
 		9EA007A2245B8902008A4CF0 /* ColorPickerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorPickerViewController.swift; sourceTree = "<group>"; };
 		9EB43D4423EF3A0B00933D21 /* DateCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateCell.swift; sourceTree = "<group>"; };
@@ -159,8 +163,10 @@
 		9E63368D23D6405E00468158 /* Data Models */ = {
 			isa = PBXGroup;
 			children = (
-				9E8DACE32422ABDF00159E82 /* Day+CoreDataClass.swift */,
-				9E8DACE22422ABDF00159E82 /* Day+CoreDataProperties.swift */,
+				9E87F36E246313AD00E8A65B /* Day+CoreDataClass.swift */,
+				9E87F36F246313AD00E8A65B /* Day+CoreDataProperties.swift */,
+				9E87F370246313AD00E8A65B /* Location+CoreDataClass.swift */,
+				9E87F371246313AD00E8A65B /* Location+CoreDataProperties.swift */,
 				9E89C37323E654AD00922C68 /* ForecastResult.swift */,
 			);
 			path = "Data Models";
@@ -193,6 +199,7 @@
 				9E63366C23D5422400468158 /* AppDelegate.swift */,
 				9E63367A23D5422700468158 /* Info.plist */,
 				9EFB9B13242019700042776D /* TravelWeather.xcdatamodeld */,
+				9E6FD5CC245B54DC00D42DF8 /* ColorSettingsCell.swift */,
 			);
 			path = Resources;
 			sourceTree = "<group>";
@@ -202,7 +209,6 @@
 			children = (
 				9E63368423D624ED00468158 /* DayCell.swift */,
 				9EB43D4423EF3A0B00933D21 /* DateCell.swift */,
-				9E6FD5CC245B54DC00D42DF8 /* ColorSettingsCell.swift */,
 			);
 			path = "Table View Cells";
 			sourceTree = "<group>";
@@ -340,16 +346,18 @@
 				9E6FD5CD245B54DC00D42DF8 /* ColorSettingsCell.swift in Sources */,
 				9EC69D6D23EBBE5A0051722D /* TabBarController.swift in Sources */,
 				9E63368523D624ED00468158 /* DayCell.swift in Sources */,
-				9E8DACE42422ABDF00159E82 /* Day+CoreDataClass.swift in Sources */,
 				9E347888243A4CBD00CB60D8 /* SettingsViewController.swift in Sources */,
 				9EECD190245CBC8B00161F87 /* ColorPalette.swift in Sources */,
 				9EFB9B12241FF6F80042776D /* StorageController.swift in Sources */,
+				9E87F375246313AD00E8A65B /* Location+CoreDataProperties.swift in Sources */,
 				9EFB9B15242019700042776D /* TravelWeather.xcdatamodeld in Sources */,
 				9EC5939F23DA963E00E42793 /* Constants.swift in Sources */,
+				9E87F374246313AD00E8A65B /* Location+CoreDataClass.swift in Sources */,
 				9E58E43D2409E3C50002B496 /* EditLocationViewController.swift in Sources */,
-				9E8DACE52422ABDF00159E82 /* Day+CoreDataProperties.swift in Sources */,
 				9E89C37423E654AD00922C68 /* ForecastResult.swift in Sources */,
+				9E87F372246313AD00E8A65B /* Day+CoreDataClass.swift in Sources */,
 				9EB43D4523EF3A0B00933D21 /* DateCell.swift in Sources */,
+				9E87F373246313AD00E8A65B /* Day+CoreDataProperties.swift in Sources */,
 				9EC593A123DCD5F600E42793 /* StateController.swift in Sources */,
 				9E63366D23D5422400468158 /* AppDelegate.swift in Sources */,
 				9E8DACE72422BF4A00159E82 /* DateHelper.swift in Sources */,
