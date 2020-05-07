@@ -193,6 +193,11 @@ class StorageController {
         saveContext()
     }
     
+    //MARK:- Color Settings
+    func createColorSetting(place: GMSPlace) {
+        
+    }
+    
     
     
     

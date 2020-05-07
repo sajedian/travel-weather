@@ -27,6 +27,8 @@
 		9E89C37423E654AD00922C68 /* ForecastResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E89C37323E654AD00922C68 /* ForecastResult.swift */; };
 		9E8DACE72422BF4A00159E82 /* DateHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E8DACE62422BF4A00159E82 /* DateHelper.swift */; };
 		9EA007A3245B8902008A4CF0 /* ColorPickerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9EA007A2245B8902008A4CF0 /* ColorPickerViewController.swift */; };
+		9EA3612424647CD7000022B5 /* ColorSetting+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9EA3612224647CD7000022B5 /* ColorSetting+CoreDataClass.swift */; };
+		9EA3612524647CD7000022B5 /* ColorSetting+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9EA3612324647CD7000022B5 /* ColorSetting+CoreDataProperties.swift */; };
 		9EB43D4523EF3A0B00933D21 /* DateCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9EB43D4423EF3A0B00933D21 /* DateCell.swift */; };
 		9EC5939F23DA963E00E42793 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9EC5939E23DA963E00E42793 /* Constants.swift */; };
 		9EC593A123DCD5F600E42793 /* StateController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9EC593A023DCD5F500E42793 /* StateController.swift */; };
@@ -79,6 +81,8 @@
 		9E89C37323E654AD00922C68 /* ForecastResult.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ForecastResult.swift; sourceTree = "<group>"; };
 		9E8DACE62422BF4A00159E82 /* DateHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateHelper.swift; sourceTree = "<group>"; };
 		9EA007A2245B8902008A4CF0 /* ColorPickerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorPickerViewController.swift; sourceTree = "<group>"; };
+		9EA3612224647CD7000022B5 /* ColorSetting+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ColorSetting+CoreDataClass.swift"; sourceTree = SOURCE_ROOT; };
+		9EA3612324647CD7000022B5 /* ColorSetting+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ColorSetting+CoreDataProperties.swift"; sourceTree = SOURCE_ROOT; };
 		9EB43D4423EF3A0B00933D21 /* DateCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateCell.swift; sourceTree = "<group>"; };
 		9EC5939E23DA963E00E42793 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = Constants.swift; path = ../../Constants.swift; sourceTree = "<group>"; };
 		9EC593A023DCD5F500E42793 /* StateController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StateController.swift; sourceTree = "<group>"; };
@@ -163,6 +167,8 @@
 		9E63368D23D6405E00468158 /* Data Models */ = {
 			isa = PBXGroup;
 			children = (
+				9EA3612224647CD7000022B5 /* ColorSetting+CoreDataClass.swift */,
+				9EA3612324647CD7000022B5 /* ColorSetting+CoreDataProperties.swift */,
 				9E87F36E246313AD00E8A65B /* Day+CoreDataClass.swift */,
 				9E87F36F246313AD00E8A65B /* Day+CoreDataProperties.swift */,
 				9E87F370246313AD00E8A65B /* Location+CoreDataClass.swift */,
@@ -349,6 +355,7 @@
 				9E347888243A4CBD00CB60D8 /* SettingsViewController.swift in Sources */,
 				9EECD190245CBC8B00161F87 /* ColorPalette.swift in Sources */,
 				9EFB9B12241FF6F80042776D /* StorageController.swift in Sources */,
+				9EA3612424647CD7000022B5 /* ColorSetting+CoreDataClass.swift in Sources */,
 				9E87F375246313AD00E8A65B /* Location+CoreDataProperties.swift in Sources */,
 				9EFB9B15242019700042776D /* TravelWeather.xcdatamodeld in Sources */,
 				9EC5939F23DA963E00E42793 /* Constants.swift in Sources */,
@@ -362,6 +369,7 @@
 				9E63366D23D5422400468158 /* AppDelegate.swift in Sources */,
 				9E8DACE72422BF4A00159E82 /* DateHelper.swift in Sources */,
 				9EA007A3245B8902008A4CF0 /* ColorPickerViewController.swift in Sources */,
+				9EA3612524647CD7000022B5 /* ColorSetting+CoreDataProperties.swift in Sources */,
 				9E63366F23D5422400468158 /* SceneDelegate.swift in Sources */,
 				9E6FD5C7245A03DE00D42DF8 /* ColorSettingsViewController.swift in Sources */,
 				9EC69D6923E8F5260051722D /* NetworkController.swift in Sources */,
