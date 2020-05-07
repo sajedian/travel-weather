@@ -38,4 +38,18 @@ public class Location: NSManagedObject {
         self.state = location.state
         self.shortState = location.shortState
     }
+    
+    @nonobjc public class func locationFetchRequest() -> NSFetchRequest<Location> {
+         return NSFetchRequest<Location>(entityName: "Location")
+     }
+     @NSManaged public var country: String?
+     @NSManaged public var latitude: Double
+     @NSManaged public var locality: String
+     @NSManaged public var longitude: Double
+     @NSManaged public var placeID: String
+     @NSManaged public var shortCountry: String?
+     @NSManaged public var shortState: String?
+     @NSManaged public var state: String?
+     @NSManaged public var defaultLocation: Bool
+
 }

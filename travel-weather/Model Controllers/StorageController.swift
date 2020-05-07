@@ -166,7 +166,7 @@ class StorageController {
     func getDefaultLocation() -> Location {
           let context = persistentContainer.viewContext
           do {
-              let request = NSFetchRequest<NSFetchRequestResult>(entityName: "Location")
+              let request = Location.locationFetchRequest()
               let predicate = NSPredicate(format: "defaultLocation == YES")
               request.predicate = predicate
               let locations = try context.fetch(request)

@@ -12,5 +12,12 @@ import CoreData
 
 @objc(ColorSetting)
 public class ColorSetting: NSManagedObject {
+    @nonobjc public class func colorSettingFetchRequest() -> NSFetchRequest<ColorSetting> {
+           return NSFetchRequest<ColorSetting>(entityName: "ColorSetting")
+       }
+
+       @NSManaged public var colorHex: String
+       @NSManaged public var date: Date
+       @NSManaged public var location: Location
 
 }

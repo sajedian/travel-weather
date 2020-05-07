@@ -51,7 +51,7 @@ class StateController: NetworkControllerDelegate {
         }
     }
     
-    func updateAssociatedColor(color: UIColor, for setting: ColorSetting)  {
+    func updateAssociatedColor(color: UIColor, for setting: ColorSettingType)  {
         switch setting {
         case .defaultColor:
             UserDefaults.standard.set(color.toHex(), forKey: "defaultColor")

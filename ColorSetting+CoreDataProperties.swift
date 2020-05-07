@@ -13,12 +13,5 @@ import CoreData
 
 extension ColorSetting {
 
-    @nonobjc public class func fetchRequest() -> NSFetchRequest<ColorSetting> {
-        return NSFetchRequest<ColorSetting>(entityName: "ColorSetting")
-    }
-
-    @NSManaged public var colorHex: String
-    @NSManaged public var date: Date
-    @NSManaged public var location: Location
-
+   
 }

@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="16119" systemVersion="19E287" minimumToolsVersion="Automatic" sourceLanguage="Swift" userDefinedModelVersionIdentifier="">
-    <entity name="ColorSetting" representedClassName="ColorSetting" syncable="YES" codeGenerationType="class">
+    <entity name="ColorSetting" representedClassName="ColorSetting" syncable="YES">
         <attribute name="colorHex" attributeType="String"/>
         <attribute name="date" attributeType="Date" usesScalarValueType="NO"/>
-        <relationship name="location" maxCount="1" deletionRule="Nullify" destinationEntity="Location"/>
+        <relationship name="location" maxCount="1" deletionRule="Nullify" destinationEntity="Location" inverseName="colorSetting" inverseEntity="Location"/>
         <fetchIndex name="byDateIndex">
             <fetchIndexElement property="date" type="Binary" order="ascending"/>
         </fetchIndex>
@@ -29,11 +29,12 @@
         <attribute name="shortCountry" optional="YES" attributeType="String"/>
         <attribute name="shortState" optional="YES" attributeType="String"/>
         <attribute name="state" optional="YES" attributeType="String"/>
+        <relationship name="colorSetting" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="ColorSetting" inverseName="location" inverseEntity="ColorSetting"/>
         <relationship name="day" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Day" inverseName="location" inverseEntity="Day"/>
     </entity>
     <elements>
         <element name="ColorSetting" positionX="-54" positionY="99" width="128" height="88"/>
         <element name="Day" positionX="-63" positionY="-18" width="128" height="133"/>
-        <element name="Location" positionX="-63" positionY="45" width="128" height="193"/>
+        <element name="Location" positionX="-63" positionY="45" width="128" height="208"/>
     </elements>
 </model>

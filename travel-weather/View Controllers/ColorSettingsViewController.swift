@@ -10,7 +10,7 @@ import Foundation
 import UIKit
 import GooglePlaces
 
-enum ColorSetting {
+enum ColorSettingType {
     case defaultColor
     case city(String)
 }
@@ -18,7 +18,7 @@ enum ColorSetting {
 class ColorSettingsViewController: UITableViewController {
     
     var stateController: StateController!
-    var selectedSetting: ColorSetting?
+    var selectedSetting: ColorSettingType?
     
     override func viewDidLoad() {
         super.viewDidLoad()
