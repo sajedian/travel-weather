@@ -17,11 +17,12 @@ class EditLocationViewController: UIViewController{
     
     var delegate: EditLocationViewControllerDelegate?
     var date: Date?
-    var resultsViewController: GMSAutocompleteResultsViewController?
-    var searchController: UISearchController?
+    var searchController: UISearchController!
+    var resultsViewController: GMSAutocompleteResultsViewController!
+    
     var resultView: UITextView?
     
-    @IBOutlet weak var subView: UIView?
+    @IBOutlet weak var subView: UIView!
     
     @IBAction func cancel() {
         navigationController?.popViewController(animated: true)
@@ -38,38 +39,42 @@ class EditLocationViewController: UIViewController{
             title = dateFormatter.string(from: date)
         }
        
-    
         resultsViewController = GMSAutocompleteResultsViewController()
-        resultsViewController?.delegate = self
+        searchController = UISearchController(searchResultsController: resultsViewController)
+    
+        resultsViewController.delegate = self
         
         let filter = GMSAutocompleteFilter()
         filter.type = .city
-        resultsViewController?.autocompleteFilter = filter
+        resultsViewController.autocompleteFilter = filter
+        let fields: GMSPlaceField = GMSPlaceField(rawValue: UInt(GMSPlaceField.name.rawValue) |
+            UInt(GMSPlaceField.placeID.rawValue) | UInt(GMSPlaceField.addressComponents.rawValue)
+            | UInt(GMSPlaceField.coordinate.rawValue) )!
+        resultsViewController.placeFields = fields
 
-        searchController = UISearchController(searchResultsController: resultsViewController)
-        searchController?.searchResultsUpdater = resultsViewController
+        searchController.searchResultsUpdater = resultsViewController
         
-        subView!.addSubview((searchController?.searchBar)!)
-        searchController?.searchBar.sizeToFit()
-        searchController?.searchBar.isTranslucent = false
-        searchController?.hidesNavigationBarDuringPresentation = false
+        subView.addSubview((searchController.searchBar))
+        searchController.searchBar.sizeToFit()
+        searchController.searchBar.isTranslucent = false
+        searchController.hidesNavigationBarDuringPresentation = false
         
         navigationController?.navigationBar.isTranslucent = false
         self.extendedLayoutIncludesOpaqueBars = true
         // When UISearchController presents the results view, present it in
         // this view controller, not one further up the chain.
         definesPresentationContext = true
-        searchController?.searchBar.showsCancelButton = false
-        resultsViewController?.edgesForExtendedLayout = []
-        searchController?.searchResultsController?.additionalSafeAreaInsets = UIEdgeInsets.init(top: 64, left: 0, bottom: 0, right: 0)
-        searchController?.searchBar.backgroundImage = UIImage()
-        searchController?.searchBar.searchTextField.placeholder = "Search for new location"
-        let textFieldInsideSearchBar = searchController?.searchBar.value(forKey: "searchField") as? UITextField
-        textFieldInsideSearchBar?.attributedPlaceholder = NSAttributedString(string: textFieldInsideSearchBar?.placeholder ?? "", attributes: [NSAttributedString.Key.foregroundColor : UIColor.red])
+        searchController.searchBar.showsCancelButton = false
+        resultsViewController.edgesForExtendedLayout = []
+        searchController.searchResultsController?.additionalSafeAreaInsets = UIEdgeInsets.init(top: 64, left: 0, bottom: 0, right: 0)
+        searchController.searchBar.backgroundImage = UIImage()
+        searchController.searchBar.searchTextField.placeholder = "Search for new location"
+        let textFieldInsideSearchBar = searchController.searchBar.value(forKey: "searchField") as? UITextField
+//        textFieldInsideSearchBar.attributedPlaceholder = NSAttributedString(string: textFieldInsideSearchBar?.placeholder ?? "", attributes: [NSAttributedString.Key.foregroundColor : UIColor.red])
         textFieldInsideSearchBar?.textColor = UIColor.white
-        searchController?.searchBar.searchTextField.textColor = UIColor.white
-        searchController?.searchBar.setImage(UIImage(systemName: "magnifyingglass"), for: .search, state: .normal)
-        searchController?.searchBar.searchTextField.backgroundColor = UIColor.charcoalGrayLight
+        searchController.searchBar.searchTextField.textColor = UIColor.white
+        searchController.searchBar.setImage(UIImage(systemName: "magnifyingglass"), for: .search, state: .normal)
+        searchController.searchBar.searchTextField.backgroundColor = UIColor.charcoalGrayLight
         
 //        self.navigationController?.navigationBar.backIndicatorImage = UIImage(systemName: "arrow.left")!.withTintColor(UIColor.white)
 //        self.navigationController?.navigationBar.backIndicatorTransitionMaskImage = UIImage(systemName: "arrow.left")
@@ -92,10 +97,10 @@ extension EditLocationViewController: GMSAutocompleteResultsViewControllerDelega
     
   func resultsController(_ resultsController: GMSAutocompleteResultsViewController,
                          didAutocompleteWith place: GMSPlace) {
-    searchController?.isActive = false
+    searchController.isActive = false
     
 //    searchController?.dismiss(animated: true, completion: {self.performSegue(withIdentifier: "unwindToPresentingVC", sender: self)})
-    searchController?.dismiss(animated: true, completion: {self.delegate?.editLocationViewControllerDidUpdate(didSelect: place, for: self.date)})
+    searchController.dismiss(animated: true, completion: {self.delegate?.editLocationViewControllerDidUpdate(didSelect: place, for: self.date)})
     }
     
     

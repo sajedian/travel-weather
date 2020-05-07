@@ -17,7 +17,7 @@ class SettingsViewController: UITableViewController {
         super.viewDidLoad()
         navigationController?.navigationBar.isTranslucent = false
         navigationController?.navigationBar.setValue(true, forKey: "hidesShadow")
-        defaultCityLabel.text = stateController.defaultCity
+        defaultCityLabel.text = stateController.defaultLocation.locality
     }
     
     @IBOutlet weak var defaultCityLabel: UILabel!
@@ -70,6 +70,6 @@ extension SettingsViewController: EditLocationViewControllerDelegate {
     func editLocationViewControllerDidUpdate(didSelect newLocation: GMSPlace, for date: Date?) {
         navigationController?.popViewController(animated: true)
         stateController.changeDefaultLocation(didSelect: newLocation)
-        defaultCityLabel.text = stateController.defaultCity
+        defaultCityLabel.text = stateController.defaultLocation.locality
     }
 }

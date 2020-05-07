@@ -2,12 +2,6 @@
 <Workspace
    version = "1.0">
    <FileRef
-      location = "group:/Users/rsajedian/Desktop/travel-weather/travel-weather/Data Models/Day+CoreDataClass.swift">
-   </FileRef>
-   <FileRef
-      location = "group:/Users/rsajedian/Desktop/travel-weather/travel-weather/Data Models/Day+CoreDataProperties.swift">
-   </FileRef>
-   <FileRef
       location = "group:travel-weather.xcodeproj">
    </FileRef>
    <Group

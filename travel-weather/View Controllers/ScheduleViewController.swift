@@ -133,7 +133,7 @@ extension ScheduleViewController: EditLocationViewControllerDelegate {
     func editLocationViewControllerDidUpdate(didSelect newLocation: GMSPlace, for date: Date?) {
         navigationController?.popViewController(animated: true)
         if let date = date {
-            stateController.updateLocationForDate(didSelect: newLocation, for: date)
+            stateController.updateOrCreateDay(didSelect: newLocation, for: date)
         }
         calendarView.reloadData()
     }
@@ -176,7 +176,6 @@ extension ScheduleViewController: JTAppleCalendarViewDataSource {
        }
         if cellState.isSelected {
         cell.dateLabel.textColor = UIColor.charcoalGray
-        print("cell is selected")
         }
     }
     
