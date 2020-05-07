@@ -37,6 +37,7 @@ class StorageController {
     
     func getDayForDate(for date: Date) -> Day? {
         let date = date as NSDate
+        print("DATE", date)
         let context = persistentContainer.viewContext
         do {
             let request = NSFetchRequest<NSFetchRequestResult>(entityName: "Day")
@@ -73,7 +74,7 @@ class StorageController {
             }
     }
     
-    func updateLocationForDay(date: Date, newCity: String, latitude: Double, longitude: Double) {
+    func updateOrCreateDay(date: Date, newCity: String, latitude: Double, longitude: Double) {
         if let day = getDayForDate(for: date) {
             day.city = newCity
             day.longitude = longitude

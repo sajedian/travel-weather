@@ -119,11 +119,11 @@ class StateController: NetworkControllerDelegate {
         }
     }
     
-    func updateLocationForDate(didSelect newLocation: GMSPlace, for date: Date) {
+    func updateOrCreateDay(didSelect newLocation: GMSPlace, for date: Date) {
         let longitude = Double(newLocation.coordinate.longitude)
         let latitude = Double(newLocation.coordinate.latitude)
         let city = newLocation.name!
-        storageController.updateLocationForDay(date: date, newCity: city, latitude: latitude, longitude: longitude)
+        storageController.updateOrCreateDay(date: date, newCity: city, latitude: latitude, longitude: longitude)
         
         if let day = days[date] {
             networkController.requestDayForecast(for: day)
