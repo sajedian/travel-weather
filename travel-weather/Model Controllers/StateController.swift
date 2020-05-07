@@ -19,6 +19,7 @@ protocol StateControllerDelegate: class {
 class StateController: NetworkControllerDelegate {
     
     
+    
     init(networkController: NetworkController, storageController: StorageController) {
         self.networkController = networkController
         self.storageController = storageController
@@ -35,22 +36,9 @@ class StateController: NetworkControllerDelegate {
     private var defaultColor = UIColor(red: 14/255, green: 12/255, blue: 114/255, alpha: 1.0)
     var colorAssociationsArray: [String] = ["Boston", "Crab Orchard", "Houston"]
     private var days = [Date:Day]()
-    var defaultCity: String {
-        if let defaultCity = UserDefaults.standard.string(forKey: "city") {
-            return defaultCity
-        } else {
-            return "No Default Location Set"
-        }
+    var defaultLocation: Location {
+        return storageController.getDefaultLocation()
     }
-    var defaultLatitude: Double {
-        return UserDefaults.standard.double(forKey: "latitude")
-    }
-    var defaultLongitude: Double {
-        return UserDefaults.standard.double(forKey: "longitude")
-    }
-    
-    
-    
     //MARK:- Interface
     func getAssociatedColor(for city: String) -> UIColor {
         if let associatedColor = colorAssociations[city] {
@@ -93,10 +81,7 @@ class StateController: NetworkControllerDelegate {
         if let day = storageController.getDayForDate(for: date){
             return day
         } else {
-            let defaultCity = UserDefaults.standard.string(forKey: "city")!
-            let defaultLatitude = UserDefaults.standard.double(forKey: "latitude")
-            let defaultLongitude = UserDefaults.standard.double(forKey: "longitude")
-            let newDay = storageController.createDay(city: defaultCity, date: date, latitude: defaultLatitude, longitude: defaultLongitude)
+            let newDay = storageController.createDefaultDay(date: date)
             return newDay
         }
     }
@@ -104,10 +89,8 @@ class StateController: NetworkControllerDelegate {
     func getCityForDate(for date: Date) -> String {
         if let day = storageController.getDayForDate(for: date){
             return day.location.locality
-        } else if let city = UserDefaults.standard.string(forKey: "city") {
-            return city
         } else {
-            return "No City Found For Date"
+            return storageController.getDefaultLocation().locality
         }
     }
     
@@ -127,15 +110,10 @@ class StateController: NetworkControllerDelegate {
     }
     
     func changeDefaultLocation(didSelect newLocation: GMSPlace) {
-        let longitude = Double(newLocation.coordinate.longitude)
-        let latitude = Double(newLocation.coordinate.latitude)
-        let city = newLocation.name!
-        UserDefaults.standard.set(city, forKey: "city")
-        UserDefaults.standard.set(longitude, forKey: "longitude")
-        UserDefaults.standard.set(latitude, forKey: "latitude")
+        storageController.setDefaultLocation(place: newLocation)
         for day in days {
             if !day.value.locationWasSet {
-                storageController.updateDefaultLocation(date: day.value.date, newCity: city, latitude: latitude, longitude: longitude)
+                storageController.updateDefaultDay(date: day.key, place: newLocation)
                 networkController.requestDayForecast(for: day.value)
             }
         }
@@ -163,12 +141,12 @@ class StateController: NetworkControllerDelegate {
         return dateFormatter.date(from: str)!
     }
     
-    private func createPlaceHolderData() {
+    func createPlaceHolderData() {
         let today = DateHelper.currentDateMDYOnly()
         for i in 0..<14{
             let date = Calendar.current.date(byAdding: .day, value: i, to: today)!
             guard let day = storageController.getDayForDate(for: date) else {
-                let day = storageController.createDefaultDay(city: defaultCity, date: date, latitude: defaultLatitude, longitude: defaultLongitude)
+                let day = storageController.createDefaultDay(date: date)
                 days[date] = day
                 continue
             }
@@ -176,9 +154,9 @@ class StateController: NetworkControllerDelegate {
         }
         networkController.requestFullForecast(for: days)
     }
-    
+
     //placeholder associations
-    private var colorAssociations: [String: UIColor] = [
+   var colorAssociations: [String: UIColor] = [
         "Houston": UIColor(red: 53/255, green: 133/255, blue: 168/255, alpha: 1.0),
         "Chicago": UIColor(red: 113/255, green: 62/255, blue: 224/255, alpha: 1.0),
         "Minneapolis": UIColor(red: 204/255, green: 57/255, blue: 186/255, alpha: 1.0),
@@ -193,7 +171,7 @@ class StateController: NetworkControllerDelegate {
     
     //placeholder latLong dictionary
     // will later be created by looking up
-    private var latLongs: [String: (Double, Double)] = [
+    var latLongs: [String: (Double, Double)] = [
         "Houston": (29.760427, -95.369804),
         "Chicago": (41.883228, -87.632401),
         "Minneapolis": (44.977753, -93.265015),
@@ -205,7 +183,5 @@ class StateController: NetworkControllerDelegate {
 }
 
 
-    
-    
-    
 
+    

@@ -16,7 +16,6 @@ extension Location {
     @nonobjc public class func fetchRequest() -> NSFetchRequest<Location> {
         return NSFetchRequest<Location>(entityName: "Location")
     }
-
     @NSManaged public var country: String?
     @NSManaged public var latitude: Double
     @NSManaged public var locality: String
@@ -25,5 +24,6 @@ extension Location {
     @NSManaged public var shortCountry: String?
     @NSManaged public var shortState: String?
     @NSManaged public var state: String?
+    @NSManaged public var defaultLocation: Bool
 
 }

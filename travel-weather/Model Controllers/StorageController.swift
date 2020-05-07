@@ -58,6 +58,7 @@ class StorageController {
         })
         return container
     }()
+
     
     private func saveContext() {
         let context = persistentContainer.viewContext
@@ -96,47 +97,37 @@ class StorageController {
         }
     }
 
-    //does not set locaitonWasSet to true because the day still has the default location
-    func updateDefaultLocation(date: Date, newCity: String, latitude: Double, longitude: Double) {
+    //does not set locationnWasSet to true because the day still has the default location
+    func updateDefaultDay(date: Date, place: GMSPlace) {
             if let day = getDayForDate(for: date) {
-                day.location.latitude = latitude
-                day.location.longitude = longitude
-                day.location.locality = newCity
+                let context = persistentContainer.viewContext
+                context.delete(day.location)
+                day.location = Location(location: getDefaultLocation(), insertInto: context)
                 saveContext()
             } else {
-                _ = createDay(city: newCity, date: date, latitude: latitude, longitude: longitude)
+                _ = createDefaultDay(date: date)
             }
     }
     
     func updateOrCreateDay(date: Date, place: GMSPlace) {
-        let newCity = place.name
-        let latitude = place.latitude
-        let longitude = place.longitude
-        
         if let day = getDayForDate(for: date) {
-            day.location.latitude = place.latitude
-            day.location.longitude = place.longitude
-            day.location.locality = place.name!
-            day.location.placeID = place.placeID!
-            day.location.country = place.country
-            day.location.shortCountry = place.shortCountry
-            day.location.state = place.state
-            day.location.shortState = place.shortState
+            let context = persistentContainer.viewContext
+            context.delete(day.location)
+            day.location = Location(place: place, insertInto: context)
             day.locationWasSet = true
             saveContext()
+            
         } else {
-            _ = createDay(city: newCity!, date: date, latitude: latitude, longitude: longitude)
+            _ = createDay(date: date, place: place)
         }
         
     }
     
-    func createDefaultDay(city: String, date: Date, latitude: Double, longitude: Double) -> Day {
+    func createDefaultDay(date: Date) -> Day {
         let context = persistentContainer.viewContext
         let day = Day(entity: Day.entity(), insertInto: context)
-        let location = Location(entity: Location.entity(), insertInto: context)
-        location.locality = city
-        location.longitude = longitude
-        location.latitude = latitude
+        let location = Location(location: getDefaultLocation(), insertInto: context)
+        location.defaultLocation = false
         day.date = date
         day.locationWasSet = false
         day.location = location
@@ -145,18 +136,61 @@ class StorageController {
     }
     
     
-    func createDay(city: String, date: Date, latitude: Double, longitude: Double) -> Day {
+    func createDay(date: Date, place: GMSPlace) -> Day {
         let context = persistentContainer.viewContext
         let day = Day(entity: Day.entity(), insertInto: context)
-        let location = Location(entity: Location.entity(), insertInto: context)
-        location.locality = city
-        location.longitude = longitude
-        location.latitude = latitude
+        let location = Location(place: place, insertInto: context)
         day.date = date
         day.locationWasSet = true
         day.location = location
         saveContext()
         return day
+    }
+    
+    //creates default location of NYC, could be useful for first launch of app
+    private func createDefaultLocation() -> Location {
+        let context = persistentContainer.viewContext
+        let location = Location(entity: Location.entity(), insertInto: context)
+        location.defaultLocation = true
+        location.locality = "New York"
+        location.country = "United States"
+        location.shortCountry = "US"
+        location.state = "New York"
+        location.shortState = "NY"
+        location.latitude = 40.7127753
+        location.longitude = -74.0059728
+        saveContext()
+        return location
+    }
+    
+    func getDefaultLocation() -> Location {
+          let context = persistentContainer.viewContext
+          do {
+              let request = NSFetchRequest<NSFetchRequestResult>(entityName: "Location")
+              let predicate = NSPredicate(format: "defaultLocation == YES")
+              request.predicate = predicate
+              let locations = try context.fetch(request)
+              if locations.isEmpty {
+                  return createDefaultLocation()
+              }
+              if let location = locations[0] as? Location {
+                  return location
+              } else {
+                  return createDefaultLocation()
+              }
+          } catch let error as NSError {
+              print("Could not fetch default location \(error) \(error.userInfo)")
+              return createDefaultLocation()
+          }
+    }
+    
+    func setDefaultLocation(place: GMSPlace) {
+        let currentDefault = getDefaultLocation()
+        let context = persistentContainer.viewContext
+        let newDefault = Location(place: place, insertInto: context)
+        newDefault.defaultLocation = true
+        context.delete(currentDefault)
+        saveContext()
     }
     
     

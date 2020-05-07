@@ -16,12 +16,12 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         GMSPlacesClient.provideAPIKey(googleMapsAPIKey)
-        if UserDefaults.standard.string(forKey: "city") == nil {
-            UserDefaults.standard.set("Svalbarðsstrandarhreppur", forKey: "city")
-            UserDefaults.standard.set(65.7461132, forKey: "latitude")
-            UserDefaults.standard.set(18.0832997, forKey: "longitude")
-            return true
-        }
+//        if UserDefaults.standard.string(forKey: "city") == nil {
+//            UserDefaults.standard.set("Svalbarðsstrandarhreppur", forKey: "city")
+//            UserDefaults.standard.set(65.7461132, forKey: "latitude")
+//            UserDefaults.standard.set(18.0832997, forKey: "longitude")
+//            return true
+//        }
         if UserDefaults.standard.string(forKey: "defaultColor") == nil {
             print("set Default Color")
             UserDefaults.standard.set(UIColor.darkYellow.toHex(), forKey: "defaultColor")
