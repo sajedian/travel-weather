@@ -8,7 +8,43 @@
 
 import Foundation
 import CoreData
+import GooglePlaces
 
+extension GMSPlace {
+    var latitude: Double {
+        return Double(coordinate.latitude)
+    }
+    var longitude: Double {
+        return Double(coordinate.longitude)
+    }
+    var state: String? {
+        let stateComponent = addressComponents?.first(where: { (component) -> Bool in
+            return component.types.contains("administrative_area_level_1")
+        })
+        return stateComponent?.name
+    }
+    
+    var shortState: String? {
+        let stateComponent = addressComponents?.first(where: { (component) -> Bool in
+            return component.types.contains("administrative_area_level_1")
+        })
+        return stateComponent?.shortName
+    }
+    
+    var country: String? {
+        let countryComponent = addressComponents?.first(where: { (component) -> Bool in
+            return component.types.contains("country")
+        })
+        return countryComponent?.name
+    }
+    
+    var shortCountry: String? {
+        let countryComponent = addressComponents?.first(where: { (component) -> Bool in
+            return component.types.contains("country")
+        })
+        return countryComponent?.shortName
+    }
+}
 
 class StorageController {
     
@@ -34,6 +70,7 @@ class StorageController {
             }
         }
     }
+    
     
     func getDayForDate(for date: Date) -> Day? {
         let date = date as NSDate
@@ -62,30 +99,33 @@ class StorageController {
     //does not set locaitonWasSet to true because the day still has the default location
     func updateDefaultLocation(date: Date, newCity: String, latitude: Double, longitude: Double) {
             if let day = getDayForDate(for: date) {
-                day.city = newCity
-                day.longitude = longitude
-                day.latitude = latitude
-                day.location?.latitude = latitude
-                day.location?.longitude = longitude
-                day.location?.locality = newCity
+                day.location.latitude = latitude
+                day.location.longitude = longitude
+                day.location.locality = newCity
                 saveContext()
             } else {
                 _ = createDay(city: newCity, date: date, latitude: latitude, longitude: longitude)
             }
     }
     
-    func updateOrCreateDay(date: Date, newCity: String, latitude: Double, longitude: Double) {
+    func updateOrCreateDay(date: Date, place: GMSPlace) {
+        let newCity = place.name
+        let latitude = place.latitude
+        let longitude = place.longitude
+        
         if let day = getDayForDate(for: date) {
-            day.city = newCity
-            day.longitude = longitude
-            day.latitude = latitude
-            day.location?.latitude = latitude
-            day.location?.longitude = longitude
-            day.location?.locality = newCity
+            day.location.latitude = place.latitude
+            day.location.longitude = place.longitude
+            day.location.locality = place.name!
+            day.location.placeID = place.placeID!
+            day.location.country = place.country
+            day.location.shortCountry = place.shortCountry
+            day.location.state = place.state
+            day.location.shortState = place.shortState
             day.locationWasSet = true
             saveContext()
         } else {
-            _ = createDay(city: newCity, date: date, latitude: latitude, longitude: longitude)
+            _ = createDay(city: newCity!, date: date, latitude: latitude, longitude: longitude)
         }
         
     }
@@ -97,10 +137,7 @@ class StorageController {
         location.locality = city
         location.longitude = longitude
         location.latitude = latitude
-        day.city = city
         day.date = date
-        day.latitude = latitude
-        day.longitude = longitude
         day.locationWasSet = false
         day.location = location
         saveContext()
@@ -115,10 +152,7 @@ class StorageController {
         location.locality = city
         location.longitude = longitude
         location.latitude = latitude
-        day.city = city
         day.date = date
-        day.latitude = latitude
-        day.longitude = longitude
         day.locationWasSet = true
         day.location = location
         saveContext()

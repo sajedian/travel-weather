@@ -17,14 +17,11 @@ extension Day {
         return NSFetchRequest<Day>(entityName: "Day")
     }
 
-    @NSManaged public var city: String
     @NSManaged public var date: Date
 //    @NSManaged public var highTemp: Int32
-    @NSManaged public var latitude: Double
     @NSManaged public var locationWasSet: Bool
-    @NSManaged public var longitude: Double
 //    @NSManaged public var lowTemp: Int32
     @NSManaged public var weatherSummaryValue: String?
-    @NSManaged public var location: Location?
+    @NSManaged public var location: Location
 
 }

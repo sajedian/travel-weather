@@ -61,7 +61,7 @@ class NetworkController {
     
     private func getDayForecast (for day: Day) {
         dispatchGroup.enter()
-        let url = composedURL(date: day.date, latitude: day.latitude, longitude: day.longitude)
+        let url = composedURL(date: day.date, latitude: day.location.latitude, longitude: day.location.longitude)
         let session = URLSession.shared
         dataTask = session.dataTask(with: url,
                     completionHandler: { data, response, error in

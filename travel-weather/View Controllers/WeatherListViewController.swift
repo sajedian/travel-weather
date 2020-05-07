@@ -36,10 +36,10 @@ class WeatherListViewController: UITableViewController {
     
     func configureCell(day: Day, cell: DayCell) {
         cell.weekdayLabel.text = day.weekday
-        cell.cityLabel.text = day.location?.locality
+        cell.cityLabel.text = day.location.locality
         cell.tempLabel.text = day.tempDisplay
         cell.weatherImageView.image = day.weatherImage
-        cell.colorView.backgroundColor = stateController.getAssociatedColor(for: day.city)
+        cell.colorView.backgroundColor = stateController.getAssociatedColor(for: day.location.locality)
     }
         
     

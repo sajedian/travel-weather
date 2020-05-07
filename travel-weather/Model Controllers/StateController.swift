@@ -103,7 +103,7 @@ class StateController: NetworkControllerDelegate {
     
     func getCityForDate(for date: Date) -> String {
         if let day = storageController.getDayForDate(for: date){
-            return day.location!.locality
+            return day.location.locality
         } else if let city = UserDefaults.standard.string(forKey: "city") {
             return city
         } else {
@@ -120,11 +120,7 @@ class StateController: NetworkControllerDelegate {
     }
     
     func updateOrCreateDay(didSelect newLocation: GMSPlace, for date: Date) {
-        let longitude = Double(newLocation.coordinate.longitude)
-        let latitude = Double(newLocation.coordinate.latitude)
-        let city = newLocation.name!
-        storageController.updateOrCreateDay(date: date, newCity: city, latitude: latitude, longitude: longitude)
-        
+        storageController.updateOrCreateDay(date: date, place: newLocation)
         if let day = days[date] {
             networkController.requestDayForecast(for: day)
         }
