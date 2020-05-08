@@ -52,12 +52,21 @@ class StorageController {
         let container = NSPersistentContainer(name: "TravelWeather")
         container.loadPersistentStores(completionHandler: {
             (storeDescription, error) in
+            container.viewContext.mergePolicy = NSMergeByPropertyObjectTrumpMergePolicy
             if let error = error as NSError? {
                 fatalError("Unresolved error \(error), \(error.userInfo)")
             }
         })
         return container
     }()
+    
+    init() {
+        let context = persistentContainer.viewContext
+        if getDefaultLocation() == nil {
+            createDefaultLocation()
+        }
+        saveContext()
+    }
 
     
     private func saveContext() {
@@ -78,7 +87,7 @@ class StorageController {
         print("DATE", date)
         let context = persistentContainer.viewContext
         do {
-            let request = NSFetchRequest<NSFetchRequestResult>(entityName: "Day")
+            let request = Day.dayFetchRequest()
             let predicate = NSPredicate(format: "date == %@", date)
             request.predicate = predicate
             let days = try context.fetch(request)
@@ -102,7 +111,7 @@ class StorageController {
             if let day = getDayForDate(for: date) {
                 let context = persistentContainer.viewContext
                 context.delete(day.location)
-                day.location = Location(location: getDefaultLocation(), insertInto: context)
+                day.location = Location(location: getDefaultLocation()!, insertInto: context)
                 saveContext()
             } else {
                 _ = createDefaultDay(date: date)
@@ -126,11 +135,14 @@ class StorageController {
     func createDefaultDay(date: Date) -> Day {
         let context = persistentContainer.viewContext
         let day = Day(entity: Day.entity(), insertInto: context)
-        let location = Location(location: getDefaultLocation(), insertInto: context)
-        location.defaultLocation = false
+        if let defaultLocation = getDefaultLocation() {
+          day.location = Location(location: defaultLocation, insertInto: context)
+        } else {
+            day.location = Location(location: createDefaultLocation(), insertInto: context)
+        }
+        day.location.defaultLocation = false
         day.date = date
         day.locationWasSet = false
-        day.location = location
         saveContext()
         return day
     }
@@ -159,11 +171,10 @@ class StorageController {
         location.shortState = "NY"
         location.latitude = 40.7127753
         location.longitude = -74.0059728
-        saveContext()
         return location
     }
     
-    func getDefaultLocation() -> Location {
+    func getDefaultLocation() -> Location? {
           let context = persistentContainer.viewContext
           do {
               let request = Location.locationFetchRequest()
@@ -171,31 +182,90 @@ class StorageController {
               request.predicate = predicate
               let locations = try context.fetch(request)
               if locations.isEmpty {
-                  return createDefaultLocation()
+                  return nil
               }
-              if let location = locations[0] as? Location {
+              if let location = locations[0] as? Location{
                   return location
               } else {
-                  return createDefaultLocation()
+                  return nil
               }
+            
           } catch let error as NSError {
               print("Could not fetch default location \(error) \(error.userInfo)")
-              return createDefaultLocation()
+              return nil
           }
     }
     
     func setDefaultLocation(place: GMSPlace) {
-        let currentDefault = getDefaultLocation()
         let context = persistentContainer.viewContext
+        if let currentDefault = getDefaultLocation() {
+           context.delete(currentDefault)
+        }
+        
         let newDefault = Location(place: place, insertInto: context)
         newDefault.defaultLocation = true
-        context.delete(currentDefault)
         saveContext()
     }
     
     //MARK:- Color Settings
-    func createColorSetting(place: GMSPlace) {
-        
+    func createOrUpdateColorSetting(colorHex: String, place: GMSPlace, date: Date) {
+        let context = persistentContainer.viewContext
+        let location = Location(place: place, insertInto: context)
+        let colorSetting = ColorSetting(entity: ColorSetting.entity(), insertInto: context)
+        colorSetting.location = location
+        colorSetting.placeID = place.placeID!
+        colorSetting.colorHex = colorHex
+        colorSetting.date = date
+        saveContext()
+    }
+    
+    func updateColorSetting(colorHex: String, placeID: String, date: Date) {
+        let context = persistentContainer.viewContext
+        do {
+            let request = ColorSetting.colorSettingFetchRequest()
+            let predicate = NSPredicate(format: "placeID == %@", placeID)
+            request.predicate = predicate
+            let colorSettings = try context.fetch(request)
+            if colorSettings.isEmpty{
+                print("failed to updateColorSetting")
+            } else {
+                colorSettings[0].colorHex = colorHex
+                saveContext()
+            }
+        } catch let error as NSError {
+           print("Could not update colorSettings: \(error) \(error.userInfo)")
+        }
+    }
+    func getColorSettings() -> [ColorSetting] {
+        let context = persistentContainer.viewContext
+        var colorSettings = [ColorSetting]()
+        do {
+            let request = ColorSetting.colorSettingFetchRequest()
+            let sort = NSSortDescriptor(key: "date", ascending: false)
+            request.sortDescriptors = [sort]
+            colorSettings = try context.fetch(request)
+        } catch let error as NSError {
+            print("Could not fetch colorSettings \(error) \(error.userInfo)")
+        }
+        return colorSettings
+    }
+    
+    func getColorSetting(for placeID: String) -> ColorSetting? {
+        let context = persistentContainer.viewContext
+        var colorSettings = [ColorSetting]()
+        do {
+            let request = ColorSetting.colorSettingFetchRequest()
+            request.predicate = NSPredicate(format: "placeID == %@", placeID)
+            colorSettings = try context.fetch(request)
+            if colorSettings.isEmpty {
+                return nil
+            } else {
+                return colorSettings[0]
+            }
+        } catch let error as NSError{
+            print("Could not fetch colorSettings \(error) \(error.userInfo)")
+            return nil
+        }
     }
     
     

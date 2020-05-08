@@ -16,8 +16,9 @@ public class ColorSetting: NSManagedObject {
            return NSFetchRequest<ColorSetting>(entityName: "ColorSetting")
        }
 
-       @NSManaged public var colorHex: String
-       @NSManaged public var date: Date
-       @NSManaged public var location: Location
+    @NSManaged public var colorHex: String
+    @NSManaged public var date: Date
+    @NSManaged public var location: Location
+    @NSManaged public var placeID: String
 
 }

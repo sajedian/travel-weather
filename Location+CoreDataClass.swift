@@ -51,5 +51,6 @@ public class Location: NSManagedObject {
      @NSManaged public var shortState: String?
      @NSManaged public var state: String?
      @NSManaged public var defaultLocation: Bool
+     @NSManaged public var colorSetting: ColorSetting?
 
 }
