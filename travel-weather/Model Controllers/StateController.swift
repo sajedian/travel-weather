@@ -73,7 +73,12 @@ class StateController: NetworkControllerDelegate {
             storageController.createOrUpdateColorSetting(colorHex: UserDefaults.standard.string(forKey: "defaultColor")!, place: place, date: date)
         }
         colorSettingsArray = storageController.getColorSettings()
-
+    }
+    
+    func deleteColorSetting(row index: Int) {
+        let colorSetting = colorSettingsArray[index]
+        colorSettingsArray.remove(at: index)
+        storageController.deleteColorSetting(colorSetting: colorSetting)
     }
     
     func updateForecast() {

@@ -132,6 +132,7 @@ class StorageController {
         
     }
     
+    //can move declaration of day lower down to avoid problems with creating default and saving context
     func createDefaultDay(date: Date) -> Day {
         let context = persistentContainer.viewContext
         let day = Day(entity: Day.entity(), insertInto: context)
@@ -266,6 +267,13 @@ class StorageController {
             print("Could not fetch colorSettings \(error) \(error.userInfo)")
             return nil
         }
+    }
+    
+    func deleteColorSetting(colorSetting: ColorSetting) {
+        let context = persistentContainer.viewContext
+        context.delete(colorSetting.location)
+        context.delete(colorSetting)
+        saveContext()
     }
     
     

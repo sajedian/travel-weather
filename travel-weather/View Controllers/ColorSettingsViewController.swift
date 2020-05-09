@@ -89,6 +89,13 @@ class ColorSettingsViewController: UITableViewController {
         }
     }
     
+    override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
+        if editingStyle == .delete {
+            stateController.deleteColorSetting(row: indexPath.row) //write this method
+            tableView.deleteRows(at: [indexPath], with: .fade)
+        }
+    }
+    
 //    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
 //        print("didSelectRowAt")
 //        switch (indexPath.section, indexPath.row) {

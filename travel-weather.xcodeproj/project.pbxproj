@@ -184,8 +184,8 @@
 				9E63368023D5478700468158 /* WeatherListViewController.swift */,
 				9EC69D6A23EBB7070051722D /* ScheduleViewController.swift */,
 				9E58E43C2409E3C50002B496 /* EditLocationViewController.swift */,
-				9E347887243A4CBD00CB60D8 /* SettingsViewController.swift */,
 				9E6FD5C6245A03DE00D42DF8 /* ColorSettingsViewController.swift */,
+				9E347887243A4CBD00CB60D8 /* SettingsViewController.swift */,
 				9EA007A2245B8902008A4CF0 /* ColorPickerViewController.swift */,
 				9EC69D6C23EBBE5A0051722D /* TabBarController.swift */,
 			);
@@ -222,8 +222,8 @@
 		9EC593A223DCD6A100E42793 /* Model Controllers */ = {
 			isa = PBXGroup;
 			children = (
-				9EC593A023DCD5F500E42793 /* StateController.swift */,
 				9EC69D6823E8F5260051722D /* NetworkController.swift */,
+				9EC593A023DCD5F500E42793 /* StateController.swift */,
 				9EFB9B11241FF6F80042776D /* StorageController.swift */,
 			);
 			path = "Model Controllers";
