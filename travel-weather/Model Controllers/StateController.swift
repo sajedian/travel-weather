@@ -39,7 +39,7 @@ class StateController: NetworkControllerDelegate {
     var colorSettingsArray = [ColorSetting]()
     private var days = [Date:Day]()
     var defaultLocation: Location {
-        return storageController.getDefaultLocation()!
+        return storageController.getDefaultLocation()
     }
     //MARK:- Interface
     func getAssociatedColor(for placeID: String) -> UIColor {
@@ -82,7 +82,7 @@ class StateController: NetworkControllerDelegate {
     }
     
     func updateForecast() {
-        networkController!.requestFullForecast(for: days)
+        networkController.requestFullForecast(for: days)
     }
 
     func getDayForDate(for date: Date) -> Day {
@@ -101,7 +101,7 @@ class StateController: NetworkControllerDelegate {
         if let day = storageController.getDayForDate(for: date){
             return day.location.locality
         } else {
-            return storageController.getDefaultLocation()!.locality
+            return storageController.getDefaultLocation().locality
         }
     }
     
@@ -137,7 +137,7 @@ class StateController: NetworkControllerDelegate {
     
     //MARK:- NetworkControllerDelegate Functions
     func didUpdateForecast() {
-           delegate!.didUpdateForecast()
+           delegate?.didUpdateForecast()
        }
     
     

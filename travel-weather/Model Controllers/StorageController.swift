@@ -60,13 +60,13 @@ class StorageController {
         return container
     }()
     
-    init() {
-        let context = persistentContainer.viewContext
-        if getDefaultLocation() == nil {
-            createDefaultLocation()
-        }
-        saveContext()
-    }
+//    init() {
+//        let context = persistentContainer.viewContext
+//        if getDefaultLocation() == nil {
+//            createDefaultLocation()
+//        }
+//        saveContext()
+//    }
 
     
     private func saveContext() {
@@ -111,7 +111,7 @@ class StorageController {
             if let day = getDayForDate(for: date) {
                 let context = persistentContainer.viewContext
                 context.delete(day.location)
-                day.location = Location(location: getDefaultLocation()!, insertInto: context)
+                day.location = Location(location: getDefaultLocation(), insertInto: context)
                 saveContext()
             } else {
                 _ = createDefaultDay(date: date)
@@ -135,12 +135,9 @@ class StorageController {
     //can move declaration of day lower down to avoid problems with creating default and saving context
     func createDefaultDay(date: Date) -> Day {
         let context = persistentContainer.viewContext
+        let defaultLocation = getDefaultLocation()
         let day = Day(entity: Day.entity(), insertInto: context)
-        if let defaultLocation = getDefaultLocation() {
-          day.location = Location(location: defaultLocation, insertInto: context)
-        } else {
-            day.location = Location(location: createDefaultLocation(), insertInto: context)
-        }
+        day.location = defaultLocation
         day.location.defaultLocation = false
         day.date = date
         day.locationWasSet = false
@@ -172,10 +169,11 @@ class StorageController {
         location.shortState = "NY"
         location.latitude = 40.7127753
         location.longitude = -74.0059728
+        saveContext()
         return location
     }
     
-    func getDefaultLocation() -> Location? {
+    func getDefaultLocation() -> Location {
           let context = persistentContainer.viewContext
           do {
               let request = Location.locationFetchRequest()
@@ -183,26 +181,24 @@ class StorageController {
               request.predicate = predicate
               let locations = try context.fetch(request)
               if locations.isEmpty {
-                  return nil
+                  return createDefaultLocation()
               }
               if let location = locations[0] as? Location{
                   return location
               } else {
-                  return nil
+                  return createDefaultLocation()
               }
             
           } catch let error as NSError {
               print("Could not fetch default location \(error) \(error.userInfo)")
-              return nil
+              return createDefaultLocation()
           }
     }
     
     func setDefaultLocation(place: GMSPlace) {
         let context = persistentContainer.viewContext
-        if let currentDefault = getDefaultLocation() {
-           context.delete(currentDefault)
-        }
-        
+        let currentDefault = getDefaultLocation()
+        context.delete(currentDefault)
         let newDefault = Location(place: place, insertInto: context)
         newDefault.defaultLocation = true
         saveContext()
