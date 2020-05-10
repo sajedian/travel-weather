@@ -10,15 +10,15 @@ import Foundation
 import UIKit
 import GooglePlaces
 
-enum ColorSetting {
+enum ColorSettingType {
     case defaultColor
-    case city(String)
+    case place(placeID: String)
 }
 
 class ColorSettingsViewController: UITableViewController {
     
     var stateController: StateController!
-    var selectedSetting: ColorSetting?
+    var selectedSetting: ColorSettingType?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -52,7 +52,7 @@ class ColorSettingsViewController: UITableViewController {
         case 1:
             return 1
         case 2:
-            return stateController.colorAssociationsArray.count
+            return stateController.colorSettingsArray.count
         default:
             return 0
         }
@@ -69,10 +69,11 @@ class ColorSettingsViewController: UITableViewController {
         case (2, _):
             let cell = tableView.dequeueReusableCell(withIdentifier: "colorSettingsCell", for: indexPath)
             let index = indexPath.row
-            let city = stateController.colorAssociationsArray[index]
-            let color = stateController.getAssociatedColor(for: city)
-            cell.textLabel?.text = city
-            cell.imageView?.tintColor = color
+            let city = stateController.colorSettingsArray[index].location.locality
+            let state = stateController.colorSettingsArray[index].location.shortState ?? ""
+            let hexColor = stateController.colorSettingsArray[index].colorHex
+            cell.textLabel?.text = city + ", " + state
+            cell.imageView?.tintColor = UIColor(hex: hexColor)
             return cell
         default:
             print("Error, cell not found")
@@ -85,6 +86,13 @@ class ColorSettingsViewController: UITableViewController {
             return 1
         } else {
             return 20
+        }
+    }
+    
+    override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
+        if editingStyle == .delete {
+            stateController.deleteColorSetting(row: indexPath.row) //write this method
+            tableView.deleteRows(at: [indexPath], with: .fade)
         }
     }
     
@@ -116,9 +124,11 @@ class ColorSettingsViewController: UITableViewController {
                 controller.selectedSetting = .defaultColor
                 controller.title = "Default Color"
             } else {
-                let city = stateController.colorAssociationsArray[selectedPath.row]
+                let city = self.stateController.colorSettingsArray[selectedPath.row].location.locality
+                
+                let placeID = self.stateController.colorSettingsArray[selectedPath.row].placeID
                 controller.title = city
-                controller.selectedSetting = .city(city)
+                controller.selectedSetting = .place(placeID: placeID)
             }
             controller.stateController = stateController
          }
@@ -128,7 +138,7 @@ class ColorSettingsViewController: UITableViewController {
 
 extension ColorSettingsViewController: EditLocationViewControllerDelegate {
     func editLocationViewControllerDidUpdate(didSelect newLocation: GMSPlace, for date: Date?) {
-        stateController.addAssociatedColor(color: nil , for: newLocation.name!)
+        stateController.addAssociatedColor(color: nil , for: newLocation)
         performSegue(withIdentifier: "colorPicker", sender: tableView(tableView, cellForRowAt: IndexPath(row: 0, section: 2)))
     }
 

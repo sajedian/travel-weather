@@ -25,6 +25,7 @@ class StateController: NetworkControllerDelegate {
         self.storageController = storageController
         networkController.delegate = self
         createPlaceHolderData()
+        colorSettingsArray = storageController.getColorSettings()
     }
     
     private var networkController: NetworkController!
@@ -34,44 +35,54 @@ class StateController: NetworkControllerDelegate {
     
     //MARK:- App State
     private var defaultColor = UIColor(red: 14/255, green: 12/255, blue: 114/255, alpha: 1.0)
-    var colorAssociationsArray: [String] = ["Boston", "Crab Orchard", "Houston"]
+//    var colorAssociationsArray: [String] = ["Boston", "Crab Orchard", "Houston"]
+    var colorSettingsArray = [ColorSetting]()
     private var days = [Date:Day]()
     var defaultLocation: Location {
         return storageController.getDefaultLocation()
     }
     //MARK:- Interface
-    func getAssociatedColor(for city: String) -> UIColor {
-        if let associatedColor = colorAssociations[city] {
-            return associatedColor
+    func getAssociatedColor(for placeID: String) -> UIColor {
+        if let colorHex = storageController.getColorSetting(for: placeID)?.colorHex {
+            return UIColor(hex: colorHex)!
         }
-        else if let defaultColor = UIColor(hex: UserDefaults.standard.string(forKey: "defaultColor")!) {
+        else
+        if let defaultColor = UIColor(hex: UserDefaults.standard.string(forKey: "defaultColor")!) {
             return defaultColor
         } else {
             return self.defaultColor
         }
     }
     
-    func updateAssociatedColor(color: UIColor, for setting: ColorSetting)  {
+    func updateAssociatedColor(color: UIColor, for setting: ColorSettingType)  {
         switch setting {
         case .defaultColor:
             UserDefaults.standard.set(color.toHex(), forKey: "defaultColor")
-        case .city(let city):
-            colorAssociations[city] = color
+        case .place(let placeID):
+            let date = Date()
+            storageController.updateColorSetting(colorHex: color.toHex(), placeID: placeID, date: date)
+            colorSettingsArray = storageController.getColorSettings()
         }
     }
-    
-    func addAssociatedColor(color: UIColor?, for city: String) {
-        colorAssociationsArray = [city] + colorAssociationsArray
+
+    func addAssociatedColor(color: UIColor?, for place: GMSPlace) {
+        let date = Date()
         if let color = color {
-           colorAssociations[city] = color
+            storageController.createOrUpdateColorSetting(colorHex: color.toHex(), place: place, date: date )
         } else {
-            colorAssociations[city] = UIColor(hex: UserDefaults.standard.string(forKey: "defaultColor")!)!
+            storageController.createOrUpdateColorSetting(colorHex: UserDefaults.standard.string(forKey: "defaultColor")!, place: place, date: date)
         }
-        
+        colorSettingsArray = storageController.getColorSettings()
+    }
+    
+    func deleteColorSetting(row index: Int) {
+        let colorSetting = colorSettingsArray[index]
+        colorSettingsArray.remove(at: index)
+        storageController.deleteColorSetting(colorSetting: colorSetting)
     }
     
     func updateForecast() {
-        networkController!.requestFullForecast(for: days)
+        networkController.requestFullForecast(for: days)
     }
 
     func getDayForDate(for date: Date) -> Day {
@@ -126,7 +137,7 @@ class StateController: NetworkControllerDelegate {
     
     //MARK:- NetworkControllerDelegate Functions
     func didUpdateForecast() {
-           delegate!.didUpdateForecast()
+           delegate?.didUpdateForecast()
        }
     
     

@@ -13,7 +13,7 @@ import CoreData
 
 extension Day {
 
-    @nonobjc public class func fetchRequest() -> NSFetchRequest<Day> {
+    @nonobjc public class func dayFetchRequest() -> NSFetchRequest<Day> {
         return NSFetchRequest<Day>(entityName: "Day")
     }
 

@@ -39,7 +39,7 @@ class WeatherListViewController: UITableViewController {
         cell.cityLabel.text = day.location.locality
         cell.tempLabel.text = day.tempDisplay
         cell.weatherImageView.image = day.weatherImage
-        cell.colorView.backgroundColor = stateController.getAssociatedColor(for: day.location.locality)
+        cell.colorView.backgroundColor = stateController.getAssociatedColor(for: day.location.placeID)
     }
         
     

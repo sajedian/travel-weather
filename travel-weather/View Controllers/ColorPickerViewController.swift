@@ -15,7 +15,7 @@ class ColorPickerViewController: UIViewController {
     
     var colorButtons = [UIButton]()
     var stateController: StateController!
-    var selectedSetting: ColorSetting!
+    var selectedSetting: ColorSettingType!
    
     override func loadView() {
         view = UIView()
