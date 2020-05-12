@@ -135,6 +135,22 @@ public class Day: NSManagedObject {
             }
         }
         
+    var highTempDisplay: String {
+        if let highTemp = highTemp, let _ = lowTemp {
+            return String(highTemp) + "°"
+        } else {
+            return "--- °"
+        }
+    }
+    
+    var lowTempDisplay: String {
+        if let lowTemp = lowTemp, let _ = highTemp {
+            return String(lowTemp) + "°"
+        } else {
+            return "--- °"
+        }
+    }
+        
         
         //MARK:- Update Forecast Information
         

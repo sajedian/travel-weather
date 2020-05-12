@@ -95,20 +95,7 @@ class ColorSettingsViewController: UITableViewController {
             tableView.deleteRows(at: [indexPath], with: .fade)
         }
     }
-    
-//    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-//        print("didSelectRowAt")
-//        switch (indexPath.section, indexPath.row) {
-//        case(0, 0):
-//            selectedSetting = .defaultColor
-//        case (2, _):
-//            selectedSetting = .city(stateController.colorAssociationsArray[indexPath.row])
-//        default:
-//            selectedSetting = nil
-//        }
-//        print(selectedSetting)
-//    }
-            
+
 
     //MARK:- Navigation
      override func prepare(for segue: UIStoryboardSegue, sender: Any?) {

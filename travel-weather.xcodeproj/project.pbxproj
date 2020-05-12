@@ -222,8 +222,8 @@
 		9EC593A223DCD6A100E42793 /* Model Controllers */ = {
 			isa = PBXGroup;
 			children = (
-				9EC69D6823E8F5260051722D /* NetworkController.swift */,
 				9EC593A023DCD5F500E42793 /* StateController.swift */,
+				9EC69D6823E8F5260051722D /* NetworkController.swift */,
 				9EFB9B11241FF6F80042776D /* StorageController.swift */,
 			);
 			path = "Model Controllers";

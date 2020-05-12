@@ -13,16 +13,17 @@ class DayCell: UITableViewCell {
     //MARK:- Outlets
     @IBOutlet weak var weekdayLabel: UILabel!
     @IBOutlet weak var cityLabel: UILabel!
-    @IBOutlet weak var tempLabel: UILabel!
     @IBOutlet weak var weatherImageView: UIImageView!
     @IBOutlet weak var colorView: UIView!
     
     
+    @IBOutlet weak var highTempLabel: UILabel!
     
+    @IBOutlet weak var lowTempLabel: UILabel!
     
     override func awakeFromNib() {
          super.awakeFromNib()
-         colorView.layer.cornerRadius = 10
+         colorView.layer.cornerRadius = 11
         
        }
     

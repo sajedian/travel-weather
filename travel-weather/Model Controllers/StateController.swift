@@ -89,7 +89,7 @@ class StateController: NetworkControllerDelegate {
         if let day = days[date] {
             return day
         }
-        if let day = storageController.getDayForDate(for: date){
+        else if let day = storageController.getDayForDate(for: date) {
             return day
         } else {
             let newDay = storageController.createDefaultDay(date: date)
@@ -122,13 +122,12 @@ class StateController: NetworkControllerDelegate {
     
     func changeDefaultLocation(didSelect newLocation: GMSPlace) {
         storageController.setDefaultLocation(place: newLocation)
-        for day in days {
-            if !day.value.locationWasSet {
-                storageController.updateDefaultDay(date: day.key, place: newLocation)
-                networkController.requestDayForecast(for: day.value)
-            }
-        }
+        let defaultDays = days.filter { $0.value.locationWasSet == false }
+        storageController.updateDefaultDays(days: defaultDays)
+        networkController.requestFullForecast(for: defaultDays)
+        
     }
+        
     
     
     
@@ -137,7 +136,12 @@ class StateController: NetworkControllerDelegate {
     
     //MARK:- NetworkControllerDelegate Functions
     func didUpdateForecast() {
-           delegate?.didUpdateForecast()
+//        for (date, day) in days {
+//             print("date: ", day.date, "location: ", day.location.locality, "highTemp: ", day.highTemp)
+//        }
+          storageController.saveContext()
+          delegate?.didUpdateForecast()
+          
        }
     
     
@@ -161,6 +165,7 @@ class StateController: NetworkControllerDelegate {
                 days[date] = day
                 continue
             }
+//            print("date: ", day.date, "location: ", day.location.locality, "highTemp: ", day.highTemp)
             days[date] = day
         }
         networkController.requestFullForecast(for: days)
