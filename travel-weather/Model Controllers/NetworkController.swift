@@ -36,6 +36,7 @@ class NetworkController {
     func requestDayForecast(for day: Day) {
         getDayForecast(for: day)
         dispatchGroup.notify(queue: .main) {
+            print("one day dispatch group notify")
             self.delegate?.didUpdateForecast()
         }
     }
@@ -47,7 +48,6 @@ class NetworkController {
           do {
             let decoder = JSONDecoder()
             let result = try decoder.decode(ForecastResult.self, from:data)
-//            print("ForecastResult", result)
             return result.daily?.data[0]
           } catch {
                 print("JSON Error: \(error) for day: \(day)")
@@ -66,7 +66,6 @@ class NetworkController {
         let session = URLSession.shared
         dataTask = session.dataTask(with: url,
                     completionHandler: { data, response, error in
-//                        print("url is \(url)")
                         if let error = error {
                             print("Failure! \(error))")
                         } else if let httpResponse = response as? HTTPURLResponse,
@@ -77,7 +76,7 @@ class NetworkController {
                                   day.setWeatherForDay(weatherForDay: weatherForDay)
                                 }
                             }
-                            print("Success! \(response!)")
+//                            print("Success! \(response!)")
                         } else {
                             print("Failure! \(response!)")
                         }
