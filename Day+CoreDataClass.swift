@@ -155,7 +155,7 @@ public class Day: NSManagedObject {
         //MARK:- Update Forecast Information
         
         
-        func setWeatherForDay(weatherForDay: WeatherForDay?) {
+    func setWeatherForDay(weatherForDay: WeatherForDay?, date: String?) {
             if let temperatureMax = weatherForDay?.temperatureMax {
                 self.highTemp = Int32(temperatureMax)
             } else {
@@ -167,6 +167,12 @@ public class Day: NSManagedObject {
             } else {
                 self.lowTemp = nil
             }
+        
+        if let date = date {
+            self.weatherDataDate = DateHelper.httpDate(from: date)
+        } else {
+            print("no date found")
+        }
             
             
             if let icon = weatherForDay?.icon {

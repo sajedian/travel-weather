@@ -73,10 +73,11 @@ class NetworkController {
                             if let data = data {
                                 let result = self.parse(data: data, day: day)
                                 if let weatherForDay = result {
-                                  day.setWeatherForDay(weatherForDay: weatherForDay)
+                                    let date: String? = httpResponse.allHeaderFields["Date"] as? String ?? nil
+                                    day.setWeatherForDay(weatherForDay: weatherForDay, date: date)
                                 }
                             }
-//                            print("Success! \(response!)")
+                            print("Success! \(response!)")
                         } else {
                             print("Failure! \(response!)")
                         }

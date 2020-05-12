@@ -183,6 +183,7 @@ class StorageController {
         location.shortState = "NY"
         location.latitude = 40.7127753
         location.longitude = -74.0059728
+        location.placeID = "ChIJOwg_06VPwokRYv534QaPC8g"
         saveContext()
         return location
     }
