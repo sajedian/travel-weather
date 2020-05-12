@@ -69,7 +69,7 @@ class StorageController {
 //    }
 
     
-    private func saveContext() {
+     func saveContext() {
         let context = persistentContainer.viewContext
         if context.hasChanges {
             do {
@@ -112,6 +112,7 @@ class StorageController {
                 let context = persistentContainer.viewContext
                 context.delete(day.location)
                 day.location = Location(location: getDefaultLocation(), insertInto: context)
+                day.location.defaultLocation = false
                 saveContext()
             } else {
                 _ = createDefaultDay(date: date)
@@ -137,7 +138,7 @@ class StorageController {
         let context = persistentContainer.viewContext
         let defaultLocation = getDefaultLocation()
         let day = Day(entity: Day.entity(), insertInto: context)
-        day.location = defaultLocation
+        day.location = Location(location: defaultLocation, insertInto: context)
         day.location.defaultLocation = false
         day.date = date
         day.locationWasSet = false

@@ -28,6 +28,7 @@ class NetworkController {
             getDayForecast(for: day)
         }
         dispatchGroup.notify(queue: .main) {
+            print("DispathGroup.notify")
             self.delegate?.didUpdateForecast()
         }
     }

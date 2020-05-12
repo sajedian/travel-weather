@@ -129,6 +129,7 @@ class StateController: NetworkControllerDelegate {
             }
         }
     }
+        
     
     
     
@@ -137,7 +138,8 @@ class StateController: NetworkControllerDelegate {
     
     //MARK:- NetworkControllerDelegate Functions
     func didUpdateForecast() {
-           delegate?.didUpdateForecast()
+          storageController.saveContext()
+          delegate?.didUpdateForecast()
        }
     
     
