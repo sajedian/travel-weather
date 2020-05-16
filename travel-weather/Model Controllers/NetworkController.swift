@@ -49,7 +49,7 @@ class NetworkController {
     func requestFullForecast(for days: [Date: Day]) {
         
         for (_, day) in days {
-            print("Date of last update: ", day.weatherDataDate, "should update data: ", shouldUpdateData(for: day))
+            print(day.location.locality, "Date of last update: ", day.weatherDataDate, "should update data: ", shouldUpdateData(for: day))
             if shouldUpdateData(for: day) {
                 getDayForecast(for: day)
             }
@@ -104,7 +104,7 @@ class NetworkController {
                                     }
                                 }
                             }
-//                            print("Success! \(response!)")
+                            print("Success! \(response!)")
                         } else {
                             print("Failure! \(response!)")
                         }

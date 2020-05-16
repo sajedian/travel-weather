@@ -138,6 +138,10 @@ class StorageController {
             context.delete(day.location)
             day.location = Location(place: place, insertInto: context)
             day.locationWasSet = true
+            day.weatherDataDate = nil
+            day.highTemp = nil
+            day.lowTemp = nil
+            day.weatherSummaryValue = nil
             saveContext()
             
         } else {
