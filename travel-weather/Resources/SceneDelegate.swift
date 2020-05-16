@@ -11,7 +11,7 @@ import UIKit
 class SceneDelegate: UIResponder, UIWindowSceneDelegate {
 
     var window: UIWindow?
-
+    var stateController: StateController?
 
     func scene(_ scene: UIScene, willConnectTo session: UISceneSession, options connectionOptions: UIScene.ConnectionOptions) {
         guard let _ = (scene as? UIWindowScene) else { return }
@@ -22,7 +22,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         }
         let networkController = NetworkController()
         let storageController = StorageController()
-        let stateController = StateController(networkController: networkController, storageController: storageController)
+        stateController = StateController(networkController: networkController, storageController: storageController)
         let weatherListViewController = viewControllers[1] as! WeatherListViewController
         weatherListViewController.stateController = stateController
         let navController = viewControllers[0] as! UINavigationController
@@ -35,6 +35,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         customizeAppearance()
         
     }
+    
     
     func customizeAppearance() {
 //           let barTintColor = UIColor(red: 42/255, green: 53/255, blue: 170/255, alpha: 1.0)
@@ -69,8 +70,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
     }
 
     func sceneWillEnterForeground(_ scene: UIScene) {
-        // Called as the scene transitions from the background to the foreground.
-        // Use this method to undo the changes made on entering the background.
+        stateController?.loadAndUpdateData()
     }
 
     func sceneDidEnterBackground(_ scene: UIScene) {

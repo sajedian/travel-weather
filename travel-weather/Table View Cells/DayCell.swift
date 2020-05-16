@@ -24,7 +24,11 @@ class DayCell: UITableViewCell {
     override func awakeFromNib() {
          super.awakeFromNib()
          colorView.layer.cornerRadius = 11
-        
+            colorView.layer.shadowColor = UIColor.black.cgColor
+        colorView.layer.shadowOffset = CGSize(width: 1, height: 1.5)
+            colorView.layer.shadowOpacity = 0.5
+        colorView.layer.shadowRadius = 3
+        contentView.layer.masksToBounds = false
        }
     
 }

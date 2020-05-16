@@ -39,6 +39,10 @@ class ScheduleViewController: UIViewController {
         calendarView.backgroundColor = UIColor.charcoalGrayLight
         selectedDayView.layer.cornerRadius = 15
         selectedDayView.backgroundColor = UIColor.charcoalGray
+        selectedDayView.layer.shadowColor = UIColor.black.cgColor
+        selectedDayView.layer.shadowOffset = CGSize(width: 0, height: 3)
+        selectedDayView.layer.shadowOpacity = 0.7
+        selectedDayView.layer.shadowRadius = 3
         
         navigationController?.navigationBar.setValue(true, forKey: "hidesShadow")
         cityLabel.font = UIFont.systemFont(ofSize: 17)
