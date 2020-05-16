@@ -4,7 +4,7 @@
         <attribute name="colorHex" attributeType="String"/>
         <attribute name="date" attributeType="Date" usesScalarValueType="NO"/>
         <attribute name="placeID" attributeType="String"/>
-        <relationship name="location" maxCount="1" deletionRule="Nullify" destinationEntity="Location" inverseName="colorSetting" inverseEntity="Location"/>
+        <relationship name="location" maxCount="1" deletionRule="Cascade" destinationEntity="Location" inverseName="colorSetting" inverseEntity="Location"/>
         <fetchIndex name="byDateIndex">
             <fetchIndexElement property="date" type="Binary" order="ascending"/>
         </fetchIndex>
@@ -21,7 +21,7 @@
         <attribute name="lowTemp" optional="YES" attributeType="Integer 32" usesScalarValueType="YES"/>
         <attribute name="weatherDataDate" optional="YES" attributeType="Date" usesScalarValueType="NO"/>
         <attribute name="weatherSummaryValue" optional="YES" attributeType="String"/>
-        <relationship name="location" maxCount="1" deletionRule="Nullify" destinationEntity="Location" inverseName="day" inverseEntity="Location"/>
+        <relationship name="location" maxCount="1" deletionRule="Cascade" destinationEntity="Location" inverseName="day" inverseEntity="Location"/>
         <fetchIndex name="byDateIndex">
             <fetchIndexElement property="date" type="Binary" order="ascending"/>
         </fetchIndex>

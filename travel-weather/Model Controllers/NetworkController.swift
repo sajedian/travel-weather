@@ -21,14 +21,40 @@ class NetworkController {
     weak var delegate: NetworkControllerDelegate?
     private var dataTask: URLSessionDataTask?
     private let dispatchGroup = DispatchGroup()
+    
+    private func shouldUpdateData(for day: Day) -> Bool {
+        guard let _ = day.highTemp, let _ = day.lowTemp, let _ = day.weatherSummary else {
+            return true
+        }
+        if let dateOfLastUpdate = day.weatherDataDate {
+            print(DateHelper.daysFromCurrentDate(to: day.date))
+            let timeSinceLastUpdate = DateHelper.timeIntervalToCurrentDate(from: dateOfLastUpdate)
+
+            switch DateHelper.daysFromCurrentDate(to: day.date) {
+            case 0...1:
+                return timeSinceLastUpdate > 3600
+            case 2...5:
+                return timeSinceLastUpdate > 86400
+            case 5...8:
+                return timeSinceLastUpdate > 86400 * 2
+            default:
+                return timeSinceLastUpdate > 86400 * 3
+            }
+        }
+        return true
+    }
+    
 
     //Interface
     func requestFullForecast(for days: [Date: Day]) {
+        
         for (_, day) in days {
-            getDayForecast(for: day)
+            print("Date of last update: ", day.weatherDataDate, "should update data: ", shouldUpdateData(for: day))
+            if shouldUpdateData(for: day) {
+                getDayForecast(for: day)
+            }
         }
         dispatchGroup.notify(queue: .main) {
-            print("DispathGroup.notify")
             self.delegate?.didUpdateForecast()
         }
     }
@@ -36,7 +62,6 @@ class NetworkController {
     func requestDayForecast(for day: Day) {
         getDayForecast(for: day)
         dispatchGroup.notify(queue: .main) {
-            print("one day dispatch group notify")
             self.delegate?.didUpdateForecast()
         }
     }
@@ -74,10 +99,12 @@ class NetworkController {
                                 let result = self.parse(data: data, day: day)
                                 if let weatherForDay = result {
                                     let date: String? = httpResponse.allHeaderFields["Date"] as? String ?? nil
-                                    day.setWeatherForDay(weatherForDay: weatherForDay, date: date)
+                                    DispatchQueue.main.async {
+                                        day.setWeatherForDay(weatherForDay: weatherForDay, date: date)
+                                    }
                                 }
                             }
-                            print("Success! \(response!)")
+//                            print("Success! \(response!)")
                         } else {
                             print("Failure! \(response!)")
                         }

@@ -171,6 +171,22 @@ class StorageController {
         return day
     }
     
+    func deleteDaysBefore(date: Date) {
+        let date = date as NSDate
+        let context = persistentContainer.viewContext
+        do {
+            let request = Day.dayFetchRequest()
+            let predicate = NSPredicate(format: "date < %@", date)
+            request.predicate = predicate
+            let days = try context.fetch(request)
+            for day in days {
+                context.delete(day)
+            }
+        } catch let error as NSError {
+            print("Could not fetch \(error) \(error.userInfo)")
+        }
+    }
+    
     //creates default location of NYC, could be useful for first launch of app
     private func createDefaultLocation() -> Location {
         let context = persistentContainer.viewContext
@@ -282,9 +298,9 @@ class StorageController {
     
     func deleteColorSetting(colorSetting: ColorSetting) {
         let context = persistentContainer.viewContext
-        context.delete(colorSetting.location)
         context.delete(colorSetting)
         saveContext()
+
     }
     
     

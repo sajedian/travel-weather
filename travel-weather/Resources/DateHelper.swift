@@ -52,4 +52,15 @@ struct DateHelper {
         return dateFormatter.date(from: string)!
     }
     
+    static func timeIntervalToCurrentDate(from date: Date) -> Double {
+        let currDate = Date()
+        return currDate.timeIntervalSince(date) as Double
+    }
+    
+    static func daysFromCurrentDate(to futureDate: Date) -> Int {
+        let currDate = currentDateMDYOnly()
+        return Int(futureDate.timeIntervalSince(currDate) / 86400)
+    }
+    
+    
 }

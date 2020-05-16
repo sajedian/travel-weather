@@ -24,14 +24,19 @@ class StateController: NetworkControllerDelegate {
         self.networkController = networkController
         self.storageController = storageController
         networkController.delegate = self
-        createPlaceHolderData()
+//        loadAndUpdateData()
         colorSettingsArray = storageController.getColorSettings()
+        NotificationCenter.default.addObserver(self, selector: #selector(onTimeChange(_:)), name: UIApplication.significantTimeChangeNotification, object: nil)
     }
     
     private var networkController: NetworkController!
     private var storageController: StorageController!
     weak var delegate: StateControllerDelegate?
     
+    @ objc func onTimeChange(_ notification: Notification) {
+        print("Time Changed")
+        loadAndUpdateData()
+    }
     
     //MARK:- App State
     private var defaultColor = UIColor(red: 14/255, green: 12/255, blue: 114/255, alpha: 1.0)
@@ -156,19 +161,21 @@ class StateController: NetworkControllerDelegate {
         return dateFormatter.date(from: str)!
     }
     
-    func createPlaceHolderData() {
-        let today = DateHelper.currentDateMDYOnly()
-        for i in 0..<14{
-            let date = Calendar.current.date(byAdding: .day, value: i, to: today)!
-            guard let day = storageController.getDayForDate(for: date) else {
-                let day = storageController.createDefaultDay(date: date)
-                days[date] = day
-                continue
-            }
+    func loadAndUpdateData() {
+        let dateThreeDaysAgo = DateHelper.dayFromToday(offset: -3)
+        days = days.filter { date, day in
+            return date >= dateThreeDaysAgo
+        }
+        
+        for i in 0..<14 {
+            let date = DateHelper.dayFromToday(offset: i)
+            let day = getDayForDate(for: date)
 //            print("date: ", day.date, "location: ", day.location.locality, "highTemp: ", day.highTemp)
             days[date] = day
         }
+        storageController.deleteDaysBefore(date: dateThreeDaysAgo)
         networkController.requestFullForecast(for: days)
+        
     }
 
     //placeholder associations
