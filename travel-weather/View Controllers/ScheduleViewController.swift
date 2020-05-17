@@ -55,8 +55,10 @@ class ScheduleViewController: UIViewController {
         calendarView.scrollingMode = .stopAtEachCalendarFrame
         calendarView.showsHorizontalScrollIndicator = false
         dateFormatter.dateFormat = "yyyy MM dd"
-        let date = DateHelper.currentDateMDYOnly()
-        calendarView.scrollToDate(date, animateScroll: false)
+        startDate = DateHelper.currentDateMDYOnly()
+        endDate = DateHelper.offsetMonth(from: startDate!, by: 12)
+        calendarView.scrollToDate(startDate!, animateScroll: false)
+        leftButton.isHidden = true
     }
     
     private func monthAndYearFromVisibleDates(from visibleDates: DateSegmentInfo) -> String {
@@ -89,6 +91,8 @@ class ScheduleViewController: UIViewController {
     //MARK:- Properties
     var stateController: StateController!
     var selectedDate: Date?
+    var startDate: Date?
+    var endDate: Date?
     let dateFormatter = DateFormatter()
     var firstVisibleDateInMonth: Date?
     
@@ -102,6 +106,9 @@ class ScheduleViewController: UIViewController {
     @IBOutlet weak var selectedDayView: UIView!
     @IBOutlet weak var editCityButton: UIButton!
     @IBOutlet weak var stackView: UIStackView!
+    @IBOutlet var leftButton: UIButton!
+    @IBOutlet var rightButton: UIButton!
+    
     
     
     //MARK:- Actions
@@ -112,13 +119,23 @@ class ScheduleViewController: UIViewController {
         dateComponents.month = 1
         let nextMonthDate = Calendar.current.date(byAdding: dateComponents, to: firstVisibleDateInMonth!)!
         calendarView.scrollToDate(nextMonthDate)
+        leftButton.isHidden = false
+        if DateHelper.equalMonthAndYear(date1: nextMonthDate, date2: endDate!) {
+            rightButton.isHidden = true
+        }
+        
     }
     @IBAction func scrollLeft() {
         var dateComponents = DateComponents()
         dateComponents.month = -1
        let previousMonthDate = Calendar.current.date(byAdding: dateComponents, to: firstVisibleDateInMonth!)!
         calendarView.scrollToDate(previousMonthDate)
+        rightButton.isHidden = false
+        if DateHelper.equalMonthAndYear(date1: previousMonthDate, date2: startDate!) {
+            leftButton.isHidden = true
+        }
     }
+    
     
     
 

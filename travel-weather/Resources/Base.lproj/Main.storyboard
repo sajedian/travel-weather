@@ -281,7 +281,9 @@
                         <outlet property="dateLabel" destination="P8g-IL-mfJ" id="sCy-Y6-Nwk"/>
                         <outlet property="editCityButton" destination="f6y-SI-Uq4" id="CkA-HR-42u"/>
                         <outlet property="instructionLabel" destination="BnR-ug-wzG" id="be8-nm-qfk"/>
+                        <outlet property="leftButton" destination="MM3-QJ-vjt" id="LUn-VT-B2W"/>
                         <outlet property="monthLabel" destination="WAw-Qc-zNE" id="A52-iI-WlY"/>
+                        <outlet property="rightButton" destination="4Ei-NF-slW" id="76H-ce-b4D"/>
                         <outlet property="selectedDayView" destination="wuF-4J-c9l" id="x60-Nf-Xnn"/>
                         <outlet property="stackView" destination="TOR-F5-rTa" id="mZB-Zp-pvl"/>
                     </connections>
