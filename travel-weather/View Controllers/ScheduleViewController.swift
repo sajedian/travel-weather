@@ -176,7 +176,18 @@ extension ScheduleViewController: JTAppleCalendarViewDataSource {
         handleCellSelected(cell: cell, cellState: cellState)
         handleCellEvents(cell: cell, cellState: cellState)
         handleCellTextColor(cell: cell, cellState: cellState)
+        handleCellStrikeThrough(cell: cell, cellState: cellState)
        }
+    
+    func handleCellStrikeThrough(cell: DateCell, cellState: CellState) {
+        if cellState.date.timeIntervalSince(Date()) <= -86400 {
+            if let text = cell.dateLabel.text {
+                let attributeString: NSMutableAttributedString =  NSMutableAttributedString(string: text)
+                attributeString.addAttribute(NSAttributedString.Key.strikethroughStyle, value: 2, range: NSMakeRange(0, attributeString.length))
+                cell.dateLabel.attributedText = attributeString
+            }
+        }
+    }
     
     func handleCellSelected(cell: DateCell, cellState: CellState) {
         if cellState.isSelected {
@@ -189,7 +200,8 @@ extension ScheduleViewController: JTAppleCalendarViewDataSource {
     }
     
     func handleCellTextColor(cell: DateCell, cellState: CellState) {
-       if cellState.dateBelongsTo == .thisMonth {
+        if cellState.dateBelongsTo == .thisMonth && cellState.date.timeIntervalSince(Date()) > -86400
+ {
           cell.dateLabel.textColor = UIColor.white
        }
        else {
@@ -235,6 +247,10 @@ extension ScheduleViewController: JTAppleCalendarViewDelegate {
 
     func calendar(_ calendar: JTAppleCalendarView, didDeselectDate date: Date, cell: JTAppleCell?, cellState: CellState) {
         configureCell(view: cell, cellState: cellState)
+    }
+    
+    func calendar(_ calendar: JTAppleCalendarView, shouldSelectDate date: Date, cell: JTAppleCell?, cellState: CellState) -> Bool {
+        return date.timeIntervalSince(Date()) > -86400
     }
     
 }
