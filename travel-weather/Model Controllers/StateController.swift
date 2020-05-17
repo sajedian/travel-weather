@@ -32,6 +32,7 @@ class StateController: NetworkControllerDelegate {
     private var networkController: NetworkController!
     private var storageController: StorageController!
     weak var delegate: StateControllerDelegate?
+    private var timer: Timer?
     
     @ objc func onTimeChange(_ notification: Notification) {
         print("Time Changed")
@@ -47,6 +48,18 @@ class StateController: NetworkControllerDelegate {
         return storageController.getDefaultLocation()
     }
     //MARK:- Interface
+    func startUpdateTimer() {
+        timer = Timer.scheduledTimer(timeInterval: 600, target: self, selector: #selector(fireTimer), userInfo: nil, repeats: true)
+        timer?.tolerance = 10
+        RunLoop.current.add(timer!, forMode: RunLoop.Mode.common)
+    }
+    func stopUpdateTimer() {
+        timer?.invalidate()
+    }
+    @objc func fireTimer() {
+        print("Updating Data")
+        loadAndUpdateData()
+    }
     func getAssociatedColor(for placeID: String) -> UIColor {
         if let colorHex = storageController.getColorSetting(for: placeID)?.colorHex {
             return UIColor(hex: colorHex)!
