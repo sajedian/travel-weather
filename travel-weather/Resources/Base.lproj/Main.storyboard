@@ -115,12 +115,22 @@
                                                                 </userDefinedRuntimeAttribute>
                                                             </userDefinedRuntimeAttributes>
                                                         </view>
+                                                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="CXQ-zQ-h3A">
+                                                            <rect key="frame" x="12.5" y="24.5" width="25" height="1.5"/>
+                                                            <color key="backgroundColor" systemColor="systemBlueColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                            <constraints>
+                                                                <constraint firstAttribute="height" constant="1.5" id="PA2-Nv-0hz"/>
+                                                            </constraints>
+                                                        </view>
                                                     </subviews>
                                                     <constraints>
                                                         <constraint firstItem="bxv-b8-m5U" firstAttribute="centerY" secondItem="qCh-xt-to3" secondAttribute="centerY" id="0Lm-cB-mo0"/>
+                                                        <constraint firstItem="CXQ-zQ-h3A" firstAttribute="width" secondItem="qCh-xt-to3" secondAttribute="width" constant="-25" id="ORL-cF-Y4E"/>
                                                         <constraint firstItem="iGE-JL-sr8" firstAttribute="centerX" secondItem="qCh-xt-to3" secondAttribute="centerX" id="P82-Bv-U8l"/>
                                                         <constraint firstItem="bxv-b8-m5U" firstAttribute="centerX" secondItem="qCh-xt-to3" secondAttribute="centerX" id="Q5e-7U-DZF"/>
                                                         <constraint firstItem="iGE-JL-sr8" firstAttribute="top" secondItem="hWA-UP-ZjH" secondAttribute="bottom" constant="5" id="Vhc-xu-cCg"/>
+                                                        <constraint firstItem="CXQ-zQ-h3A" firstAttribute="centerX" secondItem="qCh-xt-to3" secondAttribute="centerX" id="Xti-UI-Q1G"/>
+                                                        <constraint firstItem="CXQ-zQ-h3A" firstAttribute="centerY" secondItem="qCh-xt-to3" secondAttribute="centerY" id="evu-ib-dHc"/>
                                                         <constraint firstItem="hWA-UP-ZjH" firstAttribute="centerY" secondItem="qCh-xt-to3" secondAttribute="centerY" id="qZQ-dG-zba"/>
                                                         <constraint firstItem="hWA-UP-ZjH" firstAttribute="centerX" secondItem="qCh-xt-to3" secondAttribute="centerX" id="sKR-Z1-EuH"/>
                                                     </constraints>
@@ -129,6 +139,7 @@
                                                     <outlet property="dateLabel" destination="hWA-UP-ZjH" id="2qF-bZ-RKC"/>
                                                     <outlet property="dotView" destination="iGE-JL-sr8" id="mcd-ZZ-iaw"/>
                                                     <outlet property="selectedView" destination="bxv-b8-m5U" id="TH4-ng-bNb"/>
+                                                    <outlet property="strikeThroughView" destination="CXQ-zQ-h3A" id="WhV-rS-Jpq"/>
                                                 </connections>
                                             </collectionViewCell>
                                         </cells>

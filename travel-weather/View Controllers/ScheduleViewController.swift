@@ -111,6 +111,7 @@ class ScheduleViewController: UIViewController {
     
     
     
+    
     //MARK:- Actions
     @IBAction func unwindToScheduleVC(segue: UIStoryboardSegue) {}
     
@@ -173,21 +174,30 @@ extension ScheduleViewController: JTAppleCalendarViewDataSource {
     func configureCell(view: JTAppleCell?, cellState: CellState) {
         guard let cell = view as? DateCell  else { return }
         cell.dateLabel.text = cellState.text
-        handleCellSelected(cell: cell, cellState: cellState)
-        handleCellEvents(cell: cell, cellState: cellState)
-        handleCellTextColor(cell: cell, cellState: cellState)
-        handleCellStrikeThrough(cell: cell, cellState: cellState)
+        if cellState.date.timeIntervalSince(Date()) <= -86400 {
+            cell.strikeThroughView.isHidden = false
+            cell.dotView.isHidden = true
+            cell.dateLabel.textColor = UIColor(red: 255/255, green: 255/255, blue: 255/255, alpha: 0.5)
+            cell.selectedView.isHidden = true
+            
+        } else {
+            cell.strikeThroughView.isHidden = true
+            handleCellSelected(cell: cell, cellState: cellState)
+            handleCellEvents(cell: cell, cellState: cellState)
+            handleCellTextColor(cell: cell, cellState: cellState)
+            handleCellStrikeThrough(cell: cell, cellState: cellState)
+        }
+        
        }
     
     func handleCellStrikeThrough(cell: DateCell, cellState: CellState) {
         if cellState.date.timeIntervalSince(Date()) <= -86400 {
-            if let text = cell.dateLabel.text {
-                let attributeString: NSMutableAttributedString =  NSMutableAttributedString(string: text)
-                attributeString.addAttribute(NSAttributedString.Key.strikethroughStyle, value: 2, range: NSMakeRange(0, attributeString.length))
-                cell.dateLabel.attributedText = attributeString
-            }
+            cell.strikeThroughView.isHidden = false
+        } else {
+            cell.strikeThroughView.isHidden = true
         }
     }
+
     
     func handleCellSelected(cell: DateCell, cellState: CellState) {
         if cellState.isSelected {
@@ -200,8 +210,7 @@ extension ScheduleViewController: JTAppleCalendarViewDataSource {
     }
     
     func handleCellTextColor(cell: DateCell, cellState: CellState) {
-        if cellState.dateBelongsTo == .thisMonth && cellState.date.timeIntervalSince(Date()) > -86400
- {
+        if cellState.dateBelongsTo == .thisMonth {
           cell.dateLabel.textColor = UIColor.white
        }
        else {
