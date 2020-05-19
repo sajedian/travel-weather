@@ -42,7 +42,6 @@ class SettingsViewController: UITableViewController {
         } else {
             UserDefaults.standard.set(TemperatureUnits.fahrenheit.rawValue, forKey: "temperatureUnits")
         }
-        print(TemperatureUnits(rawValue: UserDefaults.standard.integer(forKey: "temperatureUnits")))
     }
     
     

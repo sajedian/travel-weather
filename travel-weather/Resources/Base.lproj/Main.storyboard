@@ -386,7 +386,7 @@
         <scene sceneID="GuE-m3-D6R">
             <objects>
                 <tableViewController id="1hh-qL-TFI" customClass="SettingsViewController" customModule="Travel_Weather" customModuleProvider="target" sceneMemberID="viewController">
-                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="static" style="grouped" separatorStyle="none" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="18" sectionFooterHeight="18" id="4LZ-6k-aPS">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="static" style="grouped" separatorStyle="singleLineEtched" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="18" sectionFooterHeight="18" id="4LZ-6k-aPS">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
@@ -436,11 +436,11 @@
                             </tableViewSection>
                             <tableViewSection id="bnB-eS-QXS">
                                 <cells>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="temperatureUnitsCell" id="cOL-FQ-hZt" customClass="ColorSettingsCell" customModule="Travel_Weather" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="97.5" width="375" height="43.5"/>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="temperatureUnitsCell" rowHeight="44" id="cOL-FQ-hZt">
+                                        <rect key="frame" x="0.0" y="97.5" width="375" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="cOL-FQ-hZt" id="p4W-aY-nqx">
-                                            <rect key="frame" x="0.0" y="0.0" width="375" height="43.5"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="thermometer" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="6oO-xD-5N3">
@@ -479,7 +479,7 @@
                                         </tableViewCellContentView>
                                     </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" reuseIdentifier="SettingsCell" id="4Kr-44-6x5">
-                                        <rect key="frame" x="0.0" y="141" width="375" height="43.5"/>
+                                        <rect key="frame" x="0.0" y="141.5" width="375" height="43.5"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="4Kr-44-6x5" id="aCX-sQ-e4H">
                                             <rect key="frame" x="0.0" y="0.0" width="348" height="43.5"/>
@@ -575,22 +575,22 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
                         <prototypes>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="colorSettingsCell" textLabel="dPK-sA-AKL" imageView="qIV-1N-Ne6" style="IBUITableViewCellStyleDefault" id="5iE-0a-R6n" customClass="ColorSettingsCell" customModule="Travel_Weather" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="55.5" width="375" height="43.5"/>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="colorSettingsCell" textLabel="dPK-sA-AKL" imageView="qIV-1N-Ne6" rowHeight="45" style="IBUITableViewCellStyleDefault" id="5iE-0a-R6n" customClass="ColorSettingsCell" customModule="Travel_Weather" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="55.5" width="375" height="45"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="5iE-0a-R6n" id="X5Q-ID-nqc" customClass="ColorSettingsCell" customModule="Travel_Weather" customModuleProvider="target">
-                                    <rect key="frame" x="0.0" y="0.0" width="375" height="43.5"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="375" height="45"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" insetsLayoutMarginsFromSafeArea="NO" text="Default Color" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="dPK-sA-AKL">
-                                            <rect key="frame" x="55" y="0.0" width="304" height="43.5"/>
+                                            <rect key="frame" x="55" y="0.0" width="304" height="45"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                             <nil key="textColor"/>
                                             <nil key="highlightedColor"/>
                                         </label>
                                         <imageView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" image="cloud.fill" catalog="system" id="qIV-1N-Ne6">
-                                            <rect key="frame" x="17" y="14.5" width="22" height="14.5"/>
+                                            <rect key="frame" x="17" y="15.5" width="22" height="14.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                         </imageView>
                                     </subviews>
@@ -599,22 +599,22 @@
                                     <segue destination="OGy-ZA-hjN" kind="show" identifier="colorPicker" id="pSr-P2-1vY"/>
                                 </connections>
                             </tableViewCell>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="addLocationCell" textLabel="ant-su-oDN" imageView="UNw-9l-I0P" style="IBUITableViewCellStyleDefault" id="8eQ-4d-r5W" customClass="ColorSettingsCell" customModule="Travel_Weather" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="99" width="375" height="43.5"/>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="addLocationCell" textLabel="ant-su-oDN" imageView="UNw-9l-I0P" rowHeight="45" style="IBUITableViewCellStyleDefault" id="8eQ-4d-r5W" customClass="ColorSettingsCell" customModule="Travel_Weather" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="100.5" width="375" height="45"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="8eQ-4d-r5W" id="qbE-F0-s5d">
-                                    <rect key="frame" x="0.0" y="0.0" width="375" height="43.5"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="375" height="45"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" insetsLayoutMarginsFromSafeArea="NO" text="add location" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="ant-su-oDN">
-                                            <rect key="frame" x="55" y="0.0" width="304" height="43.5"/>
+                                            <rect key="frame" x="55" y="0.0" width="304" height="45"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                             <nil key="textColor"/>
                                             <nil key="highlightedColor"/>
                                         </label>
                                         <imageView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" image="plus.circle.fill" catalog="system" id="UNw-9l-I0P">
-                                            <rect key="frame" x="18" y="12" width="20" height="19"/>
+                                            <rect key="frame" x="18" y="13" width="20" height="19"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <color key="tintColor" systemColor="systemGreenColor" red="0.20392156859999999" green="0.78039215689999997" blue="0.34901960780000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         </imageView>
