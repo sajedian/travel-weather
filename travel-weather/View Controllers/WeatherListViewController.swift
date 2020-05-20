@@ -24,7 +24,6 @@ class WeatherListViewController: UITableViewController {
         super.viewWillAppear(animated)
 //        stateController.updateForecast()
         tableView.reloadData()
-        view.backgroundColor = .systemGray5
     }
     
     override func viewDidLoad() {
@@ -32,6 +31,7 @@ class WeatherListViewController: UITableViewController {
         let cellNib = UINib(nibName: "DayCell", bundle: nil)
         tableView.register(cellNib, forCellReuseIdentifier: "DayCell")
         tableView.reloadData()
+        tableView.clipsToBounds = false
     }
     
     func configureCell(day: Day, cell: DayCell) {
