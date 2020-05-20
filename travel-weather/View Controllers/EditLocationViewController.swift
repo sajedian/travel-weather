@@ -34,9 +34,7 @@ class EditLocationViewController: UIViewController{
         super.viewDidLoad()
         
         if let date = self.date {
-            let dateFormatter = DateFormatter()
-            dateFormatter.dateFormat = "MMMM d"
-            title = dateFormatter.string(from: date)
+            title = DateHelper.monthAndDayFromDate(from: date)
         }
        
         resultsViewController = GMSAutocompleteResultsViewController()
