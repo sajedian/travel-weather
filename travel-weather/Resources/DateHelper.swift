@@ -78,5 +78,11 @@ struct DateHelper {
 
     }
     
+    static func shortDateFormat(date: Date) -> String{
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "M/d"
+        return dateFormatter.string(from: date)
+    }
+    
     
 }

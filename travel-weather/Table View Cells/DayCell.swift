@@ -15,6 +15,7 @@ class DayCell: UITableViewCell {
     @IBOutlet weak var cityLabel: UILabel!
     @IBOutlet weak var weatherImageView: UIImageView!
     @IBOutlet weak var colorView: UIView!
+    @IBOutlet var dateLabel: UILabel!
     
     
     @IBOutlet weak var highTempLabel: UILabel!
