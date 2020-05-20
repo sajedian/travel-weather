@@ -32,10 +32,16 @@ struct DateHelper {
         return Calendar.current.date(byAdding: .month, value: offset, to: date)!
     }
     
+    
     static func monthAndDayFromDate(from date: Date) -> String {
+        let day = Calendar.current.component(.day, from: date) as NSNumber
+        let numberFormatter = NumberFormatter()
+        numberFormatter.numberStyle = .ordinal
+        let ordinalDay = numberFormatter.string(from: day)!
+        
         let dateFormatter = DateFormatter()
-        dateFormatter.dateFormat = "MMMM dd"
-        return dateFormatter.string(from: date)
+        dateFormatter.dateFormat = "MMMM "
+        return dateFormatter.string(from: date) + ordinalDay
     }
     
     //converts Date to ISO Date string but with no time zone
@@ -70,6 +76,12 @@ struct DateHelper {
         let year2 = calendar.component(.year, from: date2)
         return month1 == month2 && year1 == year2
 
+    }
+    
+    static func shortDateFormat(date: Date) -> String{
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "M/d"
+        return dateFormatter.string(from: date)
     }
     
     

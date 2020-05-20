@@ -96,7 +96,6 @@ class ScheduleViewController: UIViewController {
     let dateFormatter = DateFormatter()
     var firstVisibleDateInMonth: Date?
     
-    
     //MARK:- Outlets
     @IBOutlet weak var calendarView: JTAppleCalendarView!
     @IBOutlet weak var monthLabel: UILabel!
