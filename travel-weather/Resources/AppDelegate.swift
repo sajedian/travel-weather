@@ -25,6 +25,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         if UserDefaults.standard.string(forKey: "defaultColor") == nil {
             UserDefaults.standard.set(UIColor.darkYellow.toHex(), forKey: "defaultColor")
         }
+        if UserDefaults.standard.string(forKey: "temperatureUnits") == nil {
+            UserDefaults.standard.set(TemperatureUnits.fahrenheit.rawValue, forKey: "temperatureUnits")
+        }
         return true
     }
     

@@ -136,20 +136,42 @@ public class Day: NSManagedObject {
         }
         
     var highTempDisplay: String {
+        var displayTemp = ""
         if let highTemp = highTemp, let _ = lowTemp {
-            return String(highTemp) + "°"
+            if UserDefaults.standard.integer(forKey: "temperatureUnits") == TemperatureUnits.celsius.rawValue {
+                let celsius = round((Double(highTemp) - 32.0) * (5.0/9.0))
+                displayTemp = String(Int(celsius))
+            } else {
+                displayTemp = String(highTemp)
+            }
+            return displayTemp + "°"
         } else {
             return "--- °"
         }
     }
     
     var lowTempDisplay: String {
+        var displayTemp = ""
         if let lowTemp = lowTemp, let _ = highTemp {
-            return String(lowTemp) + "°"
+            if UserDefaults.standard.integer(forKey: "temperatureUnits") == TemperatureUnits.celsius.rawValue {
+                let celsius = round((Double(lowTemp) - 32.0) * (5.0/9.0))
+                displayTemp = String(Int(celsius))
+            } else {
+                displayTemp = String(lowTemp)
+            }
+            return displayTemp + "°"
         } else {
             return "--- °"
         }
     }
+    
+//    var loTempDisplay: String {
+//        if let lowTemp = lowTemp, let _ = highTemp {
+//            return String(lowTemp) + "°"
+//        } else {
+//            return "--- °"
+//        }
+//    }
         
         
         //MARK:- Update Forecast Information

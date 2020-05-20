@@ -62,5 +62,15 @@ struct DateHelper {
         return Int(futureDate.timeIntervalSince(currDate) / 86400)
     }
     
+    static func equalMonthAndYear(date1: Date, date2: Date) -> Bool {
+        let calendar = Calendar.current
+        let month1 = calendar.component(.month, from: date1)
+        let month2 = calendar.component(.month, from: date2)
+        let year1 = calendar.component(.year, from: date1)
+        let year2 = calendar.component(.year, from: date2)
+        return month1 == month2 && year1 == year2
+
+    }
+    
     
 }

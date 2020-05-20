@@ -47,6 +47,10 @@ class StateController: NetworkControllerDelegate {
     var defaultLocation: Location {
         return storageController.getDefaultLocation()
     }
+    
+    var temperatureUnits: TemperatureUnits {
+        return TemperatureUnits(rawValue: UserDefaults.standard.integer(forKey: "temperatureUnits")) ?? .fahrenheit
+    }
     //MARK:- Interface
     func startUpdateTimer() {
         timer = Timer.scheduledTimer(timeInterval: 600, target: self, selector: #selector(fireTimer), userInfo: nil, repeats: true)

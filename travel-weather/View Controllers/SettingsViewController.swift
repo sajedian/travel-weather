@@ -10,6 +10,11 @@
 import UIKit
 import GooglePlaces
 
+enum TemperatureUnits: Int {
+    case celsius //0
+    case fahrenheit //1
+}
+
 class SettingsViewController: UITableViewController {
     
     var stateController: StateController!
@@ -18,10 +23,26 @@ class SettingsViewController: UITableViewController {
         navigationController?.navigationBar.isTranslucent = false
         navigationController?.navigationBar.setValue(true, forKey: "hidesShadow")
         defaultCityLabel.text = stateController.defaultLocation.locality
+        
+        if UserDefaults.standard.integer(forKey: "temperatureUnits") == TemperatureUnits.celsius.rawValue {
+            temperatureUnitControl.selectedSegmentIndex = 0
+        } else {
+            temperatureUnitControl.selectedSegmentIndex = 1
+        }
     }
     
+
+    @IBOutlet var temperatureUnitControl: UISegmentedControl!
     @IBOutlet weak var defaultCityLabel: UILabel!
     @IBAction func unwindToSettingsVC(segue: UIStoryboardSegue) {}
+    
+    @IBAction func temperatureUnitsChanged(_ sender: UISegmentedControl) {
+        if sender.selectedSegmentIndex == 0 {
+            UserDefaults.standard.set(TemperatureUnits.celsius.rawValue, forKey: "temperatureUnits")
+        } else {
+            UserDefaults.standard.set(TemperatureUnits.fahrenheit.rawValue, forKey: "temperatureUnits")
+        }
+    }
     
     
   override func tableView(_ tableView: UITableView, viewForFooterInSection section: Int) -> UIView? {

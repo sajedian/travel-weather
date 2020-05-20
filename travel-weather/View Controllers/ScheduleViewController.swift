@@ -55,8 +55,10 @@ class ScheduleViewController: UIViewController {
         calendarView.scrollingMode = .stopAtEachCalendarFrame
         calendarView.showsHorizontalScrollIndicator = false
         dateFormatter.dateFormat = "yyyy MM dd"
-        let date = DateHelper.currentDateMDYOnly()
-        calendarView.scrollToDate(date, animateScroll: false)
+        startDate = DateHelper.currentDateMDYOnly()
+        endDate = DateHelper.offsetMonth(from: startDate!, by: 12)
+        calendarView.scrollToDate(startDate!, animateScroll: false)
+        leftButton.isHidden = true
     }
     
     private func monthAndYearFromVisibleDates(from visibleDates: DateSegmentInfo) -> String {
@@ -89,6 +91,8 @@ class ScheduleViewController: UIViewController {
     //MARK:- Properties
     var stateController: StateController!
     var selectedDate: Date?
+    var startDate: Date?
+    var endDate: Date?
     let dateFormatter = DateFormatter()
     var firstVisibleDateInMonth: Date?
     
@@ -102,6 +106,10 @@ class ScheduleViewController: UIViewController {
     @IBOutlet weak var selectedDayView: UIView!
     @IBOutlet weak var editCityButton: UIButton!
     @IBOutlet weak var stackView: UIStackView!
+    @IBOutlet var leftButton: UIButton!
+    @IBOutlet var rightButton: UIButton!
+    
+    
     
     
     //MARK:- Actions
@@ -112,13 +120,23 @@ class ScheduleViewController: UIViewController {
         dateComponents.month = 1
         let nextMonthDate = Calendar.current.date(byAdding: dateComponents, to: firstVisibleDateInMonth!)!
         calendarView.scrollToDate(nextMonthDate)
+        leftButton.isHidden = false
+        if DateHelper.equalMonthAndYear(date1: nextMonthDate, date2: endDate!) {
+            rightButton.isHidden = true
+        }
+        
     }
     @IBAction func scrollLeft() {
         var dateComponents = DateComponents()
         dateComponents.month = -1
        let previousMonthDate = Calendar.current.date(byAdding: dateComponents, to: firstVisibleDateInMonth!)!
         calendarView.scrollToDate(previousMonthDate)
+        rightButton.isHidden = false
+        if DateHelper.equalMonthAndYear(date1: previousMonthDate, date2: startDate!) {
+            leftButton.isHidden = true
+        }
     }
+    
     
     
 
@@ -156,10 +174,30 @@ extension ScheduleViewController: JTAppleCalendarViewDataSource {
     func configureCell(view: JTAppleCell?, cellState: CellState) {
         guard let cell = view as? DateCell  else { return }
         cell.dateLabel.text = cellState.text
-        handleCellSelected(cell: cell, cellState: cellState)
-        handleCellEvents(cell: cell, cellState: cellState)
-        handleCellTextColor(cell: cell, cellState: cellState)
+        if cellState.date.timeIntervalSince(Date()) <= -86400 {
+            cell.strikeThroughView.isHidden = false
+            cell.dotView.isHidden = true
+            cell.dateLabel.textColor = UIColor(red: 255/255, green: 255/255, blue: 255/255, alpha: 0.5)
+            cell.selectedView.isHidden = true
+            
+        } else {
+            cell.strikeThroughView.isHidden = true
+            handleCellSelected(cell: cell, cellState: cellState)
+            handleCellEvents(cell: cell, cellState: cellState)
+            handleCellTextColor(cell: cell, cellState: cellState)
+            handleCellStrikeThrough(cell: cell, cellState: cellState)
+        }
+        
        }
+    
+    func handleCellStrikeThrough(cell: DateCell, cellState: CellState) {
+        if cellState.date.timeIntervalSince(Date()) <= -86400 {
+            cell.strikeThroughView.isHidden = false
+        } else {
+            cell.strikeThroughView.isHidden = true
+        }
+    }
+
     
     func handleCellSelected(cell: DateCell, cellState: CellState) {
         if cellState.isSelected {
@@ -172,7 +210,7 @@ extension ScheduleViewController: JTAppleCalendarViewDataSource {
     }
     
     func handleCellTextColor(cell: DateCell, cellState: CellState) {
-       if cellState.dateBelongsTo == .thisMonth {
+        if cellState.dateBelongsTo == .thisMonth {
           cell.dateLabel.textColor = UIColor.white
        }
        else {
@@ -218,6 +256,10 @@ extension ScheduleViewController: JTAppleCalendarViewDelegate {
 
     func calendar(_ calendar: JTAppleCalendarView, didDeselectDate date: Date, cell: JTAppleCell?, cellState: CellState) {
         configureCell(view: cell, cellState: cellState)
+    }
+    
+    func calendar(_ calendar: JTAppleCalendarView, shouldSelectDate date: Date, cell: JTAppleCell?, cellState: CellState) -> Bool {
+        return date.timeIntervalSince(Date()) > -86400
     }
     
 }
