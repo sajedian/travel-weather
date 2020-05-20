@@ -76,7 +76,7 @@ class ColorPickerViewController: UIViewController {
     
     //MARK:- Actions
     @IBAction func cancel() {
-        navigationController?.popViewController(animated: true)
+        self.performSegue(withIdentifier: "unwindToColorSettingsVC", sender: self)
     }
     
     @IBAction func updateColor(_ sender: UIButton) {
