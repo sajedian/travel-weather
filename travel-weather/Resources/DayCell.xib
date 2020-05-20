@@ -11,7 +11,7 @@
         <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="none" indentationWidth="10" reuseIdentifier="DayCell" rowHeight="108" id="cvS-kJ-Two" customClass="DayCell" customModule="Travel_Weather" customModuleProvider="target">
             <rect key="frame" x="0.0" y="0.0" width="340" height="108"/>
             <autoresizingMask key="autoresizingMask"/>
-            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" ambiguous="YES" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="cvS-kJ-Two" id="lwJ-dq-WSE">
+            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="cvS-kJ-Two" id="lwJ-dq-WSE">
                 <rect key="frame" x="0.0" y="0.0" width="340" height="108"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
@@ -83,7 +83,7 @@
                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                 <constraints>
                     <constraint firstItem="79x-Co-3mD" firstAttribute="leading" secondItem="lwJ-dq-WSE" secondAttribute="leading" constant="10" id="70o-ca-bZB"/>
-                    <constraint firstAttribute="bottom" secondItem="79x-Co-3mD" secondAttribute="bottom" constant="10" id="991-RS-z2t"/>
+                    <constraint firstAttribute="bottom" secondItem="79x-Co-3mD" secondAttribute="bottom" constant="8" id="991-RS-z2t"/>
                     <constraint firstItem="79x-Co-3mD" firstAttribute="top" secondItem="lwJ-dq-WSE" secondAttribute="top" constant="2" id="Ewz-po-lhd"/>
                     <constraint firstAttribute="trailing" secondItem="79x-Co-3mD" secondAttribute="trailing" constant="10" id="RcG-Ts-GaG"/>
                 </constraints>
