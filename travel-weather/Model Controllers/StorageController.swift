@@ -112,6 +112,7 @@ class StorageController {
                 context.delete(day.location)
                 day.location = Location(location: getDefaultLocation(), insertInto: context)
                 day.location.defaultLocation = false
+                day.weatherDataDate = nil
             } else {
                 _ = createDefaultDay(date: date)
             }
@@ -126,6 +127,7 @@ class StorageController {
                 context.delete(day.location)
                 day.location = Location(location: getDefaultLocation(), insertInto: context)
                 day.location.defaultLocation = false
+                day.weatherDataDate = nil
                 saveContext()
             } else {
                 _ = createDefaultDay(date: date)
