@@ -89,11 +89,11 @@
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                     <subviews>
                                                         <view contentMode="center" translatesAutoresizingMaskIntoConstraints="NO" id="bxv-b8-m5U" userLabel="SelectedView">
-                                                            <rect key="frame" x="10" y="10" width="30" height="30"/>
+                                                            <rect key="frame" x="0.0" y="0.0" width="50" height="50"/>
                                                             <color key="backgroundColor" systemColor="systemRedColor" red="1" green="0.23137254900000001" blue="0.18823529410000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                             <constraints>
-                                                                <constraint firstAttribute="width" constant="30" id="53F-oc-sXr"/>
-                                                                <constraint firstAttribute="height" constant="30" id="78Q-r4-oMH"/>
+                                                                <constraint firstAttribute="width" constant="50" id="53F-oc-sXr"/>
+                                                                <constraint firstAttribute="height" constant="50" id="78Q-r4-oMH"/>
                                                             </constraints>
                                                         </view>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hWA-UP-ZjH">
@@ -125,14 +125,18 @@
                                                     </subviews>
                                                     <constraints>
                                                         <constraint firstItem="bxv-b8-m5U" firstAttribute="centerY" secondItem="qCh-xt-to3" secondAttribute="centerY" id="0Lm-cB-mo0"/>
+                                                        <constraint firstAttribute="bottom" secondItem="bxv-b8-m5U" secondAttribute="bottom" id="8th-5r-gyd"/>
                                                         <constraint firstItem="CXQ-zQ-h3A" firstAttribute="width" secondItem="qCh-xt-to3" secondAttribute="width" constant="-25" id="ORL-cF-Y4E"/>
                                                         <constraint firstItem="iGE-JL-sr8" firstAttribute="centerX" secondItem="qCh-xt-to3" secondAttribute="centerX" id="P82-Bv-U8l"/>
                                                         <constraint firstItem="bxv-b8-m5U" firstAttribute="centerX" secondItem="qCh-xt-to3" secondAttribute="centerX" id="Q5e-7U-DZF"/>
                                                         <constraint firstItem="iGE-JL-sr8" firstAttribute="top" secondItem="hWA-UP-ZjH" secondAttribute="bottom" constant="5" id="Vhc-xu-cCg"/>
                                                         <constraint firstItem="CXQ-zQ-h3A" firstAttribute="centerX" secondItem="qCh-xt-to3" secondAttribute="centerX" id="Xti-UI-Q1G"/>
                                                         <constraint firstItem="CXQ-zQ-h3A" firstAttribute="centerY" secondItem="qCh-xt-to3" secondAttribute="centerY" id="evu-ib-dHc"/>
+                                                        <constraint firstItem="bxv-b8-m5U" firstAttribute="leading" secondItem="qCh-xt-to3" secondAttribute="leading" id="lfH-Z0-LSm"/>
+                                                        <constraint firstItem="bxv-b8-m5U" firstAttribute="top" secondItem="qCh-xt-to3" secondAttribute="top" id="pBy-bv-8RT"/>
                                                         <constraint firstItem="hWA-UP-ZjH" firstAttribute="centerY" secondItem="qCh-xt-to3" secondAttribute="centerY" id="qZQ-dG-zba"/>
                                                         <constraint firstItem="hWA-UP-ZjH" firstAttribute="centerX" secondItem="qCh-xt-to3" secondAttribute="centerX" id="sKR-Z1-EuH"/>
+                                                        <constraint firstAttribute="trailing" secondItem="bxv-b8-m5U" secondAttribute="trailing" id="ysj-rO-YFA"/>
                                                     </constraints>
                                                 </collectionViewCellContentView>
                                                 <connections>
