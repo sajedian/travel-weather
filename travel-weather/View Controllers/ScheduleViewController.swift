@@ -104,6 +104,7 @@ class ScheduleViewController: UIViewController {
         return firstSelectedDate != nil && calendarView.selectedDates.count > 1
     }
     
+    
     //MARK:- Outlets
     @IBOutlet weak var calendarView: JTAppleCalendarView!
     @IBOutlet weak var monthLabel: UILabel!
@@ -115,6 +116,7 @@ class ScheduleViewController: UIViewController {
     @IBOutlet weak var stackView: UIStackView!
     @IBOutlet var leftButton: UIButton!
     @IBOutlet var rightButton: UIButton!
+    
     
     
     
@@ -214,6 +216,27 @@ extension ScheduleViewController: JTAppleCalendarViewDataSource {
         } else {
             cell.selectedView.isHidden = true
         }
+        
+//        var constraints = [NSLayoutConstraint]()
+//
+//        switch cellState.selectedPosition() {
+//        case .left:
+//            cell.selectedView.layer.cornerRadius = 15
+//            cell.selectedView.layer.maskedCorners = [.layerMinXMaxYCorner, .layerMinXMinYCorner]
+//            constraints.append(cell.selectedView.trailingAnchor.constraint(equalTo: cell.contentView.trailingAnchor))
+//        case .middle:
+//            cell.selectedView.layer.cornerRadius = 0
+//            cell.selectedView.layer.maskedCorners = []
+//        case .right:
+//            cell.selectedView.layer.cornerRadius = 15
+//            cell.selectedView.layer.maskedCorners = [.layerMaxXMaxYCorner, .layerMaxXMinYCorner]
+//        case .full:
+//            cell.selectedView.layer.cornerRadius = 15
+//            cell.selectedView.layer.maskedCorners = [.layerMaxXMaxYCorner, .layerMaxXMinYCorner, .layerMinXMaxYCorner, .layerMinXMinYCorner]
+//        default: break
+//        }
+//        
+//        NSLayoutConstraint.activate(constraints)
     }
     
     func handleCellTextColor(cell: DateCell, cellState: CellState) {

@@ -10,15 +10,36 @@ import JTAppleCalendar
 import UIKit
 class DateCell: JTAppleCell {
     @IBOutlet weak var dateLabel: UILabel!
-    @IBOutlet weak var selectedView: UIView!
     @IBOutlet weak var dotView: UIView!
     @IBOutlet var strikeThroughView: UIView!
+    var selectedView: UIView!
+    
+    var selectedLeadingConstraint: NSLayoutConstraint!
+    var selectedTrailingConstraint: NSLayoutConstraint!
+    
+    func createSelectedView() {
+        selectedView = UIView()
+        selectedView.translatesAutoresizingMaskIntoConstraints = false
+        self.contentView.addSubview(selectedView)
+        selectedLeadingConstraint = selectedView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 10)
+        selectedTrailingConstraint = selectedView.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -10)
+        
+        NSLayoutConstraint.activate([
+            selectedView.centerYAnchor.constraint(equalTo: contentView.centerYAnchor),
+            selectedView.heightAnchor.constraint(equalToConstant: 30),
+            selectedLeadingConstraint,
+            selectedTrailingConstraint
+        ])
+        selectedView.layer.cornerRadius = (contentView.frame.size.width - 20) / 2.0
+        selectedView.backgroundColor = UIColor(red: 1, green: 1, blue: 1, alpha: 0.5)
+        
+    }
     
     override func awakeFromNib() {
         super.awakeFromNib()
+        createSelectedView()
         dotView.backgroundColor = .darkYellow
-        selectedView.layer.cornerRadius = selectedView.bounds.width/2
-        selectedView.backgroundColor = UIColor(red: 1, green: 1, blue: 1, alpha: 0.5)
         strikeThroughView.backgroundColor = UIColor(red: 1, green: 1, blue: 1, alpha: 0.5)
     }
+    
 }
