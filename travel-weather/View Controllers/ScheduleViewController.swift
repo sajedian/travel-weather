@@ -217,13 +217,9 @@ extension ScheduleViewController: JTAppleCalendarViewDataSource {
             cell.selectedView.isHidden = true
         }
         
-//        var constraints = [NSLayoutConstraint]()
 //
 //        switch cellState.selectedPosition() {
 //        case .left:
-//            cell.selectedView.layer.cornerRadius = 15
-//            cell.selectedView.layer.maskedCorners = [.layerMinXMaxYCorner, .layerMinXMinYCorner]
-//            constraints.append(cell.selectedView.trailingAnchor.constraint(equalTo: cell.contentView.trailingAnchor))
 //        case .middle:
 //            cell.selectedView.layer.cornerRadius = 0
 //            cell.selectedView.layer.maskedCorners = []
@@ -235,8 +231,7 @@ extension ScheduleViewController: JTAppleCalendarViewDataSource {
 //            cell.selectedView.layer.maskedCorners = [.layerMaxXMaxYCorner, .layerMaxXMinYCorner, .layerMinXMaxYCorner, .layerMinXMinYCorner]
 //        default: break
 //        }
-//        
-//        NSLayoutConstraint.activate(constraints)
+        
     }
     
     func handleCellTextColor(cell: DateCell, cellState: CellState) {
