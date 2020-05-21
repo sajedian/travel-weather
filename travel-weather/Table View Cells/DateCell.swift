@@ -40,21 +40,28 @@ class DateCell: JTAppleCell {
     func selectedViewLeft() {
         selectedTrailingConstraint.constant = 0
         selectedLeadingConstraint.constant = 10
+        selectedView.layer.maskedCorners = [.layerMinXMaxYCorner, .layerMinXMinYCorner]
     }
     
     func selectedViewRight() {
         selectedLeadingConstraint.constant = 0
         selectedTrailingConstraint.constant = -10
+        
+        selectedView.layer.maskedCorners = [.layerMaxXMaxYCorner, .layerMaxXMinYCorner]
+
     }
     
     func selectedViewMiddle() {
         selectedLeadingConstraint.constant = 0
         selectedTrailingConstraint.constant = 0
+        selectedView.layer.maskedCorners = []
+        
     }
     
     func selectedViewFull() {
         selectedLeadingConstraint.constant = 10
         selectedTrailingConstraint.constant = -10
+        selectedView.layer.maskedCorners = [.layerMaxXMaxYCorner, .layerMaxXMinYCorner, .layerMinXMaxYCorner, .layerMinXMinYCorner]
     }
     
     override func awakeFromNib() {

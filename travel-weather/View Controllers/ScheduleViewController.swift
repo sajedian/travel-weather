@@ -31,6 +31,8 @@ class ScheduleViewController: UIViewController {
         configureViewAppearance()
         resetSelectedDate()
         
+        
+        
     }
     
     //MARK:- Helper Functions
@@ -58,6 +60,8 @@ class ScheduleViewController: UIViewController {
         startDate = DateHelper.currentDateMDYOnly()
         endDate = DateHelper.offsetMonth(from: startDate!, by: 12)
         calendarView.scrollToDate(startDate!, animateScroll: false)
+        calendarView.allowsMultipleSelection = true
+        calendarView.isRangeSelectionUsed = true
         leftButton.isHidden = true
     }
     
@@ -95,6 +99,11 @@ class ScheduleViewController: UIViewController {
     var endDate: Date?
     let dateFormatter = DateFormatter()
     var firstVisibleDateInMonth: Date?
+    var firstSelectedDate: Date?
+    var twoDatesSelected: Bool {
+        return firstSelectedDate != nil && calendarView.selectedDates.count > 1
+    }
+    
     
     //MARK:- Outlets
     @IBOutlet weak var calendarView: JTAppleCalendarView!
@@ -107,6 +116,7 @@ class ScheduleViewController: UIViewController {
     @IBOutlet weak var stackView: UIStackView!
     @IBOutlet var leftButton: UIButton!
     @IBOutlet var rightButton: UIButton!
+    
     
     
     
@@ -207,6 +217,7 @@ extension ScheduleViewController: JTAppleCalendarViewDataSource {
             cell.selectedView.isHidden = true
         }
         
+
         switch cellState.selectedPosition() {
         case .left:
             cell.selectedViewLeft()
@@ -218,6 +229,7 @@ extension ScheduleViewController: JTAppleCalendarViewDataSource {
             cell.selectedViewFull()
         default: break
         }
+        
     }
     
     func handleCellTextColor(cell: DateCell, cellState: CellState) {
@@ -261,16 +273,41 @@ extension ScheduleViewController: JTAppleCalendarViewDelegate {
     }
     
     func calendar(_ calendar: JTAppleCalendarView, didSelectDate date: Date, cell: JTAppleCell?, cellState: CellState) {
-        selectDate(date: date)
+        if let firstDate = firstSelectedDate {
+            calendar.selectDates(from: firstDate, to: date, triggerSelectionDelegate: false, keepSelectionIfMultiSelectionAllowed: true)
+        } else {
+            firstSelectedDate = date
+        }
         configureCell(view: cell, cellState: cellState)
     }
 
     func calendar(_ calendar: JTAppleCalendarView, didDeselectDate date: Date, cell: JTAppleCell?, cellState: CellState) {
+        if date == firstSelectedDate {
+            firstSelectedDate = nil
+        }
         configureCell(view: cell, cellState: cellState)
     }
     
     func calendar(_ calendar: JTAppleCalendarView, shouldSelectDate date: Date, cell: JTAppleCell?, cellState: CellState) -> Bool {
-        return date.timeIntervalSince(Date()) > -86400
+        if date.timeIntervalSince(Date()) < -86400 {
+            return false
+        }
+        if twoDatesSelected && cellState.selectionType != .programatic || firstSelectedDate != nil && date < calendarView.selectedDates[0] {
+            let shouldSelect = !calendarView.selectedDates.contains(date)
+            firstSelectedDate = nil
+            calendarView.deselectAllDates()
+            return shouldSelect
+        }
+        return true
+    }
+    
+    func calendar(_ calendar: JTAppleCalendarView, shouldDeselectDate date: Date, cell: JTAppleCell?, cellState: CellState) -> Bool {
+        if twoDatesSelected && cellState.selectionType != .programatic {
+            firstSelectedDate = nil
+            calendarView.deselectAllDates()
+            return false
+        }
+        return true
     }
     
 }
