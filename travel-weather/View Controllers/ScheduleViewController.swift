@@ -206,6 +206,18 @@ extension ScheduleViewController: JTAppleCalendarViewDataSource {
         } else {
             cell.selectedView.isHidden = true
         }
+        
+        switch cellState.selectedPosition() {
+        case .left:
+            cell.selectedViewLeft()
+        case .middle:
+            cell.selectedViewMiddle()
+        case .right:
+            cell.selectedViewRight()
+        case .full:
+            cell.selectedViewFull()
+        default: break
+        }
     }
     
     func handleCellTextColor(cell: DateCell, cellState: CellState) {

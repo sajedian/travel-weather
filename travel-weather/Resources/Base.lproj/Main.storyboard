@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="16096" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="KDO-lq-YIo">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="16097" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="KDO-lq-YIo">
     <device id="retina4_7" orientation="portrait" appearance="light"/>
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="16087"/>
@@ -88,14 +88,6 @@
                                                     <rect key="frame" x="0.0" y="0.0" width="50" height="50"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                     <subviews>
-                                                        <view contentMode="center" translatesAutoresizingMaskIntoConstraints="NO" id="bxv-b8-m5U" userLabel="SelectedView">
-                                                            <rect key="frame" x="10" y="10" width="30" height="30"/>
-                                                            <color key="backgroundColor" systemColor="systemRedColor" red="1" green="0.23137254900000001" blue="0.18823529410000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                                            <constraints>
-                                                                <constraint firstAttribute="width" constant="30" id="53F-oc-sXr"/>
-                                                                <constraint firstAttribute="height" constant="30" id="78Q-r4-oMH"/>
-                                                            </constraints>
-                                                        </view>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hWA-UP-ZjH">
                                                             <rect key="frame" x="4" y="15" width="42" height="20.5"/>
                                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
@@ -124,10 +116,8 @@
                                                         </view>
                                                     </subviews>
                                                     <constraints>
-                                                        <constraint firstItem="bxv-b8-m5U" firstAttribute="centerY" secondItem="qCh-xt-to3" secondAttribute="centerY" id="0Lm-cB-mo0"/>
                                                         <constraint firstItem="CXQ-zQ-h3A" firstAttribute="width" secondItem="qCh-xt-to3" secondAttribute="width" constant="-25" id="ORL-cF-Y4E"/>
                                                         <constraint firstItem="iGE-JL-sr8" firstAttribute="centerX" secondItem="qCh-xt-to3" secondAttribute="centerX" id="P82-Bv-U8l"/>
-                                                        <constraint firstItem="bxv-b8-m5U" firstAttribute="centerX" secondItem="qCh-xt-to3" secondAttribute="centerX" id="Q5e-7U-DZF"/>
                                                         <constraint firstItem="iGE-JL-sr8" firstAttribute="top" secondItem="hWA-UP-ZjH" secondAttribute="bottom" constant="5" id="Vhc-xu-cCg"/>
                                                         <constraint firstItem="CXQ-zQ-h3A" firstAttribute="centerX" secondItem="qCh-xt-to3" secondAttribute="centerX" id="Xti-UI-Q1G"/>
                                                         <constraint firstItem="CXQ-zQ-h3A" firstAttribute="centerY" secondItem="qCh-xt-to3" secondAttribute="centerY" id="evu-ib-dHc"/>
@@ -138,7 +128,6 @@
                                                 <connections>
                                                     <outlet property="dateLabel" destination="hWA-UP-ZjH" id="2qF-bZ-RKC"/>
                                                     <outlet property="dotView" destination="iGE-JL-sr8" id="mcd-ZZ-iaw"/>
-                                                    <outlet property="selectedView" destination="bxv-b8-m5U" id="TH4-ng-bNb"/>
                                                     <outlet property="strikeThroughView" destination="CXQ-zQ-h3A" id="WhV-rS-Jpq"/>
                                                 </connections>
                                             </collectionViewCell>
