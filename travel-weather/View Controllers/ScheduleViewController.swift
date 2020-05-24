@@ -140,14 +140,19 @@ class ScheduleViewController: UIViewController {
     
     private func selectDate(date: Date) {
         if twoDatesSelected {
-            cityLabel.text = DateHelper.monthAndDayFromDate(from: calendarView.selectedDates.last!)
+            cityLabel.isHidden = true
+            let firstDate = DateHelper.monthAndDayFromDate(from: firstSelectedDate!)
+            let lastDate = DateHelper.monthAndDayFromDate(from: calendarView.selectedDates.last!)
+            dateLabel.text = "\(firstDate) - \(lastDate)"
+            
         } else {
-            cityLabel.text = stateController.getCityForDate(for: calendarView.selectedDates.first!)
+            cityLabel.isHidden = false
+            dateLabel.text = DateHelper.monthAndDayFromDate(from: firstSelectedDate!)
+            cityLabel.text = stateController.getCityForDate(for: firstSelectedDate!)
         }
-        dateLabel.text = DateHelper.monthAndDayFromDate(from: firstSelectedDate!)
-        cityLabel.isHidden = false
-        editCityButton.isHidden = false
+        
         dateLabel.isHidden = false
+        editCityButton.isHidden = false
         instructionLabel.isHidden = true
     }
     
