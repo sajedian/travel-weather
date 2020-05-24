@@ -124,7 +124,7 @@ class ColorSettingsViewController: UITableViewController {
 }
 
 extension ColorSettingsViewController: EditLocationViewControllerDelegate {
-    func editLocationViewControllerDidUpdate(didSelect newLocation: GMSPlace, for date: Date?) {
+    func editLocationViewControllerDidUpdate(didSelect newLocation: GMSPlace, for dates: [Date]?) {
         stateController.addAssociatedColor(color: nil , for: newLocation)
         performSegue(withIdentifier: "colorPicker", sender: tableView(tableView, cellForRowAt: IndexPath(row: 0, section: 2)))
     }

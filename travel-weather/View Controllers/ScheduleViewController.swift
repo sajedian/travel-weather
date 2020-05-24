@@ -89,7 +89,7 @@ class ScheduleViewController: UIViewController {
     //MARK:- Navigation
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
             let controller = segue.destination as! EditLocationViewController
-            controller.date = firstSelectedDate
+            controller.dates = calendarView.selectedDates
             controller.delegate = self
     }
     
@@ -163,10 +163,10 @@ class ScheduleViewController: UIViewController {
 }
 
 extension ScheduleViewController: EditLocationViewControllerDelegate {
-    func editLocationViewControllerDidUpdate(didSelect newLocation: GMSPlace, for date: Date?) {
+    func editLocationViewControllerDidUpdate(didSelect newLocation: GMSPlace, for dates: [Date]?) {
         navigationController?.popViewController(animated: true)
-        if let date = date {
-            stateController.updateOrCreateDay(didSelect: newLocation, for: date)
+        if let dates = dates {
+            stateController.updateOrCreateDays(didSelect: newLocation, for: dates)
         }
         calendarView.reloadData()
     }
@@ -277,6 +277,7 @@ extension ScheduleViewController: JTAppleCalendarViewDelegate {
     func calendar(_ calendar: JTAppleCalendarView, didSelectDate date: Date, cell: JTAppleCell?, cellState: CellState) {
         if let firstDate = firstSelectedDate {
             calendar.selectDates(from: firstDate, to: date, triggerSelectionDelegate: false, keepSelectionIfMultiSelectionAllowed: true)
+            
         } else {
             firstSelectedDate = date
         }

@@ -10,13 +10,13 @@ import UIKit
 import GooglePlaces
 
 protocol EditLocationViewControllerDelegate {
-    func editLocationViewControllerDidUpdate(didSelect newLocation: GMSPlace, for date: Date?)
+    func editLocationViewControllerDidUpdate(didSelect newLocation: GMSPlace, for dates: [Date]?)
 }
 
 class EditLocationViewController: UIViewController{
     
     var delegate: EditLocationViewControllerDelegate?
-    var date: Date?
+    var dates: [Date] = []
     var searchController: UISearchController!
     var resultsViewController: GMSAutocompleteResultsViewController!
     
@@ -33,8 +33,14 @@ class EditLocationViewController: UIViewController{
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        if let date = self.date {
-            title = DateHelper.monthAndDayFromDate(from: date)
+        if !dates.isEmpty {
+            let first = DateHelper.monthAndDayFromDate(from: dates.first!)
+            if dates.count > 1 {
+                let last = DateHelper.monthAndDayFromDate(from: dates.last!)
+                title = "\(first) - \(last)"
+            } else {
+                title = first
+            }
         }
        
         resultsViewController = GMSAutocompleteResultsViewController()
@@ -98,7 +104,7 @@ extension EditLocationViewController: GMSAutocompleteResultsViewControllerDelega
     searchController.isActive = false
     
 //    searchController?.dismiss(animated: true, completion: {self.performSegue(withIdentifier: "unwindToPresentingVC", sender: self)})
-    searchController.dismiss(animated: true, completion: {self.delegate?.editLocationViewControllerDidUpdate(didSelect: place, for: self.date)})
+    searchController.dismiss(animated: true, completion: {self.delegate?.editLocationViewControllerDidUpdate(didSelect: place, for: self.dates)})
     }
     
     

@@ -88,7 +88,7 @@ class SettingsViewController: UITableViewController {
 }
 
 extension SettingsViewController: EditLocationViewControllerDelegate {
-    func editLocationViewControllerDidUpdate(didSelect newLocation: GMSPlace, for date: Date?) {
+    func editLocationViewControllerDidUpdate(didSelect newLocation: GMSPlace, for date: [Date]?) {
         navigationController?.popViewController(animated: true)
         stateController.changeDefaultLocation(didSelect: newLocation)
         defaultCityLabel.text = stateController.defaultLocation.locality
