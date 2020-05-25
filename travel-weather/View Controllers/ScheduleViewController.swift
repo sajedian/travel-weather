@@ -14,10 +14,16 @@ class ScheduleViewController: UIViewController {
     
     //MARK:- Properties
     var stateController: StateController!
+    let dateFormatter = DateFormatter()
+    
+    //month ranges of when calendar will start and end
     var startDate: Date?
     var endDate: Date?
-    let dateFormatter = DateFormatter()
+    
+    //first visible date on page not including dates from past month
     var firstVisibleDateInMonth: Date?
+    
+    //dates selected by user
     var firstSelectedDate: Date?
     var twoDatesSelected: Bool {
         return firstSelectedDate != nil && calendarView.selectedDates.count > 1
@@ -25,19 +31,23 @@ class ScheduleViewController: UIViewController {
     
     //MARK:- Outlets
     @IBOutlet weak var calendarView: JTAppleCalendarView!
-    @IBOutlet weak var monthLabel: UILabel!
-    @IBOutlet weak var dateLabel: UILabel!
-    @IBOutlet weak var cityLabel: UILabel!
-    @IBOutlet weak var instructionLabel: UILabel!
-    @IBOutlet weak var selectedDayView: UIView!
+    //stack view for day of the week header
     @IBOutlet weak var stackView: UIStackView!
+    @IBOutlet weak var monthLabel: UILabel!
     @IBOutlet var leftButton: UIButton!
     @IBOutlet var rightButton: UIButton!
+    
+    @IBOutlet weak var selectedDayView: UIView!
+    //outlets in selectedDayView
+    @IBOutlet weak var dateLabel: UILabel!
     @IBOutlet var indicatorView: UIImageView!
     
+    @IBOutlet var tableView: UITableView!
     
     //MARK:- Actions
+    //action for unwinding from EditLocationVC after location selection
     @IBAction func unwindToScheduleVC(segue: UIStoryboardSegue) {}
+    
     
     @IBAction func scrollRight() {
         var dateComponents = DateComponents()
@@ -45,6 +55,7 @@ class ScheduleViewController: UIViewController {
         let nextMonthDate = Calendar.current.date(byAdding: dateComponents, to: firstVisibleDateInMonth!)!
         calendarView.scrollToDate(nextMonthDate)
         leftButton.isHidden = false
+        //hide right button if at end of calendar
         if DateHelper.equalMonthAndYear(date1: nextMonthDate, date2: endDate!) {
             rightButton.isHidden = true
         }
@@ -57,10 +68,12 @@ class ScheduleViewController: UIViewController {
        let previousMonthDate = Calendar.current.date(byAdding: dateComponents, to: firstVisibleDateInMonth!)!
         calendarView.scrollToDate(previousMonthDate)
         rightButton.isHidden = false
+        //hide left button if at beginning of calendar
         if DateHelper.equalMonthAndYear(date1: previousMonthDate, date2: startDate!) {
             leftButton.isHidden = true
         }
     }
+    
     @IBAction func selectedDayViewTapped(_ sender: UITapGestureRecognizer) {
         if let editLocationVC = storyboard?.instantiateViewController(identifier: "editLocationVC") as? EditLocationViewController {
             editLocationVC.dates = calendarView.selectedDates
@@ -83,9 +96,6 @@ class ScheduleViewController: UIViewController {
         configureCalendarProperties()
         configureViewAppearance()
         resetSelectedDate()
-        
-        
-        
     }
     
     override func viewWillDisappear(_ animated: Bool) {
@@ -112,12 +122,14 @@ class ScheduleViewController: UIViewController {
         selectedDayView.backgroundColor = UIColor.charcoalGray
         selectedDayView.layer.shadowColor = UIColor.black.cgColor
         selectedDayView.layer.shadowOffset = CGSize(width: 0, height: 3)
-        selectedDayView.layer.shadowOpacity = 0.7
+        selectedDayView.layer.shadowOpacity = 0.4
         selectedDayView.layer.shadowRadius = 3
         navigationController?.navigationBar.setValue(true, forKey: "hidesShadow")
-        cityLabel.font = UIFont.systemFont(ofSize: 17)
         dateLabel.font = UIFont.systemFont(ofSize: 23)
         resetSelectedDate()
+        tableView.backgroundColor = .charcoalGrayLight
+        tableView.layer.cornerRadius = 15
+        tableView.layer.maskedCorners = [.layerMinXMaxYCorner, .layerMaxXMaxYCorner]
     }
     
     private func configureCalendarProperties() {
@@ -142,28 +154,24 @@ class ScheduleViewController: UIViewController {
     
     private func resetSelectedDate() {
         dateLabel.isHidden = true
-        cityLabel.isHidden = true
         indicatorView.isHidden = true
-        instructionLabel.isHidden = false
     }
     
     private func selectDate(date: Date) {
         if twoDatesSelected {
-            cityLabel.isHidden = true
             let firstDate = DateHelper.monthAndDayFromDate(from: firstSelectedDate!)
             let lastDate = DateHelper.monthAndDayFromDate(from: calendarView.selectedDates.last!)
             dateLabel.text = "\(firstDate) - \(lastDate)"
             
         } else {
-            cityLabel.isHidden = false
+
             dateLabel.text = DateHelper.monthAndDayFromDate(from: firstSelectedDate!)
-            cityLabel.text = stateController.getCityForDate(for: firstSelectedDate!)
+
     }
     
         
         dateLabel.isHidden = false
         indicatorView.isHidden = false
-        instructionLabel.isHidden = true
     }
     
     
