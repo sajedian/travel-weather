@@ -60,14 +60,10 @@ class StorageController {
         return container
     }()
     
-//    init() {
-//        let context = persistentContainer.viewContext
-//        if getDefaultLocation() == nil {
-//            createDefaultLocation()
-//        }
-//        saveContext()
-//    }
-
+    var context: NSManagedObjectContext {
+        return persistentContainer.viewContext
+    }
+    
     
      func saveContext() {
         let context = persistentContainer.viewContext
@@ -93,11 +89,8 @@ class StorageController {
             let days = try context.fetch(request)
             if days.isEmpty{
                 return nil
-            }
-            if let day = days[0] as? Day {
-                return day
             } else {
-                return nil
+                return days[0]
             }
         } catch let error as NSError {
             print("Could not fetch \(error) \(error.userInfo)")
@@ -219,13 +212,9 @@ class StorageController {
               let locations = try context.fetch(request)
               if locations.isEmpty {
                   return createDefaultLocation()
-              }
-              if let location = locations[0] as? Location{
-                  return location
               } else {
-                  return createDefaultLocation()
-              }
-            
+                return locations[0]
+            }
           } catch let error as NSError {
               print("Could not fetch default location \(error) \(error.userInfo)")
               return createDefaultLocation()

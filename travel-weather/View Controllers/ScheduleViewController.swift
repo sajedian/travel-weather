@@ -30,10 +30,10 @@ class ScheduleViewController: UIViewController {
     @IBOutlet weak var cityLabel: UILabel!
     @IBOutlet weak var instructionLabel: UILabel!
     @IBOutlet weak var selectedDayView: UIView!
-    @IBOutlet weak var editCityButton: UIButton!
     @IBOutlet weak var stackView: UIStackView!
     @IBOutlet var leftButton: UIButton!
     @IBOutlet var rightButton: UIButton!
+    @IBOutlet var indicatorView: UIImageView!
     
     
     //MARK:- Actions
@@ -59,6 +59,13 @@ class ScheduleViewController: UIViewController {
         rightButton.isHidden = false
         if DateHelper.equalMonthAndYear(date1: previousMonthDate, date2: startDate!) {
             leftButton.isHidden = true
+        }
+    }
+    @IBAction func selectedDayViewTapped(_ sender: UITapGestureRecognizer) {
+        if let editLocationVC = storyboard?.instantiateViewController(identifier: "editLocationVC") as? EditLocationViewController {
+            editLocationVC.dates = calendarView.selectedDates
+            editLocationVC.delegate = self
+            navigationController?.pushViewController(editLocationVC, animated: true)
         }
     }
     
@@ -136,7 +143,7 @@ class ScheduleViewController: UIViewController {
     private func resetSelectedDate() {
         dateLabel.isHidden = true
         cityLabel.isHidden = true
-        editCityButton.isHidden = true
+        indicatorView.isHidden = true
         instructionLabel.isHidden = false
     }
     
@@ -151,14 +158,11 @@ class ScheduleViewController: UIViewController {
             cityLabel.isHidden = false
             dateLabel.text = DateHelper.monthAndDayFromDate(from: firstSelectedDate!)
             cityLabel.text = stateController.getCityForDate(for: firstSelectedDate!)
-        editCityButton.isHidden = false
-        dateLabel.isHidden = false
-        instructionLabel.isHidden = true
     }
     
         
         dateLabel.isHidden = false
-        editCityButton.isHidden = false
+        indicatorView.isHidden = false
         instructionLabel.isHidden = true
     }
     
