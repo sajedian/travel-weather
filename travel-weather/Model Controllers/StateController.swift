@@ -142,6 +142,13 @@ class StateController: NetworkControllerDelegate {
         }
     }
     
+    //should refactor this to do updates locations in batch rather than passing to updateOrCreateDay
+    func updateOrCreateDays(didSelect newLocation: GMSPlace, for dates: [Date]) {
+        for date in dates {
+            updateOrCreateDay(didSelect: newLocation, for: date)
+        }
+    }
+    
     func changeDefaultLocation(didSelect newLocation: GMSPlace) {
         storageController.setDefaultLocation(place: newLocation)
         let defaultDays = days.filter { $0.value.locationWasSet == false }

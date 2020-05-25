@@ -6,6 +6,7 @@
 //  Copyright © 2020 Renee Sajedian. All rights reserved.
 //
 
+
 import JTAppleCalendar
 import UIKit
 class DateCell: JTAppleCell {
@@ -32,8 +33,37 @@ class DateCell: JTAppleCell {
         ])
         selectedView.layer.cornerRadius = (contentView.frame.size.width - 20) / 2.0
         selectedView.backgroundColor = UIColor(red: 1, green: 1, blue: 1, alpha: 0.5)
+        contentView.sendSubviewToBack(selectedView)
         
     }
+    
+    func selectedViewLeft() {
+        selectedTrailingConstraint.constant = 0
+        selectedLeadingConstraint.constant = 10
+        selectedView.layer.maskedCorners = [.layerMinXMaxYCorner, .layerMinXMinYCorner]
+    }
+    
+    func selectedViewRight() {
+        selectedLeadingConstraint.constant = 0
+        selectedTrailingConstraint.constant = -10
+        
+        selectedView.layer.maskedCorners = [.layerMaxXMaxYCorner, .layerMaxXMinYCorner]
+
+    }
+    
+    func selectedViewMiddle() {
+        selectedLeadingConstraint.constant = 0
+        selectedTrailingConstraint.constant = 0
+        selectedView.layer.maskedCorners = []
+        
+    }
+    
+    func selectedViewFull() {
+        selectedLeadingConstraint.constant = 10
+        selectedTrailingConstraint.constant = -10
+        selectedView.layer.maskedCorners = [.layerMaxXMaxYCorner, .layerMaxXMinYCorner, .layerMinXMaxYCorner, .layerMinXMinYCorner]
+    }
+
     
     override func awakeFromNib() {
         super.awakeFromNib()
