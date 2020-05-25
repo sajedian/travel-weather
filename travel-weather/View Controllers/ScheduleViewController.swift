@@ -77,6 +77,8 @@ class ScheduleViewController: UIViewController {
         configureViewAppearance()
         resetSelectedDate()
         
+        
+        
     }
     
     override func viewWillDisappear(_ animated: Bool) {
@@ -149,7 +151,11 @@ class ScheduleViewController: UIViewController {
             cityLabel.isHidden = false
             dateLabel.text = DateHelper.monthAndDayFromDate(from: firstSelectedDate!)
             cityLabel.text = stateController.getCityForDate(for: firstSelectedDate!)
-        }
+        editCityButton.isHidden = false
+        dateLabel.isHidden = false
+        instructionLabel.isHidden = true
+    }
+    
         
         dateLabel.isHidden = false
         editCityButton.isHidden = false
@@ -218,7 +224,6 @@ extension ScheduleViewController: JTAppleCalendarViewDataSource {
         } else {
             cell.selectedView.isHidden = true
         }
-        
 
         switch cellState.selectedPosition() {
         case .left:
@@ -231,6 +236,7 @@ extension ScheduleViewController: JTAppleCalendarViewDataSource {
             cell.selectedViewFull()
         default: break
         }
+
         
     }
     
@@ -282,6 +288,7 @@ extension ScheduleViewController: JTAppleCalendarViewDelegate {
             firstSelectedDate = date
         }
         selectDate(date: date)
+
         configureCell(view: cell, cellState: cellState)
     }
 

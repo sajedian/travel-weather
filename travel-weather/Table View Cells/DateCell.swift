@@ -63,6 +63,7 @@ class DateCell: JTAppleCell {
         selectedTrailingConstraint.constant = -10
         selectedView.layer.maskedCorners = [.layerMaxXMaxYCorner, .layerMaxXMinYCorner, .layerMinXMaxYCorner, .layerMinXMinYCorner]
     }
+
     
     override func awakeFromNib() {
         super.awakeFromNib()
