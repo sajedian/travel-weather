@@ -112,6 +112,13 @@ class ScheduleViewController: UIViewController{
         tableView.reloadData()
     }
     
+//    override func viewDidAppear(_ animated: Bool) {
+//        super.viewDidAppear(animated)
+//        if firstSelectedDate != nil {
+//            onSelectDate()
+//        }
+//    }
+    
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
         self.navigationController?.setNavigationBarHidden(false, animated: animated)
@@ -137,7 +144,7 @@ class ScheduleViewController: UIViewController{
         selectedDayView.layer.cornerRadius = 15
         selectedDayView.backgroundColor = UIColor.charcoalGray
         selectedDayView.layer.shadowColor = UIColor.black.cgColor
-        selectedDayView.layer.shadowOffset = CGSize(width: 0, height: 3)
+        selectedDayView.layer.shadowOffset = CGSize(width: 0, height: 1.5)
         selectedDayView.layer.shadowOpacity = 0.4
         selectedDayView.layer.shadowRadius = 3
         navigationController?.navigationBar.setValue(true, forKey: "hidesShadow")
