@@ -20,5 +20,4 @@ public class ColorSetting: NSManagedObject {
     @NSManaged public var date: Date
     @NSManaged public var location: Location
     @NSManaged public var placeID: String
-
 }

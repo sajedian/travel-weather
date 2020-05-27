@@ -22,16 +22,16 @@ class WeatherListViewController: UITableViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-//        stateController.updateForecast()
         tableView.reloadData()
     }
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        tableView.clipsToBounds = false
         let cellNib = UINib(nibName: "DayCell", bundle: nil)
         tableView.register(cellNib, forCellReuseIdentifier: "DayCell")
         tableView.reloadData()
-        tableView.clipsToBounds = false
+        
     }
     
     func configureCell(day: Day, cell: DayCell) {
