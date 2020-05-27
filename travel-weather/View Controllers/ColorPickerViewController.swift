@@ -13,31 +13,53 @@ import UIKit
 
 class ColorPickerViewController: UIViewController {
     
+    //MARK:- Properties
+    
     var colorButtons = [UIButton]()
     var stateController: StateController!
     var selectedSetting: ColorSettingType!
+    
+    //MARK:- Actions
+       @IBAction func cancel() {
+           self.performSegue(withIdentifier: "unwindToColorSettingsVC", sender: self)
+       }
+       
+       @IBAction func updateColor(_ sender: UIButton) {
+           stateController.updateAssociatedColor(color: sender.backgroundColor!, for: selectedSetting)
+           performSegue(withIdentifier: "unwindToColorSettingsVC", sender: sender)
+       }
    
+    
     override func loadView() {
+        super.loadView()
         view = UIView()
         view.backgroundColor = .systemGray6
-        
-        
-        
         let buttonsView = UIView()
         buttonsView.translatesAutoresizingMaskIntoConstraints = false
         view.addSubview(buttonsView)
-        
         NSLayoutConstraint.activate([
             buttonsView.heightAnchor.constraint(equalToConstant: 320),
             buttonsView.topAnchor.constraint(equalTo: view.layoutMarginsGuide.topAnchor),
             buttonsView.centerXAnchor.constraint(equalTo: view.centerXAnchor),
             buttonsView.widthAnchor.constraint(equalToConstant: 360)
         ])
-        let colors = [UIColor.mutedPink, UIColor.darkRed, UIColor.charcoalGray, UIColor.darkGreen, UIColor.midnightBlue, UIColor.darkYellow, UIColor.darkOrange, UIColor.lightBlue, UIColor.darkPurple]
+        createButtons(buttonsView: buttonsView)
         
+    }
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        navigationItem.leftBarButtonItem = UIBarButtonItem(image: UIImage(systemName: "arrow.left"), style: .plain, target: self, action: #selector(cancel))
+    }
+    
+   
+    func createButtons(buttonsView: UIView) {
+        let colors = [UIColor.mutedPink, UIColor.darkRed, UIColor.charcoalGray, UIColor.darkGreen, UIColor.midnightBlue, UIColor.darkYellow, UIColor.darkOrange, UIColor.lightBlue, UIColor.darkPurple]
         
         let colorButtonWidth = CGFloat(50)
         var buttonConstraints = [NSLayoutConstraint]()
+    
+        //arranges buttons in a 4x2 grid, giving each a different color
         for row in 0..<2 {
             for col in 0..<4 {
                 let index = row * 3 + col
@@ -55,9 +77,6 @@ class ColorPickerViewController: UIViewController {
                 
                 
                 button.backgroundColor = colors[index]
-                
-//              let frame = CGRect(x: col * width, y: row * height, width: width, height: height)
-                
                 button.layer.cornerRadius = 25
                 buttonsView.addSubview(button)
 
@@ -67,37 +86,6 @@ class ColorPickerViewController: UIViewController {
         NSLayoutConstraint.activate(buttonConstraints)
     }
     
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        navigationItem.leftBarButtonItem = UIBarButtonItem(image: UIImage(systemName: "arrow.left"), style: .plain, target: self, action: #selector(cancel))
-        
-        
-    }
-    
-    //MARK:- Actions
-    @IBAction func cancel() {
-        self.performSegue(withIdentifier: "unwindToColorSettingsVC", sender: self)
-    }
-    
-    @IBAction func updateColor(_ sender: UIButton) {
-        stateController.updateAssociatedColor(color: sender.backgroundColor!, for: selectedSetting)
-        performSegue(withIdentifier: "unwindToColorSettingsVC", sender: sender)
-    }
     
   
-}
-
-
-extension UIImage {
-
-  func scaled(with scale: CGFloat) -> UIImage? {
-      // size has to be integer, otherwise it could get white lines
-      let size = CGSize(width: floor(self.size.width * scale), height: floor(self.size.height * scale))
-      UIGraphicsBeginImageContext(size)
-      draw(in: CGRect(x: 0, y: 0, width: size.width, height: size.height))
-      let image = UIGraphicsGetImageFromCurrentImageContext()
-      UIGraphicsEndImageContext()
-      return image
-  }
-
 }

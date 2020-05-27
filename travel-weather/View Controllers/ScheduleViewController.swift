@@ -9,12 +9,14 @@
 import UIKit
 import JTAppleCalendar
 import GooglePlaces
-class ScheduleViewController: UIViewController {
+
+class ScheduleViewController: UIViewController{
     
     
     //MARK:- Properties
     var stateController: StateController!
     let dateFormatter = DateFormatter()
+    var days = [Day]()
     
     //month ranges of when calendar will start and end
     var startDate: Date?
@@ -28,6 +30,7 @@ class ScheduleViewController: UIViewController {
     var twoDatesSelected: Bool {
         return firstSelectedDate != nil && calendarView.selectedDates.count > 1
     }
+    
     
     //MARK:- Outlets
     @IBOutlet weak var calendarView: JTAppleCalendarView!
@@ -75,8 +78,16 @@ class ScheduleViewController: UIViewController {
     }
     
     @IBAction func selectedDayViewTapped(_ sender: UITapGestureRecognizer) {
+        if firstSelectedDate == nil {
+            return
+        }
+        pushEditLocationVC(dates: calendarView.selectedDates)
+        
+    }
+    
+    func pushEditLocationVC(dates: [Date]) {
         if let editLocationVC = storyboard?.instantiateViewController(identifier: "editLocationVC") as? EditLocationViewController {
-            editLocationVC.dates = calendarView.selectedDates
+            editLocationVC.dates = dates
             editLocationVC.delegate = self
             navigationController?.pushViewController(editLocationVC, animated: true)
         }
@@ -86,8 +97,8 @@ class ScheduleViewController: UIViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         self.navigationController?.setNavigationBarHidden(true, animated: animated)
-        if let selectedDate = firstSelectedDate {
-            selectDate(date: selectedDate)
+        if firstSelectedDate != nil {
+            onSelectDate()
         }
     }
     
@@ -96,6 +107,9 @@ class ScheduleViewController: UIViewController {
         configureCalendarProperties()
         configureViewAppearance()
         resetSelectedDate()
+        tableView.dataSource = self
+        tableView.delegate = self
+        tableView.reloadData()
     }
     
     override func viewWillDisappear(_ animated: Bool) {
@@ -115,6 +129,8 @@ class ScheduleViewController: UIViewController {
     
     
     //MARK:- Helper Functions
+    
+
     private func configureViewAppearance() {
         view.backgroundColor = .charcoalGrayLight
         calendarView.backgroundColor = UIColor.charcoalGrayLight
@@ -155,9 +171,10 @@ class ScheduleViewController: UIViewController {
     private func resetSelectedDate() {
         dateLabel.isHidden = true
         indicatorView.isHidden = true
+        tableView.reloadData()
     }
     
-    private func selectDate(date: Date) {
+    private func onSelectDate() {
         if twoDatesSelected {
             let firstDate = DateHelper.monthAndDayFromDate(from: firstSelectedDate!)
             let lastDate = DateHelper.monthAndDayFromDate(from: calendarView.selectedDates.last!)
@@ -168,10 +185,9 @@ class ScheduleViewController: UIViewController {
             dateLabel.text = DateHelper.monthAndDayFromDate(from: firstSelectedDate!)
 
     }
-    
-        
         dateLabel.isHidden = false
         indicatorView.isHidden = false
+        tableView.reloadData()
     }
     
     
@@ -187,6 +203,36 @@ extension ScheduleViewController: EditLocationViewControllerDelegate {
             stateController.updateOrCreateDays(didSelect: newLocation, for: dates)
         }
         calendarView.reloadData()
+    }
+}
+
+extension ScheduleViewController: UITableViewDataSource {
+    
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return calendarView.selectedDates.count
+    }
+    
+    func numberOfSections(in tableView: UITableView) -> Int {
+        return 1
+    }
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCell(withIdentifier: "scheduleCell", for: indexPath)
+        let date = calendarView.selectedDates[indexPath.row]
+        let dateDisplay = DateHelper.monthAndDayFromDate(from: date)
+        let city = stateController.getCityForDate(for: date)
+        cell.textLabel?.text = "\(dateDisplay) - \(city)"
+        cell.backgroundColor = .charcoalGrayLight
+        cell.textLabel?.textColor = UIColor.white.withAlphaComponent(0.5)
+        return cell
+    }
+    
+}
+
+extension ScheduleViewController: UITableViewDelegate {
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        let date = calendarView.selectedDates[indexPath.row]
+        pushEditLocationVC(dates: [date])
     }
 }
 
@@ -299,7 +345,7 @@ extension ScheduleViewController: JTAppleCalendarViewDelegate {
         } else {
             firstSelectedDate = date
         }
-        selectDate(date: date)
+        onSelectDate()
 
         configureCell(view: cell, cellState: cellState)
     }

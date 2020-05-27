@@ -18,40 +18,63 @@ protocol StateControllerDelegate: class {
 
 class StateController: NetworkControllerDelegate {
     
+    //MARK:- Properties
+    private var networkController: NetworkController!
+    private var storageController: StorageController!
+    weak var delegate: StateControllerDelegate?
+    private var timer: Timer?
+    
+    //MARK:- App State
+    var colorSettingsArray = [ColorSetting]()
+    private var days = [Date:Day]()
+    var defaultLocation: Location {
+        return storageController.getDefaultLocation()
+    }
+    var temperatureUnits: TemperatureUnits {
+        return TemperatureUnits(rawValue: UserDefaults.standard.integer(forKey: "temperatureUnits")) ?? .fahrenheit
+    }
     
     
     init(networkController: NetworkController, storageController: StorageController) {
         self.networkController = networkController
         self.storageController = storageController
         networkController.delegate = self
-//        loadAndUpdateData()
         colorSettingsArray = storageController.getColorSettings()
         NotificationCenter.default.addObserver(self, selector: #selector(onTimeChange(_:)), name: UIApplication.significantTimeChangeNotification, object: nil)
     }
     
-    private var networkController: NetworkController!
-    private var storageController: StorageController!
-    weak var delegate: StateControllerDelegate?
-    private var timer: Timer?
-    
+    //notification will be received when midnight
     @ objc func onTimeChange(_ notification: Notification) {
-        print("Time Changed")
         loadAndUpdateData()
     }
     
-    //MARK:- App State
-    private var defaultColor = UIColor(red: 14/255, green: 12/255, blue: 114/255, alpha: 1.0)
-//    var colorAssociationsArray: [String] = ["Boston", "Crab Orchard", "Houston"]
-    var colorSettingsArray = [ColorSetting]()
-    private var days = [Date:Day]()
-    var defaultLocation: Location {
-        return storageController.getDefaultLocation()
+    //MARK:- NetworkControllerDelegate Functions
+    func didUpdateForecast() {
+          storageController.saveContext()
+          delegate?.didUpdateForecast()
+       }
+    
+    
+    //MARK:- Interface
+    
+    func loadAndUpdateData() {
+        
+        let dateThreeDaysAgo = DateHelper.dayFromToday(offset: -3)
+        days = days.filter { date, day in
+            return date >= dateThreeDaysAgo
+        }
+        for i in 0..<14 {
+            let date = DateHelper.dayFromToday(offset: i)
+            let day = getDayForDate(for: date)
+            days[date] = day
+        }
+        //deletes dates older than three days ago from database
+        storageController.deleteDaysBefore(date: dateThreeDaysAgo)
+        networkController.requestFullForecast(for: days)
+        
     }
     
-    var temperatureUnits: TemperatureUnits {
-        return TemperatureUnits(rawValue: UserDefaults.standard.integer(forKey: "temperatureUnits")) ?? .fahrenheit
-    }
-    //MARK:- Interface
+    //Timer for updating data
     func startUpdateTimer() {
         timer = Timer.scheduledTimer(timeInterval: 600, target: self, selector: #selector(fireTimer), userInfo: nil, repeats: true)
         timer?.tolerance = 10
@@ -60,19 +83,26 @@ class StateController: NetworkControllerDelegate {
     func stopUpdateTimer() {
         timer?.invalidate()
     }
-    @objc func fireTimer() {
+    @objc private func fireTimer() {
         print("Updating Data")
         loadAndUpdateData()
     }
+    
+    func updateForecast() {
+        networkController.requestFullForecast(for: days)
+    }
+    
+    
+    
+    //MARK:- Color Interface
     func getAssociatedColor(for placeID: String) -> UIColor {
         if let colorHex = storageController.getColorSetting(for: placeID)?.colorHex {
             return UIColor(hex: colorHex)!
         }
-        else
-        if let defaultColor = UIColor(hex: UserDefaults.standard.string(forKey: "defaultColor")!) {
+        else if let defaultColor = UIColor(hex: UserDefaults.standard.string(forKey: "defaultColor")!) {
             return defaultColor
         } else {
-            return self.defaultColor
+            return .charcoalGray
         }
     }
     
@@ -103,9 +133,8 @@ class StateController: NetworkControllerDelegate {
         storageController.deleteColorSetting(colorSetting: colorSetting)
     }
     
-    func updateForecast() {
-        networkController.requestFullForecast(for: days)
-    }
+    //MARK:- Day Interface
+    
 
     func getDayForDate(for date: Date) -> Day {
         if let day = days[date] {
@@ -127,6 +156,10 @@ class StateController: NetworkControllerDelegate {
         }
     }
     
+//    func getDaysForDates(for dates: [Date]) -> [String]{
+//    
+//    }
+//    
     func locationWasSet(for date: Date) -> Bool {
         if let day = storageController.getDayForDate(for: date) {
             return day.locationWasSet
@@ -141,6 +174,7 @@ class StateController: NetworkControllerDelegate {
             networkController.requestDayForecast(for: day)
         }
     }
+
     
     //should refactor this to do updates locations in batch rather than passing to updateOrCreateDay
     func updateOrCreateDays(didSelect newLocation: GMSPlace, for dates: [Date]) {
@@ -154,79 +188,9 @@ class StateController: NetworkControllerDelegate {
         let defaultDays = days.filter { $0.value.locationWasSet == false }
         storageController.updateDefaultDays(days: defaultDays)
         networkController.requestFullForecast(for: defaultDays)
-        
     }
         
     
-    
-    
-
-    
-    
-    //MARK:- NetworkControllerDelegate Functions
-    func didUpdateForecast() {
-//        for (date, day) in days {
-//             print("date: ", day.date, "location: ", day.location.locality, "highTemp: ", day.highTemp)
-//        }
-          storageController.saveContext()
-          delegate?.didUpdateForecast()
-          
-       }
-    
-    
-    
-    
-    //-----------------------------------------------------------------------
-    //MARK:- Placeholder Data
-    
-    func dateFromString(str: String) -> Date {
-        let dateFormatter = DateFormatter()
-        dateFormatter.dateFormat = "yyyy MM dd"
-        return dateFormatter.date(from: str)!
-    }
-    
-    func loadAndUpdateData() {
-        let dateThreeDaysAgo = DateHelper.dayFromToday(offset: -3)
-        days = days.filter { date, day in
-            return date >= dateThreeDaysAgo
-        }
-        
-        for i in 0..<14 {
-            let date = DateHelper.dayFromToday(offset: i)
-            let day = getDayForDate(for: date)
-//            print("date: ", day.date, "location: ", day.location.locality, "highTemp: ", day.highTemp)
-            days[date] = day
-        }
-        storageController.deleteDaysBefore(date: dateThreeDaysAgo)
-        networkController.requestFullForecast(for: days)
-        
-    }
-
-    //placeholder associations
-   var colorAssociations: [String: UIColor] = [
-        "Houston": UIColor(red: 53/255, green: 133/255, blue: 168/255, alpha: 1.0),
-        "Chicago": UIColor(red: 113/255, green: 62/255, blue: 224/255, alpha: 1.0),
-        "Minneapolis": UIColor(red: 204/255, green: 57/255, blue: 186/255, alpha: 1.0),
-        "Rancho Santa Margarita": UIColor(red: 71/255, green: 98/255, blue: 255/255, alpha: 1.0),
-        "Philadelphia": UIColor(red: 237/255, green: 177/255, blue: 66/255, alpha: 1.0),
-        "Boston": .charcoalGray,
-        "New York": UIColor(red: 211/255, green: 88/255, blue: 84/255, alpha: 1.0),
-        "Crab Orchard": .mutedPink
-    ]
-    
-    
-    
-    //placeholder latLong dictionary
-    // will later be created by looking up
-    var latLongs: [String: (Double, Double)] = [
-        "Houston": (29.760427, -95.369804),
-        "Chicago": (41.883228, -87.632401),
-        "Minneapolis": (44.977753, -93.265015),
-        "Rancho Santa Margarita": (33.640670, -117.594550),
-        "Philadelphia": (39.951061, -75.165619),
-        "Boston": (42.35843, -71.05977),
-        "New York": (40.7128, -74.0060)
-    ]
 }
 
 

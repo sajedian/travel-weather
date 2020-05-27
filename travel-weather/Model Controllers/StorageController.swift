@@ -186,6 +186,7 @@ class StorageController {
         }
     }
     
+    
     //creates default location of NYC, could be useful for first launch of app
     private func createDefaultLocation() -> Location {
         let context = persistentContainer.viewContext
