@@ -42,9 +42,9 @@ class ScheduleViewController: UIViewController{
     
     @IBOutlet weak var selectedDayView: UIView!
     //outlets in selectedDayView
-    @IBOutlet weak var dateLabel: UILabel!
+    @IBOutlet weak var dateRangeLabel: UILabel!
     @IBOutlet var indicatorView: UIImageView!
-    
+    @IBOutlet var dateRangeView: UIView!
     @IBOutlet var tableView: UITableView!
     
     //MARK:- Actions
@@ -141,11 +141,12 @@ class ScheduleViewController: UIViewController{
         selectedDayView.layer.shadowOpacity = 0.4
         selectedDayView.layer.shadowRadius = 3
         navigationController?.navigationBar.setValue(true, forKey: "hidesShadow")
-        dateLabel.font = UIFont.systemFont(ofSize: 23)
         resetSelectedDate()
         tableView.backgroundColor = .charcoalGrayLight
         tableView.layer.cornerRadius = 15
         tableView.layer.maskedCorners = [.layerMinXMaxYCorner, .layerMaxXMaxYCorner]
+        dateRangeView.layer.cornerRadius = 15
+        dateRangeView.layer.maskedCorners = [.layerMinXMinYCorner, .layerMaxXMinYCorner]
     }
     
     private func configureCalendarProperties() {
@@ -169,23 +170,21 @@ class ScheduleViewController: UIViewController{
     }
     
     private func resetSelectedDate() {
-        dateLabel.isHidden = true
+        dateRangeLabel.isHidden = true
         indicatorView.isHidden = true
         tableView.reloadData()
     }
     
     private func onSelectDate() {
         if twoDatesSelected {
-            let firstDate = DateHelper.monthAndDayFromDate(from: firstSelectedDate!)
-            let lastDate = DateHelper.monthAndDayFromDate(from: calendarView.selectedDates.last!)
-            dateLabel.text = "\(firstDate) - \(lastDate)"
+            dateRangeLabel.text = DateHelper.formatDateRange(date1: firstSelectedDate!, date2: calendarView.selectedDates.last!)
+            
             
         } else {
-
-            dateLabel.text = DateHelper.monthAndDayFromDate(from: firstSelectedDate!)
+            dateRangeLabel.text = DateHelper.monthAndDayFromDate(from: firstSelectedDate!)
 
     }
-        dateLabel.isHidden = false
+        dateRangeLabel.isHidden = false
         indicatorView.isHidden = false
         tableView.reloadData()
     }
@@ -219,11 +218,11 @@ extension ScheduleViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "scheduleCell", for: indexPath)
         let date = calendarView.selectedDates[indexPath.row]
-        let dateDisplay = DateHelper.monthAndDayFromDate(from: date)
+        let dateDisplay = DateHelper.shortDateFormat(date: date)
         let city = stateController.getCityForDate(for: date)
         cell.textLabel?.text = "\(dateDisplay) - \(city)"
         cell.backgroundColor = .charcoalGrayLight
-        cell.textLabel?.textColor = UIColor.white.withAlphaComponent(0.5)
+        cell.textLabel?.textColor = UIColor.white.withAlphaComponent(0.65)
         return cell
     }
     

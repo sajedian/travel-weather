@@ -34,12 +34,10 @@ class EditLocationViewController: UIViewController{
         super.viewDidLoad()
         
         if !dates.isEmpty {
-            let first = DateHelper.monthAndDayFromDate(from: dates.first!)
             if dates.count > 1 {
-                let last = DateHelper.monthAndDayFromDate(from: dates.last!)
-                title = "\(first) - \(last)"
+                title = DateHelper.formatDateRange(date1: dates.first!, date2: dates.last!)
             } else {
-                title = first
+                title = DateHelper.monthAndDayFromDate(from: dates.first!)
             }
         }
        

@@ -204,7 +204,6 @@
 				9E63366C23D5422400468158 /* AppDelegate.swift */,
 				9E63367A23D5422700468158 /* Info.plist */,
 				9EFB9B13242019700042776D /* TravelWeather.xcdatamodeld */,
-				9E6FD5CC245B54DC00D42DF8 /* ColorSettingsCell.swift */,
 				9E925F8A2474986B005A9D74 /* Constants.swift */,
 			);
 			path = Resources;
@@ -215,6 +214,7 @@
 			children = (
 				9E63368423D624ED00468158 /* DayCell.swift */,
 				9EB43D4423EF3A0B00933D21 /* DateCell.swift */,
+				9E6FD5CC245B54DC00D42DF8 /* ColorSettingsCell.swift */,
 			);
 			path = "Table View Cells";
 			sourceTree = "<group>";
