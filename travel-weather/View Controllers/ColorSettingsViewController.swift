@@ -83,11 +83,42 @@ class ColorSettingsViewController: UITableViewController {
     
     override func tableView(_ tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
         if section == 1 {
-            return 1
+            return 25
         } else {
-            return 20
+            return 35
         }
     }
+    
+        override func tableView(_ tableView: UITableView, viewForFooterInSection section: Int) -> UIView? {
+
+            let myLabel = UILabel()
+            myLabel.frame = CGRect(x: 20, y: 8, width: 320, height: 20)
+            
+            myLabel.font = UIFont.preferredFont(forTextStyle: .caption1)
+            myLabel.textColor = UIColor.systemGray
+            myLabel.text = self.tableView(tableView, titleForFooterInSection: section)
+
+            let footerView = UIView()
+    //        footerView.backgroundColor = UIColor.lightGray
+            footerView.addSubview(myLabel)
+
+            return footerView
+        }
+        
+        // Create a standard footer that includes the returned text.
+        override func tableView(_ tableView: UITableView, titleForFooterInSection
+                                    section: Int) -> String? {
+            
+            switch section {
+            case 0:
+                return "Set default color for Forecast display"
+            case 1:
+                return "Add a corresponding color for a location"
+            default:
+                return nil
+            }
+
+        }
     
     override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
         if editingStyle == .delete {

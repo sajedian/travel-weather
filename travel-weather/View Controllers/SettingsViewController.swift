@@ -21,9 +21,7 @@ class SettingsViewController: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         navigationController?.navigationBar.isTranslucent = false
-        navigationController?.navigationBar.setValue(true, forKey: "hidesShadow")
         defaultCityLabel.text = stateController.defaultLocation.locality
-        
         if UserDefaults.standard.integer(forKey: "temperatureUnits") == TemperatureUnits.celsius.rawValue {
             temperatureUnitControl.selectedSegmentIndex = 0
         } else {
@@ -45,7 +43,7 @@ class SettingsViewController: UITableViewController {
     }
     
     
-  override func tableView(_ tableView: UITableView, viewForFooterInSection section: Int) -> UIView? {
+    override func tableView(_ tableView: UITableView, viewForFooterInSection section: Int) -> UIView? {
 
         let myLabel = UILabel()
         myLabel.frame = CGRect(x: 20, y: 8, width: 320, height: 20)
@@ -64,18 +62,23 @@ class SettingsViewController: UITableViewController {
     // Create a standard footer that includes the returned text.
     override func tableView(_ tableView: UITableView, titleForFooterInSection
                                 section: Int) -> String? {
-        if section == 0 {
-           return "Set location where you'll be most often"
-        } else {
+        
+        switch section {
+        case 0:
+            return "Set location where you'll be most often"
+        case 1:
+            return "Set colors for Forecast display"
+        default:
             return nil
         }
+
     }
     
     //MARK:- Navigation
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "editDefaultLocation" {
             let controller = segue.destination as! EditLocationViewController
-            controller.title = "Set Default Location"
+            controller.title = "Set Home Location"
             controller.delegate = self
         }
         else if segue.identifier == "colorSettings" {
