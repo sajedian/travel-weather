@@ -21,7 +21,7 @@ class SettingsViewController: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         navigationController?.navigationBar.isTranslucent = false
-        defaultCityLabel.text = stateController.defaultLocation.locality
+        defaultCityLabel.text = stateController.defaultLocation.display
         if UserDefaults.standard.integer(forKey: "temperatureUnits") == TemperatureUnits.celsius.rawValue {
             temperatureUnitControl.selectedSegmentIndex = 0
         } else {
@@ -94,6 +94,6 @@ extension SettingsViewController: EditLocationViewControllerDelegate {
     func editLocationViewControllerDidUpdate(didSelect newLocation: GMSPlace, for date: [Date]?) {
         navigationController?.popViewController(animated: true)
         stateController.changeDefaultLocation(didSelect: newLocation)
-        defaultCityLabel.text = stateController.defaultLocation.locality
+        defaultCityLabel.text = stateController.defaultLocation.display
     }
 }

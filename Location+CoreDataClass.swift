@@ -52,5 +52,28 @@ public class Location: NSManagedObject {
      @NSManaged public var state: String?
      @NSManaged public var defaultLocation: Bool
      @NSManaged public var colorSetting: ColorSetting?
+    
+    var display: String {
+        if let countryName = country {
+            switch countryName {
+            case "United States":
+               if let shortStateName = shortState {
+                    return "\(locality), \(shortStateName), US"
+                } else {
+                    return "\(locality), US"
+                }
+            case "Canada", "Mexico", "Australia":
+                if let shortStateName = shortState {
+                    return "\(locality), \(shortStateName), \(countryName)"
+                } else {
+                    return "\(locality), \(countryName)"
+                }
+            default:
+                return "\(locality), \(countryName)"
+            }
+        } else {
+            return locality
+        }
+    }
 
 }

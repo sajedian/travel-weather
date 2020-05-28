@@ -98,6 +98,8 @@ public class Day: NSManagedObject {
                 return "--- ⏐ ---"
             }
         }
+    
+        
         
     var highTempDisplay: String {
         var displayTemp = ""

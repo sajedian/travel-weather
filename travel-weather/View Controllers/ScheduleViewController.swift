@@ -216,8 +216,8 @@ extension ScheduleViewController: UITableViewDataSource {
         let cell = tableView.dequeueReusableCell(withIdentifier: "scheduleCell", for: indexPath)
         let date = calendarView.selectedDates[indexPath.row]
         let dateDisplay = DateHelper.shortDateFormat(date: date)
-        let city = stateController.getCityForDate(for: date)
-        cell.textLabel?.text = "\(dateDisplay) - \(city)"
+        let locationDisplay = stateController.getLocationDisplay(for: date)
+        cell.textLabel?.text = "\(dateDisplay) - \(locationDisplay)"
         cell.backgroundColor = .charcoalGrayLight
         cell.textLabel?.textColor = UIColor.white.withAlphaComponent(0.65)
         return cell

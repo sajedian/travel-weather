@@ -69,10 +69,9 @@ class ColorSettingsViewController: UITableViewController {
         case (2, _):
             let cell = tableView.dequeueReusableCell(withIdentifier: "colorSettingsCell", for: indexPath)
             let index = indexPath.row
-            let city = stateController.colorSettingsArray[index].location.locality
-            let state = stateController.colorSettingsArray[index].location.shortState ?? ""
+            let location = stateController.colorSettingsArray[index].location
             let hexColor = stateController.colorSettingsArray[index].colorHex
-            cell.textLabel?.text = city + ", " + state
+            cell.textLabel?.text = location.display
             cell.imageView?.tintColor = UIColor(hex: hexColor)
             return cell
         default:
