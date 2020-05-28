@@ -37,33 +37,20 @@
                                 <color key="textColor" red="1" green="1" blue="1" alpha="0.92786815068493156" colorSpace="custom" customColorSpace="sRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="oke-aI-cMF">
-                                <rect key="frame" x="0.0" y="0.0" width="162" height="98"/>
-                                <subviews>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Wednesday    " textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Ztn-SC-cd7" userLabel="Weekday Label">
-                                        <rect key="frame" x="20" y="25" width="133" height="27"/>
-                                        <fontDescription key="fontDescription" style="UICTFontTextStyleTitle2"/>
-                                        <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                        <nil key="highlightedColor"/>
-                                    </label>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Philadelphia" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="n1z-i9-yO5">
-                                        <rect key="frame" x="20" y="52.5" width="93" height="20.5"/>
-                                        <fontDescription key="fontDescription" style="UICTFontTextStyleBody"/>
-                                        <color key="textColor" white="1" alpha="0.74720676369863015" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                        <nil key="highlightedColor"/>
-                                    </label>
-                                </subviews>
-                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                <constraints>
-                                    <constraint firstAttribute="bottom" secondItem="n1z-i9-yO5" secondAttribute="bottom" constant="25" id="2q4-El-1yR"/>
-                                    <constraint firstAttribute="trailing" secondItem="n1z-i9-yO5" secondAttribute="trailing" constant="49" id="83S-Hf-whU"/>
-                                    <constraint firstItem="Ztn-SC-cd7" firstAttribute="top" secondItem="oke-aI-cMF" secondAttribute="top" constant="25" id="Csf-Di-Ey0"/>
-                                    <constraint firstItem="Ztn-SC-cd7" firstAttribute="leading" secondItem="oke-aI-cMF" secondAttribute="leading" constant="20" id="df8-2Q-N43"/>
-                                    <constraint firstItem="n1z-i9-yO5" firstAttribute="leading" secondItem="oke-aI-cMF" secondAttribute="leading" constant="20" id="jh2-Bj-DWo"/>
-                                </constraints>
-                            </view>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Wednesday    " textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Ztn-SC-cd7" userLabel="Weekday Label">
+                                <rect key="frame" x="20" y="25" width="133" height="27"/>
+                                <fontDescription key="fontDescription" style="UICTFontTextStyleTitle2"/>
+                                <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" horizontalCompressionResistancePriority="250" text="Philadelphia" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="n1z-i9-yO5">
+                                <rect key="frame" x="20" y="52" width="93" height="21"/>
+                                <fontDescription key="fontDescription" style="UICTFontTextStyleBody"/>
+                                <color key="textColor" white="1" alpha="0.74720676369863015" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="5/24" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ij7-6g-6Um">
-                                <rect key="frame" x="163" y="25.5" width="47" height="26.5"/>
+                                <rect key="frame" x="160" y="25.5" width="47" height="26.5"/>
                                 <fontDescription key="fontDescription" style="UICTFontTextStyleTitle2"/>
                                 <color key="textColor" white="1" alpha="0.74720676370000005" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <nil key="highlightedColor"/>
@@ -71,18 +58,19 @@
                         </subviews>
                         <color key="backgroundColor" red="0.66666668650000005" green="0.26320867450000002" blue="0.54099462499999995" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                         <constraints>
-                            <constraint firstItem="oke-aI-cMF" firstAttribute="leading" secondItem="79x-Co-3mD" secondAttribute="leading" id="286-XC-OHf"/>
-                            <constraint firstItem="oke-aI-cMF" firstAttribute="top" secondItem="79x-Co-3mD" secondAttribute="top" id="5UX-Ha-UpI"/>
-                            <constraint firstItem="ij7-6g-6Um" firstAttribute="leading" secondItem="Ztn-SC-cd7" secondAttribute="trailing" constant="10" id="7eq-Zh-DFV"/>
-                            <constraint firstItem="oke-aI-cMF" firstAttribute="top" secondItem="79x-Co-3mD" secondAttribute="top" id="9bi-DN-gxJ"/>
-                            <constraint firstAttribute="bottom" secondItem="oke-aI-cMF" secondAttribute="bottom" id="D8J-qF-LaJ"/>
+                            <constraint firstItem="Ztn-SC-cd7" firstAttribute="top" secondItem="79x-Co-3mD" secondAttribute="top" constant="25" id="184-Ta-8yT"/>
+                            <constraint firstItem="n1z-i9-yO5" firstAttribute="leading" secondItem="79x-Co-3mD" secondAttribute="leading" constant="20" id="1m9-s3-tL2"/>
                             <constraint firstAttribute="height" constant="98" id="EEe-5q-W00"/>
+                            <constraint firstAttribute="bottom" secondItem="n1z-i9-yO5" secondAttribute="bottom" constant="25" id="Ghi-Xi-RT5"/>
+                            <constraint firstItem="ij7-6g-6Um" firstAttribute="centerY" secondItem="Ztn-SC-cd7" secondAttribute="centerY" id="KEr-1B-YIY"/>
+                            <constraint firstItem="cVo-NX-WKK" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="n1z-i9-yO5" secondAttribute="trailing" constant="17" id="MuP-ny-NNJ"/>
                             <constraint firstItem="xCc-xL-v7z" firstAttribute="leading" secondItem="lhn-7u-5jg" secondAttribute="trailing" constant="22" id="Ni4-Fx-Nb2"/>
                             <constraint firstAttribute="bottom" secondItem="cVo-NX-WKK" secondAttribute="bottom" constant="22" id="Nip-CC-zeP"/>
                             <constraint firstAttribute="trailing" secondItem="xCc-xL-v7z" secondAttribute="trailing" constant="13" id="Zvl-q6-Agh"/>
-                            <constraint firstItem="xCc-xL-v7z" firstAttribute="leading" secondItem="cVo-NX-WKK" secondAttribute="trailing" constant="22" id="fHx-DW-ooN"/>
+                            <constraint firstItem="cVo-NX-WKK" firstAttribute="trailing" secondItem="lhn-7u-5jg" secondAttribute="trailing" id="asI-Rp-WMd"/>
+                            <constraint firstItem="ij7-6g-6Um" firstAttribute="leading" secondItem="Ztn-SC-cd7" secondAttribute="trailing" constant="7" id="h09-Um-Ecy"/>
                             <constraint firstItem="lhn-7u-5jg" firstAttribute="top" secondItem="79x-Co-3mD" secondAttribute="top" constant="22" id="kFs-we-iYu"/>
-                            <constraint firstItem="ij7-6g-6Um" firstAttribute="bottom" secondItem="Ztn-SC-cd7" secondAttribute="bottom" id="tPr-W0-a3k"/>
+                            <constraint firstItem="Ztn-SC-cd7" firstAttribute="leading" secondItem="79x-Co-3mD" secondAttribute="leading" constant="20" id="rlH-gi-69l"/>
                             <constraint firstAttribute="bottom" secondItem="xCc-xL-v7z" secondAttribute="bottom" constant="13" id="xc3-RS-dh3"/>
                             <constraint firstItem="xCc-xL-v7z" firstAttribute="top" secondItem="79x-Co-3mD" secondAttribute="top" constant="13" id="zg2-Vh-Fzu"/>
                         </constraints>
