@@ -18,6 +18,13 @@ class DateCell: JTAppleCell {
     var selectedLeadingConstraint: NSLayoutConstraint!
     var selectedTrailingConstraint: NSLayoutConstraint!
     
+    override func awakeFromNib() {
+        super.awakeFromNib()
+        createSelectedView()
+        dotView.backgroundColor = .darkYellow
+        strikeThroughView.backgroundColor = UIColor(red: 1, green: 1, blue: 1, alpha: 0.5)
+    }
+    
     func createSelectedView() {
         selectedView = UIView()
         selectedView.translatesAutoresizingMaskIntoConstraints = false
@@ -65,11 +72,6 @@ class DateCell: JTAppleCell {
     }
 
     
-    override func awakeFromNib() {
-        super.awakeFromNib()
-        createSelectedView()
-        dotView.backgroundColor = .darkYellow
-        strikeThroughView.backgroundColor = UIColor(red: 1, green: 1, blue: 1, alpha: 0.5)
-    }
+    
     
 }
