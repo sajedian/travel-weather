@@ -168,7 +168,7 @@ class ScheduleViewController: UIViewController{
     }
     
     private func resetSelectedDate() {
-        dateRangeLabel.isHidden = true
+        dateRangeLabel.text = "Select dates to view/edit location"
         indicatorView.isHidden = true
         tableView.reloadData()
     }
