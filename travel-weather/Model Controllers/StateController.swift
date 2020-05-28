@@ -21,12 +21,12 @@ class StateController: NetworkControllerDelegate {
     //MARK:- Properties
     private var networkController: NetworkController!
     private var storageController: StorageController!
-    weak var delegate: StateControllerDelegate?
+    weak var weatherListDelegate: StateControllerDelegate?
     private var timer: Timer?
     
-    //MARK:- App State
-    var colorSettingsArray = [ColorSetting]()
+    //MARK:- App State in Memory
     private var days = [Date:Day]()
+    var colorSettingsArray = [ColorSetting]()
     var defaultLocation: Location {
         return storageController.getDefaultLocation()
     }
@@ -34,30 +34,35 @@ class StateController: NetworkControllerDelegate {
         return TemperatureUnits(rawValue: UserDefaults.standard.integer(forKey: "temperatureUnits")) ?? .fahrenheit
     }
     
-    
+    //MARK:- Initialization
     init() {
         self.networkController = NetworkController()
         self.storageController = StorageController()
         networkController.delegate = self
         colorSettingsArray = storageController.getColorSettings()
         //listens for notification when time is midnight (or other important change ie Daylight Savings)
-        NotificationCenter.default.addObserver(self, selector: #selector(onTimeChange(_:)), name: UIApplication.significantTimeChangeNotification, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(onTimeChange(_:)),
+                                               name: UIApplication.significantTimeChangeNotification, object: nil)
     }
     
-    //notification will be received when midnight
-    @ objc func onTimeChange(_ notification: Notification) {
-        loadAndUpdateData()
-        clearOldData()
-    }
+   
     
     //MARK:- NetworkControllerDelegate Functions
+    //when the network controller has finished updating, save data
+    // and reload forecast information in WeatherListVC
     func didUpdateForecast() {
           storageController.saveContext()
-          delegate?.didUpdateForecast()
+          weatherListDelegate?.didUpdateForecast()
        }
     
     
-    //MARK:- Interface
+    //MARK:- Updating Forecast Data
+    
+    //notification will be received when midnight or other important time change
+       @ objc func onTimeChange(_ notification: Notification) {
+           loadAndUpdateData()
+           clearOldData()
+       }
     
     func clearOldData() {
         //removes days older than three days ago from memory
@@ -69,32 +74,34 @@ class StateController: NetworkControllerDelegate {
         storageController.deleteDaysBefore(date: dateThreeDaysAgo)
     }
     
-    func loadAndUpdateData() {
+    //load next two weeks of information into memory
+    //make sure forecast data is up to date
+    @objc func loadAndUpdateData() {
         for i in 0..<14 {
             let date = DateHelper.dayFromToday(offset: i)
             let day = getDayForDate(for: date)
             days[date] = day
         }
-        networkController.requestFullForecast(for: days)
-    }
-    
-    //Timer for updating data
-    func startUpdateTimer() {
-        timer = Timer.scheduledTimer(timeInterval: 600, target: self, selector: #selector(fireTimer), userInfo: nil, repeats: true)
-        timer?.tolerance = 10
-        RunLoop.current.add(timer!, forMode: RunLoop.Mode.common)
-    }
-    func stopUpdateTimer() {
-        timer?.invalidate()
-    }
-    @objc private func fireTimer() {
-        print("Updating Data")
-        loadAndUpdateData()
+        updateForecast()
     }
     
     func updateForecast() {
         networkController.requestFullForecast(for: days)
     }
+    
+    //Timer for updating forecast data, runs every 10 minutes
+    func startUpdateTimer() {
+        timer = Timer.scheduledTimer(timeInterval: 600, target: self,
+                                     selector: #selector(loadAndUpdateData), userInfo: nil, repeats: true)
+        timer?.tolerance = 10
+        RunLoop.current.add(timer!, forMode: RunLoop.Mode.common)
+    }
+    
+    func stopUpdateTimer() {
+        timer?.invalidate()
+    }
+    
+    
     
     
     

@@ -16,7 +16,7 @@ class WeatherListViewController: UITableViewController {
 
     var stateController: StateController! {
         didSet {
-            stateController.delegate = self
+            stateController.weatherListDelegate = self
         }
     }
     
