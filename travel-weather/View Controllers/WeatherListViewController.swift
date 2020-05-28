@@ -37,7 +37,7 @@ class WeatherListViewController: UITableViewController {
     func configureCell(day: Day, cell: DayCell) {
         cell.weekdayLabel.text = day.weekday
         cell.dateLabel.text = DateHelper.shortDateFormat(date: day.date)
-        cell.cityLabel.text = day.location.locality
+        cell.cityLabel.text = day.location.display
         cell.lowTempLabel.text = day.lowTempDisplay
         cell.highTempLabel.text = day.highTempDisplay
         cell.weatherImageView.image = day.weatherImage

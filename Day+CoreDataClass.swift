@@ -74,42 +74,6 @@ public class Day: NSManagedObject {
         }
         
         
-        
-    //    var longitude: Double?
-    //           {
-    //           get {
-    //               self.willAccessValue(forKey: "longitude")
-    //               let value = self.primitiveValue(forKey: "longitude") as? Double
-    //               self.didAccessValue(forKey: "longitude")
-    //               return (value != nil) ? Double(value!) : nil
-    //           }
-    //           set {
-    //               self.willChangeValue(forKey: "longitude")
-    //               let value : Double? = (newValue != nil) ? Double(newValue!) : nil
-    //               self.setPrimitiveValue(value, forKey: "longitude")
-    //               self.didChangeValue(forKey: "longitude")
-    //           }
-    //       }
-    //
-    //
-    //    var latitude: Double?
-    //           {
-    //           get {
-    //               self.willAccessValue(forKey: "latitude")
-    //               let value = self.primitiveValue(forKey: "latitude") as? Double
-    //               self.didAccessValue(forKey: "latitude")
-    //               return (value != nil) ? Double(value!) : nil
-    //           }
-    //           set {
-    //               self.willChangeValue(forKey: "latitude")
-    //               let value : Double? = (newValue != nil) ? Double(newValue!) : nil
-    //               self.setPrimitiveValue(value, forKey: "latitude")
-    //               self.didChangeValue(forKey: "latitude")
-    //           }
-    //       }
-    //
-        
-        
         //MARK:- Computed Properties
         var weatherImage: UIImage {
             if let weatherSummary = weatherSummary {
@@ -134,6 +98,8 @@ public class Day: NSManagedObject {
                 return "--- ⏐ ---"
             }
         }
+    
+        
         
     var highTempDisplay: String {
         var displayTemp = ""
@@ -164,15 +130,6 @@ public class Day: NSManagedObject {
             return "--- °"
         }
     }
-    
-//    var loTempDisplay: String {
-//        if let lowTemp = lowTemp, let _ = highTemp {
-//            return String(lowTemp) + "°"
-//        } else {
-//            return "--- °"
-//        }
-//    }
-        
         
         //MARK:- Update Forecast Information
         

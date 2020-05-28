@@ -71,9 +71,6 @@ class EditLocationViewController: UIViewController{
         searchController.searchResultsController?.additionalSafeAreaInsets = UIEdgeInsets.init(top: 64, left: 0, bottom: 0, right: 0)
         searchController.searchBar.backgroundImage = UIImage()
         searchController.searchBar.searchTextField.placeholder = "Search for new location"
-        let textFieldInsideSearchBar = searchController.searchBar.value(forKey: "searchField") as? UITextField
-//        textFieldInsideSearchBar.attributedPlaceholder = NSAttributedString(string: textFieldInsideSearchBar?.placeholder ?? "", attributes: [NSAttributedString.Key.foregroundColor : UIColor.red])
-        textFieldInsideSearchBar?.textColor = UIColor.white
         searchController.searchBar.searchTextField.textColor = UIColor.white
         searchController.searchBar.setImage(UIImage(systemName: "magnifyingglass"), for: .search, state: .normal)
         searchController.searchBar.searchTextField.backgroundColor = UIColor.charcoalGrayLight
@@ -93,16 +90,15 @@ class EditLocationViewController: UIViewController{
 
 
 // Handle the user's selection.
-// Handle the user's selection.
 extension EditLocationViewController: GMSAutocompleteResultsViewControllerDelegate {
  
     
   func resultsController(_ resultsController: GMSAutocompleteResultsViewController,
                          didAutocompleteWith place: GMSPlace) {
     searchController.isActive = false
-    
-//    searchController?.dismiss(animated: true, completion: {self.performSegue(withIdentifier: "unwindToPresentingVC", sender: self)})
-    searchController.dismiss(animated: true, completion: {self.delegate?.editLocationViewControllerDidUpdate(didSelect: place, for: self.dates)})
+    searchController.dismiss(animated: true, completion: {
+        self.delegate?.editLocationViewControllerDidUpdate(didSelect: place, for: self.dates)
+        })
     }
     
     

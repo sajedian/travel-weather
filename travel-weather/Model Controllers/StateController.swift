@@ -148,18 +148,14 @@ class StateController: NetworkControllerDelegate {
         }
     }
     
-    func getCityForDate(for date: Date) -> String {
+    func getLocationDisplay(for date: Date) -> String {
         if let day = storageController.getDayForDate(for: date){
-            return day.location.locality
+            return day.location.display
         } else {
-            return storageController.getDefaultLocation().locality
+            return storageController.getDefaultLocation().display
         }
     }
     
-//    func getDaysForDates(for dates: [Date]) -> [String]{
-//    
-//    }
-//    
     func locationWasSet(for date: Date) -> Bool {
         if let day = storageController.getDayForDate(for: date) {
             return day.locationWasSet

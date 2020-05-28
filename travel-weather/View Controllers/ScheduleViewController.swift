@@ -97,9 +97,6 @@ class ScheduleViewController: UIViewController{
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         self.navigationController?.setNavigationBarHidden(true, animated: animated)
-        if firstSelectedDate != nil {
-            onSelectDate()
-        }
     }
     
     override func viewDidLoad() {
@@ -112,12 +109,6 @@ class ScheduleViewController: UIViewController{
         tableView.reloadData()
     }
     
-//    override func viewDidAppear(_ animated: Bool) {
-//        super.viewDidAppear(animated)
-//        if firstSelectedDate != nil {
-//            onSelectDate()
-//        }
-//    }
     
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
@@ -185,8 +176,6 @@ class ScheduleViewController: UIViewController{
     private func onSelectDate() {
         if twoDatesSelected {
             dateRangeLabel.text = DateHelper.formatDateRange(date1: firstSelectedDate!, date2: calendarView.selectedDates.last!)
-            
-            
         } else {
             dateRangeLabel.text = DateHelper.monthAndDayFromDate(from: firstSelectedDate!)
 
@@ -209,6 +198,7 @@ extension ScheduleViewController: EditLocationViewControllerDelegate {
             stateController.updateOrCreateDays(didSelect: newLocation, for: dates)
         }
         calendarView.reloadData()
+        tableView.reloadData()
     }
 }
 
@@ -226,8 +216,8 @@ extension ScheduleViewController: UITableViewDataSource {
         let cell = tableView.dequeueReusableCell(withIdentifier: "scheduleCell", for: indexPath)
         let date = calendarView.selectedDates[indexPath.row]
         let dateDisplay = DateHelper.shortDateFormat(date: date)
-        let city = stateController.getCityForDate(for: date)
-        cell.textLabel?.text = "\(dateDisplay) - \(city)"
+        let locationDisplay = stateController.getLocationDisplay(for: date)
+        cell.textLabel?.text = "\(dateDisplay) - \(locationDisplay)"
         cell.backgroundColor = .charcoalGrayLight
         cell.textLabel?.textColor = UIColor.white.withAlphaComponent(0.65)
         return cell
