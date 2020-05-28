@@ -197,7 +197,6 @@
 		9E63368F23D640C900468158 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
-				9E63368223D54CE900468158 /* DayCell.xib */,
 				9EECD18F245CBC8B00161F87 /* ColorPalette.swift */,
 				9E8DACE62422BF4A00159E82 /* DateHelper.swift */,
 				9E63367223D5422400468158 /* Main.storyboard */,
@@ -218,6 +217,7 @@
 				9EB43D4423EF3A0B00933D21 /* DateCell.swift */,
 				9E6FD5CC245B54DC00D42DF8 /* ColorSettingsCell.swift */,
 				9E8181CB24803E1800C20DFF /* ScheduleTableViewCell.swift */,
+				9E63368223D54CE900468158 /* DayCell.xib */,
 			);
 			path = "Table View Cells";
 			sourceTree = "<group>";

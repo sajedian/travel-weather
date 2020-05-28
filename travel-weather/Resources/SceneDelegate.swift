@@ -20,35 +20,35 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
             let viewControllers = tabBarController.viewControllers else {
                 return
         }
-        let networkController = NetworkController()
-        let storageController = StorageController()
-        stateController = StateController(networkController: networkController, storageController: storageController)
-        let weatherListViewController = viewControllers[1] as! WeatherListViewController
-        weatherListViewController.stateController = stateController
+        //stateController is the central control of the app, any state changes pass through here
+        let stateController = StateController()
+        
+        //gives each view controller in the tab bar access to the single stateController
         let navController = viewControllers[0] as! UINavigationController
-      
         let scheduleViewController = navController.viewControllers.first as! ScheduleViewController
         scheduleViewController.stateController = stateController
+       
+        let weatherListViewController = viewControllers[1] as! WeatherListViewController
+        weatherListViewController.stateController = stateController
+        
         let navController2 = viewControllers[2] as! UINavigationController
         let settingsViewController = navController2.viewControllers.first as! SettingsViewController
         settingsViewController.stateController = stateController
+        
         customizeAppearance()
         
     }
     
     
+    //app-wide customization of search and navigation bars
     func customizeAppearance() {
-//           let barTintColor = UIColor(red: 42/255, green: 53/255, blue: 170/255, alpha: 1.0)
-            let barTintColor = UIColor.charcoalGray
-           UISearchBar.appearance().barTintColor = barTintColor
-           UINavigationBar.appearance().barTintColor = barTintColor
-           UINavigationBar.appearance().backgroundColor = barTintColor
-           UINavigationBarAppearance().shadowColor = .clear
-           UINavigationBar.appearance().titleTextAttributes = [NSAttributedString.Key.foregroundColor: UIColor.white,
-                                                              NSAttributedString.Key.font: UIFont.preferredFont(forTextStyle: .title2)]
-//        let backButtonBackgroundImage = UIImage(systemName: "arrow.left")
-//        UINavigationBar.appearance().backIndicatorImage = backButtonBackgroundImage
-//        UINavigationBar.appearance().backIndicatorTransitionMaskImage = backButtonBackgroundImage
+        let barTintColor = UIColor.charcoalGray
+        UISearchBar.appearance().barTintColor = barTintColor
+        UINavigationBar.appearance().barTintColor = barTintColor
+        UINavigationBar.appearance().backgroundColor = barTintColor
+        UINavigationBarAppearance().shadowColor = .clear
+        UINavigationBar.appearance().titleTextAttributes = [NSAttributedString.Key.foregroundColor: UIColor.white,
+                                                          NSAttributedString.Key.font: UIFont.preferredFont(forTextStyle: .title2)]
         
     }
 
@@ -62,16 +62,21 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
     func sceneDidBecomeActive(_ scene: UIScene) {
         // Called when the scene has moved from an inactive state to an active state.
         // Use this method to restart any tasks that were paused (or not yet started) when the scene was inactive.
+        
+        //starts timer for forecast updates
         stateController?.startUpdateTimer()
     }
 
     func sceneWillResignActive(_ scene: UIScene) {
         // Called when the scene will move from an active state to an inactive state.
         // This may occur due to temporary interruptions (ex. an incoming phone call).
+        
+        //stops timer for forecast updates
         stateController?.stopUpdateTimer()
     }
 
     func sceneWillEnterForeground(_ scene: UIScene) {
+        //updates weather data if necessary when app enters foreground
         stateController?.loadAndUpdateData()
     }
 

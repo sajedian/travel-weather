@@ -1,0 +1,112 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="16096" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="16087"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="none" indentationWidth="10" reuseIdentifier="DayCell" rowHeight="108" id="cvS-kJ-Two" customClass="DayCell" customModule="Travel_Weather" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="371" height="108"/>
+            <autoresizingMask key="autoresizingMask"/>
+            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="cvS-kJ-Two" id="lwJ-dq-WSE">
+                <rect key="frame" x="0.0" y="0.0" width="371" height="108"/>
+                <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="79x-Co-3mD">
+                        <rect key="frame" x="10" y="2" width="351" height="98"/>
+                        <subviews>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="xCc-xL-v7z">
+                                <rect key="frame" x="283" y="13" width="55" height="72"/>
+                                <color key="tintColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="55" id="9at-iM-WVT"/>
+                                </constraints>
+                            </imageView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="-86" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="cVo-NX-WKK">
+                                <rect key="frame" x="227" y="52" width="34" height="24"/>
+                                <fontDescription key="fontDescription" style="UICTFontTextStyleTitle3"/>
+                                <color key="textColor" cocoaTouchSystemColor="lightTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="102" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="lhn-7u-5jg">
+                                <rect key="frame" x="227.5" y="22" width="33.5" height="24"/>
+                                <fontDescription key="fontDescription" style="UICTFontTextStyleTitle3"/>
+                                <color key="textColor" red="1" green="1" blue="1" alpha="0.92786815068493156" colorSpace="custom" customColorSpace="sRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="oke-aI-cMF">
+                                <rect key="frame" x="0.0" y="0.0" width="162" height="98"/>
+                                <subviews>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Wednesday    " textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Ztn-SC-cd7" userLabel="Weekday Label">
+                                        <rect key="frame" x="20" y="25" width="133" height="27"/>
+                                        <fontDescription key="fontDescription" style="UICTFontTextStyleTitle2"/>
+                                        <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Philadelphia" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="n1z-i9-yO5">
+                                        <rect key="frame" x="20" y="52.5" width="93" height="20.5"/>
+                                        <fontDescription key="fontDescription" style="UICTFontTextStyleBody"/>
+                                        <color key="textColor" white="1" alpha="0.74720676369863015" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                </subviews>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <constraints>
+                                    <constraint firstAttribute="bottom" secondItem="n1z-i9-yO5" secondAttribute="bottom" constant="25" id="2q4-El-1yR"/>
+                                    <constraint firstAttribute="trailing" secondItem="n1z-i9-yO5" secondAttribute="trailing" constant="49" id="83S-Hf-whU"/>
+                                    <constraint firstItem="Ztn-SC-cd7" firstAttribute="top" secondItem="oke-aI-cMF" secondAttribute="top" constant="25" id="Csf-Di-Ey0"/>
+                                    <constraint firstItem="Ztn-SC-cd7" firstAttribute="leading" secondItem="oke-aI-cMF" secondAttribute="leading" constant="20" id="df8-2Q-N43"/>
+                                    <constraint firstItem="n1z-i9-yO5" firstAttribute="leading" secondItem="oke-aI-cMF" secondAttribute="leading" constant="20" id="jh2-Bj-DWo"/>
+                                </constraints>
+                            </view>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="5/24" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ij7-6g-6Um">
+                                <rect key="frame" x="163" y="25.5" width="47" height="26.5"/>
+                                <fontDescription key="fontDescription" style="UICTFontTextStyleTitle2"/>
+                                <color key="textColor" white="1" alpha="0.74720676370000005" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <color key="backgroundColor" red="0.66666668650000005" green="0.26320867450000002" blue="0.54099462499999995" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                        <constraints>
+                            <constraint firstItem="oke-aI-cMF" firstAttribute="leading" secondItem="79x-Co-3mD" secondAttribute="leading" id="286-XC-OHf"/>
+                            <constraint firstItem="oke-aI-cMF" firstAttribute="top" secondItem="79x-Co-3mD" secondAttribute="top" id="5UX-Ha-UpI"/>
+                            <constraint firstItem="ij7-6g-6Um" firstAttribute="leading" secondItem="Ztn-SC-cd7" secondAttribute="trailing" constant="10" id="7eq-Zh-DFV"/>
+                            <constraint firstItem="oke-aI-cMF" firstAttribute="top" secondItem="79x-Co-3mD" secondAttribute="top" id="9bi-DN-gxJ"/>
+                            <constraint firstAttribute="bottom" secondItem="oke-aI-cMF" secondAttribute="bottom" id="D8J-qF-LaJ"/>
+                            <constraint firstAttribute="height" constant="98" id="EEe-5q-W00"/>
+                            <constraint firstItem="xCc-xL-v7z" firstAttribute="leading" secondItem="lhn-7u-5jg" secondAttribute="trailing" constant="22" id="Ni4-Fx-Nb2"/>
+                            <constraint firstAttribute="bottom" secondItem="cVo-NX-WKK" secondAttribute="bottom" constant="22" id="Nip-CC-zeP"/>
+                            <constraint firstAttribute="trailing" secondItem="xCc-xL-v7z" secondAttribute="trailing" constant="13" id="Zvl-q6-Agh"/>
+                            <constraint firstItem="xCc-xL-v7z" firstAttribute="leading" secondItem="cVo-NX-WKK" secondAttribute="trailing" constant="22" id="fHx-DW-ooN"/>
+                            <constraint firstItem="lhn-7u-5jg" firstAttribute="top" secondItem="79x-Co-3mD" secondAttribute="top" constant="22" id="kFs-we-iYu"/>
+                            <constraint firstItem="ij7-6g-6Um" firstAttribute="bottom" secondItem="Ztn-SC-cd7" secondAttribute="bottom" id="tPr-W0-a3k"/>
+                            <constraint firstAttribute="bottom" secondItem="xCc-xL-v7z" secondAttribute="bottom" constant="13" id="xc3-RS-dh3"/>
+                            <constraint firstItem="xCc-xL-v7z" firstAttribute="top" secondItem="79x-Co-3mD" secondAttribute="top" constant="13" id="zg2-Vh-Fzu"/>
+                        </constraints>
+                    </view>
+                </subviews>
+                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                <constraints>
+                    <constraint firstItem="79x-Co-3mD" firstAttribute="leading" secondItem="lwJ-dq-WSE" secondAttribute="leading" constant="10" id="70o-ca-bZB"/>
+                    <constraint firstAttribute="bottom" secondItem="79x-Co-3mD" secondAttribute="bottom" constant="8" id="991-RS-z2t"/>
+                    <constraint firstItem="79x-Co-3mD" firstAttribute="top" secondItem="lwJ-dq-WSE" secondAttribute="top" constant="2" id="Ewz-po-lhd"/>
+                    <constraint firstAttribute="trailing" secondItem="79x-Co-3mD" secondAttribute="trailing" constant="10" id="RcG-Ts-GaG"/>
+                </constraints>
+            </tableViewCellContentView>
+            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+            <connections>
+                <outlet property="cityLabel" destination="n1z-i9-yO5" id="l0p-My-Jnu"/>
+                <outlet property="colorView" destination="79x-Co-3mD" id="hzw-49-uSB"/>
+                <outlet property="dateLabel" destination="ij7-6g-6Um" id="Cnn-iB-rNY"/>
+                <outlet property="highTempLabel" destination="lhn-7u-5jg" id="ijv-Fs-4ZI"/>
+                <outlet property="lowTempLabel" destination="cVo-NX-WKK" id="4i3-VV-Zdo"/>
+                <outlet property="weatherImageView" destination="xCc-xL-v7z" id="OLL-QU-8zx"/>
+                <outlet property="weekdayLabel" destination="Ztn-SC-cd7" id="C9r-V2-GT7"/>
+            </connections>
+            <point key="canvasLocation" x="0.7246376811594204" y="-25.446428571428569"/>
+        </tableViewCell>
+    </objects>
+</document>

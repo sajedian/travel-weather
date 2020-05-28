@@ -35,17 +35,19 @@ class StateController: NetworkControllerDelegate {
     }
     
     
-    init(networkController: NetworkController, storageController: StorageController) {
-        self.networkController = networkController
-        self.storageController = storageController
+    init() {
+        self.networkController = NetworkController()
+        self.storageController = StorageController()
         networkController.delegate = self
         colorSettingsArray = storageController.getColorSettings()
+        //listens for notification when time is midnight (or other important change ie Daylight Savings)
         NotificationCenter.default.addObserver(self, selector: #selector(onTimeChange(_:)), name: UIApplication.significantTimeChangeNotification, object: nil)
     }
     
     //notification will be received when midnight
     @ objc func onTimeChange(_ notification: Notification) {
         loadAndUpdateData()
+        clearOldData()
     }
     
     //MARK:- NetworkControllerDelegate Functions
@@ -57,21 +59,23 @@ class StateController: NetworkControllerDelegate {
     
     //MARK:- Interface
     
-    func loadAndUpdateData() {
-        
-        let dateThreeDaysAgo = DateHelper.dayFromToday(offset: -3)
+    func clearOldData() {
+        //removes days older than three days ago from memory
+       let dateThreeDaysAgo = DateHelper.dayFromToday(offset: -3)
         days = days.filter { date, day in
             return date >= dateThreeDaysAgo
         }
+        //deletes dates older than three days ago from database
+        storageController.deleteDaysBefore(date: dateThreeDaysAgo)
+    }
+    
+    func loadAndUpdateData() {
         for i in 0..<14 {
             let date = DateHelper.dayFromToday(offset: i)
             let day = getDayForDate(for: date)
             days[date] = day
         }
-        //deletes dates older than three days ago from database
-        storageController.deleteDaysBefore(date: dateThreeDaysAgo)
         networkController.requestFullForecast(for: days)
-        
     }
     
     //Timer for updating data
