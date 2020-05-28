@@ -213,14 +213,13 @@ extension ScheduleViewController: UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "scheduleCell", for: indexPath)
+        let cell = tableView.dequeueReusableCell(withIdentifier: "scheduleCell", for: indexPath) as! ScheduleTableViewCell
         let date = calendarView.selectedDates[indexPath.row]
         let dateDisplay = DateHelper.shortDateFormat(date: date)
         let locationDisplay = stateController.getLocationDisplay(for: date)
-        cell.textLabel?.text = "\(dateDisplay) - \(locationDisplay)"
-        cell.backgroundColor = .charcoalGrayLight
-        cell.textLabel?.textColor = UIColor.white.withAlphaComponent(0.65)
+        cell.locationLabel.text = "\(dateDisplay) - \(locationDisplay)"
         return cell
+        
     }
     
 }

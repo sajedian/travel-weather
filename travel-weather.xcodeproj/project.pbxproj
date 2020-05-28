@@ -20,6 +20,7 @@
 		9E63368923D62DD100468158 /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 9E63368823D62DD100468158 /* Default-568h@2x.png */; };
 		9E6FD5C7245A03DE00D42DF8 /* ColorSettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E6FD5C6245A03DE00D42DF8 /* ColorSettingsViewController.swift */; };
 		9E6FD5CD245B54DC00D42DF8 /* ColorSettingsCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E6FD5CC245B54DC00D42DF8 /* ColorSettingsCell.swift */; };
+		9E8181CC24803E1800C20DFF /* ScheduleTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E8181CB24803E1800C20DFF /* ScheduleTableViewCell.swift */; };
 		9E89C37423E654AD00922C68 /* ForecastResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E89C37323E654AD00922C68 /* ForecastResult.swift */; };
 		9E8DACE72422BF4A00159E82 /* DateHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E8DACE62422BF4A00159E82 /* DateHelper.swift */; };
 		9E925F84247495DE005A9D74 /* ColorSetting+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E925F7E247495DE005A9D74 /* ColorSetting+CoreDataClass.swift */; };
@@ -74,6 +75,7 @@
 		9E63368823D62DD100468158 /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-568h@2x.png"; sourceTree = "<group>"; };
 		9E6FD5C6245A03DE00D42DF8 /* ColorSettingsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorSettingsViewController.swift; sourceTree = "<group>"; };
 		9E6FD5CC245B54DC00D42DF8 /* ColorSettingsCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorSettingsCell.swift; sourceTree = "<group>"; };
+		9E8181CB24803E1800C20DFF /* ScheduleTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = ScheduleTableViewCell.swift; path = "travel-weather/Table View Cells/ScheduleTableViewCell.swift"; sourceTree = SOURCE_ROOT; };
 		9E89C37323E654AD00922C68 /* ForecastResult.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ForecastResult.swift; sourceTree = "<group>"; };
 		9E8DACE62422BF4A00159E82 /* DateHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateHelper.swift; sourceTree = "<group>"; };
 		9E925F7E247495DE005A9D74 /* ColorSetting+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ColorSetting+CoreDataClass.swift"; sourceTree = SOURCE_ROOT; };
@@ -215,6 +217,7 @@
 				9E63368423D624ED00468158 /* DayCell.swift */,
 				9EB43D4423EF3A0B00933D21 /* DateCell.swift */,
 				9E6FD5CC245B54DC00D42DF8 /* ColorSettingsCell.swift */,
+				9E8181CB24803E1800C20DFF /* ScheduleTableViewCell.swift */,
 			);
 			path = "Table View Cells";
 			sourceTree = "<group>";
@@ -373,6 +376,7 @@
 				9E6FD5C7245A03DE00D42DF8 /* ColorSettingsViewController.swift in Sources */,
 				9EC69D6923E8F5260051722D /* NetworkController.swift in Sources */,
 				9E925F8B2474986B005A9D74 /* Constants.swift in Sources */,
+				9E8181CC24803E1800C20DFF /* ScheduleTableViewCell.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
