@@ -42,6 +42,7 @@ class StateController: NetworkControllerDelegate {
         colorSettingsArray = storageController.getColorSettings()
         //listens for notification when time is midnight (or other important change ie Daylight Savings)
         NotificationCenter.default.addObserver(self, selector: #selector(onTimeChange(_:)), name: UIApplication.significantTimeChangeNotification, object: nil)
+        loadAndUpdateData()
     }
     
     //notification will be received when midnight

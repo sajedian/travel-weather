@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		9E055CB824817DD800A272EE /* DarkSkyAttributionCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9E055CB724817DD800A272EE /* DarkSkyAttributionCell.xib */; };
+		9E055CBA248180E500A272EE /* WeatherListCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E055CB9248180E500A272EE /* WeatherListCell.swift */; };
 		9E347888243A4CBD00CB60D8 /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E347887243A4CBD00CB60D8 /* SettingsViewController.swift */; };
 		9E58E43D2409E3C50002B496 /* EditLocationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E58E43C2409E3C50002B496 /* EditLocationViewController.swift */; };
 		9E63366D23D5422400468158 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E63366C23D5422400468158 /* AppDelegate.swift */; };
@@ -58,6 +60,8 @@
 		44A8036A27DFF9D5E8F2180C /* Pods-travel-weather.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-travel-weather.debug.xcconfig"; path = "Target Support Files/Pods-travel-weather/Pods-travel-weather.debug.xcconfig"; sourceTree = "<group>"; };
 		74CBD53015A58807D8567366 /* Pods-travel-weather.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-travel-weather.release.xcconfig"; path = "Target Support Files/Pods-travel-weather/Pods-travel-weather.release.xcconfig"; sourceTree = "<group>"; };
 		8A18F3C440FB00117E25BC65 /* libPods-travel-weather.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-travel-weather.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		9E055CB724817DD800A272EE /* DarkSkyAttributionCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = DarkSkyAttributionCell.xib; sourceTree = "<group>"; };
+		9E055CB9248180E500A272EE /* WeatherListCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherListCell.swift; sourceTree = "<group>"; };
 		9E3478832439276400CB60D8 /* Pods_travel_weather.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = Pods_travel_weather.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		9E347887243A4CBD00CB60D8 /* SettingsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
 		9E58E43C2409E3C50002B496 /* EditLocationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditLocationViewController.swift; sourceTree = "<group>"; };
@@ -200,6 +204,7 @@
 				9EDDCCA72481688B00E0A794 /* Constants.swift */,
 				9E63368223D54CE900468158 /* DayCell.xib */,
 				9E63367223D5422400468158 /* Main.storyboard */,
+				9E055CB724817DD800A272EE /* DarkSkyAttributionCell.xib */,
 				9E63367723D5422700468158 /* LaunchScreen.storyboard */,
 				9E8664E62481720C005D1FB6 /* Info.plist */,
 				9EFB9B13242019700042776D /* TravelWeather.xcdatamodeld */,
@@ -223,6 +228,7 @@
 				9EB43D4423EF3A0B00933D21 /* DateCell.swift */,
 				9E63368423D624ED00468158 /* DayCell.swift */,
 				9E6FD5CC245B54DC00D42DF8 /* ColorSettingsCell.swift */,
+				9E055CB9248180E500A272EE /* WeatherListCell.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -299,6 +305,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				9E63367923D5422700468158 /* LaunchScreen.storyboard in Resources */,
+				9E055CB824817DD800A272EE /* DarkSkyAttributionCell.xib in Resources */,
 				9E63368323D54CE900468158 /* DayCell.xib in Resources */,
 				9E63367623D5422700468158 /* Assets.xcassets in Resources */,
 				9E63367423D5422400468158 /* Main.storyboard in Resources */,
@@ -374,6 +381,7 @@
 				9E63366D23D5422400468158 /* AppDelegate.swift in Sources */,
 				9E8DACE72422BF4A00159E82 /* DateHelper.swift in Sources */,
 				9EA007A3245B8902008A4CF0 /* ColorPickerViewController.swift in Sources */,
+				9E055CBA248180E500A272EE /* WeatherListCell.swift in Sources */,
 				9E63366F23D5422400468158 /* SceneDelegate.swift in Sources */,
 				9EDDCCA3248167F100E0A794 /* Day+CoreDataClass.swift in Sources */,
 				9EAAFB2624816AF700BA1456 /* ScheduleTableViewCell.swift in Sources */,
