@@ -19,6 +19,7 @@
 		9E63368523D624ED00468158 /* DayCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E63368423D624ED00468158 /* DayCell.swift */; };
 		9E6FD5C7245A03DE00D42DF8 /* ColorSettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E6FD5C6245A03DE00D42DF8 /* ColorSettingsViewController.swift */; };
 		9E6FD5CD245B54DC00D42DF8 /* ColorSettingsCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E6FD5CC245B54DC00D42DF8 /* ColorSettingsCell.swift */; };
+		9E8664E72481720C005D1FB6 /* Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 9E8664E62481720C005D1FB6 /* Info.plist */; };
 		9E89C37423E654AD00922C68 /* ForecastResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E89C37323E654AD00922C68 /* ForecastResult.swift */; };
 		9E8DACE72422BF4A00159E82 /* DateHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E8DACE62422BF4A00159E82 /* DateHelper.swift */; };
 		9EA007A3245B8902008A4CF0 /* ColorPickerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9EA007A2245B8902008A4CF0 /* ColorPickerViewController.swift */; };
@@ -68,12 +69,12 @@
 		9E63367323D5422400468158 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		9E63367523D5422700468158 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = Assets.xcassets; path = Resources/Assets.xcassets; sourceTree = "<group>"; };
 		9E63367823D5422700468158 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
-		9E63367A23D5422700468158 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; name = Info.plist; path = ../Info.plist; sourceTree = "<group>"; };
 		9E63368023D5478700468158 /* WeatherListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherListViewController.swift; sourceTree = "<group>"; };
 		9E63368223D54CE900468158 /* DayCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = DayCell.xib; sourceTree = "<group>"; };
 		9E63368423D624ED00468158 /* DayCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DayCell.swift; sourceTree = "<group>"; };
 		9E6FD5C6245A03DE00D42DF8 /* ColorSettingsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorSettingsViewController.swift; sourceTree = "<group>"; };
 		9E6FD5CC245B54DC00D42DF8 /* ColorSettingsCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorSettingsCell.swift; sourceTree = "<group>"; };
+		9E8664E62481720C005D1FB6 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		9E89C37323E654AD00922C68 /* ForecastResult.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ForecastResult.swift; sourceTree = "<group>"; };
 		9E8DACE62422BF4A00159E82 /* DateHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateHelper.swift; sourceTree = "<group>"; };
 		9EA007A2245B8902008A4CF0 /* ColorPickerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorPickerViewController.swift; sourceTree = "<group>"; };
@@ -203,7 +204,7 @@
 				9E63368223D54CE900468158 /* DayCell.xib */,
 				9E63367223D5422400468158 /* Main.storyboard */,
 				9E63367723D5422700468158 /* LaunchScreen.storyboard */,
-				9E63367A23D5422700468158 /* Info.plist */,
+				9E8664E62481720C005D1FB6 /* Info.plist */,
 				9EFB9B13242019700042776D /* TravelWeather.xcdatamodeld */,
 				9EAAFB23248169AF00BA1456 /* Default-568h@2x.png */,
 			);
@@ -303,6 +304,7 @@
 			files = (
 				9E63367923D5422700468158 /* LaunchScreen.storyboard in Resources */,
 				9E63368323D54CE900468158 /* DayCell.xib in Resources */,
+				9E8664E72481720C005D1FB6 /* Info.plist in Resources */,
 				9E63367623D5422700468158 /* Assets.xcassets in Resources */,
 				9E63367423D5422400468158 /* Main.storyboard in Resources */,
 				9EAAFB24248169AF00BA1456 /* Default-568h@2x.png in Resources */,
