@@ -28,8 +28,10 @@ class WeatherListViewController: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         tableView.clipsToBounds = false
-        let cellNib = UINib(nibName: "DayCell", bundle: nil)
+        var cellNib = UINib(nibName: "DayCell", bundle: nil)
         tableView.register(cellNib, forCellReuseIdentifier: "DayCell")
+        cellNib = UINib(nibName: "DarkSkyAttributionCell", bundle: nil)
+        tableView.register(cellNib, forCellReuseIdentifier: "AttributionCell")
         tableView.reloadData()
         
     }
@@ -51,18 +53,32 @@ class WeatherListViewController: UITableViewController {
     
     override func tableView(_ tableView: UITableView,
                             numberOfRowsInSection section: Int) -> Int {
-        return 14
+        return 15
     }
     
     override func tableView(_ tableView: UITableView,
                             cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "DayCell", for: indexPath) as! DayCell
-        let date = DateHelper.dayFromToday(offset: indexPath.row)
-        let day = stateController.getDayForDate(for: date)
-        configureCell(day: day, cell: cell)
-        return cell
+        if indexPath.row == 14 {
+            return tableView.dequeueReusableCell(withIdentifier: "AttributionCell", for: indexPath) as! WeatherListCell
+            
+        } else {
+            let cell = tableView.dequeueReusableCell(withIdentifier: "DayCell", for: indexPath) as! DayCell
+            let date = DateHelper.dayFromToday(offset: indexPath.row)
+            let day = stateController.getDayForDate(for: date)
+            configureCell(day: day, cell: cell)
+            return cell
+        }
     }
     
+    
+    //MARK:- Table View Delegate
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        if indexPath.row == 14 {
+            if let url = URL(string: "https://darksky.net/poweredby/") {
+                UIApplication.shared.open(url)
+            }
+        }
+    }
    
 }
 
