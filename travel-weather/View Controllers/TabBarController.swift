@@ -14,6 +14,7 @@ class TabBarController: UITabBarController {
 
    override func viewDidLoad() {
         super.viewDidLoad()
+        //switches to Forecast tab on launch
         self.selectedIndex = 1
         // For Back button customization, setup the custom image for UINavigationBar inside CustomBackButtonNavController.
         let backButtonBackgroundImage = UIImage(systemName: "arrow.left")
@@ -25,7 +26,4 @@ class TabBarController: UITabBarController {
         barAppearance.tintColor = .white
         
    }
-    
-    
-
 }
