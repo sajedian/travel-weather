@@ -11,33 +11,23 @@ import UIKit
 
 extension UIColor {
     static var darkRed: UIColor { return UIColor(hex: "#461220ff")! }
-    static var mutedPink: UIColor { return UIColor(hex: "#CC4843ff")! }
-    static var darkOrange: UIColor { return UIColor(hex: "#B73F21ff")! }
+    static var mutedPink: UIColor { return UIColor(hex: "#e08283ff")! }
+    static var peach: UIColor { return UIColor(hex: "#ec644bff")! }
     static var darkYellow: UIColor { return UIColor(hex: "#D1A305ff")! }
-    static var darkGreen: UIColor { return UIColor(hex: "#1E3538ff")! }
+    static var darkGreen: UIColor { return UIColor(hex: "#68A187ff")! }
     static var charcoalGray: UIColor { return UIColor(hex: "#2F4452ff")! }
     static var charcoalGrayLight: UIColor { return UIColor(hex: "#425763ff")!}
     static var charcoalGrayDark: UIColor { return UIColor(hex: "#263746ff")!}
-    static var midnightBlue: UIColor { return UIColor(hex: "#07455Aff")! }
-    static var lightBlue: UIColor { return UIColor(hex: "#2A5859ff")! }
-    static var darkPurple: UIColor { return UIColor(hex: "#52297cff")! }
-
-//    let mutedPink = UIColor(hex: )
-//    let darkOrange = UIColor(hex: )
-//    let darkYellow = UIColor(hex: )
-//    let darkGreen = UIColor(hex: )
-//    let charcoalGray = UIColor(hex: "2F4452")
-//    let midnightBlue = UIColor(hex: )
-//    let lightBlue = UIColor(hex: )
-//    let darkPurple = UIColor(hex: )
-//
-//    public var colorArray: [UIColor] {
-//        return [darkRed, mutedPink, darkOrange, darkYellow, darkGreen, charcoalGray, midnightBlue, lightBlue, darkPurple]
-//    }
+    static var midnightBlue: UIColor { return UIColor(hex: "#d64541ff")! }
+    static var lightBlue: UIColor { return UIColor(hex: "#5c97bfff")! }
+    static var darkPurple: UIColor { return UIColor(hex: "#947cb0ff")! }
+    static var mediumGray: UIColor { return UIColor(hex: "#6c7a89ff")!}
 }
+  //
+    
+//"
 
-
-// from Hacking with Swift
+// adapted from Hacking with Swift
 // https://www.hackingwithswift.com/example-code/uicolor/how-to-convert-a-hex-color-to-a-uicolor
 // can be used commercially without attribution
 

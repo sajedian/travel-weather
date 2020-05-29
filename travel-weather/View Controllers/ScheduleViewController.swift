@@ -130,6 +130,7 @@ class ScheduleViewController: UIViewController{
     
 
     private func configureViewAppearance() {
+        resetSelectedDate()
         view.backgroundColor = .charcoalGrayLight
         calendarView.backgroundColor = UIColor.charcoalGrayLight
         selectedDayView.layer.cornerRadius = 15
@@ -139,7 +140,8 @@ class ScheduleViewController: UIViewController{
         selectedDayView.layer.shadowOpacity = 0.4
         selectedDayView.layer.shadowRadius = 3
         navigationController?.navigationBar.setValue(true, forKey: "hidesShadow")
-        resetSelectedDate()
+        
+        dateRangeView.backgroundColor = .charcoalGray
         tableView.backgroundColor = .charcoalGrayLight
         tableView.layer.cornerRadius = 15
         tableView.layer.maskedCorners = [.layerMinXMaxYCorner, .layerMaxXMaxYCorner]

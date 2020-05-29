@@ -202,10 +202,10 @@
 				9E63366C23D5422400468158 /* AppDelegate.swift */,
 				9E63366E23D5422400468158 /* SceneDelegate.swift */,
 				9EDDCCA72481688B00E0A794 /* Constants.swift */,
-				9E63368223D54CE900468158 /* DayCell.xib */,
-				9E63367223D5422400468158 /* Main.storyboard */,
-				9E055CB724817DD800A272EE /* DarkSkyAttributionCell.xib */,
 				9E63367723D5422700468158 /* LaunchScreen.storyboard */,
+				9E63367223D5422400468158 /* Main.storyboard */,
+				9E63368223D54CE900468158 /* DayCell.xib */,
+				9E055CB724817DD800A272EE /* DarkSkyAttributionCell.xib */,
 				9E8664E62481720C005D1FB6 /* Info.plist */,
 				9EFB9B13242019700042776D /* TravelWeather.xcdatamodeld */,
 			);

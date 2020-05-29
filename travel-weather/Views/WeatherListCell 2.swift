@@ -25,8 +25,7 @@ class WeatherListCell: UITableViewCell {
         colorView.layer.masksToBounds = false
         self.clipsToBounds = false
         self.layer.masksToBounds = false
-        backgroundColor = .systemGray6
-        colorView.backgroundColor = .charcoalGrayLight
+        backgroundColor = .systemGray5
        }
 
     override func setSelected(_ selected: Bool, animated: Bool) {

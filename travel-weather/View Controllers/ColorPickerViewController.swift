@@ -54,7 +54,8 @@ class ColorPickerViewController: UIViewController {
     
    
     func createButtons(buttonsView: UIView) {
-        let colors = [UIColor.mutedPink, UIColor.darkRed, UIColor.charcoalGray, UIColor.darkGreen, UIColor.midnightBlue, UIColor.darkYellow, UIColor.darkOrange, UIColor.lightBlue, UIColor.darkPurple]
+        var colors = [UIColor.midnightBlue, UIColor.peach, UIColor.mutedPink, UIColor.darkPurple, UIColor.mediumGray, UIColor.darkYellow, UIColor.darkGreen, UIColor.lightBlue]
+        colors = [UIColor.midnightBlue, UIColor.mutedPink, UIColor.darkPurple, UIColor.mediumGray, UIColor.peach, UIColor.darkYellow, UIColor.darkGreen, UIColor.lightBlue]
         
         let colorButtonWidth = CGFloat(50)
         var buttonConstraints = [NSLayoutConstraint]()
@@ -62,7 +63,8 @@ class ColorPickerViewController: UIViewController {
         //arranges buttons in a 4x2 grid, giving each a different color
         for row in 0..<2 {
             for col in 0..<4 {
-                let index = row * 3 + col
+                let index = row * 4 + col
+                print(index)
                 let button = UIButton(type: .system)
                 button.addTarget(self, action: #selector(updateColor), for: .touchUpInside)
                 let centerX = 360 * 0.2 * CGFloat(col + 1)

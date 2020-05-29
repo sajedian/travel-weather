@@ -28,11 +28,13 @@ class WeatherListViewController: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         tableView.clipsToBounds = false
+        tableView.backgroundColor = .systemGray6
         var cellNib = UINib(nibName: "DayCell", bundle: nil)
         tableView.register(cellNib, forCellReuseIdentifier: "DayCell")
         cellNib = UINib(nibName: "DarkSkyAttributionCell", bundle: nil)
         tableView.register(cellNib, forCellReuseIdentifier: "AttributionCell")
         tableView.reloadData()
+        
         
     }
     
