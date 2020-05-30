@@ -14,9 +14,7 @@
 ### Scheduling
 Select date or range of dates then search for a location
 
-<img src="https://media.giphy.com/media/hQnn5YUknLJScrKJc7/giphy.gif">
-
-<p align="center"><img width="425" src="images/scheduleGIF.gif"> <img width="425" src="images/scheduleCroppedImage.png"> </p>
+<p align="center"> <img width="450" src="images/scheduleCroppedImage.png"> <img width="400" src="images/ScheduleGIF.gif">  </p>
 
 
 
