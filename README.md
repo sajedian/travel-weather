@@ -27,7 +27,7 @@ In the Forecast tab, view your next 14 days of weather based on your schedule. I
 ### Customization
 In the Settings tab, set your default location, switch between Fahrenheit and Celsius, and customize your color scheme.
 
-<p align="center"> <img width="300" src="images/settings.png"> <img width="300" src="images/colorSettings.png"> <img width="300" src="images/colorPicker.png"> </p>
+<p align="center"> <img width="280" src="images/settings.png"> <img width="300" src="images/colorSettings.png"> <img width="280" src="images/colorPicker.png"> </p>
 
 
 
