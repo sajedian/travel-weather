@@ -46,7 +46,6 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         UISearchBar.appearance().barTintColor = barTintColor
         UINavigationBar.appearance().barTintColor = barTintColor
         UINavigationBar.appearance().backgroundColor = barTintColor
-        UINavigationBarAppearance().shadowColor = .clear
         UINavigationBar.appearance().titleTextAttributes = [NSAttributedString.Key.foregroundColor: UIColor.white,
                                                           NSAttributedString.Key.font: UIFont.preferredFont(forTextStyle: .title2)]
         

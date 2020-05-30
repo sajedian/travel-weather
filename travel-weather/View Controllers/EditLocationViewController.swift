@@ -71,21 +71,11 @@ class EditLocationViewController: UIViewController{
         searchController.searchResultsController?.additionalSafeAreaInsets = UIEdgeInsets.init(top: 64, left: 0, bottom: 0, right: 0)
         searchController.searchBar.backgroundImage = UIImage()
         searchController.searchBar.searchTextField.placeholder = "Search for new location"
-        searchController.searchBar.searchTextField.textColor = UIColor.white
-        searchController.searchBar.setImage(UIImage(systemName: "magnifyingglass"), for: .search, state: .normal)
-        searchController.searchBar.searchTextField.backgroundColor = UIColor.charcoalGrayLight
-        
-//        self.navigationController?.navigationBar.backIndicatorImage = UIImage(systemName: "arrow.left")!.withTintColor(UIColor.white)
-//        self.navigationController?.navigationBar.backIndicatorTransitionMaskImage = UIImage(systemName: "arrow.left")
-//        self.navigationItem.backBarButtonItem = UIBarButtonItem(title: "", style: UIBarButtonItem.Style.plain, target: nil, action: nil)
+        searchController.searchBar.searchTextField.textColor = UIColor.charcoalGrayDark
+        searchController.searchBar.searchTextField.backgroundColor = UIColor.systemGray6
 
     }
     
-    
-    
-    
-    
-
 }
 
 
