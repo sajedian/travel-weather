@@ -7,18 +7,16 @@
 
 
 ## Table of Contents 
-[Introduction](#introduction)
-[Headers](#headers)  
-[Emphasis](#emphasis)  
+[Introduction](#introduction) <br />
+[Features](#features)  
+ 
 
 
 
-<a name="headers"/>
-## Headers
 
-</a>
+## Features
 
-<a name="emphasis"/>
-##Emphasis
 
-</a>
+
+
+
