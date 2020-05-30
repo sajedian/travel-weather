@@ -12,11 +12,11 @@
 
 ## Features
 ### Scheduling
-Select date or range of dates then search for a location
+Select date or range of dates, then search for a location. Scroll down in table to view all dates within your selected range. Schedule up to one year in advance. Dates you've scheduled will have a yellow dot indicator.
 
-<p align="center"> <img width="450" src="images/scheduleCroppedImage.png"> <img width="400" src="images/ScheduleGIF.gif">  </p>
+<p align="center"> <img width="460" src="images/scheduleCroppedImage.png"> <img width="400" src="images/ScheduleGIF.gif">  </p>
 
-
+<h3>Forecast</h3>
 
 
 
