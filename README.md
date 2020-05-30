@@ -8,15 +8,26 @@
 
 ## Table of Contents 
 * [Introduction](#introduction) <br />
-* [Features](#features)  
+* [Features](#features)
+    * [Scheduling](#scheduling)
+    * [Forecast](#forecast)
+    * [Customization](#customization)
 
 ## Features
 ### Scheduling
-Select date or range of dates, then search for a location. Scroll down in table to view all dates within your selected range. Schedule up to one year in advance. Dates you've scheduled will have a yellow dot indicator.
+In the Schedule tab, select date or range of dates, then search for a location. Scroll down in table to view all dates within your selected range. Schedule up to one year in advance. Dates you've scheduled will have a yellow dot indicator.
 
 <p align="center"> <img width="460" src="images/scheduleCroppedImage.png"> <img width="400" src="images/ScheduleGIF.gif">  </p>
 
-<h3>Forecast</h3>
+### Forecast
+In the Forecast tab, view your next 14 days of weather based on your schedule. If you haven't entered a location for a certain day your default location will be used.
+
+<p align="center"> <img width="460" src="images/forecastCroppedImage.png"> <img width="400" src="images/ForecastGIF.gif">  </p>
+
+### Customization
+
+
+
 
 
 
