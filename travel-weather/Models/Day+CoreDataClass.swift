@@ -135,53 +135,51 @@ public class Day: NSManagedObject {
         
         
     func setWeatherForDay(weatherForDay: WeatherForDay?, date: String?) {
-            if let temperatureMax = weatherForDay?.temperatureMax {
-                self.highTemp = Int32(temperatureMax)
-            } else {
-                self.highTemp = nil
-            }
-            
-            if let temperatureMin = weatherForDay?.temperatureMin {
-                self.lowTemp = Int32(temperatureMin)
-            } else {
-                self.lowTemp = nil
-            }
-        
         if let date = date {
-            self.weatherDataDate = DateHelper.httpDate(from: date)
+            weatherDataDate = DateHelper.httpDate(from: date)
         } else {
-            print("no date found")
-        }
-            
-            
-            if let icon = weatherForDay?.icon {
-                
-                switch icon {
-                case "clear-day", "clear-night":
-                    weatherSummary = .sunny
-                case "cloudy":
-                    weatherSummary = .cloudy
-                case "partly-cloudy-day", "partly-cloudy-night":
-                    weatherSummary = .partlyCloudy
-                case "rain", "sleet":
-                    weatherSummary = .rainy
-                case "snow":
-                    weatherSummary = .snowy
-                case "fog":
-                    weatherSummary = .foggy
-                case "wind":
-                    weatherSummary = .windy
-                default:
-                    weatherSummary = .other
-                }
-            
-            } else {
-                self.weatherSummary = .other
-            }
-          
-            
+            weatherDataDate = nil
         }
         
+        if let temperatureMax = weatherForDay?.temperatureMax {
+            highTemp = Int32(temperatureMax)
+        } else {
+            highTemp = nil
+            weatherDataDate = nil
+        }
+        if let temperatureMin = weatherForDay?.temperatureMin {
+            lowTemp = Int32(temperatureMin)
+        } else {
+            lowTemp = nil
+            weatherDataDate = nil
+        }
+            
+            
+        if let icon = weatherForDay?.icon {
+                
+            switch icon {
+            case "clear-day", "clear-night":
+                weatherSummary = .sunny
+            case "cloudy":
+                weatherSummary = .cloudy
+            case "partly-cloudy-day", "partly-cloudy-night":
+                weatherSummary = .partlyCloudy
+            case "rain", "sleet":
+                weatherSummary = .rainy
+            case "snow":
+                weatherSummary = .snowy
+            case "fog":
+                weatherSummary = .foggy
+            case "wind":
+                weatherSummary = .windy
+            default:
+                weatherSummary = .other
+            }
+        
+        } else {
+            self.weatherSummary = .other
+        }
     }
 
 
+}

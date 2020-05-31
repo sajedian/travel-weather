@@ -70,10 +70,10 @@ struct DateHelper {
         return formattedString
     }
     
-    static func httpDate(from string: String) -> Date {
+    static func httpDate(from string: String) -> Date? {
         let dateFormatter = DateFormatter()
         dateFormatter.dateFormat = "E, d MMM yyyy HH:mm:ss Z"
-        return dateFormatter.date(from: string)!
+        return dateFormatter.date(from: string) ?? nil
     }
     
     static func timeIntervalToCurrentDate(from date: Date) -> Double {

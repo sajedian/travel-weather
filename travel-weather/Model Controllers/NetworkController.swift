@@ -14,13 +14,19 @@ protocol NetworkControllerDelegate: class {
     func didUpdateForecast()
 }
 
+enum NetworkingError: Error {
+    
+}
+
 
 class NetworkController {
+    
     
     
     weak var delegate: NetworkControllerDelegate?
     private var dataTask: URLSessionDataTask?
     private let dispatchGroup = DispatchGroup()
+    
     
     private func shouldUpdateData(for day: Day) -> Bool {
         guard let _ = day.highTemp, let _ = day.lowTemp, let _ = day.weatherSummary else {
@@ -32,13 +38,13 @@ class NetworkController {
 
             switch DateHelper.daysFromCurrentDate(to: day.date) {
             case 0...1:
-                return timeSinceLastUpdate > 3600
-            case 2...5:
-                return timeSinceLastUpdate > 86400
-            case 5...8:
-                return timeSinceLastUpdate > 86400 * 2
+                return timeSinceLastUpdate > 3600 //1 hour
+            case 2...3:
+                return timeSinceLastUpdate > 21600 //6 hours
+            case 3...5:
+                return timeSinceLastUpdate > 43200 //12 hours
             default:
-                return timeSinceLastUpdate > 86400 * 3
+                return timeSinceLastUpdate > 86400 //24 hours
             }
         }
         return true
