@@ -24,12 +24,10 @@ extension UIColor {
     static var mediumGray: UIColor { return UIColor(hex: "#6c7a89ff")!}
 }
   //
-    
-//"
 
 // adapted from Hacking with Swift
 // https://www.hackingwithswift.com/example-code/uicolor/how-to-convert-a-hex-color-to-a-uicolor
-// can be used commercially without attribution
+// MIT License
 
 extension UIColor {
     
@@ -69,6 +67,4 @@ extension UIColor {
         let rgba: Int = (Int)(red*255)<<24 | (Int)(green*255)<<16 | (Int)(blue*255)<<8 | (Int)(alpha*255)
         return String(format: "#%08x", rgba)
     }
-
-
 }
