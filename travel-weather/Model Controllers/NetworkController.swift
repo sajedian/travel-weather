@@ -90,7 +90,7 @@ class NetworkController {
         return URL(string: "https://api.darksky.net/forecast/\(darkSkyAPIKey)/\(latitude),\(longitude),\(timeStamp)?exclude=currently,minutely,hourly,alerts,flags")!
     }
     
-    private func getDayForecast (for day: Day) {
+    private func getDayForecast(for day: Day) {
         dispatchGroup.enter()
         let url = composedURL(date: day.date, latitude: day.location.latitude, longitude: day.location.longitude)
         let session = URLSession.shared

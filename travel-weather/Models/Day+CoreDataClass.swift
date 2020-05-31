@@ -145,13 +145,11 @@ public class Day: NSManagedObject {
             highTemp = Int32(temperatureMax)
         } else {
             highTemp = nil
-            weatherDataDate = nil
         }
         if let temperatureMin = weatherForDay?.temperatureMin {
             lowTemp = Int32(temperatureMin)
         } else {
             lowTemp = nil
-            weatherDataDate = nil
         }
             
             
