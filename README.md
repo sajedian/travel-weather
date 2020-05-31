@@ -2,7 +2,7 @@
 
 <h2>Introduction</h2>
 
-<p align="left">Effortlessly plan for your next roadtrip or multi-destination vacation with Travel Weather. Input your schedule, then view your personalized 14-day Forecast in one simple display. Built using Swift 5.</p>
+<p align="left">Effortlessly plan for your next roadtrip or multi-destination vacation with Travel Weather. Input your schedule, then view your personalized 14-day Forecast in one simple display. Built for iOS using Swift.</p>
 
 <p align="center"><img width="425" src="images/scheduleExampleImage.png"><img width="425" src="images/forecastExampleImage.png"> </p>
 
@@ -37,9 +37,28 @@ In the Settings tab, set your default location, switch between Fahrenheit and Ce
 * [Google Places SDK for iOS](https://developers.google.com/places/ios-sdk/intro) - for location search
 * [Dark Sky API](https://darksky.net/dev) - for weather data
 
-## 
+## Requirements
 
+## Installation
+IMPORTANT: Travel Weather uses [Dark Sky API](https://darksky.net/dev), which is [no longer accepting new signups](https://blog.darksky.net/dark-sky-has-a-new-home/). Therefore, you can only run Travel Weather in its current form if you've already signed up with Dark Sky. I plan to transition to a different weather API in the near future.
 
+#### CocoaPods:
+```
+git clone https://github.com/sajedian/travel-weather.git
+pod install
+```
+
+#### Provide API Keys:
+[Sign up for a Google Maps API Key](https://developers.google.com/places/ios-sdk/get-api-key)
+<p>Add a file called Constants.swift (or whatever you'd like to call it), with the following constants:</p>
+
+```Swift
+let darkSkyAPIKey = "your_key_here"
+let googleMapsAPIKey = "your_key_here"
+```
+
+## License
+Travel Weather is available under the MIT license. See the LICENSE file for more info.
 
 
 
