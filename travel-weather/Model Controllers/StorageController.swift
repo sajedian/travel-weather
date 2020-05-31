@@ -105,6 +105,9 @@ class StorageController {
                 context.delete(day.location)
                 day.location = Location(location: getDefaultLocation(), insertInto: context)
                 day.location.defaultLocation = false
+                day.highTemp = nil
+                day.lowTemp = nil
+                day.weatherSummary = nil
                 day.weatherDataDate = nil
             } else {
                 _ = createDefaultDay(date: date)
@@ -113,20 +116,6 @@ class StorageController {
         saveContext()
     }
 
-    //does not set locationnWasSet to true because the day still has the default location
-    func updateDefaultDay(date: Date, place: GMSPlace) {
-            if let day = getDayForDate(for: date) {
-                let context = persistentContainer.viewContext
-                context.delete(day.location)
-                day.location = Location(location: getDefaultLocation(), insertInto: context)
-                day.location.defaultLocation = false
-                day.weatherDataDate = nil
-                saveContext()
-            } else {
-                _ = createDefaultDay(date: date)
-            }
-    }
-    
     func updateOrCreateDay(date: Date, place: GMSPlace) {
         if let day = getDayForDate(for: date) {
             let context = persistentContainer.viewContext
