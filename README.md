@@ -2,7 +2,7 @@
 
 <h2>Introduction</h2>
 
-<p align="left">Effortlessly plan for your next roadtrip or multi-destination vacation with Travel Weather. Input your schedule, then view your personalized 14-day Forecast in one simple display. Built for iOS using Swift.</p>
+<p align="left">Effortlessly plan for your next roadtrip or multi-destination vacation with Travel Weather. Input your itinerary, then view your personalized 14-day Forecast in one simple display. Built for iOS using Swift.</p>
 
 <p align="center"><img width="425" src="images/scheduleExampleImage.png"><img width="425" src="images/forecastExampleImage.png"> </p>
 
