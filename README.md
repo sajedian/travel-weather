@@ -13,6 +13,9 @@
     * [Forecast](#forecast)
     * [Customization](#customization)
 * [Built Using](#built-using)
+* [Requirements](#requirements)
+* [Installation](#installation)
+* [License](#license)
 
 ## Features
 ### Scheduling
@@ -38,6 +41,7 @@ In the Settings tab, set your default location, switch between Fahrenheit and Ce
 * [Dark Sky API](https://darksky.net/dev) - for weather data
 
 ## Requirements
+
 
 ## Installation
 IMPORTANT: Travel Weather uses [Dark Sky API](https://darksky.net/dev), which is [no longer accepting new signups](https://blog.darksky.net/dark-sky-has-a-new-home/). Therefore, you can only run Travel Weather in its current form if you've already signed up with Dark Sky. I plan to transition to a different weather API in the near future.
