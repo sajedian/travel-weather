@@ -12,7 +12,7 @@
     * [Scheduling](#scheduling)
     * [Forecast](#forecast)
     * [Customization](#customization)
-* [Built Using](#built_using)
+* [Built Using](#built-using)
 
 ## Features
 ### Scheduling
@@ -28,11 +28,16 @@ In the Forecast tab, view your next 14 days of weather based on your schedule. I
 ### Customization
 In the Settings tab, set your default location, switch between Fahrenheit and Celsius, and set colors for locations.
 
-<p align="center"> <img width="297" src="images/settings.png"> <img width="300" src="images/colorSettings.png"> <img width="300" src="images/colorPicker.png"> </p>
+<p align="center"> <img width="292" src="images/settings.png"> <img width="295" src="images/colorSettings.png"> <img width="295" src="images/colorPicker.png"> </p>
 
 ## Built Using
-* [JTAppleCalendar](https://github.com/patchthecode/JTAppleCalendar)
-* 
+* Swift 5
+* Core Data
+* [JTAppleCalendar](https://github.com/patchthecode/JTAppleCalendar) - Awesome customizable iOS calendar library written in Swift
+* [Google Places SDK for iOS](https://developers.google.com/places/ios-sdk/intro) - for location search
+* [Dark Sky API](https://darksky.net/dev) - for weather data
+
+## 
 
 
 
