@@ -23,6 +23,7 @@ class StateController: NetworkControllerDelegate {
     private var storageController: StorageController!
     weak var weatherListDelegate: StateControllerDelegate?
     private var timer: Timer?
+    private var errorTimer: Timer?
     
     //MARK:- App State
     var colorSettingsArray = [ColorSetting]()
@@ -32,6 +33,9 @@ class StateController: NetworkControllerDelegate {
     }
     var temperatureUnits: TemperatureUnits {
         return TemperatureUnits(rawValue: UserDefaults.standard.integer(forKey: "temperatureUnits")) ?? .fahrenheit
+    }
+    var networkError: NetworkError? {
+        return networkController.currentNetworkError
     }
     
     
@@ -54,6 +58,12 @@ class StateController: NetworkControllerDelegate {
     func didUpdateForecast() {
           storageController.saveContext()
           weatherListDelegate?.didUpdateForecast()
+        if let networkError = networkError, networkError == .noInternet {
+            startErrorTimer()
+        } else {
+            stopErrorTimer()
+        }
+          print("forecastUpdated")
        }
     
     
@@ -93,6 +103,16 @@ class StateController: NetworkControllerDelegate {
     
     func updateForecast() {
         networkController.requestFullForecast(for: days)
+    }
+    func startErrorTimer() {
+        guard errorTimer == nil else { return }
+        errorTimer = Timer.scheduledTimer(timeInterval: 10, target: self, selector: #selector(fireTimer), userInfo: nil, repeats: true)
+        errorTimer?.tolerance = 2
+        RunLoop.current.add(errorTimer!, forMode: RunLoop.Mode.common)
+    }
+    func stopErrorTimer() {
+        errorTimer?.invalidate()
+        errorTimer = nil
     }
     
     
