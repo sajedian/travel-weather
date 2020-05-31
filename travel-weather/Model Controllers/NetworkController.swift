@@ -40,7 +40,7 @@ class NetworkController {
                 continue
             }
             dispatchGroup.enter()
-            getDayForecast2(for: day) { result in
+            getDayForecast(for: day) { result in
                 switch result {
                 case .failure(let error):
                     self.currentNetworkError = error
@@ -62,7 +62,7 @@ class NetworkController {
     //used for requesting forecast data for one day
     func requestDayForecast(for day: Day) {
         dispatchGroup.enter()
-        getDayForecast2(for: day) { result in
+        getDayForecast(for: day) { result in
             switch result {
             case .failure(let error):
                 self.currentNetworkError = error
@@ -127,36 +127,8 @@ class NetworkController {
         }
         
     }
-    
-//    private func getDayForecast(for day: Day) {
-//        dispatchGroup.enter()
-//        let url = composedURLRequest(date: day.date, latitude: day.location.latitude, longitude: day.location.longitude)!
-//        let dataTask = session.dataTask(with: url,
-//                    completionHandler: { data, response, error in
-//                        if let error = error {
-//                            print("Error found\n! \(error), \(response)")
-//                        } else if let httpResponse = response as? HTTPURLResponse,
-//                            httpResponse.statusCode == 200 {
-//                            if let data = data {
-//                                let result = self.parse(data: data)
-//                                if let weatherForDay = result {
-//                                    let date: String? = httpResponse.allHeaderFields["Date"] as? String ?? nil
-//                                    DispatchQueue.main.async {
-//                                        day.setWeatherForDay(weatherForDay: weatherForDay, date: date)
-//                                    }
-//                                }
-//                            }
-//                            print("Success! \(response!)")
-//                        } else {
-//                            print("Failure! \(response!)")
-//                        }
-//                        self.dispatchGroup.leave()
-//
-//        })
-//        dataTask.resume()
-//    }
 
-    func getDayForecast2(for day: Day, completionHandler: @escaping (Result<(WeatherForDay, String?), NetworkError>) -> Void) {
+    func getDayForecast(for day: Day, completionHandler: @escaping (Result<(WeatherForDay, String?), NetworkError>) -> Void) {
         
         guard let request = composedURLRequest(date: day.date, latitude: day.location.latitude, longitude: day.location.longitude) else {
             completionHandler(.failure(.other))
