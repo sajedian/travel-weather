@@ -17,10 +17,20 @@ enum TemperatureUnits: Int {
 
 class SettingsViewController: UITableViewController {
     
+    //MARK:- Properties
     var stateController: StateController!
+    
+    
+    //MARK:- Outlets
+    @IBOutlet var temperatureUnitControl: UISegmentedControl!
+    @IBOutlet var defaultCityLabel: UILabel!
+    
+    
+    //MARK:- Lifecycle
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-        navigationController?.navigationBar.isTranslucent = false
+        
         defaultCityLabel.text = stateController.defaultLocation.display
         if UserDefaults.standard.integer(forKey: "temperatureUnits") == TemperatureUnits.celsius.rawValue {
             temperatureUnitControl.selectedSegmentIndex = 0
@@ -30,9 +40,9 @@ class SettingsViewController: UITableViewController {
     }
     
 
-    @IBOutlet var temperatureUnitControl: UISegmentedControl!
-    @IBOutlet weak var defaultCityLabel: UILabel!
-    @IBAction func unwindToSettingsVC(segue: UIStoryboardSegue) {}
+    //MARK:- Actions
+    
+    //@IBAction func unwindToSettingsVC(segue: UIStoryboardSegue) {}
     
     @IBAction func temperatureUnitsChanged(_ sender: UISegmentedControl) {
         if sender.selectedSegmentIndex == 0 {
@@ -43,26 +53,25 @@ class SettingsViewController: UITableViewController {
     }
     
     
+    //MARK:- Table View Data Source
+    
     override func tableView(_ tableView: UITableView, viewForFooterInSection section: Int) -> UIView? {
-
-        let myLabel = UILabel()
-        myLabel.frame = CGRect(x: 20, y: 8, width: 320, height: 20)
         
-        myLabel.font = UIFont.preferredFont(forTextStyle: .caption1)
-        myLabel.textColor = UIColor.systemGray
-        myLabel.text = self.tableView(tableView, titleForFooterInSection: section)
-
         let footerView = UIView()
-//        footerView.backgroundColor = UIColor.lightGray
-        footerView.addSubview(myLabel)
-
+        let footerLabel = UILabel()
+        footerView.addSubview(footerLabel)
+        
+        footerLabel.frame = CGRect(x: 20, y: 8, width: 320, height: 20)
+        footerLabel.font = UIFont.preferredFont(forTextStyle: .caption1)
+        footerLabel.textColor = UIColor.systemGray
+        footerLabel.text = self.tableView(tableView, titleForFooterInSection: section)
+       
         return footerView
     }
     
-    // Create a standard footer that includes the returned text.
-    override func tableView(_ tableView: UITableView, titleForFooterInSection
-                                section: Int) -> String? {
-        
+   
+    override func tableView(_ tableView: UITableView, titleForFooterInSection section: Int) -> String? {
+       
         switch section {
         case 0:
             return "Set location where you'll be most often"
@@ -74,7 +83,9 @@ class SettingsViewController: UITableViewController {
 
     }
     
+    
     //MARK:- Navigation
+    
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "editDefaultLocation" {
             let controller = segue.destination as! EditLocationViewController
@@ -91,7 +102,9 @@ class SettingsViewController: UITableViewController {
 }
 
 extension SettingsViewController: EditLocationViewControllerDelegate {
+
     func editLocationViewControllerDidUpdate(didSelect newLocation: GMSPlace, for date: [Date]?) {
+        
         navigationController?.popViewController(animated: true)
         stateController.changeDefaultLocation(didSelect: newLocation)
         defaultCityLabel.text = stateController.defaultLocation.display
