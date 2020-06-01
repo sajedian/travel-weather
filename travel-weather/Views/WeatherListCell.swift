@@ -12,6 +12,7 @@ import UIKit
 class WeatherListCell: UITableViewCell {
 
     @IBOutlet var colorView: UIView!
+    
     override func awakeFromNib() {
         super.awakeFromNib()
         colorView.layer.cornerRadius = 13
@@ -28,11 +29,4 @@ class WeatherListCell: UITableViewCell {
         backgroundColor = .systemGray6
         colorView.backgroundColor = .charcoalGrayLight
        }
-
-    override func setSelected(_ selected: Bool, animated: Bool) {
-        super.setSelected(selected, animated: animated)
-
-        // Configure the view for the selected state
-    }
-
 }

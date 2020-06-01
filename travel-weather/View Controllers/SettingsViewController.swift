@@ -29,10 +29,10 @@ class SettingsViewController: UITableViewController {
     //MARK:- Lifecycle
     
     override func viewDidLoad() {
-        super.viewDidLoad()
         
+        super.viewDidLoad()
         defaultCityLabel.text = stateController.defaultLocation.display
-        if UserDefaults.standard.integer(forKey: "temperatureUnits") == TemperatureUnits.celsius.rawValue {
+        if stateController.temperatureUnits == .celsius {
             temperatureUnitControl.selectedSegmentIndex = 0
         } else {
             temperatureUnitControl.selectedSegmentIndex = 1

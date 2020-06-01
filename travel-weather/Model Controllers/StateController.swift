@@ -206,7 +206,7 @@ class StateController: NetworkControllerDelegate {
     }
 
     
-    //should refactor this to do updates locations in batch rather than passing to updateOrCreateDay
+    //should refactor this to update locations in batch rather than passing to updateOrCreateDay
     func updateOrCreateDays(didSelect newLocation: GMSPlace, for dates: [Date]) {
         for date in dates {
             updateOrCreateDay(didSelect: newLocation, for: date)
