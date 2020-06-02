@@ -53,25 +53,28 @@ class DateCell: JTAppleCell {
     }
     //MARK:- Interface
     
+    //manipulates constraints to create a solid bar from each cell's selectedView when
+    //ranged selection occurs
+    //in "full" case selected view is a circle
+    
     func selectedViewLeft() {
-        selectedTrailingConstraint.constant = 0
+        selectedTrailingConstraint.constant = 2
         selectedLeadingConstraint.constant = 10
         selectedView.layer.maskedCorners = [.layerMinXMaxYCorner, .layerMinXMinYCorner]
     }
     
     func selectedViewRight() {
-        selectedLeadingConstraint.constant = 0
+        selectedLeadingConstraint.constant = -2
         selectedTrailingConstraint.constant = -10
         selectedView.layer.maskedCorners = [.layerMaxXMaxYCorner, .layerMaxXMinYCorner]
     }
     
     func selectedViewMiddle() {
-        selectedLeadingConstraint.constant = 0
-        selectedTrailingConstraint.constant = 0
+        selectedLeadingConstraint.constant = -2
+        selectedTrailingConstraint.constant = 2
         selectedView.layer.maskedCorners = []
         
     }
-    
     func selectedViewFull() {
         selectedLeadingConstraint.constant = 10
         selectedTrailingConstraint.constant = -10
