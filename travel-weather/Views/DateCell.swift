@@ -21,6 +21,7 @@ class DateCell: JTAppleCell {
     var selectedLeadingConstraint: NSLayoutConstraint!
     var selectedTrailingConstraint: NSLayoutConstraint!
     
+    //MARK:- Lifecycle
     override func awakeFromNib() {
         super.awakeFromNib()
         createSelectedView()
@@ -28,7 +29,8 @@ class DateCell: JTAppleCell {
         strikeThroughView.backgroundColor = UIColor.white.withAlphaComponent(0.5)
     }
     
-    //sets up selected
+    //sets up selectedView which is used when a cell is selected
+    //default configuration is a circle, for single cell selection
     private func createSelectedView() {
         
         selectedView = UIView()
