@@ -42,8 +42,6 @@ class SettingsViewController: UITableViewController {
 
     //MARK:- Actions
     
-    //@IBAction func unwindToSettingsVC(segue: UIStoryboardSegue) {}
-    
     @IBAction func temperatureUnitsChanged(_ sender: UISegmentedControl) {
         if sender.selectedSegmentIndex == 0 {
             UserDefaults.standard.set(TemperatureUnits.celsius.rawValue, forKey: "temperatureUnits")

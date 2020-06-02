@@ -10,11 +10,14 @@
 import JTAppleCalendar
 import UIKit
 class DateCell: JTAppleCell {
-    @IBOutlet weak var dateLabel: UILabel!
-    @IBOutlet weak var dotView: UIView!
+   
+    //MARK:- Outlets
+    @IBOutlet var dateLabel: UILabel!
+    @IBOutlet var dotView: UIView!
     @IBOutlet var strikeThroughView: UIView!
-    var selectedView: UIView!
     
+    //MARK:- Properties
+    var selectedView: UIView!
     var selectedLeadingConstraint: NSLayoutConstraint!
     var selectedTrailingConstraint: NSLayoutConstraint!
     
@@ -22,13 +25,17 @@ class DateCell: JTAppleCell {
         super.awakeFromNib()
         createSelectedView()
         dotView.backgroundColor = .darkYellow
-        strikeThroughView.backgroundColor = UIColor(red: 1, green: 1, blue: 1, alpha: 0.5)
+        strikeThroughView.backgroundColor = UIColor.white.withAlphaComponent(0.5)
     }
     
-    func createSelectedView() {
+    //sets up selected
+    private func createSelectedView() {
+        
         selectedView = UIView()
         selectedView.translatesAutoresizingMaskIntoConstraints = false
-        self.contentView.addSubview(selectedView)
+        contentView.addSubview(selectedView)
+        contentView.sendSubviewToBack(selectedView)
+        
         selectedLeadingConstraint = selectedView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 10)
         selectedTrailingConstraint = selectedView.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -10)
         
@@ -38,11 +45,13 @@ class DateCell: JTAppleCell {
             selectedLeadingConstraint,
             selectedTrailingConstraint
         ])
+        
         selectedView.layer.cornerRadius = (contentView.frame.size.width - 20) / 2.0
-        selectedView.backgroundColor = UIColor(red: 1, green: 1, blue: 1, alpha: 0.5)
-        contentView.sendSubviewToBack(selectedView)
+        selectedView.backgroundColor = UIColor.white.withAlphaComponent(0.5)
+        
         
     }
+    //MARK:- Interface
     
     func selectedViewLeft() {
         selectedTrailingConstraint.constant = 0
@@ -53,9 +62,7 @@ class DateCell: JTAppleCell {
     func selectedViewRight() {
         selectedLeadingConstraint.constant = 0
         selectedTrailingConstraint.constant = -10
-        
         selectedView.layer.maskedCorners = [.layerMaxXMaxYCorner, .layerMaxXMinYCorner]
-
     }
     
     func selectedViewMiddle() {

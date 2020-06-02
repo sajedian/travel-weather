@@ -73,6 +73,8 @@ class EditLocationViewController: UIViewController{
         searchController.searchBar.searchTextField.placeholder = "Search for new location"
         searchController.searchBar.searchTextField.textColor = UIColor.charcoalGrayDark
         searchController.searchBar.searchTextField.backgroundColor = UIColor.systemGray6
+        
+        
 
     }
     

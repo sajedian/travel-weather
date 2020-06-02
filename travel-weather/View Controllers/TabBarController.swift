@@ -16,10 +16,6 @@ class TabBarController: UITabBarController {
         super.viewDidLoad()
         //switches to Forecast tab on launch
         self.selectedIndex = 1
-        let barAppearance = UINavigationBar.appearance(whenContainedInInstancesOf: [TabBarController.self])
-        barAppearance.shadowImage = UIImage()
-    
-
         
    }
 }
