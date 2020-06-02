@@ -17,11 +17,4 @@ class ScheduleTableViewCell: UITableViewCell {
         backgroundColor = .charcoalGrayLight
         locationLabel.textColor = UIColor.white.withAlphaComponent(0.65)
     }
-
-    override func setSelected(_ selected: Bool, animated: Bool) {
-        super.setSelected(selected, animated: animated)
-
-        // Configure the view for the selected state
-    }
-
 }

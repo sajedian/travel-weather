@@ -10,25 +10,34 @@
 import JTAppleCalendar
 import UIKit
 class DateCell: JTAppleCell {
-    @IBOutlet weak var dateLabel: UILabel!
-    @IBOutlet weak var dotView: UIView!
+   
+    //MARK:- Outlets
+    @IBOutlet var dateLabel: UILabel!
+    @IBOutlet var dotView: UIView!
     @IBOutlet var strikeThroughView: UIView!
-    var selectedView: UIView!
     
+    //MARK:- Properties
+    var selectedView: UIView!
     var selectedLeadingConstraint: NSLayoutConstraint!
     var selectedTrailingConstraint: NSLayoutConstraint!
     
+    //MARK:- Lifecycle
     override func awakeFromNib() {
         super.awakeFromNib()
         createSelectedView()
         dotView.backgroundColor = .darkYellow
-        strikeThroughView.backgroundColor = UIColor(red: 1, green: 1, blue: 1, alpha: 0.5)
+        strikeThroughView.backgroundColor = UIColor.white.withAlphaComponent(0.5)
     }
     
-    func createSelectedView() {
+    //sets up selectedView which is used when a cell is selected
+    //default configuration is a circle, for single cell selection
+    private func createSelectedView() {
+        
         selectedView = UIView()
         selectedView.translatesAutoresizingMaskIntoConstraints = false
-        self.contentView.addSubview(selectedView)
+        contentView.addSubview(selectedView)
+        contentView.sendSubviewToBack(selectedView)
+        
         selectedLeadingConstraint = selectedView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 10)
         selectedTrailingConstraint = selectedView.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -10)
         
@@ -38,33 +47,36 @@ class DateCell: JTAppleCell {
             selectedLeadingConstraint,
             selectedTrailingConstraint
         ])
+        
         selectedView.layer.cornerRadius = (contentView.frame.size.width - 20) / 2.0
-        selectedView.backgroundColor = UIColor(red: 1, green: 1, blue: 1, alpha: 0.5)
-        contentView.sendSubviewToBack(selectedView)
+        selectedView.backgroundColor = UIColor.white.withAlphaComponent(0.5)
+        
         
     }
+    //MARK:- Interface
+    
+    //manipulates constraints to create a solid bar from each cell's selectedView when
+    //ranged selection occurs
+    //in "full" case selected view is a circle
     
     func selectedViewLeft() {
-        selectedTrailingConstraint.constant = 0
+        selectedTrailingConstraint.constant = 2
         selectedLeadingConstraint.constant = 10
         selectedView.layer.maskedCorners = [.layerMinXMaxYCorner, .layerMinXMinYCorner]
     }
     
     func selectedViewRight() {
-        selectedLeadingConstraint.constant = 0
+        selectedLeadingConstraint.constant = -2
         selectedTrailingConstraint.constant = -10
-        
         selectedView.layer.maskedCorners = [.layerMaxXMaxYCorner, .layerMaxXMinYCorner]
-
     }
     
     func selectedViewMiddle() {
-        selectedLeadingConstraint.constant = 0
-        selectedTrailingConstraint.constant = 0
+        selectedLeadingConstraint.constant = -2
+        selectedTrailingConstraint.constant = 2
         selectedView.layer.maskedCorners = []
         
     }
-    
     func selectedViewFull() {
         selectedLeadingConstraint.constant = 10
         selectedTrailingConstraint.constant = -10

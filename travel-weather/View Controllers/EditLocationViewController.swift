@@ -15,21 +15,24 @@ protocol EditLocationViewControllerDelegate {
 
 class EditLocationViewController: UIViewController{
     
+    //MARK:- Outlets
+    @IBOutlet weak var subView: UIView!
+    
+    //MARK:- Properties
     var delegate: EditLocationViewControllerDelegate?
     var dates: [Date] = []
     var searchController: UISearchController!
     var resultsViewController: GMSAutocompleteResultsViewController!
-    
     var resultView: UITextView?
     
-    @IBOutlet weak var subView: UIView!
     
+    //MARK:- Actions
     @IBAction func cancel() {
         navigationController?.popViewController(animated: true)
-       }
+    }
     
 
-    
+    //MARK:- Lifecycle
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -40,11 +43,24 @@ class EditLocationViewController: UIViewController{
                 title = DateHelper.monthAndDayFromDate(from: dates.first!)
             }
         }
+        
+        //congirure navigation bar appearance and ensure it isn't altered by search results
+        
+        navigationController?.navigationBar.isTranslucent = false
+        extendedLayoutIncludesOpaqueBars = true
+        definesPresentationContext = true
+        
        
+        //create controller for displaying autocomplete results
+        
         resultsViewController = GMSAutocompleteResultsViewController()
-        searchController = UISearchController(searchResultsController: resultsViewController)
-    
         resultsViewController.delegate = self
+        resultsViewController.edgesForExtendedLayout = []
+        searchController = UISearchController(searchResultsController: resultsViewController)
+        searchController.hidesNavigationBarDuringPresentation = false
+        
+        
+        //configure filtering to only present cities
         
         let filter = GMSAutocompleteFilter()
         filter.type = .city
@@ -53,27 +69,22 @@ class EditLocationViewController: UIViewController{
             UInt(GMSPlaceField.placeID.rawValue) | UInt(GMSPlaceField.addressComponents.rawValue)
             | UInt(GMSPlaceField.coordinate.rawValue) )!
         resultsViewController.placeFields = fields
-
         searchController.searchResultsUpdater = resultsViewController
         
-        subView.addSubview((searchController.searchBar))
-        searchController.searchBar.sizeToFit()
-        searchController.searchBar.isTranslucent = false
-        searchController.hidesNavigationBarDuringPresentation = false
+        //move search content down so it isn't cut off by search bar
+        searchController.searchResultsController?.additionalSafeAreaInsets = UIEdgeInsets.init(top: 60, left: 0, bottom: 0, right: 0)
         
-        navigationController?.navigationBar.isTranslucent = false
-        self.extendedLayoutIncludesOpaqueBars = true
-        // When UISearchController presents the results view, present it in
-        // this view controller, not one further up the chain.
-        definesPresentationContext = true
-        searchController.searchBar.showsCancelButton = false
-        resultsViewController.edgesForExtendedLayout = []
-        searchController.searchResultsController?.additionalSafeAreaInsets = UIEdgeInsets.init(top: 64, left: 0, bottom: 0, right: 0)
-        searchController.searchBar.backgroundImage = UIImage()
-        searchController.searchBar.searchTextField.placeholder = "Search for new location"
-        searchController.searchBar.searchTextField.textColor = UIColor.charcoalGrayDark
-        searchController.searchBar.searchTextField.backgroundColor = UIColor.systemGray6
-
+        //adds search bar to search controller and configure its appearance
+        
+        let searchBar = searchController.searchBar
+        subView.addSubview(searchBar)
+        searchBar.sizeToFit()
+        searchBar.isTranslucent = false
+        searchBar.showsCancelButton = false
+        searchBar.searchTextField.placeholder = "Search for new location"
+        searchBar.searchTextField.textColor = UIColor.charcoalGray
+        searchBar.searchTextField.backgroundColor = UIColor.systemGray6
+        searchBar.backgroundImage = UIImage()
     }
     
 }
@@ -91,23 +102,10 @@ extension EditLocationViewController: GMSAutocompleteResultsViewControllerDelega
         })
     }
     
-    
-  
-
-  func resultsController(_ resultsController: GMSAutocompleteResultsViewController,
+    func resultsController(_ resultsController: GMSAutocompleteResultsViewController,
                          didFailAutocompleteWithError error: Error){
     // TODO: handle the error.
     print("Error: ", error.localizedDescription)
   }
 
 }
-
-//  // Turn the network activity indicator on and off again.
-//  func didRequestAutocompletePredictions(forResultsController resultsController: GMSAutocompleteResultsViewController) {
-//    UIApplication.shared.isNetworkActivityIndicatorVisible = true
-//  }
-//
-//  func didUpdateAutocompletePredictions(forResultsController resultsController: GMSAutocompleteResultsViewController) {
-//    UIApplication.shared.isNetworkActivityIndicatorVisible = false
-//  }
-

@@ -16,7 +16,6 @@ struct ForecastResult: Decodable {
     let daily: Daily?
     
 }
-
 struct Daily: Decodable {
        let data: [WeatherForDay]
    }
