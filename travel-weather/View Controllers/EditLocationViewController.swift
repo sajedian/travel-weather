@@ -45,14 +45,12 @@ class EditLocationViewController: UIViewController{
         }
         
         //congirure navigation bar appearance and ensure it isn't altered by search results
-        
         navigationController?.navigationBar.isTranslucent = false
         extendedLayoutIncludesOpaqueBars = true
         definesPresentationContext = true
         
        
         //create controller for displaying autocomplete results
-        
         resultsViewController = GMSAutocompleteResultsViewController()
         resultsViewController.delegate = self
         resultsViewController.edgesForExtendedLayout = []
@@ -61,7 +59,6 @@ class EditLocationViewController: UIViewController{
         
         
         //configure filtering to only present cities
-        
         let filter = GMSAutocompleteFilter()
         filter.type = .city
         resultsViewController.autocompleteFilter = filter
@@ -75,7 +72,6 @@ class EditLocationViewController: UIViewController{
         searchController.searchResultsController?.additionalSafeAreaInsets = UIEdgeInsets.init(top: 60, left: 0, bottom: 0, right: 0)
         
         //adds search bar to search controller and configure its appearance
-        
         let searchBar = searchController.searchBar
         subView.addSubview(searchBar)
         searchBar.sizeToFit()
