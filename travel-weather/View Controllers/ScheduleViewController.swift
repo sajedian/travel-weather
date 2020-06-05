@@ -85,13 +85,7 @@ class ScheduleViewController: UIViewController{
         
     }
     
-    func pushEditLocationVC(dates: [Date]) {
-        if let editLocationVC = storyboard?.instantiateViewController(identifier: "editLocationVC") as? EditLocationViewController {
-            editLocationVC.dates = dates
-            editLocationVC.delegate = self
-            navigationController?.pushViewController(editLocationVC, animated: true)
-        }
-    }
+   
     
     //MARK:- Lifecycle
     override func viewWillAppear(_ animated: Bool) {
@@ -128,6 +122,14 @@ class ScheduleViewController: UIViewController{
     
     //MARK:- Helper Functions
     
+    private func pushEditLocationVC(dates: [Date]) {
+           if let editLocationVC = storyboard?.instantiateViewController(identifier: "editLocationVC") as? EditLocationViewController {
+               editLocationVC.dates = dates
+               editLocationVC.delegate = self
+               navigationController?.pushViewController(editLocationVC, animated: true)
+           }
+       }
+    
 
     private func configureViewAppearance() {
         resetSelectedDate()
@@ -140,7 +142,6 @@ class ScheduleViewController: UIViewController{
         selectedDayView.layer.shadowOpacity = 0.4
         selectedDayView.layer.shadowRadius = 3
         navigationController?.navigationBar.setValue(true, forKey: "hidesShadow")
-        
         dateRangeView.backgroundColor = .charcoalGray
         tableView.backgroundColor = .charcoalGrayLight
         tableView.layer.cornerRadius = 15
@@ -249,7 +250,7 @@ extension ScheduleViewController: JTAppleCalendarViewDataSource {
         if cellState.date.timeIntervalSince(Date()) <= -86400 {
             cell.strikeThroughView.isHidden = false
             cell.dotView.isHidden = true
-            cell.dateLabel.textColor = UIColor(red: 255/255, green: 255/255, blue: 255/255, alpha: 0.5)
+            cell.dateLabel.textColor = UIColor.white.withAlphaComponent(0.5)
             cell.selectedView.isHidden = true
             
         } else {
