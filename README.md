@@ -45,6 +45,7 @@ IMPORTANT: Travel Weather uses [Dark Sky API](https://darksky.net/dev), which is
 #### CocoaPods:
 ```
 git clone https://github.com/sajedian/travel-weather.git
+cd travel-weather
 pod install
 ```
 
