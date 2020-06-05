@@ -40,7 +40,7 @@ In the Settings tab, set your default location, switch between Fahrenheit and Ce
 * [Dark Sky API](https://darksky.net/dev) - for weather data
 
 ## Installation
-IMPORTANT: Travel Weather uses [Dark Sky API](https://darksky.net/dev), which is [no longer accepting new signups](https://blog.darksky.net/dark-sky-has-a-new-home/). Therefore, you can only run Travel Weather in its current form if you've already signed up with Dark Sky. I plan to transition to a different weather API in the near future.
+IMPORTANT: Travel Weather uses [Dark Sky API](https://darksky.net/dev), which is [no longer accepting new signups](https://blog.darksky.net/dark-sky-has-a-new-home/). Therefore, you can only run Travel Weather in its fully-functional form if you've already signed up with Dark Sky. I plan to transition to a different weather API in the near future.
 
 #### CocoaPods:
 ```
@@ -51,7 +51,7 @@ pod install
 
 #### Provide API Keys:
 [Sign up for a Google Maps API Key](https://developers.google.com/places/ios-sdk/get-api-key)
-<p>Add a file called Constants.swift (or whatever you'd like to call it), with the following constants:</p>
+<p>Add a file called Constants.swift (or if you call it something else make sure to add it to .gitignore), with the following constants:</p>
 
 ```Swift
 let darkSkyAPIKey = "your_key_here"
