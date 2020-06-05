@@ -15,11 +15,15 @@ enum ColorSettingType {
     case place(placeID: String)
 }
 
+
 class ColorSettingsViewController: UITableViewController {
     
+    //MARK:- Properties
     var stateController: StateController!
     var selectedSetting: ColorSettingType?
     
+    
+    //MARK:- Lifecycle
     override func viewDidLoad() {
         super.viewDidLoad()
     }
@@ -29,18 +33,18 @@ class ColorSettingsViewController: UITableViewController {
         tableView.reloadData()
     }
     
-    //MARK:- Outlets
-    
     
     //MARK:- Actions
     @IBAction func cancel() {
-           navigationController?.popViewController(animated: true)
+        navigationController?.popViewController(animated: true)
     }
-    @IBAction func unwindToColorSettingsVC(segue: UIStoryboardSegue) {
-            
-    }
+    @IBAction func unwindToColorSettingsVC(segue: UIStoryboardSegue) {}
+    
+    
     
     //MARK:- Table View Data Source
+    
+    //Table View Cells
     override func numberOfSections(in tableView: UITableView) -> Int {
         return 3
     }
@@ -57,16 +61,21 @@ class ColorSettingsViewController: UITableViewController {
             return 0
         }
     }
+    
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        
         switch (indexPath.section, indexPath.row) {
+        
         case (0, 0):
             let cell = tableView.dequeueReusableCell(withIdentifier: "colorSettingsCell", for: indexPath)
             cell.textLabel?.text = "Default Color"
-            cell.imageView?.tintColor = UIColor(hex: UserDefaults.standard.string(forKey: "defaultColor")!)!
+            cell.imageView?.tintColor = stateController.defaultColor
             return cell
+        
         case (1, 0):
             return tableView.dequeueReusableCell(withIdentifier: "addLocationCell", for: indexPath)
-        case (2, _):
+        
+        default:
             let cell = tableView.dequeueReusableCell(withIdentifier: "colorSettingsCell", for: indexPath)
             let index = indexPath.row
             let location = stateController.colorSettingsArray[index].location
@@ -74,12 +83,11 @@ class ColorSettingsViewController: UITableViewController {
             cell.textLabel?.text = location.display
             cell.imageView?.tintColor = UIColor(hex: hexColor)
             return cell
-        default:
-            print("Error, cell not found")
-            return UITableViewCell()
+            
         }
     }
     
+    //Footers
     override func tableView(_ tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
         if section == 1 {
             return 25
@@ -88,72 +96,75 @@ class ColorSettingsViewController: UITableViewController {
         }
     }
     
-        override func tableView(_ tableView: UITableView, viewForFooterInSection section: Int) -> UIView? {
-
-            let myLabel = UILabel()
-            myLabel.frame = CGRect(x: 20, y: 8, width: 320, height: 20)
-            
-            myLabel.font = UIFont.preferredFont(forTextStyle: .caption1)
-            myLabel.textColor = UIColor.systemGray
-            myLabel.text = self.tableView(tableView, titleForFooterInSection: section)
-
-            let footerView = UIView()
-    //        footerView.backgroundColor = UIColor.lightGray
-            footerView.addSubview(myLabel)
-
-            return footerView
-        }
-        
-        // Create a standard footer that includes the returned text.
-        override func tableView(_ tableView: UITableView, titleForFooterInSection
-                                    section: Int) -> String? {
-            
-            switch section {
-            case 0:
-                return "Set default color for Forecast display"
-            case 1:
-                return "Add a corresponding color for a location"
-            default:
-                return nil
-            }
-
-        }
+   override func tableView(_ tableView: UITableView, viewForFooterInSection section: Int) -> UIView? {
     
+        let footerView = UIView()
+        let footerLabel = UILabel()
+        footerView.addSubview(footerLabel)
+        
+        footerLabel.frame = CGRect(x: 20, y: 8, width: 320, height: 20)
+        footerLabel.font = UIFont.preferredFont(forTextStyle: .caption1)
+        footerLabel.textColor = UIColor.systemGray
+        footerLabel.text = self.tableView(tableView, titleForFooterInSection: section)
+       
+        return footerView
+    }
+        
+
+    override func tableView(_ tableView: UITableView, titleForFooterInSection section: Int) -> String? {
+            
+        switch section {
+        case 0:
+            return "Set default color for Forecast display"
+        case 1:
+            return "Add a corresponding color for a location"
+        default:
+            return nil
+        }
+
+    }
+    
+    //Enable swipe-to-delete
     override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
         if editingStyle == .delete {
-            stateController.deleteColorSetting(row: indexPath.row) //write this method
+            stateController.deleteColorSetting(row: indexPath.row)
             tableView.deleteRows(at: [indexPath], with: .fade)
         }
     }
 
 
+    
     //MARK:- Navigation
-     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+     
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        
         guard let selectedPath = tableView.indexPathForSelectedRow else { return }
-         if segue.identifier == "addLocation" {
+        
+        if segue.identifier == "addLocation" {
             let controller = segue.destination as! EditLocationViewController
             controller.title = "Add Location"
-           controller.delegate = self
-         }
-         else if segue.identifier == "colorPicker" {
+            controller.delegate = self
+        } else if segue.identifier == "colorPicker" {
             let controller = segue.destination as! ColorPickerViewController
             if selectedPath.section == 0 {
                 controller.selectedSetting = .defaultColor
                 controller.title = "Default Color"
             } else {
                 let city = self.stateController.colorSettingsArray[selectedPath.row].location.locality
-                
                 let placeID = self.stateController.colorSettingsArray[selectedPath.row].placeID
                 controller.title = city
                 controller.selectedSetting = .place(placeID: placeID)
             }
             controller.stateController = stateController
-         }
         }
-
+    }
+    
+    
+    
 }
 
 extension ColorSettingsViewController: EditLocationViewControllerDelegate {
+    
     func editLocationViewControllerDidUpdate(didSelect newLocation: GMSPlace, for dates: [Date]?) {
         stateController.addAssociatedColor(color: nil , for: newLocation)
         performSegue(withIdentifier: "colorPicker", sender: tableView(tableView, cellForRowAt: IndexPath(row: 0, section: 2)))

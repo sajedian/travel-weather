@@ -19,9 +19,7 @@ extension Day {
 
     @NSManaged public var date: Date
     @NSManaged public var weatherDataDate: Date?
-//    @NSManaged public var highTemp: Int32
     @NSManaged public var locationWasSet: Bool
-//    @NSManaged public var lowTemp: Int32
     @NSManaged public var weatherSummaryValue: String?
     @NSManaged public var location: Location
 

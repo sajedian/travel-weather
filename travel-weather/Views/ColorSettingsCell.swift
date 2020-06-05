@@ -12,6 +12,6 @@ import UIKit
 class ColorSettingsCell: UITableViewCell {
     
     //MARK:- Outlets
-    @IBOutlet weak var colorImageView: UIImageView!
-    @IBOutlet weak var cityLabel: UILabel!
+    @IBOutlet var colorImageView: UIImageView!
+    @IBOutlet var cityLabel: UILabel!
 }

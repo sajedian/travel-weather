@@ -13,14 +13,19 @@ import UIKit
 
 
 class WeatherListViewController: UITableViewController {
-
+    
+    //MARK:- Properties
+    
     var stateController: StateController! {
         didSet {
             stateController.weatherListDelegate = self
         }
     }
-    
+    //default number of rows if there is no "No Internet" Warning
     var numberOfRows = 15
+    
+    
+    //MARK:- Lifecycle
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
@@ -33,27 +38,25 @@ class WeatherListViewController: UITableViewController {
         tableView.clipsToBounds = false
         tableView.backgroundColor = .systemGray6
         
-        var cellNib = UINib(nibName: "DayCell", bundle: nil)
-        tableView.register(cellNib, forCellReuseIdentifier: "DayCell")
-        cellNib = UINib(nibName: "DarkSkyAttributionCell", bundle: nil)
-        tableView.register(cellNib, forCellReuseIdentifier: "AttributionCell")
-        tableView.register(UINib.init(nibName: "NoInternetCell", bundle: nil), forCellReuseIdentifier: "NoInternetCell")
+        tableView.register(UINib(nibName: "DayCell", bundle: nil), forCellReuseIdentifier: "DayCell")
+        tableView.register(UINib(nibName: "DarkSkyAttributionCell", bundle: nil), forCellReuseIdentifier: "AttributionCell")
+        tableView.register(UINib(nibName: "NoInternetCell", bundle: nil), forCellReuseIdentifier: "NoInternetCell")
         tableView.reloadData()
         
         
     }
     
-    func configureCell(day: Day, cell: DayCell) {
+    
+    //MARK:- Internal functions
+    private func configureCell(day: Day, cell: DayCell) {
         cell.weekdayLabel.text = day.weekday
-        cell.dateLabel.text = DateHelper.shortDateFormat(date: day.date)
+        cell.dateLabel.text = day.date.shortMonthAndDay
         cell.cityLabel.text = day.location.display
         cell.lowTempLabel.text = day.lowTempDisplay
         cell.highTempLabel.text = day.highTempDisplay
         cell.weatherImageView.image = day.weatherImage
         cell.colorView.backgroundColor = stateController.getAssociatedColor(for: day.location.placeID)
     }
-        
-    
     
     
     //MARK:- Table View Data Source
@@ -88,7 +91,7 @@ class WeatherListViewController: UITableViewController {
             return tableView.dequeueReusableCell(withIdentifier: "AttributionCell", for: indexPath) as! WeatherListCell
         } else {
             let cell = tableView.dequeueReusableCell(withIdentifier: "DayCell", for: indexPath) as! DayCell
-            let date = DateHelper.dayFromToday(offset: offset)
+            let date = Date.dayFromToday(offset: offset)
             let day = stateController.getDayForDate(for: date)
             configureCell(day: day, cell: cell)
             return cell
@@ -108,6 +111,7 @@ class WeatherListViewController: UITableViewController {
 }
 
 extension WeatherListViewController: StateControllerDelegate {
+    
     func didUpdateForecast() {
         tableView.reloadData()
     }

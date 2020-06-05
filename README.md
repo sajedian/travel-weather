@@ -25,7 +25,7 @@ In the Schedule tab, select date or range of dates, then search for a location. 
 ### Forecast
 In the Forecast tab, view your next 14 days of weather based on your schedule. If you haven't entered a location for a certain day your default location will be used.
 
-<p align="center"> <img width="460" src="images/forecastCroppedImage.png"> <img width="400" src="images/ForecastGIF.gif">  </p>
+<p align="center"> <img width="460" src="images/forecastCroppedImage1.png"> <img width="400" src="images/ForecastGIF.gif">  </p>
 
 ### Customization
 In the Settings tab, set your default location, switch between Fahrenheit and Celsius, and set colors for locations.
@@ -40,17 +40,18 @@ In the Settings tab, set your default location, switch between Fahrenheit and Ce
 * [Dark Sky API](https://darksky.net/dev) - for weather data
 
 ## Installation
-IMPORTANT: Travel Weather uses [Dark Sky API](https://darksky.net/dev), which is [no longer accepting new signups](https://blog.darksky.net/dark-sky-has-a-new-home/). Therefore, you can only run Travel Weather in its current form if you've already signed up with Dark Sky. I plan to transition to a different weather API in the near future.
+IMPORTANT: Travel Weather uses [Dark Sky API](https://darksky.net/dev), which is [no longer accepting new signups](https://blog.darksky.net/dark-sky-has-a-new-home/). Therefore, you can only run Travel Weather in its fully-functional form if you've already signed up with Dark Sky. I plan to transition to a different weather API in the near future.
 
 #### CocoaPods:
 ```
 git clone https://github.com/sajedian/travel-weather.git
+cd travel-weather
 pod install
 ```
 
 #### Provide API Keys:
 [Sign up for a Google Maps API Key](https://developers.google.com/places/ios-sdk/get-api-key)
-<p>Add a file called Constants.swift (or whatever you'd like to call it), with the following constants:</p>
+<p>Add a file called Constants.swift (or if you call it something else make sure to add it to .gitignore), with the following constants:</p>
 
 ```Swift
 let darkSkyAPIKey = "your_key_here"

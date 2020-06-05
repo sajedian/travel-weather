@@ -37,6 +37,14 @@ class StateController: NetworkControllerDelegate {
     var networkError: NetworkError? {
         return networkController.currentNetworkError
     }
+    var defaultColor: UIColor {
+        if let colorHex = UserDefaults.standard.string(forKey: "defaultColor"),
+            let defaultColor = UIColor(hex: colorHex) {
+            return defaultColor
+        } else {
+            return .charcoalGrayLight
+        }
+    }
     
     
     init() {
@@ -49,10 +57,7 @@ class StateController: NetworkControllerDelegate {
         loadAndUpdateData()
     }
     
-    //notification will be received when midnight
-    @ objc func onTimeChange(_ notification: Notification) {
-        loadAndUpdateData()
-    }
+    
     
     //MARK:- NetworkControllerDelegate Functions
     func didUpdateForecast() {
@@ -67,10 +72,15 @@ class StateController: NetworkControllerDelegate {
        }
     
     
-    //MARK:- Interface
+    //MARK:- Interface- Updating data
+    
+    //notification will be received when midnight or another important time change occurs
+    @ objc func onTimeChange(_ notification: Notification) {
+        loadAndUpdateData()
+    }
     
     func clearOldData() {
-       let dateThreeDaysAgo = DateHelper.dayFromToday(offset: -3)
+       let dateThreeDaysAgo = Date.dayFromToday(offset: -3)
         days = days.filter { date, day in
             return date >= dateThreeDaysAgo
         }
@@ -78,32 +88,34 @@ class StateController: NetworkControllerDelegate {
         storageController.deleteDaysBefore(date: dateThreeDaysAgo)
     }
     
+    func updateForecast() {
+        networkController.requestFullForecast(for: days)
+    }
+    
     func loadAndUpdateData() {
         for i in 0..<14 {
-            let date = DateHelper.dayFromToday(offset: i)
+            let date = Date.dayFromToday(offset: i)
             let day = getDayForDate(for: date)
             days[date] = day
         }
         networkController.requestFullForecast(for: days)
     }
     
-    //Timer for updating data
+    //Timer for updating data, fires every 10 minutes
     func startUpdateTimer() {
         timer = Timer.scheduledTimer(timeInterval: 600, target: self, selector: #selector(fireTimer), userInfo: nil, repeats: true)
         timer?.tolerance = 10
         RunLoop.current.add(timer!, forMode: RunLoop.Mode.common)
     }
+    
     func stopUpdateTimer() {
         timer?.invalidate()
     }
     @objc private func fireTimer() {
-        print("Updating Data")
         loadAndUpdateData()
     }
     
-    func updateForecast() {
-        networkController.requestFullForecast(for: days)
-    }
+    //Checks for updates every 10s if there is no network connection
     func startErrorTimer() {
         guard errorTimer == nil else { return }
         errorTimer = Timer.scheduledTimer(timeInterval: 10, target: self, selector: #selector(fireTimer), userInfo: nil, repeats: true)
@@ -119,13 +131,12 @@ class StateController: NetworkControllerDelegate {
     
     //MARK:- Color Interface
     func getAssociatedColor(for placeID: String) -> UIColor {
-        if let colorHex = storageController.getColorSetting(for: placeID)?.colorHex {
-            return UIColor(hex: colorHex)!
+        if let colorHex = storageController.getColorSetting(for: placeID)?.colorHex,
+            let color = UIColor(hex: colorHex){
+            return color
         }
-        else if let defaultColor = UIColor(hex: UserDefaults.standard.string(forKey: "defaultColor")!) {
+        else {
             return defaultColor
-        } else {
-            return .charcoalGray
         }
     }
     
@@ -141,11 +152,12 @@ class StateController: NetworkControllerDelegate {
     }
 
     func addAssociatedColor(color: UIColor?, for place: GMSPlace) {
+        //current date is used to organize color settings by the time they were set
         let date = Date()
         if let color = color {
-            storageController.createOrUpdateColorSetting(colorHex: color.toHex(), place: place, date: date )
+            storageController.createOrUpdateColorSetting(colorHex: color.toHex(), place: place, date: date)
         } else {
-            storageController.createOrUpdateColorSetting(colorHex: UserDefaults.standard.string(forKey: "defaultColor")!, place: place, date: date)
+            storageController.createOrUpdateColorSetting(colorHex: defaultColor.toHex(), place: place, date: date)
         }
         colorSettingsArray = storageController.getColorSettings()
     }
@@ -158,7 +170,6 @@ class StateController: NetworkControllerDelegate {
     
     //MARK:- Day Interface
     
-
     func getDayForDate(for date: Date) -> Day {
         if let day = days[date] {
             return day
@@ -195,7 +206,7 @@ class StateController: NetworkControllerDelegate {
     }
 
     
-    //should refactor this to do updates locations in batch rather than passing to updateOrCreateDay
+    //should refactor this to update locations in batch rather than passing to updateOrCreateDay
     func updateOrCreateDays(didSelect newLocation: GMSPlace, for dates: [Date]) {
         for date in dates {
             updateOrCreateDay(didSelect: newLocation, for: date)

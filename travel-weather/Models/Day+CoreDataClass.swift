@@ -135,7 +135,7 @@ public class Day: NSManagedObject {
         
     func setWeatherForDay(weatherForDay: WeatherForDay?, date: String?) {
         if let date = date {
-            weatherDataDate = DateHelper.httpDate(from: date)
+            weatherDataDate = Date.httpDate(from: date)
         } else {
             weatherDataDate = nil
         }

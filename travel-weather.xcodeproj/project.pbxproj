@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		9E0210112485D63B00CA2D90 /* GMSPlace+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E0210102485D63B00CA2D90 /* GMSPlace+Extension.swift */; };
 		9E055CB824817DD800A272EE /* DarkSkyAttributionCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9E055CB724817DD800A272EE /* DarkSkyAttributionCell.xib */; };
 		9E055CBA248180E500A272EE /* WeatherListCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E055CB9248180E500A272EE /* WeatherListCell.swift */; };
 		9E347888243A4CBD00CB60D8 /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E347887243A4CBD00CB60D8 /* SettingsViewController.swift */; };
@@ -22,7 +23,7 @@
 		9E6FD5C7245A03DE00D42DF8 /* ColorSettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E6FD5C6245A03DE00D42DF8 /* ColorSettingsViewController.swift */; };
 		9E6FD5CD245B54DC00D42DF8 /* ColorSettingsCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E6FD5CC245B54DC00D42DF8 /* ColorSettingsCell.swift */; };
 		9E89C37423E654AD00922C68 /* ForecastResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E89C37323E654AD00922C68 /* ForecastResult.swift */; };
-		9E8DACE72422BF4A00159E82 /* DateHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E8DACE62422BF4A00159E82 /* DateHelper.swift */; };
+		9E8DACE72422BF4A00159E82 /* Date+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E8DACE62422BF4A00159E82 /* Date+Extension.swift */; };
 		9EA007A3245B8902008A4CF0 /* ColorPickerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9EA007A2245B8902008A4CF0 /* ColorPickerViewController.swift */; };
 		9EAAFB2624816AF700BA1456 /* ScheduleTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9EAAFB2524816AF700BA1456 /* ScheduleTableViewCell.swift */; };
 		9EB0216A2484163500E70DAA /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9EB021692484163500E70DAA /* Constants.swift */; };
@@ -61,6 +62,7 @@
 		44A8036A27DFF9D5E8F2180C /* Pods-travel-weather.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-travel-weather.debug.xcconfig"; path = "Target Support Files/Pods-travel-weather/Pods-travel-weather.debug.xcconfig"; sourceTree = "<group>"; };
 		74CBD53015A58807D8567366 /* Pods-travel-weather.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-travel-weather.release.xcconfig"; path = "Target Support Files/Pods-travel-weather/Pods-travel-weather.release.xcconfig"; sourceTree = "<group>"; };
 		8A18F3C440FB00117E25BC65 /* libPods-travel-weather.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-travel-weather.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		9E0210102485D63B00CA2D90 /* GMSPlace+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "GMSPlace+Extension.swift"; sourceTree = "<group>"; };
 		9E055CB724817DD800A272EE /* DarkSkyAttributionCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = DarkSkyAttributionCell.xib; sourceTree = "<group>"; };
 		9E055CB9248180E500A272EE /* WeatherListCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherListCell.swift; sourceTree = "<group>"; };
 		9E3478832439276400CB60D8 /* Pods_travel_weather.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = Pods_travel_weather.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -79,7 +81,7 @@
 		9E6FD5CC245B54DC00D42DF8 /* ColorSettingsCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorSettingsCell.swift; sourceTree = "<group>"; };
 		9E8664E62481720C005D1FB6 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		9E89C37323E654AD00922C68 /* ForecastResult.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ForecastResult.swift; sourceTree = "<group>"; };
-		9E8DACE62422BF4A00159E82 /* DateHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateHelper.swift; sourceTree = "<group>"; };
+		9E8DACE62422BF4A00159E82 /* Date+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Date+Extension.swift"; sourceTree = "<group>"; };
 		9EA007A2245B8902008A4CF0 /* ColorPickerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorPickerViewController.swift; sourceTree = "<group>"; };
 		9EAAFB2524816AF700BA1456 /* ScheduleTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ScheduleTableViewCell.swift; sourceTree = "<group>"; };
 		9EB021692484163500E70DAA /* Constants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
@@ -219,7 +221,8 @@
 			isa = PBXGroup;
 			children = (
 				9EECD18F245CBC8B00161F87 /* ColorPalette.swift */,
-				9E8DACE62422BF4A00159E82 /* DateHelper.swift */,
+				9E8DACE62422BF4A00159E82 /* Date+Extension.swift */,
+				9E0210102485D63B00CA2D90 /* GMSPlace+Extension.swift */,
 			);
 			path = "Convenience Extensions";
 			sourceTree = "<group>";
@@ -229,9 +232,9 @@
 			children = (
 				9EAAFB2524816AF700BA1456 /* ScheduleTableViewCell.swift */,
 				9EB43D4423EF3A0B00933D21 /* DateCell.swift */,
+				9E055CB9248180E500A272EE /* WeatherListCell.swift */,
 				9E63368423D624ED00468158 /* DayCell.swift */,
 				9E6FD5CC245B54DC00D42DF8 /* ColorSettingsCell.swift */,
-				9E055CB9248180E500A272EE /* WeatherListCell.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -383,7 +386,8 @@
 				9EDDCCA5248167F100E0A794 /* Day+CoreDataProperties.swift in Sources */,
 				9EC593A123DCD5F600E42793 /* StateController.swift in Sources */,
 				9E63366D23D5422400468158 /* AppDelegate.swift in Sources */,
-				9E8DACE72422BF4A00159E82 /* DateHelper.swift in Sources */,
+				9E8DACE72422BF4A00159E82 /* Date+Extension.swift in Sources */,
+				9E0210112485D63B00CA2D90 /* GMSPlace+Extension.swift in Sources */,
 				9EA007A3245B8902008A4CF0 /* ColorPickerViewController.swift in Sources */,
 				9E055CBA248180E500A272EE /* WeatherListCell.swift in Sources */,
 				9E63366F23D5422400468158 /* SceneDelegate.swift in Sources */,
