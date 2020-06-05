@@ -23,7 +23,7 @@
 		9E6FD5C7245A03DE00D42DF8 /* ColorSettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E6FD5C6245A03DE00D42DF8 /* ColorSettingsViewController.swift */; };
 		9E6FD5CD245B54DC00D42DF8 /* ColorSettingsCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E6FD5CC245B54DC00D42DF8 /* ColorSettingsCell.swift */; };
 		9E89C37423E654AD00922C68 /* ForecastResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E89C37323E654AD00922C68 /* ForecastResult.swift */; };
-		9E8DACE72422BF4A00159E82 /* DateHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E8DACE62422BF4A00159E82 /* DateHelper.swift */; };
+		9E8DACE72422BF4A00159E82 /* Date+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E8DACE62422BF4A00159E82 /* Date+Extension.swift */; };
 		9EA007A3245B8902008A4CF0 /* ColorPickerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9EA007A2245B8902008A4CF0 /* ColorPickerViewController.swift */; };
 		9EAAFB2624816AF700BA1456 /* ScheduleTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9EAAFB2524816AF700BA1456 /* ScheduleTableViewCell.swift */; };
 		9EB0216A2484163500E70DAA /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9EB021692484163500E70DAA /* Constants.swift */; };
@@ -81,7 +81,7 @@
 		9E6FD5CC245B54DC00D42DF8 /* ColorSettingsCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorSettingsCell.swift; sourceTree = "<group>"; };
 		9E8664E62481720C005D1FB6 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		9E89C37323E654AD00922C68 /* ForecastResult.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ForecastResult.swift; sourceTree = "<group>"; };
-		9E8DACE62422BF4A00159E82 /* DateHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateHelper.swift; sourceTree = "<group>"; };
+		9E8DACE62422BF4A00159E82 /* Date+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Date+Extension.swift"; sourceTree = "<group>"; };
 		9EA007A2245B8902008A4CF0 /* ColorPickerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorPickerViewController.swift; sourceTree = "<group>"; };
 		9EAAFB2524816AF700BA1456 /* ScheduleTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ScheduleTableViewCell.swift; sourceTree = "<group>"; };
 		9EB021692484163500E70DAA /* Constants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
@@ -221,7 +221,7 @@
 			isa = PBXGroup;
 			children = (
 				9EECD18F245CBC8B00161F87 /* ColorPalette.swift */,
-				9E8DACE62422BF4A00159E82 /* DateHelper.swift */,
+				9E8DACE62422BF4A00159E82 /* Date+Extension.swift */,
 				9E0210102485D63B00CA2D90 /* GMSPlace+Extension.swift */,
 			);
 			path = "Convenience Extensions";
@@ -386,7 +386,7 @@
 				9EDDCCA5248167F100E0A794 /* Day+CoreDataProperties.swift in Sources */,
 				9EC593A123DCD5F600E42793 /* StateController.swift in Sources */,
 				9E63366D23D5422400468158 /* AppDelegate.swift in Sources */,
-				9E8DACE72422BF4A00159E82 /* DateHelper.swift in Sources */,
+				9E8DACE72422BF4A00159E82 /* Date+Extension.swift in Sources */,
 				9E0210112485D63B00CA2D90 /* GMSPlace+Extension.swift in Sources */,
 				9EA007A3245B8902008A4CF0 /* ColorPickerViewController.swift in Sources */,
 				9E055CBA248180E500A272EE /* WeatherListCell.swift in Sources */,

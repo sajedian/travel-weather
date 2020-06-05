@@ -19,8 +19,8 @@ class ScheduleViewController: UIViewController{
     var days = [Day]()
     
     //month ranges of when calendar will start and end
-    var startDate: Date?
-    var endDate: Date?
+    var startDate: Date!
+    var endDate: Date!
     
     //first visible date on page not including dates from past month
     var firstVisibleDateInMonth: Date?
@@ -53,26 +53,27 @@ class ScheduleViewController: UIViewController{
     
     
     @IBAction func scrollRight() {
-        var dateComponents = DateComponents()
-        dateComponents.month = 1
-        let nextMonthDate = Calendar.current.date(byAdding: dateComponents, to: firstVisibleDateInMonth!)!
+        guard let firstDate = firstVisibleDateInMonth else {
+            return
+        }
+        let nextMonthDate = firstDate.offsetMonth(by: 1)
         calendarView.scrollToDate(nextMonthDate)
         leftButton.isHidden = false
         //hide right button if at end of calendar
-        if DateHelper.equalMonthAndYear(date1: nextMonthDate, date2: endDate!) {
+        if nextMonthDate.equalMonthAndYear(otherDate: endDate) {
             rightButton.isHidden = true
         }
-        
     }
     
     @IBAction func scrollLeft() {
-        var dateComponents = DateComponents()
-        dateComponents.month = -1
-       let previousMonthDate = Calendar.current.date(byAdding: dateComponents, to: firstVisibleDateInMonth!)!
+        guard let firstDate = firstVisibleDateInMonth else {
+            return
+        }
+        let previousMonthDate = firstDate.offsetMonth(by: -1)
         calendarView.scrollToDate(previousMonthDate)
         rightButton.isHidden = false
         //hide left button if at beginning of calendar
-        if DateHelper.equalMonthAndYear(date1: previousMonthDate, date2: startDate!) {
+        if previousMonthDate.equalMonthAndYear(otherDate: startDate) {
             leftButton.isHidden = true
         }
     }
@@ -155,19 +156,12 @@ class ScheduleViewController: UIViewController{
         calendarView.scrollingMode = .stopAtEachCalendarFrame
         calendarView.showsHorizontalScrollIndicator = false
         dateFormatter.dateFormat = "yyyy MM dd"
-        startDate = DateHelper.currentDateMDYOnly()
-        endDate = DateHelper.offsetMonth(from: startDate!, by: 12)
-        calendarView.scrollToDate(startDate!, animateScroll: false)
+        startDate = Date.currentDateMDYOnly()
+        endDate = startDate.offsetMonth(by: 12)
+        calendarView.scrollToDate(startDate, animateScroll: false)
         calendarView.allowsMultipleSelection = true
         calendarView.isRangeSelectionUsed = true
         leftButton.isHidden = true
-    }
-    
-    private func monthAndYearFromVisibleDates(from visibleDates: DateSegmentInfo) -> String {
-        dateFormatter.dateFormat = "MMMM yyyy"
-        let date = visibleDates.monthDates[0].date
-        let monthAndYear = dateFormatter.string(from: date)
-        return monthAndYear
     }
     
     private func resetSelectedDate() {
@@ -178,11 +172,11 @@ class ScheduleViewController: UIViewController{
     
     private func onSelectDate() {
         if twoDatesSelected {
-            dateRangeLabel.text = DateHelper.formatDateRange(date1: firstSelectedDate!, date2: calendarView.selectedDates.last!)
+            dateRangeLabel.text = firstSelectedDate?.formatDateRange(to: calendarView.selectedDates.last!)
         } else {
-            dateRangeLabel.text = DateHelper.monthAndDayFromDate(from: firstSelectedDate!)
+            dateRangeLabel.text = firstSelectedDate?.monthAndOrdinalDay
 
-    }
+        }
         dateRangeLabel.isHidden = false
         indicatorView.isHidden = false
         tableView.reloadData()
@@ -218,7 +212,7 @@ extension ScheduleViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "scheduleCell", for: indexPath) as! ScheduleTableViewCell
         let date = calendarView.selectedDates[indexPath.row]
-        let dateDisplay = DateHelper.shortDateFormat(date: date)
+        let dateDisplay = date.shortMonthAndDay
         let locationDisplay = stateController.getLocationDisplay(for: date)
         cell.locationLabel.text = "\(dateDisplay) - \(locationDisplay)"
         return cell
@@ -238,9 +232,8 @@ extension ScheduleViewController: UITableViewDelegate {
 
 extension ScheduleViewController: JTAppleCalendarViewDataSource {
     func configureCalendar(_ calendar: JTAppleCalendarView) -> ConfigurationParameters {
-        dateFormatter.dateFormat = "yyyy MM dd"
-        let startDate = DateHelper.currentDateMDYOnly()
-        let endDate = DateHelper.offsetMonth(from: startDate, by: 12)
+        let startDate = Date.currentDateMDYOnly()
+        let endDate = startDate.offsetMonth(by: 12)
         return ConfigurationParameters(startDate: startDate, endDate: endDate, generateOutDates: .tillEndOfRow)
     }
     
@@ -333,7 +326,7 @@ extension ScheduleViewController: JTAppleCalendarViewDelegate {
     
     func calendar(_ calendar: JTAppleCalendarView, didScrollToDateSegmentWith visibleDates: DateSegmentInfo) {
         firstVisibleDateInMonth = visibleDates.monthDates.first?.date
-        monthLabel.text = monthAndYearFromVisibleDates(from: visibleDates)
+        monthLabel.text = firstVisibleDateInMonth?.monthAndYear
     }
     
     func calendar(_ calendar: JTAppleCalendarView, didSelectDate date: Date, cell: JTAppleCell?, cellState: CellState) {

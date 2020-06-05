@@ -50,7 +50,7 @@ class WeatherListViewController: UITableViewController {
     //MARK:- Internal functions
     private func configureCell(day: Day, cell: DayCell) {
         cell.weekdayLabel.text = day.weekday
-        cell.dateLabel.text = DateHelper.shortDateFormat(date: day.date)
+        cell.dateLabel.text = day.date.shortMonthAndDay
         cell.cityLabel.text = day.location.display
         cell.lowTempLabel.text = day.lowTempDisplay
         cell.highTempLabel.text = day.highTempDisplay
@@ -91,7 +91,7 @@ class WeatherListViewController: UITableViewController {
             return tableView.dequeueReusableCell(withIdentifier: "AttributionCell", for: indexPath) as! WeatherListCell
         } else {
             let cell = tableView.dequeueReusableCell(withIdentifier: "DayCell", for: indexPath) as! DayCell
-            let date = DateHelper.dayFromToday(offset: offset)
+            let date = Date.dayFromToday(offset: offset)
             let day = stateController.getDayForDate(for: date)
             configureCell(day: day, cell: cell)
             return cell
