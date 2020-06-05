@@ -80,7 +80,7 @@ class StateController: NetworkControllerDelegate {
     }
     
     func clearOldData() {
-       let dateThreeDaysAgo = DateHelper.dayFromToday(offset: -3)
+       let dateThreeDaysAgo = Date.dayFromToday(offset: -3)
         days = days.filter { date, day in
             return date >= dateThreeDaysAgo
         }
@@ -94,7 +94,7 @@ class StateController: NetworkControllerDelegate {
     
     func loadAndUpdateData() {
         for i in 0..<14 {
-            let date = DateHelper.dayFromToday(offset: i)
+            let date = Date.dayFromToday(offset: i)
             let day = getDayForDate(for: date)
             days[date] = day
         }

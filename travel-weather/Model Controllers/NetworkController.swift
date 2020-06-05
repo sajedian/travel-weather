@@ -88,17 +88,17 @@ class NetworkController {
                return true
            }
            if let dateOfLastUpdate = day.weatherDataDate {
-               let timeSinceLastUpdate = DateHelper.timeIntervalToCurrentDate(from: dateOfLastUpdate)
+               let timeSinceLastUpdate = dateOfLastUpdate.timeIntervalSinceNow * -1
                //request forecast for earlier days more often
-               switch DateHelper.daysFromCurrentDate(to: day.date) {
+               switch day.date.daysFromCurrentDate {
                case 0...1:
-                   return timeSinceLastUpdate > 3600 //1 hour
+                    return timeSinceLastUpdate > Date.secondsInHour
                case 2...3:
-                   return timeSinceLastUpdate > 21600 //6 hours
+                    return timeSinceLastUpdate > Date.secondsInHour * 6
                case 3...5:
-                   return timeSinceLastUpdate > 43200 //12 hours
+                    return timeSinceLastUpdate > Date.secondsInHour * 12
                default:
-                   return timeSinceLastUpdate > 86400 //24 hours
+                    return timeSinceLastUpdate > Date.secondsInDay
                }
            } else {
               return true
@@ -118,7 +118,7 @@ class NetworkController {
     
         
     private func composedURLRequest(date: Date, latitude: Double, longitude: Double) -> URLRequest? {
-        let timeStamp = DateHelper.ISODate(from: date)
+        let timeStamp = date.ISODate
         if let url = URL(string: "https://api.darksky.net/forecast/\(darkSkyAPIKey)/\(latitude),\(longitude),\(timeStamp)?exclude=currently,minutely,hourly,alerts,flags"
             ) {
             return URLRequest(url: url)

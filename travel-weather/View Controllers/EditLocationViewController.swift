@@ -38,9 +38,9 @@ class EditLocationViewController: UIViewController{
         
         if !dates.isEmpty {
             if dates.count > 1 {
-                title = DateHelper.formatDateRange(date1: dates.first!, date2: dates.last!)
+                title = dates.first!.formatDateRange(to: dates.last!)
             } else {
-                title = DateHelper.monthAndDayFromDate(from: dates.first!)
+                title = dates.first!.monthAndOrdinalDay
             }
         }
         
