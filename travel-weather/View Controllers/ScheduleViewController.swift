@@ -30,21 +30,17 @@ class ScheduleViewController: UIViewController{
         return firstSelectedDate != nil && calendarView.selectedDates.count > 1
     }
     
+    var scheduleListVC: ScheduleListViewController?
+    
     
     //MARK:- Outlets
-    @IBOutlet weak var calendarView: JTAppleCalendarView!
+    @IBOutlet var calendarView: JTAppleCalendarView!
     //stack view for day of the week header
-    @IBOutlet weak var stackView: UIStackView!
-    @IBOutlet weak var monthLabel: UILabel!
+    @IBOutlet var stackView: UIStackView!
+    @IBOutlet var monthLabel: UILabel!
     @IBOutlet var leftButton: UIButton!
     @IBOutlet var rightButton: UIButton!
-    
-//    @IBOutlet weak var selectedDayView: UIView!
-//    //outlets in selectedDayView
-//    @IBOutlet weak var dateRangeLabel: UILabel!
-//    @IBOutlet var indicatorView: UIImageView!
-//    @IBOutlet var dateRangeView: UIView!
-//    @IBOutlet var tableView: UITableView!
+
     
     //MARK:- Actions
     //action for unwinding from EditLocationVC after location selection
@@ -100,6 +96,7 @@ class ScheduleViewController: UIViewController{
         configureCalendarProperties()
         configureViewAppearance()
         resetSelectedDate()
+        
 //        tableView.dataSource = self
 //        tableView.delegate = self
 //        tableView.reloadData()
@@ -119,6 +116,9 @@ class ScheduleViewController: UIViewController{
         if let controller = segue.destination as? EditLocationViewController {
             controller.dates = calendarView.selectedDates
             controller.delegate = self
+        } else if let controller = segue.destination as? ScheduleListViewController {
+            controller.stateController = stateController
+            scheduleListVC = controller
         }
             
     }
@@ -140,19 +140,8 @@ class ScheduleViewController: UIViewController{
         resetSelectedDate()
         view.backgroundColor = .charcoalGrayLight
         calendarView.backgroundColor = UIColor.charcoalGrayLight
-//        selectedDayView.layer.cornerRadius = 15
-//        selectedDayView.backgroundColor = UIColor.charcoalGray
-//        selectedDayView.layer.shadowColor = UIColor.black.cgColor
-//        selectedDayView.layer.shadowOffset = CGSize(width: 0, height: 1.5)
-//        selectedDayView.layer.shadowOpacity = 0.4
-//        selectedDayView.layer.shadowRadius = 3
         navigationController?.navigationBar.setValue(true, forKey: "hidesShadow")
-//        dateRangeView.backgroundColor = .charcoalGray
-//        tableView.backgroundColor = .charcoalGrayLight
-//        tableView.layer.cornerRadius = 15
-//        tableView.layer.maskedCorners = [.layerMinXMaxYCorner, .layerMaxXMaxYCorner]
-//        dateRangeView.layer.cornerRadius = 15
-//        dateRangeView.layer.maskedCorners = [.layerMinXMinYCorner, .layerMaxXMinYCorner]
+
     }
     
     private func configureCalendarProperties() {
@@ -202,34 +191,7 @@ extension ScheduleViewController: EditLocationViewControllerDelegate {
     }
 }
 
-extension ScheduleViewController: UITableViewDataSource {
-    
-    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return calendarView.selectedDates.count
-    }
-    
-    func numberOfSections(in tableView: UITableView) -> Int {
-        return 1
-    }
-    
-    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "scheduleCell", for: indexPath) as! ScheduleTableViewCell
-        let date = calendarView.selectedDates[indexPath.row]
-        let dateDisplay = date.shortMonthAndDay
-        let locationDisplay = stateController.getLocationDisplay(for: date)
-        cell.locationLabel.text = "\(dateDisplay) - \(locationDisplay)"
-        return cell
-        
-    }
-    
-}
 
-extension ScheduleViewController: UITableViewDelegate {
-    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        let date = calendarView.selectedDates[indexPath.row]
-        pushEditLocationVC(dates: [date])
-    }
-}
 
 
 
@@ -340,7 +302,7 @@ extension ScheduleViewController: JTAppleCalendarViewDelegate {
             firstSelectedDate = date
         }
         onSelectDate()
-
+        scheduleListVC?.selectedDates = calendarView.selectedDates
         configureCell(view: cell, cellState: cellState)
     }
 
