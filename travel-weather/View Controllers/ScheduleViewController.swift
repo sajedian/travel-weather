@@ -15,22 +15,14 @@ class ScheduleViewController: UIViewController{
     
     //MARK:- Properties
     var stateController: StateController!
-
-    
     var scheduleListVC: ScheduleListViewController?
     var calendarVC: CalendarViewController?
-
 
     
     //MARK:- Actions
     //action for unwinding from EditLocationVC after location selection
     @IBAction func unwindToScheduleVC(segue: UIStoryboardSegue) {}
     
-    
-    
-    
-    
-   
     
     //MARK:- Lifecycle
     
@@ -42,8 +34,6 @@ class ScheduleViewController: UIViewController{
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        //check if this line is necessary
-        navigationController?.navigationBar.setValue(true, forKey: "hidesShadow")
         view.backgroundColor = .charcoalGrayLight
     }
     
@@ -52,7 +42,6 @@ class ScheduleViewController: UIViewController{
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
         self.navigationController?.setNavigationBarHidden(false, animated: animated)
-        view.backgroundColor = .charcoalGrayLight
     }
     
     
@@ -70,19 +59,6 @@ class ScheduleViewController: UIViewController{
         }
             
     }
-    
-    
-    
-    //MARK:- Helper Functions
-    
-    private func pushEditLocationVC(dates: [Date]) {
-           if let editLocationVC = storyboard?.instantiateViewController(identifier: "editLocationVC") as? EditLocationViewController {
-               editLocationVC.dates = dates
-               editLocationVC.delegate = self
-               navigationController?.pushViewController(editLocationVC, animated: true)
-           }
-       }
-
 
 }
 
