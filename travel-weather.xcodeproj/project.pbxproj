@@ -11,6 +11,8 @@
 		9E055CB824817DD800A272EE /* DarkSkyAttributionCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9E055CB724817DD800A272EE /* DarkSkyAttributionCell.xib */; };
 		9E055CBA248180E500A272EE /* WeatherListCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E055CB9248180E500A272EE /* WeatherListCell.swift */; };
 		9E347888243A4CBD00CB60D8 /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E347887243A4CBD00CB60D8 /* SettingsViewController.swift */; };
+		9E34CC85248E8F2B0034E15C /* ScheduleListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E34CC84248E8F2B0034E15C /* ScheduleListViewController.swift */; };
+		9E34CC87248EB03F0034E15C /* CalendarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E34CC86248EB03F0034E15C /* CalendarViewController.swift */; };
 		9E50B6EE24845820009890FD /* NoInternetCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9E50B6ED24845820009890FD /* NoInternetCell.xib */; };
 		9E58E43D2409E3C50002B496 /* EditLocationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E58E43C2409E3C50002B496 /* EditLocationViewController.swift */; };
 		9E63366D23D5422400468158 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E63366C23D5422400468158 /* AppDelegate.swift */; };
@@ -67,6 +69,8 @@
 		9E055CB9248180E500A272EE /* WeatherListCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherListCell.swift; sourceTree = "<group>"; };
 		9E3478832439276400CB60D8 /* Pods_travel_weather.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = Pods_travel_weather.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		9E347887243A4CBD00CB60D8 /* SettingsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
+		9E34CC84248E8F2B0034E15C /* ScheduleListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = ScheduleListViewController.swift; path = "travel-weather/View Controllers/ScheduleListViewController.swift"; sourceTree = SOURCE_ROOT; };
+		9E34CC86248EB03F0034E15C /* CalendarViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarViewController.swift; sourceTree = "<group>"; };
 		9E50B6ED24845820009890FD /* NoInternetCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = NoInternetCell.xib; sourceTree = "<group>"; };
 		9E58E43C2409E3C50002B496 /* EditLocationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditLocationViewController.swift; sourceTree = "<group>"; };
 		9E63366923D5422400468158 /* Travel Weather.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Travel Weather.app"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -191,6 +195,8 @@
 			children = (
 				9EC69D6C23EBBE5A0051722D /* TabBarController.swift */,
 				9EC69D6A23EBB7070051722D /* ScheduleViewController.swift */,
+				9E34CC86248EB03F0034E15C /* CalendarViewController.swift */,
+				9E34CC84248E8F2B0034E15C /* ScheduleListViewController.swift */,
 				9E58E43C2409E3C50002B496 /* EditLocationViewController.swift */,
 				9E63368023D5478700468158 /* WeatherListViewController.swift */,
 				9E347887243A4CBD00CB60D8 /* SettingsViewController.swift */,
@@ -374,11 +380,13 @@
 				9EC69D6D23EBBE5A0051722D /* TabBarController.swift in Sources */,
 				9E63368523D624ED00468158 /* DayCell.swift in Sources */,
 				9EB0216A2484163500E70DAA /* Constants.swift in Sources */,
+				9E34CC85248E8F2B0034E15C /* ScheduleListViewController.swift in Sources */,
 				9E347888243A4CBD00CB60D8 /* SettingsViewController.swift in Sources */,
 				9EECD190245CBC8B00161F87 /* ColorPalette.swift in Sources */,
 				9EDDCCA1248167F100E0A794 /* Location+CoreDataProperties.swift in Sources */,
 				9EDDCCA6248167F100E0A794 /* Location+CoreDataClass.swift in Sources */,
 				9EFB9B12241FF6F80042776D /* StorageController.swift in Sources */,
+				9E34CC87248EB03F0034E15C /* CalendarViewController.swift in Sources */,
 				9EFB9B15242019700042776D /* TravelWeather.xcdatamodeld in Sources */,
 				9E58E43D2409E3C50002B496 /* EditLocationViewController.swift in Sources */,
 				9E89C37423E654AD00922C68 /* ForecastResult.swift in Sources */,
