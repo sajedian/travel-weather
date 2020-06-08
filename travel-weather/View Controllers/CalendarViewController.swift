@@ -211,9 +211,9 @@ extension CalendarViewController: JTAppleCalendarViewDelegate {
 
     func calendar(_ calendar: JTAppleCalendarView, didDeselectDate date: Date, cell: JTAppleCell?, cellState: CellState) {
         if date == firstSelectedDate {
+            delegate?.selectedDatesDidChange(to: calendarView.selectedDates)
             firstSelectedDate = nil
         }
-        //delegate?.selectedDatesDidChange(to: calendarView.selectedDates)
         configureCell(view: cell, cellState: cellState)
     }
     
