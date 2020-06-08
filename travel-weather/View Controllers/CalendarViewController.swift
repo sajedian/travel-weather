@@ -11,35 +11,38 @@ import JTAppleCalendar
 
 protocol CalendarViewControllerDelegate: class {
     func selectedDatesDidChange(to newDates: [Date])
+    func didDeselectDates()
 }
 
 class CalendarViewController: UIViewController {
+    
+    
+    //MARK:- Properties
     
     var stateController: StateController!
     weak var delegate: CalendarViewControllerDelegate?
     
     //month ranges of when calendar will start and end
-    var startDate = Date.currentDateMDYOnly()
-    var endDate = Date.currentDateMDYOnly().offsetMonth(by: 12)
+    private var startDate = Date.currentDateMDYOnly()
+    private var endDate = Date.currentDateMDYOnly().offsetMonth(by: 12)
     
     //first visible date on page not including dates from past month
-    var firstVisibleDateInMonth: Date?
+    private var firstVisibleDateInMonth: Date?
     
     //dates selected by user
-    var firstSelectedDate: Date?
-    var twoDatesSelected: Bool {
+    private var firstSelectedDate: Date?
+    private var twoDatesSelected: Bool {
         return firstSelectedDate != nil && calendarView.selectedDates.count > 1
     }
     
     
-    
     //MARK:- Outlets
+    
     @IBOutlet var calendarView: JTAppleCalendarView!
-    //stack view for day of the week header
-    @IBOutlet var stackView: UIStackView!
     @IBOutlet var monthLabel: UILabel!
     @IBOutlet var leftButton: UIButton!
     @IBOutlet var rightButton: UIButton!
+    
     
     //MARK:- Actions
     
@@ -69,7 +72,9 @@ class CalendarViewController: UIViewController {
         }
     }
     
+    
     //MARK:- Lifecycle
+    
     override func viewDidLoad() {
         super.viewDidLoad()
        
@@ -91,7 +96,9 @@ class CalendarViewController: UIViewController {
 
     }
     
-    func configureCell(view: JTAppleCell?, cellState: CellState) {
+    //MARK:- Private Methods
+    
+    private func configureCell(view: JTAppleCell?, cellState: CellState) {
         guard let cell = view as? DateCell  else { return }
         cell.dateLabel.text = cellState.text
         
@@ -113,7 +120,7 @@ class CalendarViewController: UIViewController {
     }
 
     
-    func handleCellSelected(cell: DateCell, cellState: CellState) {
+    private func handleCellSelected(cell: DateCell, cellState: CellState) {
         if cellState.isSelected {
             cell.selectedView.isHidden = false
             //handle shape of selected view for ranged selection
@@ -134,7 +141,7 @@ class CalendarViewController: UIViewController {
     }
     
     
-    func handleCellTextColor(cell: DateCell, cellState: CellState) {
+    private func handleCellTextColor(cell: DateCell, cellState: CellState) {
         if cellState.isSelected {
           cell.dateLabel.textColor = UIColor.charcoalGray
         }
@@ -147,7 +154,7 @@ class CalendarViewController: UIViewController {
     }
     
     //if user has set location for this date, show event indicator
-    func handleCellEvents(cell: DateCell, cellState: CellState) {
+    private func handleCellEvents(cell: DateCell, cellState: CellState) {
         let date = cellState.date
         let locationWasSet = stateController.locationWasSet(for: date)
         if locationWasSet {
@@ -206,7 +213,7 @@ extension CalendarViewController: JTAppleCalendarViewDelegate {
         if date == firstSelectedDate {
             firstSelectedDate = nil
         }
-        delegate?.selectedDatesDidChange(to: calendarView.selectedDates)
+        //delegate?.selectedDatesDidChange(to: calendarView.selectedDates)
         configureCell(view: cell, cellState: cellState)
     }
     
@@ -219,6 +226,7 @@ extension CalendarViewController: JTAppleCalendarViewDelegate {
             let shouldSelect = !calendarView.selectedDates.contains(date)
             firstSelectedDate = nil
             calendarView.deselectAllDates()
+            delegate?.didDeselectDates()
             return shouldSelect
         }
         return true
@@ -228,6 +236,7 @@ extension CalendarViewController: JTAppleCalendarViewDelegate {
         if twoDatesSelected && cellState.selectionType != .programatic {
             firstSelectedDate = nil
             calendarView.deselectAllDates()
+            delegate?.didDeselectDates()
             return false
         }
         return true

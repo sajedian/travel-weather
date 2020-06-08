@@ -66,6 +66,9 @@ extension ScheduleViewController: CalendarViewControllerDelegate {
     func selectedDatesDidChange(to newDates: [Date]) {
         scheduleListVC?.selectedDates = newDates
     }
+    func didDeselectDates() {
+        scheduleListVC?.selectedDates = []
+    }
 }
 
 extension ScheduleViewController: ScheduleListViewControllerDelegate {

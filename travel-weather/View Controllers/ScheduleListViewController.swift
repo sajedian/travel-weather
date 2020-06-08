@@ -19,6 +19,10 @@ class ScheduleListViewController: UIViewController {
         didSet {
             configureDateLabel()
             tableView.reloadData()
+            if selectedDates.count > 3 {
+                tableView.flashScrollIndicators()
+            }
+            
         }
     }
     
@@ -44,6 +48,11 @@ class ScheduleListViewController: UIViewController {
     
     
     //MARK:- Lifecycle
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        tableView.reloadData()
+    }
     
     override func viewDidLoad() {
         
@@ -89,6 +98,7 @@ class ScheduleListViewController: UIViewController {
         } else {
             indicatorView.isHidden = false
             dateRangeLabel.text = selectedDates.first!.formatDateRange(to: selectedDates.last!)
+            tableView.flashScrollIndicators()
         }
     }
     
