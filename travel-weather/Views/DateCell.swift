@@ -9,6 +9,7 @@
 
 import JTAppleCalendar
 import UIKit
+
 class DateCell: JTAppleCell {
    
     //MARK:- Outlets
@@ -51,7 +52,6 @@ class DateCell: JTAppleCell {
         selectedView.layer.cornerRadius = (contentView.frame.size.width - 20) / 2.0
         selectedView.backgroundColor = UIColor.white.withAlphaComponent(0.5)
         
-        
     }
     //MARK:- Interface
     
@@ -82,6 +82,8 @@ class DateCell: JTAppleCell {
         selectedTrailingConstraint.constant = -10
         selectedView.layer.maskedCorners = [.layerMaxXMaxYCorner, .layerMaxXMinYCorner, .layerMinXMaxYCorner, .layerMinXMinYCorner]
     }
+    
+    
 
     
     

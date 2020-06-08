@@ -15,7 +15,6 @@ class ScheduleViewController: UIViewController{
     
     //MARK:- Properties
     var stateController: StateController!
-    let dateFormatter = DateFormatter()
     var days = [Day]()
     
     //month ranges of when calendar will start and end
@@ -89,6 +88,8 @@ class ScheduleViewController: UIViewController{
    
     
     //MARK:- Lifecycle
+    
+    //hide navigationBar
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         self.navigationController?.setNavigationBarHidden(true, animated: animated)
@@ -105,6 +106,7 @@ class ScheduleViewController: UIViewController{
     }
     
     
+    //show navigationBar
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
         self.navigationController?.setNavigationBarHidden(false, animated: animated)
@@ -155,7 +157,6 @@ class ScheduleViewController: UIViewController{
         calendarView.scrollDirection = .horizontal
         calendarView.scrollingMode = .stopAtEachCalendarFrame
         calendarView.showsHorizontalScrollIndicator = false
-        dateFormatter.dateFormat = "yyyy MM dd"
         startDate = Date.currentDateMDYOnly()
         endDate = startDate.offsetMonth(by: 12)
         calendarView.scrollToDate(startDate, animateScroll: false)
