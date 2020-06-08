@@ -18,6 +18,7 @@ class ScheduleViewController: UIViewController{
 
     
     var scheduleListVC: ScheduleListViewController?
+    var calendarVC: CalendarViewController?
 
 
     
@@ -65,6 +66,7 @@ class ScheduleViewController: UIViewController{
         } else if let controller = segue.destination as? CalendarViewController {
             controller.stateController = stateController
             controller.delegate = self
+            calendarVC = controller
         }
             
     }
@@ -108,7 +110,7 @@ extension ScheduleViewController: EditLocationViewControllerDelegate {
         if let dates = dates {
             stateController.updateOrCreateDays(didSelect: newLocation, for: dates)
         }
-        //calendarView.reloadData()
+        calendarVC?.calendarView.reloadData()
         scheduleListVC?.tableView.reloadData()
     }
 }
