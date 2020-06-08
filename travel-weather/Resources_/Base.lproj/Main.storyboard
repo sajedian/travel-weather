@@ -224,11 +224,6 @@
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="sNf-NZ-ios" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
-                <tapGestureRecognizer id="BEZ-Ts-tmS">
-                    <connections>
-                        <action selector="selectedDayViewTapped:" destination="PfS-Y4-wsd" id="HoK-Iq-pJ6"/>
-                    </connections>
-                </tapGestureRecognizer>
             </objects>
             <point key="canvasLocation" x="1266.6666666666667" y="-577.23214285714278"/>
         </scene>
@@ -270,7 +265,7 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="wAR-rS-z76" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
                 <exit id="QcA-3h-S7T" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
-            <point key="canvasLocation" x="3465" y="-577"/>
+            <point key="canvasLocation" x="3035" y="-577"/>
         </scene>
         <!--Tab Bar Controller-->
         <scene sceneID="SpX-gW-h7a">
@@ -728,6 +723,9 @@
                                     <constraint firstAttribute="height" constant="50" id="nPW-XH-bhA"/>
                                     <constraint firstItem="pIX-pt-4LO" firstAttribute="centerY" secondItem="5og-Yn-X9b" secondAttribute="centerY" id="zeh-M3-4J6"/>
                                 </constraints>
+                                <connections>
+                                    <outletCollection property="gestureRecognizers" destination="jgV-oG-mfb" appends="YES" id="Bqz-7V-03b"/>
+                                </connections>
                             </view>
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
@@ -745,10 +743,16 @@
                     <connections>
                         <outlet property="dateRangeLabel" destination="bCD-5s-1zq" id="paw-H4-X91"/>
                         <outlet property="dateRangeView" destination="5og-Yn-X9b" id="kuY-F2-24d"/>
+                        <outlet property="indicatorView" destination="pIX-pt-4LO" id="Jlm-ye-atm"/>
                         <outlet property="tableView" destination="80h-47-6IG" id="hyL-KY-KRh"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="F9i-e1-ebS" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+                <tapGestureRecognizer id="jgV-oG-mfb">
+                    <connections>
+                        <action selector="dateRangeViewTapped:" destination="9be-62-enW" id="SGh-0Y-B07"/>
+                    </connections>
+                </tapGestureRecognizer>
             </objects>
             <point key="canvasLocation" x="2179.7101449275365" y="-438.28125"/>
         </scene>

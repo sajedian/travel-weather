@@ -8,6 +8,10 @@
 
 import UIKit
 
+protocol ScheduleListViewControllerDelegate: class {
+    func didSelectDates(dates: [Date])
+}
+
 class ScheduleListViewController: UIViewController {
     
     //MARK:- Properties
@@ -18,6 +22,7 @@ class ScheduleListViewController: UIViewController {
         }
     }
     
+    weak var delegate: ScheduleListViewControllerDelegate?
     var stateController: StateController!
     
     //MARK: Outlets
@@ -25,6 +30,20 @@ class ScheduleListViewController: UIViewController {
     @IBOutlet var dateRangeLabel: UILabel!
     @IBOutlet var dateRangeView: UIView!
     @IBOutlet var tableView: UITableView!
+    @IBOutlet var indicatorView: UIView!
+    
+    //MARK:- Actions
+    @IBAction func dateRangeViewTapped(_ sender: UITapGestureRecognizer) {
+        if selectedDates.isEmpty {
+            return
+        } else {
+            delegate?.didSelectDates(dates: selectedDates)
+        }
+        
+    }
+    
+    
+    //MARK:- Lifecycle
     
     override func viewDidLoad() {
         
@@ -62,10 +81,13 @@ class ScheduleListViewController: UIViewController {
     
     private func configureDateLabel() {
         if selectedDates.isEmpty {
+            indicatorView.isHidden = true
             dateRangeLabel.text = "Select date(s) to view/edit location"
         } else if selectedDates.count == 1 {
+            indicatorView.isHidden = false
             dateRangeLabel.text = selectedDates.first!.monthAndOrdinalDay
         } else {
+            indicatorView.isHidden = false
             dateRangeLabel.text = selectedDates.first!.formatDateRange(to: selectedDates.last!)
         }
     }
@@ -86,7 +108,7 @@ class ScheduleListViewController: UIViewController {
 extension ScheduleListViewController: UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return self.selectedDates.count
+        return selectedDates.count
     }
     
     func numberOfSections(in tableView: UITableView) -> Int {
@@ -95,7 +117,7 @@ extension ScheduleListViewController: UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "scheduleCell", for: indexPath) as! ScheduleTableViewCell
-        let date = self.selectedDates[indexPath.row]
+        let date = selectedDates[indexPath.row]
         let dateDisplay = date.shortMonthAndDay
         let locationDisplay = stateController.getLocationDisplay(for: date)
         cell.locationLabel.text = "\(dateDisplay) - \(locationDisplay)"
@@ -108,6 +130,6 @@ extension ScheduleListViewController: UITableViewDataSource {
 extension ScheduleListViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let date = selectedDates[indexPath.row]
-        //pushEditLocationVC(dates: [date])
+        delegate?.didSelectDates(dates: [date])
     }
 }

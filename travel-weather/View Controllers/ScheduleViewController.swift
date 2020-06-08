@@ -73,13 +73,7 @@ class ScheduleViewController: UIViewController{
         }
     }
     
-    @IBAction func selectedDayViewTapped(_ sender: UITapGestureRecognizer) {
-        if firstSelectedDate == nil {
-            return
-        }
-        pushEditLocationVC(dates: calendarView.selectedDates)
-        
-    }
+    
     
    
     
@@ -118,6 +112,7 @@ class ScheduleViewController: UIViewController{
             controller.delegate = self
         } else if let controller = segue.destination as? ScheduleListViewController {
             controller.stateController = stateController
+            controller.delegate = self
             scheduleListVC = controller
         }
             
@@ -180,6 +175,16 @@ class ScheduleViewController: UIViewController{
 
 }
 
+extension ScheduleViewController: ScheduleListViewControllerDelegate {
+    func didSelectDates(dates: [Date]) {
+        if let editLocationVC = storyboard?.instantiateViewController(identifier: "editLocationVC") as? EditLocationViewController {
+            editLocationVC.dates = dates
+            editLocationVC.delegate = self
+            navigationController?.pushViewController(editLocationVC, animated: true)
+        }
+    }
+}
+
 extension ScheduleViewController: EditLocationViewControllerDelegate {
     func editLocationViewControllerDidUpdate(didSelect newLocation: GMSPlace, for dates: [Date]?) {
         navigationController?.popViewController(animated: true)
@@ -187,7 +192,7 @@ extension ScheduleViewController: EditLocationViewControllerDelegate {
             stateController.updateOrCreateDays(didSelect: newLocation, for: dates)
         }
         calendarView.reloadData()
-//        tableView.reloadData()
+        scheduleListVC?.tableView.reloadData()
     }
 }
 
@@ -310,6 +315,7 @@ extension ScheduleViewController: JTAppleCalendarViewDelegate {
         if date == firstSelectedDate {
             firstSelectedDate = nil
         }
+        scheduleListVC?.selectedDates = calendarView.selectedDates
         resetSelectedDate()
         configureCell(view: cell, cellState: cellState)
     }
