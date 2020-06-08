@@ -39,12 +39,12 @@ class ScheduleViewController: UIViewController{
     @IBOutlet var leftButton: UIButton!
     @IBOutlet var rightButton: UIButton!
     
-    @IBOutlet weak var selectedDayView: UIView!
-    //outlets in selectedDayView
-    @IBOutlet weak var dateRangeLabel: UILabel!
-    @IBOutlet var indicatorView: UIImageView!
-    @IBOutlet var dateRangeView: UIView!
-    @IBOutlet var tableView: UITableView!
+//    @IBOutlet weak var selectedDayView: UIView!
+//    //outlets in selectedDayView
+//    @IBOutlet weak var dateRangeLabel: UILabel!
+//    @IBOutlet var indicatorView: UIImageView!
+//    @IBOutlet var dateRangeView: UIView!
+//    @IBOutlet var tableView: UITableView!
     
     //MARK:- Actions
     //action for unwinding from EditLocationVC after location selection
@@ -100,9 +100,9 @@ class ScheduleViewController: UIViewController{
         configureCalendarProperties()
         configureViewAppearance()
         resetSelectedDate()
-        tableView.dataSource = self
-        tableView.delegate = self
-        tableView.reloadData()
+//        tableView.dataSource = self
+//        tableView.delegate = self
+//        tableView.reloadData()
     }
     
     
@@ -116,9 +116,11 @@ class ScheduleViewController: UIViewController{
     
     //MARK:- Navigation
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-            let controller = segue.destination as! EditLocationViewController
+        if let controller = segue.destination as? EditLocationViewController {
             controller.dates = calendarView.selectedDates
             controller.delegate = self
+        }
+            
     }
     
     
@@ -138,19 +140,19 @@ class ScheduleViewController: UIViewController{
         resetSelectedDate()
         view.backgroundColor = .charcoalGrayLight
         calendarView.backgroundColor = UIColor.charcoalGrayLight
-        selectedDayView.layer.cornerRadius = 15
-        selectedDayView.backgroundColor = UIColor.charcoalGray
-        selectedDayView.layer.shadowColor = UIColor.black.cgColor
-        selectedDayView.layer.shadowOffset = CGSize(width: 0, height: 1.5)
-        selectedDayView.layer.shadowOpacity = 0.4
-        selectedDayView.layer.shadowRadius = 3
+//        selectedDayView.layer.cornerRadius = 15
+//        selectedDayView.backgroundColor = UIColor.charcoalGray
+//        selectedDayView.layer.shadowColor = UIColor.black.cgColor
+//        selectedDayView.layer.shadowOffset = CGSize(width: 0, height: 1.5)
+//        selectedDayView.layer.shadowOpacity = 0.4
+//        selectedDayView.layer.shadowRadius = 3
         navigationController?.navigationBar.setValue(true, forKey: "hidesShadow")
-        dateRangeView.backgroundColor = .charcoalGray
-        tableView.backgroundColor = .charcoalGrayLight
-        tableView.layer.cornerRadius = 15
-        tableView.layer.maskedCorners = [.layerMinXMaxYCorner, .layerMaxXMaxYCorner]
-        dateRangeView.layer.cornerRadius = 15
-        dateRangeView.layer.maskedCorners = [.layerMinXMinYCorner, .layerMaxXMinYCorner]
+//        dateRangeView.backgroundColor = .charcoalGray
+//        tableView.backgroundColor = .charcoalGrayLight
+//        tableView.layer.cornerRadius = 15
+//        tableView.layer.maskedCorners = [.layerMinXMaxYCorner, .layerMaxXMaxYCorner]
+//        dateRangeView.layer.cornerRadius = 15
+//        dateRangeView.layer.maskedCorners = [.layerMinXMinYCorner, .layerMaxXMinYCorner]
     }
     
     private func configureCalendarProperties() {
@@ -166,21 +168,21 @@ class ScheduleViewController: UIViewController{
     }
     
     private func resetSelectedDate() {
-        dateRangeLabel.text = "Select dates to view/edit location"
-        indicatorView.isHidden = true
-        tableView.reloadData()
+//        dateRangeLabel.text = "Select dates to view/edit location"
+//        indicatorView.isHidden = true
+//        tableView.reloadData()
     }
     
     private func onSelectDate() {
         if twoDatesSelected {
-            dateRangeLabel.text = firstSelectedDate?.formatDateRange(to: calendarView.selectedDates.last!)
+//            dateRangeLabel.text = firstSelectedDate?.formatDateRange(to: calendarView.selectedDates.last!)
         } else {
-            dateRangeLabel.text = firstSelectedDate?.monthAndOrdinalDay
+//            dateRangeLabel.text = firstSelectedDate?.monthAndOrdinalDay
 
         }
-        dateRangeLabel.isHidden = false
-        indicatorView.isHidden = false
-        tableView.reloadData()
+//        dateRangeLabel.isHidden = false
+//        indicatorView.isHidden = false
+//        tableView.reloadData()
     }
     
     
@@ -196,7 +198,7 @@ extension ScheduleViewController: EditLocationViewControllerDelegate {
             stateController.updateOrCreateDays(didSelect: newLocation, for: dates)
         }
         calendarView.reloadData()
-        tableView.reloadData()
+//        tableView.reloadData()
     }
 }
 
@@ -292,13 +294,13 @@ extension ScheduleViewController: JTAppleCalendarViewDataSource {
     
     func handleCellTextColor(cell: DateCell, cellState: CellState) {
         if cellState.dateBelongsTo == .thisMonth {
-          cell.dateLabel.textColor = UIColor.white
+            cell.dateLabel.textColor = UIColor.white
        }
        else {
-        cell.dateLabel.textColor = UIColor(red: 255/255, green: 255/255, blue: 255/255, alpha: 0.5)
+            cell.dateLabel.textColor = UIColor.white.withAlphaComponent(0.5)
        }
-        if cellState.isSelected {
-        cell.dateLabel.textColor = UIColor.charcoalGray
+       if cellState.isSelected {
+          cell.dateLabel.textColor = UIColor.charcoalGray
         }
     }
     
