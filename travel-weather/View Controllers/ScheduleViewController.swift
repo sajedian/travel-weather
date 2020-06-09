@@ -17,15 +17,12 @@ class ScheduleViewController: UIViewController{
     var stateController: StateController!
     var scheduleListVC: ScheduleListViewController?
     var calendarVC: CalendarViewController?
-
     
     //MARK:- Actions
     //action for unwinding from EditLocationVC after location selection
     @IBAction func unwindToScheduleVC(segue: UIStoryboardSegue) {}
     
-    
     //MARK:- Lifecycle
-    
     //hide navigationBar
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)

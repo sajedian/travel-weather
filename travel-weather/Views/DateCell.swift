@@ -27,7 +27,7 @@ class DateCell: JTAppleCell {
         super.awakeFromNib()
         createSelectedView()
         dotView.backgroundColor = .darkYellow
-        strikeThroughView.backgroundColor = UIColor.white.withAlphaComponent(0.5)
+        strikeThroughView.backgroundColor = UIColor.white.withAlphaComponent(0.4)
     }
     
     //sets up selectedView which is used when a cell is selected
@@ -50,7 +50,7 @@ class DateCell: JTAppleCell {
         ])
         
         selectedView.layer.cornerRadius = (contentView.frame.size.height - 20) / 2.0
-        selectedView.backgroundColor = UIColor.white.withAlphaComponent(0.5)
+        selectedView.backgroundColor = UIColor.white.withAlphaComponent(0.3)
         
     }
     //MARK:- Interface
