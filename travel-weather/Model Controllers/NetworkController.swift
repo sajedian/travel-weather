@@ -67,9 +67,7 @@ class NetworkController {
             case .failure(let error):
                 self.currentNetworkError = error
             case .success((let weatherForDay, let date)):
-                DispatchQueue.main.async {
-                    day.setWeatherForDay(weatherForDay: weatherForDay, date: date)
-                }
+                day.setWeatherForDay(weatherForDay: weatherForDay, date: date)
             }
             self.dispatchGroup.leave()
         }
@@ -136,29 +134,29 @@ class NetworkController {
         }
         
         session.dataTask(with: request) { (data, response, error) in
-            
-            if let error = error as? URLError {
-                if error.code == .notConnectedToInternet {
-                    completionHandler(.failure(.noInternet))
-                } else {
-                    completionHandler(.failure(.other))
+            DispatchQueue.main.async {
+                if let error = error as? URLError {
+                    if error.code == .notConnectedToInternet {
+                        completionHandler(.failure(.noInternet))
+                    } else {
+                        completionHandler(.failure(.other))
+                    }
+                    return
                 }
-                return
+                
+                //200 is http status code for OK, meaning the request has succeeded
+                guard let httpResponse = response as? HTTPURLResponse, httpResponse.statusCode == 200 else {
+                    completionHandler(.failure(.other))
+                    return
+                }
+                
+                guard let data = data, let weatherForDay = self.parse(data: data) else {
+                    completionHandler(.failure(.other))
+                    return
+                }
+                let date: String? = httpResponse.allHeaderFields["Date"] as? String ?? nil
+                completionHandler(.success((weatherForDay, date)))
             }
-            
-            //200 is http status code for OK, meaning the request has succeeded
-            guard let httpResponse = response as? HTTPURLResponse, httpResponse.statusCode == 200 else {
-                completionHandler(.failure(.other))
-                return
-            }
-            
-            guard let data = data, let weatherForDay = self.parse(data: data) else {
-                completionHandler(.failure(.other))
-                return
-            }
-            let date: String? = httpResponse.allHeaderFields["Date"] as? String ?? nil
-            completionHandler(.success((weatherForDay, date)))
-            
 
         }.resume()
 
