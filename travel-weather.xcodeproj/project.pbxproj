@@ -10,6 +10,7 @@
 		9E0210112485D63B00CA2D90 /* GMSPlace+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E0210102485D63B00CA2D90 /* GMSPlace+Extension.swift */; };
 		9E055CB824817DD800A272EE /* DarkSkyAttributionCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9E055CB724817DD800A272EE /* DarkSkyAttributionCell.xib */; };
 		9E055CBA248180E500A272EE /* WeatherListCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E055CB9248180E500A272EE /* WeatherListCell.swift */; };
+		9E29429D2499418E006E65C0 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 9EB0216D2484167400E70DAA /* Assets.xcassets */; };
 		9E347888243A4CBD00CB60D8 /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E347887243A4CBD00CB60D8 /* SettingsViewController.swift */; };
 		9E34CC85248E8F2B0034E15C /* ScheduleListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E34CC84248E8F2B0034E15C /* ScheduleListViewController.swift */; };
 		9E34CC87248EB03F0034E15C /* CalendarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E34CC86248EB03F0034E15C /* CalendarViewController.swift */; };
@@ -29,7 +30,6 @@
 		9EA007A3245B8902008A4CF0 /* ColorPickerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9EA007A2245B8902008A4CF0 /* ColorPickerViewController.swift */; };
 		9EAAFB2624816AF700BA1456 /* ScheduleTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9EAAFB2524816AF700BA1456 /* ScheduleTableViewCell.swift */; };
 		9EB0216A2484163500E70DAA /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9EB021692484163500E70DAA /* Constants.swift */; };
-		9EB0216E2484167500E70DAA /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 9EB0216D2484167400E70DAA /* Assets.xcassets */; };
 		9EB43D4523EF3A0B00933D21 /* DateCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9EB43D4423EF3A0B00933D21 /* DateCell.swift */; };
 		9EC593A123DCD5F600E42793 /* StateController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9EC593A023DCD5F500E42793 /* StateController.swift */; };
 		9EC69D6923E8F5260051722D /* NetworkController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9EC69D6823E8F5260051722D /* NetworkController.swift */; };
@@ -268,6 +268,7 @@
 				9E63366723D5422400468158 /* Resources */,
 				C1CEB111A22E5EA8428CF792 /* [CP] Copy Pods Resources */,
 				9E3478822439275E00CB60D8 /* Embed Frameworks */,
+				9EF2584A249FF3A3006853B3 /* ShellScript */,
 			);
 			buildRules = (
 			);
@@ -320,8 +321,8 @@
 				9E50B6EE24845820009890FD /* NoInternetCell.xib in Resources */,
 				9E055CB824817DD800A272EE /* DarkSkyAttributionCell.xib in Resources */,
 				9E63368323D54CE900468158 /* DayCell.xib in Resources */,
-				9EB0216E2484167500E70DAA /* Assets.xcassets in Resources */,
 				9E63367423D5422400468158 /* Main.storyboard in Resources */,
+				9E29429D2499418E006E65C0 /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -349,6 +350,23 @@
 			shellPath = /bin/sh;
 			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
 			showEnvVarsInLog = 0;
+		};
+		9EF2584A249FF3A3006853B3 /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+			);
+			outputFileListPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "if which swiftlint >/dev/null; then\n  swiftlint\nelse\n  echo \"warning: SwiftLint not installed, download from https://github.com/realm/SwiftLint\"\nfi\n";
 		};
 		C1CEB111A22E5EA8428CF792 /* [CP] Copy Pods Resources */ = {
 			isa = PBXShellScriptBuildPhase;
@@ -572,7 +590,7 @@
 			baseConfigurationReference = 74CBD53015A58807D8567366 /* Pods-travel-weather.release.xcconfig */;
 			buildSettings = {
 				CODE_SIGN_IDENTITY = "Apple Development";
-				CODE_SIGN_STYLE = Automatic;
+				CODE_SIGN_STYLE = Manual;
 				DEVELOPMENT_TEAM = TLNU8LHLC5;
 				INFOPLIST_FILE = "travel-weather/Resources_/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 13.2;

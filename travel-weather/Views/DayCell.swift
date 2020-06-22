@@ -9,13 +9,13 @@
 import UIKit
 
 class DayCell: WeatherListCell {
-    
-    //MARK:- Outlets
+
+    // MARK: - Outlets
     @IBOutlet var weekdayLabel: UILabel!
     @IBOutlet var cityLabel: UILabel!
     @IBOutlet var weatherImageView: UIImageView!
     @IBOutlet var dateLabel: UILabel!
     @IBOutlet var highTempLabel: UILabel!
     @IBOutlet var lowTempLabel: UILabel!
-    
+
 }

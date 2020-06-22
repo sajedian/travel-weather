@@ -9,7 +9,6 @@
 import Foundation
 import UIKit
 
-
 class TabBarController: UITabBarController {
 
    override func viewDidLoad() {
@@ -18,6 +17,5 @@ class TabBarController: UITabBarController {
         self.selectedIndex = 1
         let barAppearance = UINavigationBar.appearance(whenContainedInInstancesOf: [UITabBarController.self])
         barAppearance.shadowImage = UIImage()
-        
    }
 }

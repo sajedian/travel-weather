@@ -10,8 +10,8 @@ import Foundation
 import UIKit
 
 class ColorSettingsCell: UITableViewCell {
-    
-    //MARK:- Outlets
+
+    // MARK: - Outlets
     @IBOutlet var colorImageView: UIImageView!
     @IBOutlet var cityLabel: UILabel!
 }

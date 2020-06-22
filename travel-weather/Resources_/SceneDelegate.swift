@@ -13,64 +13,61 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
     var window: UIWindow?
     var stateController: StateController?
 
-    func scene(_ scene: UIScene, willConnectTo session: UISceneSession, options connectionOptions: UIScene.ConnectionOptions) {
-        guard let _ = (scene as? UIWindowScene) else { return }
-        window?.tintColor = UIColor.charcoalGray
+    func scene(_ scene: UIScene, willConnectTo session: UISceneSession,
+               options connectionOptions: UIScene.ConnectionOptions) {
+        guard scene as? UIWindowScene != nil else { return }
+
         guard let tabBarController = window?.rootViewController as? UITabBarController,
             let viewControllers = tabBarController.viewControllers else {
-                return
+            fatalError("Failed to find Tab Bar Controller")
         }
-        //stateController is the central control of the app, any state changes pass through here
+        //stateController is the central control of the app
+        //therefore, each VC in the Tab Bar Controller must have access to it
         let stateController = StateController()
-        
+
+        guard let navController1 = viewControllers[0] as? UINavigationController,
+            let scheduleViewController = navController1.viewControllers.first as? ScheduleViewController else {
+            fatalError("Failed to find ScheduleViewController")
+        }
+
+        guard let weatherListViewController = viewControllers[1] as? WeatherListViewController else {
+            fatalError("Failed to find WeatherListViewController")
+        }
+
+        guard let navController2 = viewControllers[2] as? UINavigationController,
+            let settingsViewController = navController2.viewControllers.first as? SettingsViewController else {
+            fatalError("Failed to find SettingsViewController")
+        }
+
         //gives each view controller in the tab bar access to the single stateController
-        let navController = viewControllers[0] as! UINavigationController
-        let scheduleViewController = navController.viewControllers.first as! ScheduleViewController
         scheduleViewController.stateController = stateController
-       
-        let weatherListViewController = viewControllers[1] as! WeatherListViewController
         weatherListViewController.stateController = stateController
-        
-        let navController2 = viewControllers[2] as! UINavigationController
-        let settingsViewController = navController2.viewControllers.first as! SettingsViewController
         settingsViewController.stateController = stateController
-        
+
         customizeAppearance()
-        
+
     }
-    
-    
+
     //app-wide customization of search and navigation bars
     func customizeAppearance() {
         let barTintColor = UIColor.charcoalGray
+        window?.tintColor = barTintColor
         UISearchBar.appearance().barTintColor = barTintColor
         UINavigationBar.appearance().barTintColor = barTintColor
         UINavigationBar.appearance().tintColor = .white
         UINavigationBar.appearance().backgroundColor = barTintColor
-        UINavigationBar.appearance().titleTextAttributes = [NSAttributedString.Key.foregroundColor: UIColor.white,
-                                                          NSAttributedString.Key.font: UIFont.preferredFont(forTextStyle: .title2)]
-        
-    }
-
-    func sceneDidDisconnect(_ scene: UIScene) {
-        // Called as the scene is being released by the system.
-        // This occurs shortly after the scene enters the background, or when its session is discarded.
-        // Release any resources associated with this scene that can be re-created the next time the scene connects.
-        // The scene may re-connect later, as its session was not neccessarily discarded (see `application:didDiscardSceneSessions` instead).
+        UINavigationBar.appearance().titleTextAttributes = [
+            NSAttributedString.Key.foregroundColor: UIColor.white,
+            NSAttributedString.Key.font: UIFont.preferredFont(forTextStyle: .title2)
+        ]
     }
 
     func sceneDidBecomeActive(_ scene: UIScene) {
-        // Called when the scene has moved from an inactive state to an active state.
-        // Use this method to restart any tasks that were paused (or not yet started) when the scene was inactive.
-        
         //starts timer for forecast updates
         stateController?.startUpdateTimer()
     }
 
     func sceneWillResignActive(_ scene: UIScene) {
-        // Called when the scene will move from an active state to an inactive state.
-        // This may occur due to temporary interruptions (ex. an incoming phone call).
-        
         //stops timer for forecast updates
         stateController?.stopUpdateTimer()
     }
@@ -80,12 +77,4 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         stateController?.loadAndUpdateData()
     }
 
-    func sceneDidEnterBackground(_ scene: UIScene) {
-        // Called as the scene transitions from the foreground to the background.
-        // Use this method to save data, release shared resources, and store enough scene-specific state information
-        // to restore the scene back to its current state.
-    }
-
-
 }
-
