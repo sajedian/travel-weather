@@ -8,8 +8,6 @@
 
 import Foundation
 
-
-
 protocol NetworkControllerDelegate: class {
     func didUpdateForecast()
 }
@@ -19,23 +17,21 @@ enum NetworkError: Error {
     case other
 }
 
-
 class NetworkController {
-    
-    //MARK:- Properties
+
+    // MARK: - Properties
     weak var delegate: NetworkControllerDelegate?
     private let session = URLSession.shared
     private let dispatchGroup = DispatchGroup()
-    var currentNetworkError: NetworkError? = nil
+    var currentNetworkError: NetworkError?
 
-    
-    //MARK:- Interface
-    
+    // MARK: - Interface
+
     //used for getting forecast data for 2 or more days
     func requestFullForecast(for days: [Date: Day]) {
         currentNetworkError = nil
         for (_, day) in days {
-            
+
             guard shouldUpdateData(for: day) else {
                 continue
             }
@@ -52,13 +48,13 @@ class NetworkController {
                 self.dispatchGroup.leave()
             }
         }
-    
+
         //notifies when all requests have completed
         dispatchGroup.notify(queue: .main) {
             self.delegate?.didUpdateForecast()
         }
     }
-    
+
     //used for requesting forecast data for one day
     func requestDayForecast(for day: Day) {
         dispatchGroup.enter()
@@ -76,13 +72,12 @@ class NetworkController {
             self.delegate?.didUpdateForecast()
         }
     }
-    
-    
-    //MARK:- Private Functions
-    
+
+    // MARK: - Private Functions
+
     private func shouldUpdateData(for day: Day) -> Bool {
            //if day is missing temperature information, always request new forecast data
-           guard let _ = day.highTemp, let _ = day.lowTemp else {
+           guard day.highTemp != nil, day.lowTemp != nil else {
                return true
            }
            if let dateOfLastUpdate = day.weatherDataDate {
@@ -101,20 +96,19 @@ class NetworkController {
            } else {
               return true
            }
-           
+
        }
-    
+
     private func parse(data: Data) -> WeatherForDay? {
           do {
             let decoder = JSONDecoder()
-            let result = try decoder.decode(ForecastResult.self, from:data)
+            let result = try decoder.decode(ForecastResult.self, from: data)
             return result.daily?.data[0]
           } catch {
                 return nil
             }
         }
-    
-        
+
     private func composedURLRequest(date: Date, latitude: Double, longitude: Double) -> URLRequest? {
         let timeStamp = date.ISODate
         if let url = URL(string: "https://api.darksky.net/forecast/\(darkSkyAPIKey)/\(latitude),\(longitude),\(timeStamp)?exclude=currently,minutely,hourly,alerts,flags"
@@ -123,16 +117,18 @@ class NetworkController {
         } else {
             return nil
         }
-        
+
     }
 
-    func getDayForecast(for day: Day, completionHandler: @escaping (Result<(WeatherForDay, String?), NetworkError>) -> Void) {
-        
-        guard let request = composedURLRequest(date: day.date, latitude: day.location.latitude, longitude: day.location.longitude) else {
+    func getDayForecast(for day: Day,
+                        completionHandler: @escaping (Result<(WeatherForDay, String?), NetworkError>) -> Void) {
+
+        guard let request = composedURLRequest(date: day.date, latitude: day.location.latitude,
+                                               longitude: day.location.longitude) else {
             completionHandler(.failure(.other))
             return
         }
-        
+
         session.dataTask(with: request) { (data, response, error) in
             DispatchQueue.main.async {
                 if let error = error as? URLError {
@@ -143,13 +139,13 @@ class NetworkController {
                     }
                     return
                 }
-                
+
                 //200 is http status code for OK, meaning the request has succeeded
                 guard let httpResponse = response as? HTTPURLResponse, httpResponse.statusCode == 200 else {
                     completionHandler(.failure(.other))
                     return
                 }
-                
+
                 guard let data = data, let weatherForDay = self.parse(data: data) else {
                     completionHandler(.failure(.other))
                     return

@@ -9,23 +9,23 @@
 import Foundation
 
 extension Date {
-    
-    //MARK:- Convenience Properties
+
+    // MARK: - Convenience Properties
     static var secondsInDay: Double {
         return 86400
     }
-    
+
     static var secondsInHour: Double {
         return 3600
     }
-    
+
     static func httpDate(from string: String) -> Date? {
         let dateFormatter = DateFormatter()
         dateFormatter.dateFormat = "E, d MMM yyyy HH:mm:ss Z"
         return dateFormatter.date(from: string) ?? nil
     }
-    
-    //MARK:- Calculations based on current date
+
+    // MARK: - Calculations based on current date
     //get current date, ignoring anything but the month, day and year
     static func currentDateMDYOnly() -> Date {
         let calendar = Calendar.current
@@ -37,27 +37,27 @@ extension Date {
         let modifiedCurrentDate = calendar.date(from: dateComponents)!
         return modifiedCurrentDate
     }
-    
+
     static func dayFromToday(offset: Int) -> Date {
         let today = Date.currentDateMDYOnly()
         return Calendar.current.date(byAdding: .day, value: offset, to: today)!
     }
-    
-    //MARK:- Calculations based on instance of date
+
+    // MARK: - Calculations based on instance of date
     func offsetMonth(by offset: Int) -> Date {
         return Calendar.current.date(byAdding: .month, value: offset, to: self)!
     }
-    
+
     var daysFromCurrentDate: Int {
         let today = Date.currentDateMDYOnly()
         return Int(self.timeIntervalSince(today) / Date.secondsInDay)
     }
-    
+
     var timeIntervalFromCurrentTime: Double {
         let now = Date()
         return self.timeIntervalSince(now)
     }
-    
+
     func equalMonthAndYear(otherDate: Date) -> Bool {
         let calendar = Calendar.current
         let month1 = calendar.component(.month, from: self)
@@ -66,17 +66,14 @@ extension Date {
         let year2 = calendar.component(.year, from: otherDate)
         return month1 == month2 && year1 == year2
     }
-    
-    
-    
-    
-    //MARK:- Formatting
+
+    // MARK: - Formatting
     func formattedDate(format: String) -> String {
         let dateFormatter = DateFormatter()
         dateFormatter.dateFormat = format
         return dateFormatter.string(from: self)
     }
-    
+
     //i.e. 1st, 2nd, 3rd
     var ordinalDay: String {
         let day = Calendar.current.component(.day, from: self) as NSNumber
@@ -84,29 +81,26 @@ extension Date {
         numberFormatter.numberStyle = .ordinal
         return numberFormatter.string(from: day)!
     }
-    
+
     //i.e. June 3rd
     var monthAndOrdinalDay: String {
         return formattedDate(format: "MMMM ") + ordinalDay
     }
-    
+
     //i.e. 6/3
-    
+
     var shortMonthAndDay: String {
         return formattedDate(format: "M/d")
     }
-    
+
     var monthAndYear: String {
          return formattedDate(format: "MMMM yyyy")
     }
-    
+
     //returns ISO Date but with no time zone
     var ISODate: String {
         return formattedDate(format: "yyyy-MM-dd'T'HH:mm:ss")
     }
-
-    
-
 
     //returns ex: June 1st-3rd if start and end date are in the same month
     //otherwise, returns ex: June 3rd - July 10th
@@ -120,7 +114,7 @@ extension Date {
            let month2 = endDate.formattedDate(format: "MMMM")
            return "\(month1) \(ordinalDay1) - \(month2) \(ordinalDay2)"
        }
-           
+
     }
-    
+
 }

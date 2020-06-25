@@ -1,6 +1,5 @@
-
 import CoreData
 
 extension ColorSetting {
-    
+
 }

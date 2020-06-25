@@ -10,8 +10,6 @@
 import Foundation
 import CoreData
 
-
 extension Location {
-
 
 }

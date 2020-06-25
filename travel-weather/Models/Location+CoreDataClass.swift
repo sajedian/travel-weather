@@ -26,7 +26,7 @@ public class Location: NSManagedObject {
         @NSManaged public var state: String?
         @NSManaged public var defaultLocation: Bool
         @NSManaged public var colorSetting: ColorSetting?
-    
+
     convenience init(place: GMSPlace, insertInto context: NSManagedObjectContext) {
         let entity = Location.entity()
         self.init(entity: entity, insertInto: context)
@@ -39,7 +39,7 @@ public class Location: NSManagedObject {
         self.state = place.state
         self.shortState = place.shortState
     }
-    
+
     convenience init(location: Location, insertInto context: NSManagedObjectContext) {
         let entity = Location.entity()
         self.init(entity: entity, insertInto: context)
@@ -52,7 +52,7 @@ public class Location: NSManagedObject {
         self.state = location.state
         self.shortState = location.shortState
     }
-    
+
     var display: String {
         if let countryName = country {
             switch countryName {

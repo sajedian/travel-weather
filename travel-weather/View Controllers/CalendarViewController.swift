@@ -15,37 +15,33 @@ protocol CalendarViewControllerDelegate: class {
 }
 
 class CalendarViewController: UIViewController {
-    
-    
-    //MARK:- Properties
-    
+
+    // MARK: - Properties
+
     var stateController: StateController!
     weak var delegate: CalendarViewControllerDelegate?
-    
+
     //month ranges of when calendar will start and end
     private var startDate = Date.currentDateMDYOnly()
     private var endDate = Date.currentDateMDYOnly().offsetMonth(by: 12)
-    
+
     //first visible date on page not including dates from past month
     private var firstVisibleDateInMonth: Date?
-    
+
     //dates selected by user
     private var firstSelectedDate: Date?
     private var twoDatesSelected: Bool {
         return firstSelectedDate != nil && calendarView.selectedDates.count > 1
     }
-    
-    
-    //MARK:- Outlets
-    
+
+    // MARK: - Outlets
+
     @IBOutlet var calendarView: JTAppleCalendarView!
     @IBOutlet var monthLabel: UILabel!
     @IBOutlet var leftButton: UIButton!
     @IBOutlet var rightButton: UIButton!
-    
-    
-    //MARK:- Actions
-    
+
+    // MARK: - Actions
     @IBAction func scrollRight() {
         guard let firstDate = firstVisibleDateInMonth else {
             return
@@ -58,7 +54,7 @@ class CalendarViewController: UIViewController {
             rightButton.isHidden = true
         }
     }
-    
+
     @IBAction func scrollLeft() {
         guard let firstDate = firstVisibleDateInMonth else {
             return
@@ -71,44 +67,43 @@ class CalendarViewController: UIViewController {
             leftButton.isHidden = true
         }
     }
-    
-    
-    //MARK:- Lifecycle
-    
+
+    // MARK: - Lifecycle
+
     override func viewDidLoad() {
         super.viewDidLoad()
-       
+
         //scroll to start and hide left button
         calendarView.scrollToDate(startDate, animateScroll: false)
         leftButton.isHidden = true
-        
+
         //configure scrolling behavior
         calendarView.scrollDirection = .horizontal
         calendarView.scrollingMode = .stopAtEachCalendarFrame
         calendarView.showsHorizontalScrollIndicator = false
-        
+
         //configure selection behavior
         calendarView.allowsMultipleSelection = true
         calendarView.isRangeSelectionUsed = true
-        
+
         //configureAppearance
         calendarView.backgroundColor = .charcoalGrayLight
 
     }
-    
-    //MARK:- Private Methods
-    
+
+    // MARK: - Private Methods
+
     private func configureCell(view: JTAppleCell?, cellState: CellState) {
         guard let cell = view as? DateCell  else { return }
         cell.dateLabel.text = cellState.text
-        
+
         //appearance if date is in the past
         if cellState.date.timeIntervalSince(Date()) < Date.secondsInDay * -1 {
             cell.strikeThroughView.isHidden = false
             cell.dotView.isHidden = true
             cell.dateLabel.textColor = UIColor.white.withAlphaComponent(0.5)
             cell.selectedView.isHidden = true
-        
+
         //apperance if date isn't in the past
         } else {
             cell.strikeThroughView.isHidden = true
@@ -116,10 +111,8 @@ class CalendarViewController: UIViewController {
             handleCellEvents(cell: cell, cellState: cellState)
             handleCellTextColor(cell: cell, cellState: cellState)
         }
-        
     }
 
-    
     private func handleCellSelected(cell: DateCell, cellState: CellState) {
         if cellState.isSelected {
             cell.selectedView.isHidden = false
@@ -139,20 +132,17 @@ class CalendarViewController: UIViewController {
             cell.selectedView.isHidden = true
         }
     }
-    
-    
+
     private func handleCellTextColor(cell: DateCell, cellState: CellState) {
         if cellState.isSelected {
           cell.dateLabel.textColor = UIColor.charcoalGray
-        }
-        else if cellState.dateBelongsTo == .thisMonth {
+        } else if cellState.dateBelongsTo == .thisMonth {
             cell.dateLabel.textColor = UIColor.white
-        }
-        else {
+        } else {
             cell.dateLabel.textColor = UIColor.white.withAlphaComponent(0.5)
         }
     }
-    
+
     //if user has set location for this date, show event indicator
     private func handleCellEvents(cell: DateCell, cellState: CellState) {
         let date = cellState.date
@@ -163,45 +153,44 @@ class CalendarViewController: UIViewController {
             cell.dotView.isHidden = true
         }
     }
-    
 
 }
 
 extension CalendarViewController: JTAppleCalendarViewDataSource {
-    
+
     func configureCalendar(_ calendar: JTAppleCalendarView) -> ConfigurationParameters {
         return ConfigurationParameters(startDate: startDate, endDate: endDate, generateOutDates: .tillEndOfRow)
     }
+
 }
 
 extension CalendarViewController: JTAppleCalendarViewDelegate {
 
     //cellForItemAt
-    func calendar(_ calendar: JTAppleCalendarView, cellForItemAt date: Date, cellState: CellState, indexPath: IndexPath) -> JTAppleCell {
+    func calendar(_ calendar: JTAppleCalendarView, cellForItemAt date: Date,
+                  cellState: CellState, indexPath: IndexPath) -> JTAppleCell {
        let cell = calendar.dequeueReusableJTAppleCell(withReuseIdentifier: "dateCell", for: indexPath) as! DateCell
        self.calendar(calendar, willDisplay: cell, forItemAt: date, cellState: cellState, indexPath: indexPath)
        return cell
     }
-    
+
     //configure cell appearance before displaying
-    func calendar(_ calendar: JTAppleCalendarView, willDisplay cell: JTAppleCell, forItemAt date: Date, cellState: CellState, indexPath: IndexPath) {
+    func calendar(_ calendar: JTAppleCalendarView, willDisplay cell: JTAppleCell,
+                  forItemAt date: Date, cellState: CellState, indexPath: IndexPath) {
        configureCell(view: cell, cellState: cellState)
     }
-    
-    
+
     //handle scrolling
     func calendar(_ calendar: JTAppleCalendarView, didScrollToDateSegmentWith visibleDates: DateSegmentInfo) {
         firstVisibleDateInMonth = visibleDates.monthDates.first?.date
         monthLabel.text = firstVisibleDateInMonth?.monthAndYear
     }
-    
-    
-    
+
     //selection and deselection
     func calendar(_ calendar: JTAppleCalendarView, didSelectDate date: Date, cell: JTAppleCell?, cellState: CellState) {
         if let firstDate = firstSelectedDate {
-            calendar.selectDates(from: firstDate, to: date, triggerSelectionDelegate: false, keepSelectionIfMultiSelectionAllowed: true)
-            
+            calendar.selectDates(from: firstDate, to: date,
+                                 triggerSelectionDelegate: false, keepSelectionIfMultiSelectionAllowed: true)
         } else {
             firstSelectedDate = date
         }
@@ -209,20 +198,24 @@ extension CalendarViewController: JTAppleCalendarViewDelegate {
         configureCell(view: cell, cellState: cellState)
     }
 
-    func calendar(_ calendar: JTAppleCalendarView, didDeselectDate date: Date, cell: JTAppleCell?, cellState: CellState) {
+    func calendar(_ calendar: JTAppleCalendarView,
+                  didDeselectDate date: Date, cell: JTAppleCell?, cellState: CellState) {
         if date == firstSelectedDate {
             delegate?.selectedDatesDidChange(to: calendarView.selectedDates)
             firstSelectedDate = nil
         }
         configureCell(view: cell, cellState: cellState)
     }
-    
-    func calendar(_ calendar: JTAppleCalendarView, shouldSelectDate date: Date, cell: JTAppleCell?, cellState: CellState) -> Bool {
+
+    func calendar(_ calendar: JTAppleCalendarView,
+                  shouldSelectDate date: Date, cell: JTAppleCell?, cellState: CellState) -> Bool {
         //disable selection for dates in the past
         if date.timeIntervalSince(Date()) < Date.secondsInDay * -1 {
             return false
         }
-        if twoDatesSelected && cellState.selectionType != .programatic || firstSelectedDate != nil && date < calendarView.selectedDates[0] {
+        if twoDatesSelected && cellState.selectionType != .programatic
+            || firstSelectedDate != nil && date < calendarView.selectedDates[0] {
+
             let shouldSelect = !calendarView.selectedDates.contains(date)
             firstSelectedDate = nil
             calendarView.deselectAllDates()
@@ -231,8 +224,9 @@ extension CalendarViewController: JTAppleCalendarViewDelegate {
         }
         return true
     }
-    
-    func calendar(_ calendar: JTAppleCalendarView, shouldDeselectDate date: Date, cell: JTAppleCell?, cellState: CellState) -> Bool {
+
+    func calendar(_ calendar: JTAppleCalendarView,
+                  shouldDeselectDate date: Date, cell: JTAppleCell?, cellState: CellState) -> Bool {
         if twoDatesSelected && cellState.selectionType != .programatic {
             firstSelectedDate = nil
             calendarView.deselectAllDates()
@@ -241,5 +235,4 @@ extension CalendarViewController: JTAppleCalendarViewDelegate {
         }
         return true
     }
-    
 }

@@ -9,7 +9,7 @@
 import UIKit
 
 class ScheduleTableViewCell: UITableViewCell {
-    
+
     @IBOutlet var locationLabel: UILabel!
 
     override func awakeFromNib() {
