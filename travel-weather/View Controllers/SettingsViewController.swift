@@ -78,12 +78,16 @@ class SettingsViewController: UITableViewController {
 
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "editDefaultLocation" {
-            let controller = segue.destination as! EditLocationViewController
-            controller.title = "Set Home Location"
-            controller.delegate = self
+            if let controller = segue.destination as? EditLocationViewController {
+                controller.title = "Set Home Location"
+                controller.delegate = self
+            }
+
         } else if segue.identifier == "colorSettings" {
-            let controller = segue.destination as! ColorSettingsViewController
-            controller.stateController = stateController
+            if let controller = segue.destination as? ColorSettingsViewController {
+                controller.stateController = stateController
+            }
+
         }
        }
 }

@@ -106,8 +106,10 @@ extension ScheduleListViewController: UITableViewDataSource {
     }
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "scheduleCell",
-                                                 for: indexPath) as! ScheduleTableViewCell
+        guard let cell = tableView.dequeueReusableCell(withIdentifier: "scheduleCell",
+                                                       for: indexPath) as? ScheduleTableViewCell else {
+            fatalError("Failed to dequeue ScheduleTableViewCell")
+        }
         let date = selectedDates[indexPath.row]
         let dateDisplay = date.shortMonthAndDay
         let locationDisplay = stateController.getLocationDisplay(for: date)
