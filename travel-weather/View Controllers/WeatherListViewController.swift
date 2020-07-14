@@ -75,17 +75,27 @@ class WeatherListViewController: UITableViewController {
             //adjust offset due to extra cell at top of table
             offset = indexPath.row - 1
             if indexPath.row == 0 {
-                return tableView.dequeueReusableCell(withIdentifier: "NoInternetCell",
-                                                     for: indexPath) as! WeatherListCell
+                guard let cell = tableView.dequeueReusableCell(withIdentifier: "NoInternetCell",
+                                                               for: indexPath) as? WeatherListCell else {
+                   fatalError("Failed to dequeue WeatherListCell")
+                }
+                return cell
+
             }
         } else {
             offset = indexPath.row
         }
         //last cell is Dark Sky attribution cell
         if indexPath.row == numberOfRows - 1 {
-            return tableView.dequeueReusableCell(withIdentifier: "AttributionCell", for: indexPath) as! WeatherListCell
+            guard let cell = tableView.dequeueReusableCell(withIdentifier: "AttributionCell",
+                                                           for: indexPath) as? WeatherListCell else {
+                fatalError("Failed to dequeue WeatherListCell")
+            }
+            return cell
         } else {
-            let cell = tableView.dequeueReusableCell(withIdentifier: "DayCell", for: indexPath) as! DayCell
+            guard let cell = tableView.dequeueReusableCell(withIdentifier: "DayCell", for: indexPath) as? DayCell else {
+                fatalError("Failed to dequeue DayCell")
+            }
             let date = Date.dayFromToday(offset: offset)
             let day = stateController.getDayForDate(for: date)
             configureCell(day: day, cell: cell)
