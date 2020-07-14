@@ -169,7 +169,8 @@ extension CalendarViewController: JTAppleCalendarViewDelegate {
     //cellForItemAt
     func calendar(_ calendar: JTAppleCalendarView, cellForItemAt date: Date,
                   cellState: CellState, indexPath: IndexPath) -> JTAppleCell {
-       guard let cell = calendar.dequeueReusableJTAppleCell(withReuseIdentifier: "dateCell", for: indexPath) as? DateCell else {
+       guard let cell = calendar.dequeueReusableJTAppleCell(withReuseIdentifier: "dateCell",
+                                                            for: indexPath) as? DateCell else {
             fatalError("Failed to dequeue JTAppleCell")
        }
        self.calendar(calendar, willDisplay: cell, forItemAt: date, cellState: cellState, indexPath: indexPath)
