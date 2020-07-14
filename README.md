@@ -30,7 +30,7 @@ In the Forecast tab, view your next 14 days of weather based on your schedule. I
 ### Customization
 In the Settings tab, set your default location, switch between Fahrenheit and Celsius, and set colors for locations.
 
-<p align="center"> <img width="292" src="images/settings.png"> <img width="295" src="images/colorSettings.png"> <img width="295" src="images/colorPicker.png"> </p>
+<p align="center"> <img width="270" src="images/settings.png"> <img width="275" src="images/colorSettings.png"> <img width="275" src="images/colorPicker.png"> </p>
 
 ## Built Using
 * Swift 5
