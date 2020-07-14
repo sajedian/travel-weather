@@ -25,7 +25,7 @@ In the Schedule tab, select date or range of dates, then search for a location. 
 ### Forecast
 In the Forecast tab, view your next 14 days of weather based on your schedule. If you haven't entered a location for a certain day your default location will be used.
 
-<p align="center"> <img width="460" src="images/forecastCroppedImage1.png"> <img width="400" src="images/ForecastGIF.gif">  </p>
+<p align="center"> <img width="420" src="images/forecastCroppedImage1.png"> <img width="370" src="images/ForecastGIF.gif">  </p>
 
 ### Customization
 In the Settings tab, set your default location, switch between Fahrenheit and Celsius, and set colors for locations.
