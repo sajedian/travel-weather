@@ -20,12 +20,12 @@
 ### Scheduling
 In the Schedule tab, select date or range of dates, then search for a location. Scroll down in table to view all dates within your selected range. Schedule up to one year in advance. Dates you've scheduled will have a yellow dot indicator.
 
-<p align="center"> <img width="420" src="images/scheduleCroppedImage.png"> <img width="340" src="images/ScheduleGIF.gif">  </p>
+<p align="center"> <img width="420" src="images/scheduleCroppedImage.png"> <img width="380" src="images/ScheduleGIF.gif">  </p>
 
 ### Forecast
 In the Forecast tab, view your next 14 days of weather based on your schedule. If you haven't entered a location for a certain day your default location will be used.
 
-<p align="center"> <img width="420" src="images/forecastCroppedImage1.png"> <img width="370" src="images/ForecastGIF.gif">  </p>
+<p align="center"> <img width="420" src="images/forecastCroppedImage1.png"> <img width="375" src="images/ForecastGIF.gif">  </p>
 
 ### Customization
 In the Settings tab, set your default location, switch between Fahrenheit and Celsius, and set colors for locations.
