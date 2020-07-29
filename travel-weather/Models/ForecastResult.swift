@@ -14,7 +14,7 @@ struct ForecastResult: Decodable {
     let longitude: Double
     let timezone: String
     let daily: Daily?
-    
+
 }
 struct Daily: Decodable {
        let data: [WeatherForDay]
@@ -26,6 +26,3 @@ struct WeatherForDay: Decodable {
     let temperatureMin: Double?
     let icon: String?
 }
-
-
-

@@ -4,7 +4,7 @@
 
 <p align="left">Effortlessly plan for your next roadtrip or multi-destination vacation with Travel Weather. Input your itinerary, then view your personalized 14-day Forecast in one simple display. Built for iOS using Swift.</p>
 
-<p align="center"><img width="425" src="images/scheduleExampleImage.png"><img width="425" src="images/forecastExampleImage.png"> </p>
+<p align="center"><img width="400" src="images/scheduleExampleImage.png"><img width="400" src="images/forecastExampleImage.png"> </p>
 
 ## Table of Contents 
 * [Introduction](#introduction) <br />
@@ -20,17 +20,17 @@
 ### Scheduling
 In the Schedule tab, select date or range of dates, then search for a location. Scroll down in table to view all dates within your selected range. Schedule up to one year in advance. Dates you've scheduled will have a yellow dot indicator.
 
-<p align="center"> <img width="460" src="images/scheduleCroppedImage.png"> <img width="400" src="images/ScheduleGIF.gif">  </p>
+<p align="center"> <img width="420" src="images/scheduleCroppedImage.png"> <img width="380" src="images/ScheduleGIF.gif">  </p>
 
 ### Forecast
 In the Forecast tab, view your next 14 days of weather based on your schedule. If you haven't entered a location for a certain day your default location will be used.
 
-<p align="center"> <img width="460" src="images/forecastCroppedImage1.png"> <img width="400" src="images/ForecastGIF.gif">  </p>
+<p align="center"> <img width="420" src="images/forecastCroppedImage1.png"> <img width="375" src="images/ForecastGIF.gif">  </p>
 
 ### Customization
 In the Settings tab, set your default location, switch between Fahrenheit and Celsius, and set colors for locations.
 
-<p align="center"> <img width="292" src="images/settings.png"> <img width="295" src="images/colorSettings.png"> <img width="295" src="images/colorPicker.png"> </p>
+<p align="center"> <img width="270" src="images/settings.png"> <img width="275" src="images/colorSettings.png"> <img width="275" src="images/colorPicker.png"> </p>
 
 ## Built Using
 * Swift 5

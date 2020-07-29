@@ -6,7 +6,6 @@
 //  Copyright © 2020 Renee Sajedian. All rights reserved.
 //
 
-
 import UIKit
 import GooglePlaces
 
@@ -16,20 +15,17 @@ enum TemperatureUnits: Int {
 }
 
 class SettingsViewController: UITableViewController {
-    
-    //MARK:- Properties
+
+    // MARK: - Properties
     var stateController: StateController!
-    
-    
-    //MARK:- Outlets
+
+    // MARK: - Outlets
     @IBOutlet var temperatureUnitControl: UISegmentedControl!
     @IBOutlet var defaultCityLabel: UILabel!
-    
-    
-    //MARK:- Lifecycle
-    
+
+    // MARK: - Lifecycle
+
     override func viewDidLoad() {
-        
         super.viewDidLoad()
         defaultCityLabel.text = stateController.defaultLocation.display
         if stateController.temperatureUnits == .celsius {
@@ -38,10 +34,9 @@ class SettingsViewController: UITableViewController {
             temperatureUnitControl.selectedSegmentIndex = 1
         }
     }
-    
 
-    //MARK:- Actions
-    
+    // MARK: - Actions
+
     @IBAction func temperatureUnitsChanged(_ sender: UISegmentedControl) {
         if sender.selectedSegmentIndex == 0 {
             UserDefaults.standard.set(TemperatureUnits.celsius.rawValue, forKey: "temperatureUnits")
@@ -49,27 +44,25 @@ class SettingsViewController: UITableViewController {
             UserDefaults.standard.set(TemperatureUnits.fahrenheit.rawValue, forKey: "temperatureUnits")
         }
     }
-    
-    
-    //MARK:- Table View Data Source
-    
+
+    // MARK: - Table View Data Source
+
     override func tableView(_ tableView: UITableView, viewForFooterInSection section: Int) -> UIView? {
-        
+
         let footerView = UIView()
         let footerLabel = UILabel()
         footerView.addSubview(footerLabel)
-        
+
         footerLabel.frame = CGRect(x: 20, y: 8, width: 320, height: 20)
         footerLabel.font = UIFont.preferredFont(forTextStyle: .caption1)
         footerLabel.textColor = UIColor.systemGray
         footerLabel.text = self.tableView(tableView, titleForFooterInSection: section)
-       
+
         return footerView
     }
-    
-   
+
     override func tableView(_ tableView: UITableView, titleForFooterInSection section: Int) -> String? {
-       
+
         switch section {
         case 0:
             return "Set location where you'll be most often"
@@ -80,23 +73,23 @@ class SettingsViewController: UITableViewController {
         }
 
     }
-    
-    
-    //MARK:- Navigation
-    
+
+    // MARK: - Navigation
+
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "editDefaultLocation" {
-            let controller = segue.destination as! EditLocationViewController
-            controller.title = "Set Home Location"
-            controller.delegate = self
-        }
-        else if segue.identifier == "colorSettings" {
-            let controller = segue.destination as! ColorSettingsViewController
-            controller.stateController = stateController
+            if let controller = segue.destination as? EditLocationViewController {
+                controller.title = "Set Home Location"
+                controller.delegate = self
+            }
+
+        } else if segue.identifier == "colorSettings" {
+            if let controller = segue.destination as? ColorSettingsViewController {
+                controller.stateController = stateController
+            }
+
         }
        }
-
-    
 }
 
 extension SettingsViewController: EditLocationViewControllerDelegate {

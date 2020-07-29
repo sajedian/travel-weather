@@ -22,21 +22,21 @@ extension GMSPlace {
         })
         return stateComponent?.name
     }
-    
+
     var shortState: String? {
         let stateComponent = addressComponents?.first(where: { (component) -> Bool in
             return component.types.contains("administrative_area_level_1")
         })
         return stateComponent?.shortName
     }
-    
+
     var country: String? {
         let countryComponent = addressComponents?.first(where: { (component) -> Bool in
             return component.types.contains("country")
         })
         return countryComponent?.name
     }
-    
+
     var shortCountry: String? {
         let countryComponent = addressComponents?.first(where: { (component) -> Bool in
             return component.types.contains("country")

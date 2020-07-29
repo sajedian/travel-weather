@@ -10,40 +10,37 @@ import UIKit
 import JTAppleCalendar
 import GooglePlaces
 
-class ScheduleViewController: UIViewController{
-    
-    
-    //MARK:- Properties
+class ScheduleViewController: UIViewController {
+
+    // MARK: - Properties
     var stateController: StateController!
     var scheduleListVC: ScheduleListViewController?
     var calendarVC: CalendarViewController?
-    
-    //MARK:- Actions
+
+    // MARK: - Actions
     //action for unwinding from EditLocationVC after location selection
     @IBAction func unwindToScheduleVC(segue: UIStoryboardSegue) {}
-    
-    //MARK:- Lifecycle
+
+    // MARK: - Lifecycle
+
     //hide navigationBar
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         self.navigationController?.setNavigationBarHidden(true, animated: animated)
     }
-    
+
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = .charcoalGrayLight
     }
-    
-    
+
     //show navigationBar
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
         self.navigationController?.setNavigationBarHidden(false, animated: animated)
     }
-    
-    
-    
-    //MARK:- Navigation
+
+    // MARK: - Navigation
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if let controller = segue.destination as? ScheduleListViewController {
             controller.stateController = stateController
@@ -54,7 +51,6 @@ class ScheduleViewController: UIViewController{
             controller.delegate = self
             calendarVC = controller
         }
-            
     }
 
 }
@@ -70,15 +66,15 @@ extension ScheduleViewController: CalendarViewControllerDelegate {
 
 extension ScheduleViewController: ScheduleListViewControllerDelegate {
     func didSelectDates(dates: [Date]) {
-        if let editLocationVC = storyboard?.instantiateViewController(identifier: "editLocationVC") as? EditLocationViewController {
+        if let editLocationVC =
+            storyboard?.instantiateViewController(identifier: "editLocationVC") as? EditLocationViewController {
+
             editLocationVC.dates = dates
             editLocationVC.delegate = self
             navigationController?.pushViewController(editLocationVC, animated: true)
         }
     }
 }
-
-
 
 extension ScheduleViewController: EditLocationViewControllerDelegate {
     func editLocationViewControllerDidUpdate(didSelect newLocation: GMSPlace, for dates: [Date]?) {
@@ -90,12 +86,3 @@ extension ScheduleViewController: EditLocationViewControllerDelegate {
         scheduleListVC?.tableView.reloadData()
     }
 }
-
-
-
-
-
-
-
-
-
