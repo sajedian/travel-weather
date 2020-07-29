@@ -248,16 +248,3 @@ class StorageController {
     }
 
 }
-
-//perform Tasks without blocking the main thread
-
-//container.performBackgroundTask({ (context) in
-//  // ... do some task on the context
-//
-//  // save the context
-//  do {
-//    try context.save()
-//  } catch {
-//    // handle error
-//  }
-//})
