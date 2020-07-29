@@ -15,6 +15,8 @@
 		9E34CC85248E8F2B0034E15C /* ScheduleListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E34CC84248E8F2B0034E15C /* ScheduleListViewController.swift */; };
 		9E34CC87248EB03F0034E15C /* CalendarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E34CC86248EB03F0034E15C /* CalendarViewController.swift */; };
 		9E50B6EE24845820009890FD /* NoInternetCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9E50B6ED24845820009890FD /* NoInternetCell.xib */; };
+		9E525A9324D1089A00D7F2CC /* Travel_WeatherTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E525A9224D1089A00D7F2CC /* Travel_WeatherTests.swift */; };
+		9E525AA124D108A900D7F2CC /* Travel_WeatherUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E525AA024D108A900D7F2CC /* Travel_WeatherUITests.swift */; };
 		9E58E43D2409E3C50002B496 /* EditLocationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E58E43C2409E3C50002B496 /* EditLocationViewController.swift */; };
 		9E63366D23D5422400468158 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E63366C23D5422400468158 /* AppDelegate.swift */; };
 		9E63366F23D5422400468158 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E63366E23D5422400468158 /* SceneDelegate.swift */; };
@@ -47,6 +49,23 @@
 		D76157E9FCDD6B70A87FE0E9 /* libPods-travel-weather.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 8A18F3C440FB00117E25BC65 /* libPods-travel-weather.a */; };
 /* End PBXBuildFile section */
 
+/* Begin PBXContainerItemProxy section */
+		9E525A9524D1089A00D7F2CC /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 9E63366123D5422400468158 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 9E63366823D5422400468158;
+			remoteInfo = "travel-weather";
+		};
+		9E525AA324D108A900D7F2CC /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 9E63366123D5422400468158 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 9E63366823D5422400468158;
+			remoteInfo = "travel-weather";
+		};
+/* End PBXContainerItemProxy section */
+
 /* Begin PBXCopyFilesBuildPhase section */
 		9E3478822439275E00CB60D8 /* Embed Frameworks */ = {
 			isa = PBXCopyFilesBuildPhase;
@@ -72,6 +91,12 @@
 		9E34CC84248E8F2B0034E15C /* ScheduleListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = ScheduleListViewController.swift; path = "travel-weather/View Controllers/ScheduleListViewController.swift"; sourceTree = SOURCE_ROOT; };
 		9E34CC86248EB03F0034E15C /* CalendarViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarViewController.swift; sourceTree = "<group>"; };
 		9E50B6ED24845820009890FD /* NoInternetCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = NoInternetCell.xib; sourceTree = "<group>"; };
+		9E525A9024D1089A00D7F2CC /* Travel_WeatherTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = Travel_WeatherTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		9E525A9224D1089A00D7F2CC /* Travel_WeatherTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Travel_WeatherTests.swift; sourceTree = "<group>"; };
+		9E525A9424D1089A00D7F2CC /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		9E525A9E24D108A900D7F2CC /* Travel WeatherUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Travel WeatherUITests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
+		9E525AA024D108A900D7F2CC /* Travel_WeatherUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Travel_WeatherUITests.swift; sourceTree = "<group>"; };
+		9E525AA224D108A900D7F2CC /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		9E58E43C2409E3C50002B496 /* EditLocationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditLocationViewController.swift; sourceTree = "<group>"; };
 		9E63366923D5422400468158 /* Travel Weather.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Travel Weather.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		9E63366C23D5422400468158 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -107,6 +132,20 @@
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
+		9E525A8D24D1089A00D7F2CC /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		9E525A9B24D108A900D7F2CC /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		9E63366623D5422400468158 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
@@ -143,10 +182,30 @@
 			name = "Recovered References";
 			sourceTree = "<group>";
 		};
+		9E525A9124D1089A00D7F2CC /* Travel_WeatherTests */ = {
+			isa = PBXGroup;
+			children = (
+				9E525A9224D1089A00D7F2CC /* Travel_WeatherTests.swift */,
+				9E525A9424D1089A00D7F2CC /* Info.plist */,
+			);
+			path = Travel_WeatherTests;
+			sourceTree = "<group>";
+		};
+		9E525A9F24D108A900D7F2CC /* Travel WeatherUITests */ = {
+			isa = PBXGroup;
+			children = (
+				9E525AA024D108A900D7F2CC /* Travel_WeatherUITests.swift */,
+				9E525AA224D108A900D7F2CC /* Info.plist */,
+			);
+			path = "Travel WeatherUITests";
+			sourceTree = "<group>";
+		};
 		9E63366023D5422400468158 = {
 			isa = PBXGroup;
 			children = (
 				9E63366B23D5422400468158 /* travel-weather */,
+				9E525A9124D1089A00D7F2CC /* Travel_WeatherTests */,
+				9E525A9F24D108A900D7F2CC /* Travel WeatherUITests */,
 				9E63366A23D5422400468158 /* Products */,
 				7A50311EAF66C5C145462CB7 /* Pods */,
 				16F61348C332068BC4AFEFFD /* Frameworks */,
@@ -158,6 +217,8 @@
 			isa = PBXGroup;
 			children = (
 				9E63366923D5422400468158 /* Travel Weather.app */,
+				9E525A9024D1089A00D7F2CC /* Travel_WeatherTests.xctest */,
+				9E525A9E24D108A900D7F2CC /* Travel WeatherUITests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -258,6 +319,42 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
+		9E525A8F24D1089A00D7F2CC /* Travel_WeatherTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 9E525A9924D1089A00D7F2CC /* Build configuration list for PBXNativeTarget "Travel_WeatherTests" */;
+			buildPhases = (
+				9E525A8C24D1089A00D7F2CC /* Sources */,
+				9E525A8D24D1089A00D7F2CC /* Frameworks */,
+				9E525A8E24D1089A00D7F2CC /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				9E525A9624D1089A00D7F2CC /* PBXTargetDependency */,
+			);
+			name = Travel_WeatherTests;
+			productName = Travel_WeatherTests;
+			productReference = 9E525A9024D1089A00D7F2CC /* Travel_WeatherTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+		9E525A9D24D108A900D7F2CC /* Travel WeatherUITests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 9E525AA524D108A900D7F2CC /* Build configuration list for PBXNativeTarget "Travel WeatherUITests" */;
+			buildPhases = (
+				9E525A9A24D108A900D7F2CC /* Sources */,
+				9E525A9B24D108A900D7F2CC /* Frameworks */,
+				9E525A9C24D108A900D7F2CC /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				9E525AA424D108A900D7F2CC /* PBXTargetDependency */,
+			);
+			name = "Travel WeatherUITests";
+			productName = "Travel WeatherUITests";
+			productReference = 9E525A9E24D108A900D7F2CC /* Travel WeatherUITests.xctest */;
+			productType = "com.apple.product-type.bundle.ui-testing";
+		};
 		9E63366823D5422400468158 /* travel-weather */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = 9E63367D23D5422700468158 /* Build configuration list for PBXNativeTarget "travel-weather" */;
@@ -285,10 +382,18 @@
 		9E63366123D5422400468158 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastSwiftUpdateCheck = 1120;
+				LastSwiftUpdateCheck = 1160;
 				LastUpgradeCheck = 1150;
 				ORGANIZATIONNAME = "Renee Sajedian";
 				TargetAttributes = {
+					9E525A8F24D1089A00D7F2CC = {
+						CreatedOnToolsVersion = 11.6;
+						TestTargetID = 9E63366823D5422400468158;
+					};
+					9E525A9D24D108A900D7F2CC = {
+						CreatedOnToolsVersion = 11.6;
+						TestTargetID = 9E63366823D5422400468158;
+					};
 					9E63366823D5422400468158 = {
 						CreatedOnToolsVersion = 11.2.1;
 					};
@@ -308,11 +413,27 @@
 			projectRoot = "";
 			targets = (
 				9E63366823D5422400468158 /* travel-weather */,
+				9E525A8F24D1089A00D7F2CC /* Travel_WeatherTests */,
+				9E525A9D24D108A900D7F2CC /* Travel WeatherUITests */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
+		9E525A8E24D1089A00D7F2CC /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		9E525A9C24D108A900D7F2CC /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		9E63366723D5422400468158 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -388,6 +509,22 @@
 /* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
+		9E525A8C24D1089A00D7F2CC /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				9E525A9324D1089A00D7F2CC /* Travel_WeatherTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		9E525A9A24D108A900D7F2CC /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				9E525AA124D108A900D7F2CC /* Travel_WeatherUITests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		9E63366523D5422400468158 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -428,6 +565,19 @@
 		};
 /* End PBXSourcesBuildPhase section */
 
+/* Begin PBXTargetDependency section */
+		9E525A9624D1089A00D7F2CC /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 9E63366823D5422400468158 /* travel-weather */;
+			targetProxy = 9E525A9524D1089A00D7F2CC /* PBXContainerItemProxy */;
+		};
+		9E525AA424D108A900D7F2CC /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 9E63366823D5422400468158 /* travel-weather */;
+			targetProxy = 9E525AA324D108A900D7F2CC /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
 /* Begin PBXVariantGroup section */
 		9E63367223D5422400468158 /* Main.storyboard */ = {
 			isa = PBXVariantGroup;
@@ -448,6 +598,88 @@
 /* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
+		9E525A9724D1089A00D7F2CC /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = TLNU8LHLC5;
+				INFOPLIST_FILE = Travel_WeatherTests/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.6;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = "com.sajedian.Travel-WeatherTests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Travel Weather.app/Travel Weather";
+			};
+			name = Debug;
+		};
+		9E525A9824D1089A00D7F2CC /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = TLNU8LHLC5;
+				INFOPLIST_FILE = Travel_WeatherTests/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.6;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = "com.sajedian.Travel-WeatherTests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Travel Weather.app/Travel Weather";
+			};
+			name = Release;
+		};
+		9E525AA624D108A900D7F2CC /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = TLNU8LHLC5;
+				INFOPLIST_FILE = "Travel WeatherUITests/Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 13.6;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = "com.sajedian.Travel-WeatherUITests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_TARGET_NAME = "travel-weather";
+			};
+			name = Debug;
+		};
+		9E525AA724D108A900D7F2CC /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = TLNU8LHLC5;
+				INFOPLIST_FILE = "Travel WeatherUITests/Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 13.6;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = "com.sajedian.Travel-WeatherUITests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_TARGET_NAME = "travel-weather";
+			};
+			name = Release;
+		};
 		9E63367B23D5422700468158 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -609,6 +841,24 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
+		9E525A9924D1089A00D7F2CC /* Build configuration list for PBXNativeTarget "Travel_WeatherTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				9E525A9724D1089A00D7F2CC /* Debug */,
+				9E525A9824D1089A00D7F2CC /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		9E525AA524D108A900D7F2CC /* Build configuration list for PBXNativeTarget "Travel WeatherUITests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				9E525AA624D108A900D7F2CC /* Debug */,
+				9E525AA724D108A900D7F2CC /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
 		9E63366423D5422400468158 /* Build configuration list for PBXProject "travel-weather" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
