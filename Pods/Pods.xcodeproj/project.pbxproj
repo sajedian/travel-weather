@@ -16,7 +16,6 @@
 				D42315111F400C0605ACCD6B5CAF2178 /* PBXTargetDependency */,
 			);
 			name = GooglePlaces;
-			productName = GooglePlaces;
 		};
 		E5B4BBC6DD552AC8943C7E22772FC1D3 /* GoogleMaps */ = {
 			isa = PBXAggregateTarget;
@@ -26,12 +25,12 @@
 			dependencies = (
 			);
 			name = GoogleMaps;
-			productName = GoogleMaps;
 		};
 /* End PBXAggregateTarget section */
 
 /* Begin PBXBuildFile section */
-		12DE5131F35FB5F2F158978B2CEF9283 /* Pods-travel-weather-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = 6EF61DD5C1A55C0D3257259FC7484AA9 /* Pods-travel-weather-umbrella.h */; settings = {ATTRIBUTES = (Project, ); }; };
+		121077E2D82FD9B4C769B1EF949F2937 /* Pods-Travel WeatherTests-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 3B5992750323B3E0E1C128B662E9A0FF /* Pods-Travel WeatherTests-dummy.m */; };
+		12DE5131F35FB5F2F158978B2CEF9283 /* Pods-travel-weather-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = F2581C4C51EEC252EC55456B0F8DEC50 /* Pods-travel-weather-umbrella.h */; settings = {ATTRIBUTES = (Project, ); }; };
 		1A6DC496ABF23B1D2EF51EFC6726FD32 /* JTAppleCalendarLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = D81838CF8FA7553022E145611926657A /* JTAppleCalendarLayout.swift */; };
 		1FD814D95CD1C9244DEBB16629851E33 /* GlobalFunctionsAndExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 658A42BEE15BAD451BDAE1F289F2CB64 /* GlobalFunctionsAndExtensions.swift */; };
 		3F2F3E5E1FADF09D4567065986CF90E8 /* JTCalendarProtocols.swift in Sources */ = {isa = PBXBuildFile; fileRef = B68E777202CC63AE90970A8B668F9822 /* JTCalendarProtocols.swift */; };
@@ -48,12 +47,20 @@
 		9D1A57A9A640BB1AB3ACE69C12212007 /* CalendarStructs.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BF98524E59DF9AB2939851E342D09D3 /* CalendarStructs.swift */; };
 		A7B11B8FADFCB92BB78D31E7D573A2D5 /* JTAppleCalendarVariables.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5D6E2DD9D108C9151A7F04FC8A3A601 /* JTAppleCalendarVariables.swift */; };
 		C8C1E470BA7BF98DB7E93CE018FF7B12 /* UserInteractionFunctions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24BF85775D5A70EAEA2F07A7F5362CED /* UserInteractionFunctions.swift */; };
+		D01DFF47F524C1561EB76AF585A4E06A /* Pods-Travel WeatherTests-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = 4CE0A3AB1F2CC927EE20F66DA79288A8 /* Pods-Travel WeatherTests-umbrella.h */; settings = {ATTRIBUTES = (Project, ); }; };
 		EA8964F3918F82D77822DFE78CB0844D /* JTAppleCalendarDelegateProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46404D558367E8034C2FE3E2B5F78EA2 /* JTAppleCalendarDelegateProtocol.swift */; };
-		EC0CF2855ECC2D7D111B687ED13BE9D1 /* Pods-travel-weather-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 440EF247F249C3AB4A0B35892687D5C3 /* Pods-travel-weather-dummy.m */; };
+		EC0CF2855ECC2D7D111B687ED13BE9D1 /* Pods-travel-weather-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 6156B0CFE44C6F6772EBD05F58DAC24F /* Pods-travel-weather-dummy.m */; };
 		FD13192B636934602754769E1DBF51B0 /* CalendarEnums.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA6741947ED36C206A0E8320F3444E1C /* CalendarEnums.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
+		49389B8D74D03FFAC384ECF4CF5B6F21 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = BFDFE7DC352907FC980B868725387E98 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = E5B4BBC6DD552AC8943C7E22772FC1D3;
+			remoteInfo = GoogleMaps;
+		};
 		6EB1C2DD30E6564FC3135C9E8002D8F7 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = BFDFE7DC352907FC980B868725387E98 /* Project object */;
@@ -61,12 +68,26 @@
 			remoteGlobalIDString = E5B4BBC6DD552AC8943C7E22772FC1D3;
 			remoteInfo = GoogleMaps;
 		};
+		7922583E72191C9C1E5B01DFC669851F /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = BFDFE7DC352907FC980B868725387E98 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 421B6ABF460857FE6CA2905EFB5A4F74;
+			remoteInfo = JTAppleCalendar;
+		};
 		88A5D42D74D08C82E8FFA5A99C85ACE2 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = BFDFE7DC352907FC980B868725387E98 /* Project object */;
 			proxyType = 1;
 			remoteGlobalIDString = 421B6ABF460857FE6CA2905EFB5A4F74;
 			remoteInfo = JTAppleCalendar;
+		};
+		A3BC871CEBCEE336232A3F09A019CC88 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = BFDFE7DC352907FC980B868725387E98 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 0C1885900810601510E0C632060FAF26;
+			remoteInfo = GooglePlaces;
 		};
 		B5CA7FAA0B988A2E55D9BFEA441E4107 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
@@ -86,35 +107,41 @@
 
 /* Begin PBXFileReference section */
 		00AE10895DA5A0477C0D1AAA55928219 /* JTAppleCalendar-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "JTAppleCalendar-dummy.m"; sourceTree = "<group>"; };
-		12FC6A0F1DB9203CB157101C67C8ED49 /* Pods-travel-weather-acknowledgements.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "Pods-travel-weather-acknowledgements.plist"; sourceTree = "<group>"; };
 		193D791F1E76FF5638B96826C410CEAA /* JTAppleCalendarView.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = JTAppleCalendarView.swift; path = Sources/JTAppleCalendarView.swift; sourceTree = "<group>"; };
-		1B85E3DD75D32F54670881963095F103 /* Pods-travel-weather-acknowledgements.markdown */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; path = "Pods-travel-weather-acknowledgements.markdown"; sourceTree = "<group>"; };
-		2092CC4B75CEFCDF860012FA042EB1AE /* Pods-travel-weather.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.module; path = "Pods-travel-weather.modulemap"; sourceTree = "<group>"; };
 		243323D15492DE6AA6A2A15D5477FBBB /* GoogleMaps.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = GoogleMaps.xcconfig; sourceTree = "<group>"; };
 		24BF85775D5A70EAEA2F07A7F5362CED /* UserInteractionFunctions.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = UserInteractionFunctions.swift; path = Sources/UserInteractionFunctions.swift; sourceTree = "<group>"; };
+		25D93CA59B4570FF6C0FF4152379A8F9 /* Pods-Travel WeatherTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-Travel WeatherTests.release.xcconfig"; sourceTree = "<group>"; };
+		2C7CDBEFB3E60C70DE5DA90C07556028 /* Pods-Travel WeatherTests-acknowledgements.markdown */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; path = "Pods-Travel WeatherTests-acknowledgements.markdown"; sourceTree = "<group>"; };
+		30F154E725FB7D2E8D1D26A541E5B8F4 /* Pods-travel-weather-acknowledgements.markdown */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; path = "Pods-travel-weather-acknowledgements.markdown"; sourceTree = "<group>"; };
+		34CDAA6FC51D165AB97DD37902AFFA2F /* Pods-travel-weather-resources.sh */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.script.sh; path = "Pods-travel-weather-resources.sh"; sourceTree = "<group>"; };
 		355839BA04C9DB63053D5803D480FCDB /* JTAppleCalendarLayoutProtocol.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = JTAppleCalendarLayoutProtocol.swift; path = Sources/JTAppleCalendarLayoutProtocol.swift; sourceTree = "<group>"; };
+		3B5992750323B3E0E1C128B662E9A0FF /* Pods-Travel WeatherTests-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "Pods-Travel WeatherTests-dummy.m"; sourceTree = "<group>"; };
 		3BF98524E59DF9AB2939851E342D09D3 /* CalendarStructs.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = CalendarStructs.swift; path = Sources/CalendarStructs.swift; sourceTree = "<group>"; };
-		440EF247F249C3AB4A0B35892687D5C3 /* Pods-travel-weather-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "Pods-travel-weather-dummy.m"; sourceTree = "<group>"; };
 		4447F0B7B4A846325165C2CA83AC0069 /* GooglePlaces.bundle */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = "wrapper.plug-in"; name = GooglePlaces.bundle; path = Frameworks/GooglePlaces.framework/Resources/GooglePlaces.bundle; sourceTree = "<group>"; };
+		4608B5C0DC5089F2F179FA243229AB67 /* Pods-travel-weather.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.module; path = "Pods-travel-weather.modulemap"; sourceTree = "<group>"; };
 		46404D558367E8034C2FE3E2B5F78EA2 /* JTAppleCalendarDelegateProtocol.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = JTAppleCalendarDelegateProtocol.swift; path = Sources/JTAppleCalendarDelegateProtocol.swift; sourceTree = "<group>"; };
 		491DBF3F5CBA0A44D9CE4648CE516632 /* JTAppleCalendar.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = JTAppleCalendar.xcconfig; sourceTree = "<group>"; };
-		4C176BF218F833126C33840350B39551 /* Pods-travel-weather.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-travel-weather.release.xcconfig"; sourceTree = "<group>"; };
+		4A38A5EC21D23A972EA6BCFDF76F4B5F /* Pods-Travel WeatherTests-resources.sh */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.script.sh; path = "Pods-Travel WeatherTests-resources.sh"; sourceTree = "<group>"; };
+		4CE0A3AB1F2CC927EE20F66DA79288A8 /* Pods-Travel WeatherTests-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "Pods-Travel WeatherTests-umbrella.h"; sourceTree = "<group>"; };
 		5141982300E43FE3A0827F7CF7F6A656 /* GoogleMapsBase.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = GoogleMapsBase.framework; path = Base/Frameworks/GoogleMapsBase.framework; sourceTree = "<group>"; };
 		57618571E8D467C433DB963AAC00C364 /* JTAppleCalendar.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.module; path = JTAppleCalendar.modulemap; sourceTree = "<group>"; };
 		582FBA3331F3BC5FAD0A9954A24AA73A /* JTAppleCollectionReusableView.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = JTAppleCollectionReusableView.swift; path = Sources/JTAppleCollectionReusableView.swift; sourceTree = "<group>"; };
 		5CFB91F30E4DD46BD9FB6964A3D32397 /* JTAppleCalendar-prefix.pch */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "JTAppleCalendar-prefix.pch"; sourceTree = "<group>"; };
 		60DBA544309FFA886CEC145BEAE0C1A4 /* UIScrollViewDelegates.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = UIScrollViewDelegates.swift; path = Sources/UIScrollViewDelegates.swift; sourceTree = "<group>"; };
+		6156B0CFE44C6F6772EBD05F58DAC24F /* Pods-travel-weather-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "Pods-travel-weather-dummy.m"; sourceTree = "<group>"; };
 		658A42BEE15BAD451BDAE1F289F2CB64 /* GlobalFunctionsAndExtensions.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = GlobalFunctionsAndExtensions.swift; path = Sources/GlobalFunctionsAndExtensions.swift; sourceTree = "<group>"; };
-		6EF61DD5C1A55C0D3257259FC7484AA9 /* Pods-travel-weather-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "Pods-travel-weather-umbrella.h"; sourceTree = "<group>"; };
-		79540659A3BA0CA2B5CFDD84CD200FE2 /* Pods-travel-weather.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-travel-weather.debug.xcconfig"; sourceTree = "<group>"; };
 		79D7B66DAF63E27F1BFEFC6CBE43F7C4 /* GooglePlaces.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = GooglePlaces.xcconfig; sourceTree = "<group>"; };
 		92E41556C90F8EE63884B9B929C701B6 /* JTAppleCell.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = JTAppleCell.swift; path = Sources/JTAppleCell.swift; sourceTree = "<group>"; };
-		98CA2943BA14F92425E161B829AB5379 /* libPods-travel-weather.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-travel-weather.a"; sourceTree = BUILT_PRODUCTS_DIR; };
-		9D940727FF8FB9C785EB98E56350EF41 /* Podfile */ = {isa = PBXFileReference; explicitFileType = text.script.ruby; includeInIndex = 1; indentWidth = 2; name = Podfile; path = ../Podfile; sourceTree = SOURCE_ROOT; tabWidth = 2; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
-		A0C8E428D980D3C9293A3C2BF740F0CD /* libJTAppleCalendar.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libJTAppleCalendar.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		93580DB0A32FB28A713796D669D43D66 /* libPods-Travel WeatherTests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; name = "libPods-Travel WeatherTests.a"; path = "libPods-Travel WeatherTests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		9889DA55B3B134E434EDC10D51288EDC /* Pods-Travel WeatherTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-Travel WeatherTests.debug.xcconfig"; sourceTree = "<group>"; };
+		98CA2943BA14F92425E161B829AB5379 /* libPods-travel-weather.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; name = "libPods-travel-weather.a"; path = "libPods-travel-weather.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		9D940727FF8FB9C785EB98E56350EF41 /* Podfile */ = {isa = PBXFileReference; explicitFileType = text.script.ruby; includeInIndex = 1; indentWidth = 2; lastKnownFileType = text; name = Podfile; path = ../Podfile; sourceTree = SOURCE_ROOT; tabWidth = 2; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
+		A0C8E428D980D3C9293A3C2BF740F0CD /* libJTAppleCalendar.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; name = libJTAppleCalendar.a; path = libJTAppleCalendar.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		A0CD79DC71ACB6185E2BE649CC6A0AC2 /* Pods-travel-weather.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-travel-weather.release.xcconfig"; sourceTree = "<group>"; };
 		A6354560E475750BE78DBDA90B0DCFBB /* UICollectionViewDelegates.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = UICollectionViewDelegates.swift; path = Sources/UICollectionViewDelegates.swift; sourceTree = "<group>"; };
+		AC964D6B6C6BFC4832E15DBB8DAB5B6E /* Pods-travel-weather-acknowledgements.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "Pods-travel-weather-acknowledgements.plist"; sourceTree = "<group>"; };
 		B68E777202CC63AE90970A8B668F9822 /* JTCalendarProtocols.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = JTCalendarProtocols.swift; path = Sources/JTCalendarProtocols.swift; sourceTree = "<group>"; };
-		BAFE78C621FBCD215959C278DC9A7085 /* Pods-travel-weather-resources.sh */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.script.sh; path = "Pods-travel-weather-resources.sh"; sourceTree = "<group>"; };
+		BB9E0B8D122E41C10570D7128B4D025F /* Pods-Travel WeatherTests.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.module; path = "Pods-Travel WeatherTests.modulemap"; sourceTree = "<group>"; };
 		D1CB6885C720427333DE90F831BE1FD0 /* InternalActionFunctions.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = InternalActionFunctions.swift; path = Sources/InternalActionFunctions.swift; sourceTree = "<group>"; };
 		D25267AA16D462F0170BC619052A1DAB /* GooglePlaces.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = GooglePlaces.framework; path = Frameworks/GooglePlaces.framework; sourceTree = "<group>"; };
 		D81838CF8FA7553022E145611926657A /* JTAppleCalendarLayout.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = JTAppleCalendarLayout.swift; path = Sources/JTAppleCalendarLayout.swift; sourceTree = "<group>"; };
@@ -122,6 +149,9 @@
 		E5D6E2DD9D108C9151A7F04FC8A3A601 /* JTAppleCalendarVariables.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = JTAppleCalendarVariables.swift; path = Sources/JTAppleCalendarVariables.swift; sourceTree = "<group>"; };
 		E7BE3F35B158D85D37D5A88C14CD31E3 /* InternalQueryFunctions.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = InternalQueryFunctions.swift; path = Sources/InternalQueryFunctions.swift; sourceTree = "<group>"; };
 		EA6741947ED36C206A0E8320F3444E1C /* CalendarEnums.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = CalendarEnums.swift; path = Sources/CalendarEnums.swift; sourceTree = "<group>"; };
+		F2581C4C51EEC252EC55456B0F8DEC50 /* Pods-travel-weather-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "Pods-travel-weather-umbrella.h"; sourceTree = "<group>"; };
+		F4278BFF01D92A0CCF484583CC4CABA4 /* Pods-Travel WeatherTests-acknowledgements.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "Pods-Travel WeatherTests-acknowledgements.plist"; sourceTree = "<group>"; };
+		FC1DC7CA15B073A69AB90789B28BCBBA /* Pods-travel-weather.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-travel-weather.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -139,24 +169,31 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		7FDB9837A2108F2F9103686C76106A04 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		01D6943B190753D160E506581894EB9D /* Targets Support Files */ = {
+			isa = PBXGroup;
+			children = (
+				EDBE67E1F5BB870F1F664C79818C4DF6 /* Pods-Travel WeatherTests */,
+				8A00A10F4D8A7283E01C9BDC3280EEB6 /* Pods-travel-weather */,
+			);
+			name = "Targets Support Files";
+			sourceTree = "<group>";
+		};
 		0A6A6A3150878FB1C7AC98AC7185FA22 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
 				5141982300E43FE3A0827F7CF7F6A656 /* GoogleMapsBase.framework */,
 			);
 			name = Frameworks;
-			sourceTree = "<group>";
-		};
-		0BD92FD6BDAF5F70706186A59884C95A /* Products */ = {
-			isa = PBXGroup;
-			children = (
-				A0C8E428D980D3C9293A3C2BF740F0CD /* libJTAppleCalendar.a */,
-				98CA2943BA14F92425E161B829AB5379 /* libPods-travel-weather.a */,
-			);
-			name = Products;
 			sourceTree = "<group>";
 		};
 		214C182F903F9E4EFECD66098FAB7835 /* Pods */ = {
@@ -176,6 +213,16 @@
 			);
 			name = "Support Files";
 			path = "../Target Support Files/GooglePlaces";
+			sourceTree = "<group>";
+		};
+		5F3A130499B01DB24BBA9DD1BF6DF020 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				A0C8E428D980D3C9293A3C2BF740F0CD /* libJTAppleCalendar.a */,
+				93580DB0A32FB28A713796D669D43D66 /* libPods-Travel WeatherTests.a */,
+				98CA2943BA14F92425E161B829AB5379 /* libPods-travel-weather.a */,
+			);
+			name = Products;
 			sourceTree = "<group>";
 		};
 		7589554841D2F3C33394CB677855A553 /* Support Files */ = {
@@ -210,20 +257,21 @@
 				7682B3B09CE31E896006BA176F96B27A /* Resources */,
 				3C88E3A0F1DE1179C97716C3EAC63C44 /* Support Files */,
 			);
+			name = GooglePlaces;
 			path = GooglePlaces;
 			sourceTree = "<group>";
 		};
-		8A57EFA5825A616C9F163037E1D107CC /* Pods-travel-weather */ = {
+		8A00A10F4D8A7283E01C9BDC3280EEB6 /* Pods-travel-weather */ = {
 			isa = PBXGroup;
 			children = (
-				2092CC4B75CEFCDF860012FA042EB1AE /* Pods-travel-weather.modulemap */,
-				1B85E3DD75D32F54670881963095F103 /* Pods-travel-weather-acknowledgements.markdown */,
-				12FC6A0F1DB9203CB157101C67C8ED49 /* Pods-travel-weather-acknowledgements.plist */,
-				440EF247F249C3AB4A0B35892687D5C3 /* Pods-travel-weather-dummy.m */,
-				BAFE78C621FBCD215959C278DC9A7085 /* Pods-travel-weather-resources.sh */,
-				6EF61DD5C1A55C0D3257259FC7484AA9 /* Pods-travel-weather-umbrella.h */,
-				79540659A3BA0CA2B5CFDD84CD200FE2 /* Pods-travel-weather.debug.xcconfig */,
-				4C176BF218F833126C33840350B39551 /* Pods-travel-weather.release.xcconfig */,
+				4608B5C0DC5089F2F179FA243229AB67 /* Pods-travel-weather.modulemap */,
+				30F154E725FB7D2E8D1D26A541E5B8F4 /* Pods-travel-weather-acknowledgements.markdown */,
+				AC964D6B6C6BFC4832E15DBB8DAB5B6E /* Pods-travel-weather-acknowledgements.plist */,
+				6156B0CFE44C6F6772EBD05F58DAC24F /* Pods-travel-weather-dummy.m */,
+				34CDAA6FC51D165AB97DD37902AFFA2F /* Pods-travel-weather-resources.sh */,
+				F2581C4C51EEC252EC55456B0F8DEC50 /* Pods-travel-weather-umbrella.h */,
+				FC1DC7CA15B073A69AB90789B28BCBBA /* Pods-travel-weather.debug.xcconfig */,
+				A0CD79DC71ACB6185E2BE649CC6A0AC2 /* Pods-travel-weather.release.xcconfig */,
 			);
 			name = "Pods-travel-weather";
 			path = "Target Support Files/Pods-travel-weather";
@@ -248,6 +296,7 @@
 				7FDF96D0BA08FFC430A2DF600E1543D8 /* Base */,
 				7589554841D2F3C33394CB677855A553 /* Support Files */,
 			);
+			name = GoogleMaps;
 			path = GoogleMaps;
 			sourceTree = "<group>";
 		};
@@ -272,15 +321,8 @@
 				24BF85775D5A70EAEA2F07A7F5362CED /* UserInteractionFunctions.swift */,
 				8D49026B80032A740A79B567FD29A3C2 /* Support Files */,
 			);
+			name = JTAppleCalendar;
 			path = JTAppleCalendar;
-			sourceTree = "<group>";
-		};
-		AD52D528ABEF30BA8959FD7886C37F79 /* Targets Support Files */ = {
-			isa = PBXGroup;
-			children = (
-				8A57EFA5825A616C9F163037E1D107CC /* Pods-travel-weather */,
-			);
-			name = "Targets Support Files";
 			sourceTree = "<group>";
 		};
 		CF1408CF629C7361332E53B88F7BD30C = {
@@ -289,8 +331,8 @@
 				9D940727FF8FB9C785EB98E56350EF41 /* Podfile */,
 				D89477F20FB1DE18A04690586D7808C4 /* Frameworks */,
 				214C182F903F9E4EFECD66098FAB7835 /* Pods */,
-				0BD92FD6BDAF5F70706186A59884C95A /* Products */,
-				AD52D528ABEF30BA8959FD7886C37F79 /* Targets Support Files */,
+				5F3A130499B01DB24BBA9DD1BF6DF020 /* Products */,
+				01D6943B190753D160E506581894EB9D /* Targets Support Files */,
 			);
 			sourceTree = "<group>";
 		};
@@ -309,9 +351,33 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
+		EDBE67E1F5BB870F1F664C79818C4DF6 /* Pods-Travel WeatherTests */ = {
+			isa = PBXGroup;
+			children = (
+				BB9E0B8D122E41C10570D7128B4D025F /* Pods-Travel WeatherTests.modulemap */,
+				2C7CDBEFB3E60C70DE5DA90C07556028 /* Pods-Travel WeatherTests-acknowledgements.markdown */,
+				F4278BFF01D92A0CCF484583CC4CABA4 /* Pods-Travel WeatherTests-acknowledgements.plist */,
+				3B5992750323B3E0E1C128B662E9A0FF /* Pods-Travel WeatherTests-dummy.m */,
+				4A38A5EC21D23A972EA6BCFDF76F4B5F /* Pods-Travel WeatherTests-resources.sh */,
+				4CE0A3AB1F2CC927EE20F66DA79288A8 /* Pods-Travel WeatherTests-umbrella.h */,
+				9889DA55B3B134E434EDC10D51288EDC /* Pods-Travel WeatherTests.debug.xcconfig */,
+				25D93CA59B4570FF6C0FF4152379A8F9 /* Pods-Travel WeatherTests.release.xcconfig */,
+			);
+			name = "Pods-Travel WeatherTests";
+			path = "Target Support Files/Pods-Travel WeatherTests";
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXHeadersBuildPhase section */
+		26E8E2F09CA2DAD7993EBB1540001906 /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				D01DFF47F524C1561EB76AF585A4E06A /* Pods-Travel WeatherTests-umbrella.h in Headers */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		4356A08DC65F4B45EEAA3EB50DC124FB /* Headers */ = {
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
@@ -351,6 +417,26 @@
 			productReference = 98CA2943BA14F92425E161B829AB5379 /* libPods-travel-weather.a */;
 			productType = "com.apple.product-type.library.static";
 		};
+		2399CDB424172746C242AE76133844A8 /* Pods-Travel WeatherTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 52869187403E817B14B80F96016F5B2D /* Build configuration list for PBXNativeTarget "Pods-Travel WeatherTests" */;
+			buildPhases = (
+				26E8E2F09CA2DAD7993EBB1540001906 /* Headers */,
+				92D595BF45BB92B51775D04909398BF5 /* Sources */,
+				7FDB9837A2108F2F9103686C76106A04 /* Frameworks */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				A65E50A5B1857E80D5049AF6109E332F /* PBXTargetDependency */,
+				D5CD1C2A3D07F45DFA1298C3FD85B47A /* PBXTargetDependency */,
+				325120625F09FFD0116F9674FF5BDA64 /* PBXTargetDependency */,
+			);
+			name = "Pods-Travel WeatherTests";
+			productName = "Pods-Travel WeatherTests";
+			productReference = 93580DB0A32FB28A713796D669D43D66 /* libPods-Travel WeatherTests.a */;
+			productType = "com.apple.product-type.library.static";
+		};
 		421B6ABF460857FE6CA2905EFB5A4F74 /* JTAppleCalendar */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = DEB8A6331CE73000DE5F46A3978E7F0C /* Build configuration list for PBXNativeTarget "JTAppleCalendar" */;
@@ -377,11 +463,6 @@
 			attributes = {
 				LastSwiftUpdateCheck = 1100;
 				LastUpgradeCheck = 1100;
-				TargetAttributes = {
-					421B6ABF460857FE6CA2905EFB5A4F74 = {
-						LastSwiftMigration = 1150;
-					};
-				};
 			};
 			buildConfigurationList = 4821239608C13582E20E6DA73FD5F1F9 /* Build configuration list for PBXProject "Pods" */;
 			compatibilityVersion = "Xcode 10.0";
@@ -392,13 +473,14 @@
 				Base,
 			);
 			mainGroup = CF1408CF629C7361332E53B88F7BD30C;
-			productRefGroup = 0BD92FD6BDAF5F70706186A59884C95A /* Products */;
+			productRefGroup = 5F3A130499B01DB24BBA9DD1BF6DF020 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
 				E5B4BBC6DD552AC8943C7E22772FC1D3 /* GoogleMaps */,
 				0C1885900810601510E0C632060FAF26 /* GooglePlaces */,
 				421B6ABF460857FE6CA2905EFB5A4F74 /* JTAppleCalendar */,
+				2399CDB424172746C242AE76133844A8 /* Pods-Travel WeatherTests */,
 				07D3D6096B3DCFF67573FFAF1D468458 /* Pods-travel-weather */,
 			);
 		};
@@ -456,6 +538,14 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		92D595BF45BB92B51775D04909398BF5 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				121077E2D82FD9B4C769B1EF949F2937 /* Pods-Travel WeatherTests-dummy.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		C8204FE9505A2A38D518820BEF65B4F8 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -473,17 +563,35 @@
 			target = E5B4BBC6DD552AC8943C7E22772FC1D3 /* GoogleMaps */;
 			targetProxy = E2617896E592BA27DAEFF5FC0BACD809 /* PBXContainerItemProxy */;
 		};
+		325120625F09FFD0116F9674FF5BDA64 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = JTAppleCalendar;
+			target = 421B6ABF460857FE6CA2905EFB5A4F74 /* JTAppleCalendar */;
+			targetProxy = 7922583E72191C9C1E5B01DFC669851F /* PBXContainerItemProxy */;
+		};
 		4C8302F9975AEBBA5F7EF21B15601F34 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			name = GooglePlaces;
 			target = 0C1885900810601510E0C632060FAF26 /* GooglePlaces */;
 			targetProxy = B5CA7FAA0B988A2E55D9BFEA441E4107 /* PBXContainerItemProxy */;
 		};
+		A65E50A5B1857E80D5049AF6109E332F /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = GoogleMaps;
+			target = E5B4BBC6DD552AC8943C7E22772FC1D3 /* GoogleMaps */;
+			targetProxy = 49389B8D74D03FFAC384ECF4CF5B6F21 /* PBXContainerItemProxy */;
+		};
 		D42315111F400C0605ACCD6B5CAF2178 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			name = GoogleMaps;
 			target = E5B4BBC6DD552AC8943C7E22772FC1D3 /* GoogleMaps */;
 			targetProxy = 6EB1C2DD30E6564FC3135C9E8002D8F7 /* PBXContainerItemProxy */;
+		};
+		D5CD1C2A3D07F45DFA1298C3FD85B47A /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = GooglePlaces;
+			target = 0C1885900810601510E0C632060FAF26 /* GooglePlaces */;
+			targetProxy = A3BC871CEBCEE336232A3F09A019CC88 /* PBXContainerItemProxy */;
 		};
 		E4486D4836B442835AC91D8DC516BC1A /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
@@ -523,7 +631,7 @@
 		};
 		4086197DCC1F30DC84EDF58B79309E9C /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 79540659A3BA0CA2B5CFDD84CD200FE2 /* Pods-travel-weather.debug.xcconfig */;
+			baseConfigurationReference = FC1DC7CA15B073A69AB90789B28BCBBA /* Pods-travel-weather.debug.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = NO;
 				CLANG_ENABLE_OBJC_WEAK = NO;
@@ -560,6 +668,29 @@
 			};
 			name = Debug;
 		};
+		71F721FE9A65F02B46422AB7B9D67949 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 9889DA55B3B134E434EDC10D51288EDC /* Pods-Travel WeatherTests.debug.xcconfig */;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = NO;
+				CLANG_ENABLE_OBJC_WEAK = NO;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
+				IPHONEOS_DEPLOYMENT_TARGET = 13.2;
+				MACH_O_TYPE = staticlib;
+				MODULEMAP_FILE = "Target Support Files/Pods-Travel WeatherTests/Pods-Travel WeatherTests.modulemap";
+				OTHER_LDFLAGS = "";
+				OTHER_LIBTOOLFLAGS = "";
+				PODS_ROOT = "$(SRCROOT)";
+				PRODUCT_BUNDLE_IDENTIFIER = "org.cocoapods.${PRODUCT_NAME:rfc1034identifier}";
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
 		907050E8ED96EF2CF04EC3D293E73BD9 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 79D7B66DAF63E27F1BFEFC6CBE43F7C4 /* GooglePlaces.xcconfig */;
@@ -575,6 +706,30 @@
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Debug;
+		};
+		918DA649D311D6345CE9251BFAFD2B95 /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 25D93CA59B4570FF6C0FF4152379A8F9 /* Pods-Travel WeatherTests.release.xcconfig */;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = NO;
+				CLANG_ENABLE_OBJC_WEAK = NO;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
+				IPHONEOS_DEPLOYMENT_TARGET = 13.2;
+				MACH_O_TYPE = staticlib;
+				MODULEMAP_FILE = "Target Support Files/Pods-Travel WeatherTests/Pods-Travel WeatherTests.modulemap";
+				OTHER_LDFLAGS = "";
+				OTHER_LIBTOOLFLAGS = "";
+				PODS_ROOT = "$(SRCROOT)";
+				PRODUCT_BUNDLE_IDENTIFIER = "org.cocoapods.${PRODUCT_NAME:rfc1034identifier}";
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
 		};
 		939F1A8F6BCEB7F9F64D9EEE50CAE014 /* Debug */ = {
 			isa = XCBuildConfiguration;
@@ -736,7 +891,7 @@
 		};
 		FC7EDF0CABEA52AD6E995A5B8208F9D9 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 4C176BF218F833126C33840350B39551 /* Pods-travel-weather.release.xcconfig */;
+			baseConfigurationReference = A0CD79DC71ACB6185E2BE649CC6A0AC2 /* Pods-travel-weather.release.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = NO;
 				CLANG_ENABLE_OBJC_WEAK = NO;
@@ -810,6 +965,15 @@
 			buildConfigurations = (
 				939F1A8F6BCEB7F9F64D9EEE50CAE014 /* Debug */,
 				ECB437504DF805BD96CAABF97400B526 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		52869187403E817B14B80F96016F5B2D /* Build configuration list for PBXNativeTarget "Pods-Travel WeatherTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				71F721FE9A65F02B46422AB7B9D67949 /* Debug */,
+				918DA649D311D6345CE9251BFAFD2B95 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;

@@ -1,5 +1,5 @@
 # Uncomment the next line to define a global platform for your project
-# platform :ios, '9.0'
+platform :ios, '13.2'
 
 source 'https://github.com/CocoaPods/Specs.git'
 target 'travel-weather' do
@@ -10,6 +10,12 @@ target 'travel-weather' do
   pod 'GooglePlaces'
 
   # Pods for travel-weather
+end
+
+target "Travel WeatherTests" do
+	pod 'JTAppleCalendar', '~> 7.1.7'
+  	pod 'GooglePlaces'
+ 
 
 end
 
