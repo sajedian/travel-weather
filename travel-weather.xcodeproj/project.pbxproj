@@ -16,6 +16,8 @@
 		9E34CC87248EB03F0034E15C /* CalendarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E34CC86248EB03F0034E15C /* CalendarViewController.swift */; };
 		9E44A43224D2441100F54A5D /* Travel_WeatherTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E44A43124D2441100F54A5D /* Travel_WeatherTests.swift */; };
 		9E50B6EE24845820009890FD /* NoInternetCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9E50B6ED24845820009890FD /* NoInternetCell.xib */; };
+		9E57E1C524D4AEF800F96370 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 9E57E1C424D4AEF800F96370 /* GoogleService-Info.plist */; };
+		9E57E1C724D4AEFE00F96370 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 9E57E1C624D4AEFE00F96370 /* GoogleService-Info.plist */; };
 		9E58E43D2409E3C50002B496 /* EditLocationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E58E43C2409E3C50002B496 /* EditLocationViewController.swift */; };
 		9E63366D23D5422400468158 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E63366C23D5422400468158 /* AppDelegate.swift */; };
 		9E63366F23D5422400468158 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E63366E23D5422400468158 /* SceneDelegate.swift */; };
@@ -88,6 +90,8 @@
 		9E44A43124D2441100F54A5D /* Travel_WeatherTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Travel_WeatherTests.swift; sourceTree = "<group>"; };
 		9E44A43324D2441100F54A5D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		9E50B6ED24845820009890FD /* NoInternetCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = NoInternetCell.xib; sourceTree = "<group>"; };
+		9E57E1C424D4AEF800F96370 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "GoogleService-Info.plist"; path = "../../../../Downloads/GoogleService-Info.plist"; sourceTree = "<group>"; };
+		9E57E1C624D4AEFE00F96370 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		9E58E43C2409E3C50002B496 /* EditLocationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditLocationViewController.swift; sourceTree = "<group>"; };
 		9E63366923D5422400468158 /* Travel Weather.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Travel Weather.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		9E63366C23D5422400468158 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -177,6 +181,7 @@
 			children = (
 				9E44A43124D2441100F54A5D /* Travel_WeatherTests.swift */,
 				9E44A43324D2441100F54A5D /* Info.plist */,
+				9E57E1C624D4AEFE00F96370 /* GoogleService-Info.plist */,
 			);
 			path = "Travel WeatherTests";
 			sourceTree = "<group>";
@@ -259,6 +264,7 @@
 				9E50B6ED24845820009890FD /* NoInternetCell.xib */,
 				9E8664E62481720C005D1FB6 /* Info.plist */,
 				9EFB9B13242019700042776D /* TravelWeather.xcdatamodeld */,
+				9E57E1C424D4AEF800F96370 /* GoogleService-Info.plist */,
 			);
 			path = Resources_;
 			sourceTree = "<group>";
@@ -382,6 +388,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				9E57E1C724D4AEFE00F96370 /* GoogleService-Info.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -395,6 +402,7 @@
 				9E63368323D54CE900468158 /* DayCell.xib in Resources */,
 				9E63367423D5422400468158 /* Main.storyboard in Resources */,
 				9E29429D2499418E006E65C0 /* Assets.xcassets in Resources */,
+				9E57E1C524D4AEF800F96370 /* GoogleService-Info.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
