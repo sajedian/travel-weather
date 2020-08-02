@@ -182,9 +182,9 @@
 			isa = PBXGroup;
 			children = (
 				9E44A43124D2441100F54A5D /* Travel_WeatherTests.swift */,
+				9E41B46224D760CA00403C32 /* CoreDataHelper.swift */,
 				9E44A43324D2441100F54A5D /* Info.plist */,
 				9E57E1C624D4AEFE00F96370 /* GoogleService-Info.plist */,
-				9E41B46224D760CA00403C32 /* CoreDataHelper.swift */,
 			);
 			path = "Travel WeatherTests";
 			sourceTree = "<group>";
@@ -315,7 +315,6 @@
 				9E44A42B24D2441100F54A5D /* Sources */,
 				9E44A42C24D2441100F54A5D /* Frameworks */,
 				9E44A42D24D2441100F54A5D /* Resources */,
-				07763D72E72CCC7D84A05BB1 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -412,23 +411,6 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
-		07763D72E72CCC7D84A05BB1 /* [CP] Copy Pods Resources */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-Travel WeatherTests/Pods-Travel WeatherTests-resources-${CONFIGURATION}-input-files.xcfilelist",
-			);
-			name = "[CP] Copy Pods Resources";
-			outputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-Travel WeatherTests/Pods-Travel WeatherTests-resources-${CONFIGURATION}-output-files.xcfilelist",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-Travel WeatherTests/Pods-Travel WeatherTests-resources.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
 		5B97C1112C2B3E0373184E6A /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -594,6 +576,22 @@
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = TLNU8LHLC5;
+				HEADER_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"${PODS_ROOT}/Headers/Public\"",
+					"\"${PODS_ROOT}/Headers/Public/Firebase\"",
+					"\"${PODS_ROOT}/Headers/Public/FirebaseAuth\"",
+					"\"${PODS_ROOT}/Headers/Public/FirebaseCore\"",
+					"\"${PODS_ROOT}/Headers/Public/FirebaseCoreDiagnostics\"",
+					"\"${PODS_ROOT}/Headers/Public/FirebaseFunctions\"",
+					"\"${PODS_ROOT}/Headers/Public/GTMSessionFetcher\"",
+					"\"${PODS_ROOT}/Headers/Public/GoogleDataTransport\"",
+					"\"${PODS_ROOT}/Headers/Public/GoogleUtilities\"",
+					"\"${PODS_ROOT}/Headers/Public/PromisesObjC\"",
+					"\"${PODS_ROOT}/Headers/Public/nanopb\"",
+					"\"${PODS_ROOT}/Firebase/CoreOnly/Sources\"",
+					"\"${PODS_ROOT}JTAppleCalendar",
+				);
 				INFOPLIST_FILE = "Travel WeatherTests/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 13.6;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -616,6 +614,22 @@
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = TLNU8LHLC5;
+				HEADER_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"${PODS_ROOT}/Headers/Public\"",
+					"\"${PODS_ROOT}/Headers/Public/Firebase\"",
+					"\"${PODS_ROOT}/Headers/Public/FirebaseAuth\"",
+					"\"${PODS_ROOT}/Headers/Public/FirebaseCore\"",
+					"\"${PODS_ROOT}/Headers/Public/FirebaseCoreDiagnostics\"",
+					"\"${PODS_ROOT}/Headers/Public/FirebaseFunctions\"",
+					"\"${PODS_ROOT}/Headers/Public/GTMSessionFetcher\"",
+					"\"${PODS_ROOT}/Headers/Public/GoogleDataTransport\"",
+					"\"${PODS_ROOT}/Headers/Public/GoogleUtilities\"",
+					"\"${PODS_ROOT}/Headers/Public/PromisesObjC\"",
+					"\"${PODS_ROOT}/Headers/Public/nanopb\"",
+					"\"${PODS_ROOT}/Firebase/CoreOnly/Sources\"",
+					"\"${PODS_ROOT}JTAppleCalendar",
+				);
 				INFOPLIST_FILE = "Travel WeatherTests/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 13.6;
 				LD_RUNPATH_SEARCH_PATHS = (

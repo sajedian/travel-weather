@@ -8,7 +8,7 @@
 
 import CoreData
 import Foundation
-import Travel_Weather
+@testable import Travel_Weather
 
 class CoreDataHelper {
     class func initializeInMemoryManagedObjectContext() -> NSManagedObjectContext {

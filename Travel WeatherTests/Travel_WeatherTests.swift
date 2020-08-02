@@ -10,8 +10,6 @@ import XCTest
 import CoreData
 
 @testable import Travel_Weather
-@testable import JTAppleCalendar
-@testable import GooglePlaces
 
 class DayTests: XCTestCase {
 
@@ -24,7 +22,7 @@ class DayTests: XCTestCase {
     }
 
     override func tearDownWithError() throws {
-        // Put teardown code here. This method is called after the invocation of each test method in the class.
+        day = nil
     }
 
     func testHighTempDisplayIsAccurate() {
