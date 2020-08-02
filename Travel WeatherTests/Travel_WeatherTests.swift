@@ -8,6 +8,7 @@
 
 import XCTest
 import CoreData
+import Foundation
 
 @testable import Travel_Weather
 
@@ -61,5 +62,15 @@ class DayTests: XCTestCase {
 
         //then
         XCTAssertEqual(day.lowTempDisplay, "2°")
+    }
+
+    func testWeekdayIsCorrect() {
+        //given
+        let calendar = Calendar.current
+        let components = DateComponents(calendar: Calendar.current, year: 2020, month: 8, day: 2)
+        day.date = calendar.date(from: components)!
+
+        //then
+        XCTAssertEqual(day.weekday, "Sunday")
     }
 }
