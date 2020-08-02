@@ -8,6 +8,7 @@
 
 import UIKit
 import GooglePlaces
+import Firebase
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -16,6 +17,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                      didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
 
         GMSPlacesClient.provideAPIKey(googleMapsAPIKey)
+        FirebaseApp.configure()
 
         if UserDefaults.standard.string(forKey: "defaultColor") == nil {
             UserDefaults.standard.set(UIColor.darkYellow.toHex(), forKey: "defaultColor")

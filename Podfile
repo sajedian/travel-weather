@@ -6,17 +6,16 @@ target 'travel-weather' do
   
   # Comment the next line if you don't want to use dynamic frameworks
   #use_frameworks!
-  pod 'JTAppleCalendar', '~> 7.1.7'
-  pod 'GooglePlaces'
+  	pod 'JTAppleCalendar', '~> 7.1.7'
+  	pod 'GooglePlaces'
+	pod 'Firebase/Functions'
+	pod 'Firebase/Auth'
 
   # Pods for travel-weather
 end
 
 target "Travel WeatherTests" do
 	pod 'JTAppleCalendar', '~> 7.1.7'
-  	pod 'GooglePlaces'
- 
-
 end
 
 post_install do |installer|

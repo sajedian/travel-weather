@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>CLIENT_ID</key>
+	<string>606084969428-3n5vv2sotsek4dlnq22di7807vo7tr1p.apps.googleusercontent.com</string>
+	<key>REVERSED_CLIENT_ID</key>
+	<string>com.googleusercontent.apps.606084969428-3n5vv2sotsek4dlnq22di7807vo7tr1p</string>
+	<key>API_KEY</key>
+	<string>AIzaSyAwQhmVo0S7tajW8wJZVeYjHxcbkLhOo8U</string>
+	<key>GCM_SENDER_ID</key>
+	<string>606084969428</string>
+	<key>PLIST_VERSION</key>
+	<string>1</string>
+	<key>BUNDLE_ID</key>
+	<string>com.sajedian.Travel-Weather</string>
+	<key>PROJECT_ID</key>
+	<string>travel-weather-36626</string>
+	<key>STORAGE_BUCKET</key>
+	<string>travel-weather-36626.appspot.com</string>
+	<key>IS_ADS_ENABLED</key>
+	<false></false>
+	<key>IS_ANALYTICS_ENABLED</key>
+	<false></false>
+	<key>IS_APPINVITE_ENABLED</key>
+	<true></true>
+	<key>IS_GCM_ENABLED</key>
+	<true></true>
+	<key>IS_SIGNIN_ENABLED</key>
+	<true></true>
+	<key>GOOGLE_APP_ID</key>
+	<string>1:606084969428:ios:e8561c89e8d33a49139c41</string>
+	<key>DATABASE_URL</key>
+	<string>https://travel-weather-36626.firebaseio.com</string>
+</dict>
+</plist>

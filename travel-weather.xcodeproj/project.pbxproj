@@ -14,8 +14,11 @@
 		9E347888243A4CBD00CB60D8 /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E347887243A4CBD00CB60D8 /* SettingsViewController.swift */; };
 		9E34CC85248E8F2B0034E15C /* ScheduleListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E34CC84248E8F2B0034E15C /* ScheduleListViewController.swift */; };
 		9E34CC87248EB03F0034E15C /* CalendarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E34CC86248EB03F0034E15C /* CalendarViewController.swift */; };
+		9E41B46324D760CA00403C32 /* CoreDataHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E41B46224D760CA00403C32 /* CoreDataHelper.swift */; };
 		9E44A43224D2441100F54A5D /* Travel_WeatherTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E44A43124D2441100F54A5D /* Travel_WeatherTests.swift */; };
 		9E50B6EE24845820009890FD /* NoInternetCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9E50B6ED24845820009890FD /* NoInternetCell.xib */; };
+		9E57E1C524D4AEF800F96370 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 9E57E1C424D4AEF800F96370 /* GoogleService-Info.plist */; };
+		9E57E1C724D4AEFE00F96370 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 9E57E1C624D4AEFE00F96370 /* GoogleService-Info.plist */; };
 		9E58E43D2409E3C50002B496 /* EditLocationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E58E43C2409E3C50002B496 /* EditLocationViewController.swift */; };
 		9E63366D23D5422400468158 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E63366C23D5422400468158 /* AppDelegate.swift */; };
 		9E63366F23D5422400468158 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E63366E23D5422400468158 /* SceneDelegate.swift */; };
@@ -84,10 +87,13 @@
 		9E347887243A4CBD00CB60D8 /* SettingsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
 		9E34CC84248E8F2B0034E15C /* ScheduleListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = ScheduleListViewController.swift; path = "travel-weather/View Controllers/ScheduleListViewController.swift"; sourceTree = SOURCE_ROOT; };
 		9E34CC86248EB03F0034E15C /* CalendarViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarViewController.swift; sourceTree = "<group>"; };
+		9E41B46224D760CA00403C32 /* CoreDataHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataHelper.swift; sourceTree = "<group>"; };
 		9E44A42F24D2441100F54A5D /* Travel WeatherTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Travel WeatherTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		9E44A43124D2441100F54A5D /* Travel_WeatherTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Travel_WeatherTests.swift; sourceTree = "<group>"; };
 		9E44A43324D2441100F54A5D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		9E50B6ED24845820009890FD /* NoInternetCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = NoInternetCell.xib; sourceTree = "<group>"; };
+		9E57E1C424D4AEF800F96370 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "GoogleService-Info.plist"; path = "../../../../Downloads/GoogleService-Info.plist"; sourceTree = "<group>"; };
+		9E57E1C624D4AEFE00F96370 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		9E58E43C2409E3C50002B496 /* EditLocationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditLocationViewController.swift; sourceTree = "<group>"; };
 		9E63366923D5422400468158 /* Travel Weather.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Travel Weather.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		9E63366C23D5422400468158 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -176,7 +182,9 @@
 			isa = PBXGroup;
 			children = (
 				9E44A43124D2441100F54A5D /* Travel_WeatherTests.swift */,
+				9E41B46224D760CA00403C32 /* CoreDataHelper.swift */,
 				9E44A43324D2441100F54A5D /* Info.plist */,
+				9E57E1C624D4AEFE00F96370 /* GoogleService-Info.plist */,
 			);
 			path = "Travel WeatherTests";
 			sourceTree = "<group>";
@@ -259,6 +267,7 @@
 				9E50B6ED24845820009890FD /* NoInternetCell.xib */,
 				9E8664E62481720C005D1FB6 /* Info.plist */,
 				9EFB9B13242019700042776D /* TravelWeather.xcdatamodeld */,
+				9E57E1C424D4AEF800F96370 /* GoogleService-Info.plist */,
 			);
 			path = Resources_;
 			sourceTree = "<group>";
@@ -306,7 +315,6 @@
 				9E44A42B24D2441100F54A5D /* Sources */,
 				9E44A42C24D2441100F54A5D /* Frameworks */,
 				9E44A42D24D2441100F54A5D /* Resources */,
-				07763D72E72CCC7D84A05BB1 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -382,6 +390,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				9E57E1C724D4AEFE00F96370 /* GoogleService-Info.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -395,29 +404,13 @@
 				9E63368323D54CE900468158 /* DayCell.xib in Resources */,
 				9E63367423D5422400468158 /* Main.storyboard in Resources */,
 				9E29429D2499418E006E65C0 /* Assets.xcassets in Resources */,
+				9E57E1C524D4AEF800F96370 /* GoogleService-Info.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
-		07763D72E72CCC7D84A05BB1 /* [CP] Copy Pods Resources */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-Travel WeatherTests/Pods-Travel WeatherTests-resources-${CONFIGURATION}-input-files.xcfilelist",
-			);
-			name = "[CP] Copy Pods Resources";
-			outputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-Travel WeatherTests/Pods-Travel WeatherTests-resources-${CONFIGURATION}-output-files.xcfilelist",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-Travel WeatherTests/Pods-Travel WeatherTests-resources.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
 		5B97C1112C2B3E0373184E6A /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -503,6 +496,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				9E41B46324D760CA00403C32 /* CoreDataHelper.swift in Sources */,
 				9E44A43224D2441100F54A5D /* Travel_WeatherTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -582,6 +576,22 @@
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = TLNU8LHLC5;
+				HEADER_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"${PODS_ROOT}/Headers/Public\"",
+					"\"${PODS_ROOT}/Headers/Public/Firebase\"",
+					"\"${PODS_ROOT}/Headers/Public/FirebaseAuth\"",
+					"\"${PODS_ROOT}/Headers/Public/FirebaseCore\"",
+					"\"${PODS_ROOT}/Headers/Public/FirebaseCoreDiagnostics\"",
+					"\"${PODS_ROOT}/Headers/Public/FirebaseFunctions\"",
+					"\"${PODS_ROOT}/Headers/Public/GTMSessionFetcher\"",
+					"\"${PODS_ROOT}/Headers/Public/GoogleDataTransport\"",
+					"\"${PODS_ROOT}/Headers/Public/GoogleUtilities\"",
+					"\"${PODS_ROOT}/Headers/Public/PromisesObjC\"",
+					"\"${PODS_ROOT}/Headers/Public/nanopb\"",
+					"\"${PODS_ROOT}/Firebase/CoreOnly/Sources\"",
+					"\"${PODS_ROOT}/JTAppleCalendar/Support Files\"/**",
+				);
 				INFOPLIST_FILE = "Travel WeatherTests/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 13.6;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -604,6 +614,22 @@
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = TLNU8LHLC5;
+				HEADER_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"${PODS_ROOT}/Headers/Public\"",
+					"\"${PODS_ROOT}/Headers/Public/Firebase\"",
+					"\"${PODS_ROOT}/Headers/Public/FirebaseAuth\"",
+					"\"${PODS_ROOT}/Headers/Public/FirebaseCore\"",
+					"\"${PODS_ROOT}/Headers/Public/FirebaseCoreDiagnostics\"",
+					"\"${PODS_ROOT}/Headers/Public/FirebaseFunctions\"",
+					"\"${PODS_ROOT}/Headers/Public/GTMSessionFetcher\"",
+					"\"${PODS_ROOT}/Headers/Public/GoogleDataTransport\"",
+					"\"${PODS_ROOT}/Headers/Public/GoogleUtilities\"",
+					"\"${PODS_ROOT}/Headers/Public/PromisesObjC\"",
+					"\"${PODS_ROOT}/Headers/Public/nanopb\"",
+					"\"${PODS_ROOT}/Firebase/CoreOnly/Sources\"",
+					"\"${PODS_ROOT}/JTAppleCalendar/Support Files\"/**",
+				);
 				INFOPLIST_FILE = "Travel WeatherTests/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 13.6;
 				LD_RUNPATH_SEARCH_PATHS = (
