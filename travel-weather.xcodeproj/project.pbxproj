@@ -590,7 +590,7 @@
 					"\"${PODS_ROOT}/Headers/Public/PromisesObjC\"",
 					"\"${PODS_ROOT}/Headers/Public/nanopb\"",
 					"\"${PODS_ROOT}/Firebase/CoreOnly/Sources\"",
-					"\"${PODS_ROOT}JTAppleCalendar",
+					"\"${PODS_ROOT}/JTAppleCalendar/Support Files\"/**",
 				);
 				INFOPLIST_FILE = "Travel WeatherTests/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 13.6;
@@ -628,7 +628,7 @@
 					"\"${PODS_ROOT}/Headers/Public/PromisesObjC\"",
 					"\"${PODS_ROOT}/Headers/Public/nanopb\"",
 					"\"${PODS_ROOT}/Firebase/CoreOnly/Sources\"",
-					"\"${PODS_ROOT}JTAppleCalendar",
+					"\"${PODS_ROOT}/JTAppleCalendar/Support Files\"/**",
 				);
 				INFOPLIST_FILE = "Travel WeatherTests/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 13.6;
