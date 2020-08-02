@@ -25,20 +25,17 @@ public class Day: NSManagedObject {
     }
 
     var weatherSummary: WeatherSummary? {
-
         get {
               if let weatherSummaryValue = weatherSummaryValue {
                   return WeatherSummary(rawValue: weatherSummaryValue)
               } else {
                   return nil
               }
-
           }
 
         set {
               self.weatherSummaryValue = newValue?.rawValue
           }
-
     }
 
     var lowTemp: Int32? {

@@ -7,6 +7,8 @@
 //
 
 import XCTest
+import CoreData
+
 @testable import Travel_Weather
 @testable import JTAppleCalendar
 @testable import GooglePlaces
@@ -15,36 +17,51 @@ class DayTests: XCTestCase {
 
     var day: Day!
 
-//    override func setUpWithError() throws {
-//        day = Day()
-//    }
-//
-//    override func tearDownWithError() throws {
-//        // Put teardown code here. This method is called after the invocation of each test method in the class.
-//    }
-//
-//    func testHighTempDisplayIsAccurate() {
-//        //given
-//        day.highTemp = 98
-//
-//        //then
-//        XCTAssertEqual(day.highTempDisplay, "98°")
-//    }
-//
-//    func testMissingHighTempDisplayIsAccurate() {
-//        //given
-//        day.highTemp = nil
-//
-//        //then
-//        XCTAssertEqual(day.highTempDisplay, "--- °")
-//    }
-//    func testLowTempDisplayIsAccurate() {
-//        //given
-//        day.lowTemp = 2
-//
-//        //then
-//        XCTAssertEqual(day.lowTempDisplay, "2°")
-//
-//    }
+    override func setUpWithError() throws {
+        let managedObjectContext = CoreDataHelper.initializeInMemoryManagedObjectContext()
+        //swiftlint:disable force_cast
+        day = (NSEntityDescription.insertNewObject(forEntityName: "Day", into: managedObjectContext) as! Day)
+    }
 
+    override func tearDownWithError() throws {
+        // Put teardown code here. This method is called after the invocation of each test method in the class.
+    }
+
+    func testHighTempDisplayIsAccurate() {
+        //given
+        day.highTemp = 98
+        day.lowTemp = 2
+
+        //then
+        XCTAssertEqual(day.highTempDisplay, "98°")
+    }
+
+    func testMissingHighTempDisplayIsAccurate() {
+        //given
+        day.highTemp = nil
+        day.lowTemp = 2
+
+        //then
+        XCTAssertEqual(day.highTempDisplay, "--- °")
+        XCTAssertEqual(day.lowTempDisplay, "--- °")
+    }
+
+    func testMissingLowTempDisplayIsAccurate() {
+        //given
+        day.highTemp = 98
+        day.lowTemp = nil
+
+        //then
+        XCTAssertEqual(day.highTempDisplay, "--- °")
+        XCTAssertEqual(day.lowTempDisplay, "--- °")
+    }
+
+    func testLowTempDisplayIsAccurate() {
+        //given
+        day.lowTemp = 2
+        day.highTemp = 98
+
+        //then
+        XCTAssertEqual(day.lowTempDisplay, "2°")
+    }
 }
