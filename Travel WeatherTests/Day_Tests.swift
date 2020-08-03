@@ -26,13 +26,40 @@ class DayTests: XCTestCase {
         day = nil
     }
 
-    func testHighTempDisplayIsAccurate() {
+    func testHighTempDisplayFahrenheitIsAccurate() {
         //given
         day.highTemp = 98
         day.lowTemp = 2
 
         //then
-        XCTAssertEqual(day.highTempDisplay, "98°")
+        XCTAssertEqual(day.highTempDisplayFahrenheit, "98°")
+    }
+
+    func testLowTempDisplayFahrenheitIsAccurate() {
+        //given
+        day.lowTemp = 2
+        day.highTemp = 98
+
+        //then
+        XCTAssertEqual(day.lowTempDisplayFahrenheit, "2°")
+    }
+
+    func testHighTempDisplayCelsiusIsAccurate() {
+        //given
+        day.highTemp = 98
+        day.lowTemp = 2
+
+        //then
+        XCTAssertEqual(day.highTempDisplayCelsius, "37°")
+    }
+
+    func testLowTempDisplayCelsiusIsAccurate() {
+        //given
+        day.lowTemp = 2
+        day.highTemp = 98
+
+        //then
+        XCTAssertEqual(day.lowTempDisplayCelsius, "-17°")
     }
 
     func testMissingHighTempDisplayIsAccurate() {
@@ -41,8 +68,10 @@ class DayTests: XCTestCase {
         day.lowTemp = 2
 
         //then
-        XCTAssertEqual(day.highTempDisplay, "--- °")
-        XCTAssertEqual(day.lowTempDisplay, "--- °")
+        XCTAssertEqual(day.highTempDisplayFahrenheit, "--- °")
+        XCTAssertEqual(day.lowTempDisplayFahrenheit, "--- °")
+        XCTAssertEqual(day.highTempDisplayCelsius, "--- °")
+        XCTAssertEqual(day.lowTempDisplayCelsius, "--- °")
     }
 
     func testMissingLowTempDisplayIsAccurate() {
@@ -51,20 +80,10 @@ class DayTests: XCTestCase {
         day.lowTemp = nil
 
         //then
-        XCTAssertEqual(day.highTempDisplay, "--- °")
-        XCTAssertEqual(day.lowTempDisplay, "--- °")
-    }
-
-    func testLowTempDisplayIsAccurate() {
-        //given
-        day.lowTemp = 2
-        day.highTemp = 98
-
-        //then
-        XCTAssertEqual(day.lowTempDisplay, "2°")
-    }
-
-    func testCelsiusLowTempDisplay() {
+        XCTAssertEqual(day.highTempDisplayFahrenheit, "--- °")
+        XCTAssertEqual(day.lowTempDisplayFahrenheit, "--- °")
+        XCTAssertEqual(day.highTempDisplayCelsius, "--- °")
+        XCTAssertEqual(day.lowTempDisplayCelsius, "--- °")
 
     }
 
