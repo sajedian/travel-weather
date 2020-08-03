@@ -1,8 +1,8 @@
 //
-//  Travel_WeatherTests.swift
+//  Day_Tests.swift
 //  Travel WeatherTests
 //
-//  Created by Renee Sajedian on 7/29/20.
+//  Created by Renee Sajedian on 8/3/20.
 //  Copyright © 2020 Renee Sajedian. All rights reserved.
 //
 
@@ -62,6 +62,10 @@ class DayTests: XCTestCase {
 
         //then
         XCTAssertEqual(day.lowTempDisplay, "2°")
+    }
+
+    func testCelsiusLowTempDisplay() {
+
     }
 
     func testWeekdayIsCorrect() {
