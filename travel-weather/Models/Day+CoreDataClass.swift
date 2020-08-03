@@ -38,35 +38,35 @@ public class Day: NSManagedObject {
           }
     }
 
-    var lowTemp: Int32? {
+    var lowTemp: Double? {
 
         get {
             self.willAccessValue(forKey: "lowTemp")
-            let value = self.primitiveValue(forKey: "lowTemp") as? Int
+            let value = self.primitiveValue(forKey: "lowTemp") as? Double
             self.didAccessValue(forKey: "lowTemp")
-            return (value != nil) ? Int32(value!) : nil
+            return (value != nil) ? Double(value!) : nil
         }
 
         set {
             self.willChangeValue(forKey: "lowTemp")
-            let value: Int? = (newValue != nil) ? Int(newValue!) : nil
+            let value: Double? = (newValue != nil) ? Double(newValue!) : nil
             self.setPrimitiveValue(value, forKey: "lowTemp")
             self.didChangeValue(forKey: "lowTemp")
         }
     }
 
-    var highTemp: Int32? {
+    var highTemp: Double? {
 
         get {
             self.willAccessValue(forKey: "highTemp")
-            let value = self.primitiveValue(forKey: "highTemp") as? Int
+            let value = self.primitiveValue(forKey: "highTemp") as? Double
             self.didAccessValue(forKey: "highTemp")
-            return (value != nil) ? Int32(value!) : nil
+            return (value != nil) ? Double(value!) : nil
         }
 
         set {
             self.willChangeValue(forKey: "highTemp")
-            let value: Int? = (newValue != nil) ? Int(newValue!) : nil
+            let value: Double? = (newValue != nil) ? Double(newValue!) : nil
             self.setPrimitiveValue(value, forKey: "highTemp")
             self.didChangeValue(forKey: "highTemp")
         }
@@ -106,7 +106,7 @@ public class Day: NSManagedObject {
                 let celsius = round((Double(highTemp) - 32.0) * (5.0/9.0))
                 displayTemp = String(Int(celsius))
             } else {
-                displayTemp = String(highTemp)
+                displayTemp = String(Int(round(highTemp)))
             }
             return displayTemp + "°"
 
@@ -123,7 +123,7 @@ public class Day: NSManagedObject {
                 let celsius = round((Double(lowTemp) - 32.0) * (5.0/9.0))
                 displayTemp = String(Int(celsius))
             } else {
-                displayTemp = String(lowTemp)
+                displayTemp = String(Int(round(lowTemp)))
             }
             return displayTemp + "°"
         } else {
@@ -141,12 +141,12 @@ public class Day: NSManagedObject {
         }
 
         if let temperatureMax = weatherForDay?.temperatureMax {
-            highTemp = Int32(temperatureMax)
+            highTemp = temperatureMax
         } else {
             highTemp = nil
         }
         if let temperatureMin = weatherForDay?.temperatureMin {
-            lowTemp = Int32(temperatureMin)
+            lowTemp = temperatureMin
         } else {
             lowTemp = nil
         }
