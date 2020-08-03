@@ -89,31 +89,45 @@ public class Day: NSManagedObject {
         return dateFormatter.string(from: date)
     }
 
-    var tempDisplay: String {
-        if let highTemp = highTemp, let lowTemp = lowTemp {
-            return "\(highTemp) ⏐ \(lowTemp)"
+    var highTempDisplayFahrenheit: String {
+        if let highTemp = highTemp, lowTemp != nil {
+            let displayTemp = String(Int(round(highTemp)))
+            return displayTemp + "°"
         } else {
-            return "--- ⏐ ---"
+              return "--- °"
         }
     }
 
-    var highTempDisplay: String {
-
-        var displayTemp = ""
-
+    var highTempDisplayCelsius: String {
         if let highTemp = highTemp, lowTemp != nil {
-            if UserDefaults.standard.integer(forKey: "temperatureUnits") == TemperatureUnits.celsius.rawValue {
-                let celsius = round((Double(highTemp) - 32.0) * (5.0/9.0))
-                displayTemp = String(Int(celsius))
-            } else {
-                displayTemp = String(Int(round(highTemp)))
-            }
+            let celsius = round((Double(highTemp) - 32.0) * (5.0/9.0))
+            let displayTemp = String(Int(celsius))
             return displayTemp + "°"
-
         } else {
             return "--- °"
         }
     }
+
+    var lowTempDisplayFahrenheit: String {
+        if let lowTemp = lowTemp, highTemp != nil {
+            let displayTemp = String(Int(round(lowTemp)))
+            return displayTemp + "°"
+        } else {
+              return "--- °"
+        }
+    }
+
+    var lowTempDisplayCelsius: String {
+        if let lowTemp = lowTemp, highTemp != nil {
+            let celsius = round((Double(lowTemp) - 32.0) * (5.0/9.0))
+            let displayTemp = String(Int(celsius))
+            return displayTemp + "°"
+        } else {
+            return "--- °"
+        }
+    }
+
+
 
     var lowTempDisplay: String {
 

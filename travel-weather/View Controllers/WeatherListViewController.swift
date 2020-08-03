@@ -47,8 +47,15 @@ class WeatherListViewController: UITableViewController {
         cell.weekdayLabel.text = day.weekday
         cell.dateLabel.text = day.date.shortMonthAndDay
         cell.cityLabel.text = day.location.display
-        cell.lowTempLabel.text = day.lowTempDisplay
-        cell.highTempLabel.text = day.highTempDisplay
+
+        if stateController.temperatureUnits == .fahrenheit {
+            cell.lowTempLabel.text = day.lowTempDisplayFahrenheit
+            cell.highTempLabel.text = day.highTempDisplayFahrenheit
+        } else {
+            cell.lowTempLabel.text = day.lowTempDisplayCelsius
+            cell.highTempLabel.text = day.highTempDisplayCelsius
+        }
+
         cell.weatherImageView.image = day.weatherImage
         cell.colorView.backgroundColor = stateController.getAssociatedColor(for: day.location.placeID)
     }
