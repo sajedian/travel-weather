@@ -112,6 +112,7 @@ class NetworkController {
     private func composedURLRequest(date: Date, latitude: Double, longitude: Double) -> URLRequest? {
         let timeStamp = date.ISODate
 
+        //swiftlint:disable line_length
         let urlString = "https://api.darksky.net/forecast/\(darkSkyAPIKey)/\(latitude),\(longitude),\(timeStamp)?exclude=currently,minutely,hourly,alerts,flags"
         print(urlString)
         if let url = URL(string: urlString) {

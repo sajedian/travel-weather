@@ -7,11 +7,23 @@
 //
 
 import UIKit
+import CoreData
 
 class SceneDelegate: UIResponder, UIWindowSceneDelegate {
 
     var window: UIWindow?
     var stateController: StateController?
+
+    lazy var persistentContainer: NSPersistentContainer = {
+        let container = NSPersistentContainer(name: "TravelWeather")
+        container.loadPersistentStores(completionHandler: { (_, error) in
+            container.viewContext.mergePolicy = NSMergeByPropertyObjectTrumpMergePolicy
+            if let error = error as NSError? {
+                fatalError("Unresolved error \(error), \(error.userInfo)")
+            }
+        })
+        return container
+    }()
 
     func scene(_ scene: UIScene, willConnectTo session: UISceneSession,
                options connectionOptions: UIScene.ConnectionOptions) {
@@ -23,8 +35,10 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         }
         //stateController is the central control of the app
         //therefore, each VC in the Tab Bar Controller must have access to it
-        let stateController = StateController()
-
+        let storageController = StorageController(container: persistentContainer)
+        let networkController = NetworkController()
+        let stateController = StateController(storageController: storageController,
+                                              networkController: networkController)
         guard let navController1 = viewControllers[0] as? UINavigationController,
             let scheduleViewController = navController1.viewControllers.first as? ScheduleViewController else {
             fatalError("Failed to find ScheduleViewController")

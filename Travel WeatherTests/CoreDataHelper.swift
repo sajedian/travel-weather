@@ -11,6 +11,7 @@ import Foundation
 @testable import Travel_Weather
 
 class CoreDataHelper {
+
     class func initializeInMemoryManagedObjectContext() -> NSManagedObjectContext {
         let managedObjectModel = NSManagedObjectModel.mergedModel(from: [Bundle.main])!
         let persistentStoreCoordinator = NSPersistentStoreCoordinator(managedObjectModel: managedObjectModel)

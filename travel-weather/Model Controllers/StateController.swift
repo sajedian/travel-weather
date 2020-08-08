@@ -44,9 +44,9 @@ class StateController: NetworkControllerDelegate {
         }
     }
 
-    init() {
-        self.networkController = NetworkController()
-        self.storageController = StorageController()
+    init(storageController: StorageController, networkController: NetworkController) {
+        self.storageController = storageController
+        self.networkController = networkController
         networkController.delegate = self
         colorSettingsArray = storageController.getColorSettings()
         //listens for notification when time is midnight (or other important change ie Daylight Savings)
