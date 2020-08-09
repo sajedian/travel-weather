@@ -44,9 +44,9 @@ class StateController: NetworkControllerDelegate {
         }
     }
 
-    init() {
-        self.networkController = NetworkController()
-        self.storageController = StorageController()
+    init(storageController: StorageController, networkController: NetworkController) {
+        self.storageController = storageController
+        self.networkController = networkController
         networkController.delegate = self
         colorSettingsArray = storageController.getColorSettings()
         //listens for notification when time is midnight (or other important change ie Daylight Savings)
@@ -68,7 +68,6 @@ class StateController: NetworkControllerDelegate {
     }
 
     // MARK: - Interface- Updating data
-
     //notification will be received when midnight or another important time change occurs
     @ objc func onTimeChange(_ notification: Notification) {
         loadAndUpdateData()
@@ -164,7 +163,6 @@ class StateController: NetworkControllerDelegate {
     }
 
     // MARK: - Day Interface
-
     func getDayForDate(for date: Date) -> Day {
         if let day = days[date] {
             return day

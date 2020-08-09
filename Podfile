@@ -26,5 +26,11 @@ post_install do |installer|
     new_contents = text.gsub(string_to_replace, assets_compile_with_app_icon_arguments)
     File.open(copy_pods_resources_path, "w") {|file| file.puts new_contents }
 
+    installer.pods_project.targets.each do |t|
+      t.build_configurations.each do |config|
+        config.build_settings['IPHONEOS_DEPLOYMENT_TARGET'] = '13.2'
+      end
+    end
+
 end
 
