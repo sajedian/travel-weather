@@ -5,27 +5,13 @@
 //  Created by Renee Sajedian on 3/16/20.
 //  Copyright © 2020 Renee Sajedian. All rights reserved.
 //
-
 import Foundation
 import CoreData
 import GooglePlaces
 
 class StorageController {
 
-    lazy var persistentContainer: NSPersistentContainer = {
-        let container = NSPersistentContainer(name: "TravelWeather")
-        container.loadPersistentStores(completionHandler: { (_, error) in
-            container.viewContext.mergePolicy = NSMergeByPropertyObjectTrumpMergePolicy
-            if let error = error as NSError? {
-                fatalError("Unresolved error \(error), \(error.userInfo)")
-            }
-        })
-        return container
-    }()
-
-    var context: NSManagedObjectContext {
-        return persistentContainer.viewContext
-    }
+    let persistentContainer: NSPersistentContainer!
 
      func saveContext() {
         let context = persistentContainer.viewContext
@@ -38,6 +24,9 @@ class StorageController {
                 fatalError("Unresolved error \(error), \(error.userInfo)")
             }
         }
+    }
+    init(container: NSPersistentContainer) {
+        self.persistentContainer = container
     }
 
     func getDayForDate(for date: Date) -> Day? {
@@ -248,16 +237,3 @@ class StorageController {
     }
 
 }
-
-//perform Tasks without blocking the main thread
-
-//container.performBackgroundTask({ (context) in
-//  // ... do some task on the context
-//
-//  // save the context
-//  do {
-//    try context.save()
-//  } catch {
-//    // handle error
-//  }
-//})
